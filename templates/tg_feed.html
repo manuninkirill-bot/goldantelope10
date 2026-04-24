@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TG Feed</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        .stats { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .channels { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+        .channel-btn { padding: 6px 12px; background: #007bff; color: #fff; border-radius: 20px; text-decoration: none; font-size: 14px; }
+        .channel-btn.active { background: #0056b3; }
+        .post { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .post-channel { font-size: 12px; color: #888; margin-bottom: 6px; }
+        .post-text { white-space: pre-wrap; }
+        .empty { color: #888; text-align: center; padding: 40px; }
+    </style>
+</head>
+<body>
+    <h1>TG Feed</h1>
+
+    <div class="stats">
+        <strong>Статистика:</strong>
+        Постов: {{ stats.total_posts }} |
+        Каналов: {{ stats.channels | length }} |
+        Режим: {{ stats.mode }}
+    </div>
+
+    <div class="channels">
+        <a href="/tg-feed" class="channel-btn {% if not active_channel %}active{% endif %}">Все</a>
+        {% for slug, title in channels %}
+        <a href="/tg-feed?channel={{ slug }}" class="channel-btn {% if active_channel == slug %}active{% endif %}">{{ title }}</a>
+        {% endfor %}
+    </div>
+
+    {% if posts %}
+        {% for post in posts %}
+        <div class="post">
+            <div class="post-channel">{{ post.get('channel', '') }}</div>
+            <div class="post-text">{{ post.get('text', '') }}</div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty">Нет постов</div>
+    {% endif %}
+</body>
+</html>

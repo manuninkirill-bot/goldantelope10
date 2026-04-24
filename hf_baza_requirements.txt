@@ -1,0 +1,3 @@
+telethon
+gradio
+huggingface_hub

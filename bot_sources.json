@@ -1,0 +1,27 @@
+{
+  "vietnam": [
+    {"name": "Недвижимость Вьетнам", "username": "parsing_vn", "channel_id": "-1003987939980", "category": "real_estate"},
+    {"name": "Байки Вьетнам", "username": "bikeparsing_vn", "channel_id": "-1003922185577", "category": "transport"},
+    {"name": "Развлечения Вьетнам", "username": "tusaparsing_vn", "channel_id": "-1003603825848", "category": "entertainment"},
+    {"name": "Экскурсии Вьетнам", "username": "excursii_vn", "channel_id": "-1003928690491", "category": "tours"},
+    {"name": "Рестораны (все страны)", "username": "restoranparsing_all", "channel_id": "-1003927043313", "category": "restaurants"},
+    {"name": "Баннеры Вьетнам", "username": "banner_vn", "channel_id": "", "category": "banner"}
+  ],
+  "thailand": [
+    {"name": "Недвижимость Таиланд", "username": "parsing_th", "channel_id": "-1003411602924", "category": "real_estate"},
+    {"name": "Байки Таиланд", "username": "bikeparsing_th", "channel_id": "-1003894914160", "category": "transport"},
+    {"name": "Экскурсии Таиланд", "username": "excursii_th", "channel_id": "-1003605171202", "category": "tours"},
+    {"name": "Развлечения Таиланд", "username": "tusaparsing_th", "channel_id": "-1003932432750", "category": "entertainment"}
+  ],
+  "india": [
+    {"name": "Недвижимость Индия", "username": "parsing_in", "channel_id": "-1003948057945", "category": "real_estate"},
+    {"name": "Байки Индия", "username": "bikeparsing_in", "channel_id": "-1003811252596", "category": "transport"},
+    {"name": "Чаты Индия / Индонезия", "username": "chatparsing_in", "channel_id": "-1003864328793", "category": "chat"},
+    {"name": "Развлечения Индия", "username": "tusaparsing_in", "channel_id": "-1003993270203", "category": "entertainment"}
+  ],
+  "indonesia": [
+    {"name": "Недвижимость Индонезия", "username": "parsing_indo", "channel_id": "-1003872341008", "category": "real_estate"},
+    {"name": "Байки Индонезия", "username": "bikeparsing_indo", "channel_id": "-1003970901435", "category": "transport"},
+    {"name": "Развлечения Индонезия", "username": "tusaparsing_indo", "channel_id": "-1003983228126", "category": "entertainment"}
+  ]
+}

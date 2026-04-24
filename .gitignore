@@ -1,0 +1,9 @@
+tg_photo_cache/
+__pycache__/
+*.pyc
+.env
+*.log
+.pythonlibs/
+.upm/
+.cache/
+.local/
