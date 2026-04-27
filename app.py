@@ -1484,7 +1484,11 @@ def get_listings(category):
     else:
         filtered = [x for x in listings if not x.get('hidden', False)]
     
-    _GA_TRUSTED_SOURCES = {'gavibeshub', 'gavisarun', 'gatours', 'gafoods', 'gapayments'}
+    _GA_TRUSTED_SOURCES = {
+        'gavibeshub', 'gavisarun', 'gatours', 'gafoods', 'gapayments',
+        'tusaparsing_vn', 'tusaparsing_th', 'tusaparsing_in', 'tusaparsing_indo',
+        'vibeshub_vn', 'excursii_th',
+    }
 
     # Туры Вьетнама — только из группы GAtours_vn
     if category == 'tours' and country == 'vietnam':
@@ -1570,7 +1574,13 @@ def get_listings(category):
         ]
         filtered = [x for x in filtered if
             x.get('source_group', '').lower() in _GA_TRUSTED_SOURCES or
-            any(kw in (x.get('description', '') or x.get('title', '') or '').lower() for kw in _ENT_KEYWORDS)
+            x.get('source_channel', '').lower() in _GA_TRUSTED_SOURCES or
+            x.get('channel', '').lower() in _GA_TRUSTED_SOURCES or
+            any(kw in (
+                (x.get('description') or '') + ' ' +
+                (x.get('title') or '') + ' ' +
+                (x.get('text') or '')
+            ).lower() for kw in _ENT_KEYWORDS)
         ]
         # Только объявления с фото
         def _ent_has_photo(x):
@@ -1908,12 +1918,18 @@ def get_listings(category):
             if 'realestate_city' in filters and filters['realestate_city']:
                 city_filter = filters['realestate_city'].lower()
                 city_mapping = {
-                    'nhatrang': ['nhatrang', 'nha trang', 'нячанг'],
-                    'danang': ['danang', 'da nang', 'дананг'],
-                    'hochiminh': ['hochiminh', 'ho chi minh', 'hcm', 'хошимин', 'сайгон'],
-                    'hanoi': ['hanoi', 'ha noi', 'ханой'],
-                    'phuquoc': ['phuquoc', 'phu quoc', 'фукуок'],
-                    'dalat': ['dalat', 'da lat', 'далат'],
+                    'nhatrang': ['nhatrang', 'nha trang', 'нячанг', 'нячанга', 'нячанге',
+                                 'khanh hoa', 'bai dai', 'hon tre', 'vinh nguyen', 'cam ranh', 'камрань'],
+                    'danang': ['danang', 'da nang', 'дананг', 'da-nang', 'son tra', 'sơn trà',
+                               'lien chieu', 'lienchieu', 'my khe', 'mykhe', 'bac my an',
+                               'hoa khanh', 'hai chau', 'thanh khe', 'ngu hanh son', 'nam o'],
+                    'hochiminh': ['hochiminh', 'ho chi minh', 'hcm', 'хошимин', 'сайгон',
+                                  'saigon', 'binh thanh', 'thu duc', 'tan binh', 'go vap'],
+                    'hanoi': ['hanoi', 'ha noi', 'ханой', 'hà nội', 'tay ho', 'hoan kiem', 'ba dinh'],
+                    'phuquoc': ['phuquoc', 'phu quoc', 'фукуок', 'phú quốc', 'duong dong', 'long beach'],
+                    'dalat': ['dalat', 'da lat', 'далат', 'đà lạt', 'lam dong'],
+                    'muine': ['muine', 'mui ne', 'муйне', 'phan thiet', 'фантьет'],
+                    'hoian': ['hoian', 'hoi an', 'хойан', 'hội an'],
                     # Thailand cities
                     'бангкок': ['бангкок', 'bangkok'],
                     'пхукет': ['пхукет', 'phuket'],
@@ -2353,6 +2369,18 @@ def _get_banner_file_id(msg_id):
 
 @app.route('/api/banner-img/<int:msg_id>')
 def banner_image_proxy(msg_id):
+    # 0) Приоритет — локальный файл полного качества
+    try:
+        banner_data = _load_banner_data()
+        entry = banner_data.get(str(msg_id), {})
+        local_url = entry.get('local_url', '')
+        if local_url:
+            local_path = local_url.lstrip('/')
+            if os.path.exists(local_path):
+                return redirect(local_url, code=302)
+    except Exception:
+        pass
+
     cache_key = msg_id
     if cache_key in _banner_og_cache:
         cached = _banner_og_cache[cache_key]
@@ -4469,6 +4497,9 @@ def _gavibeshub_poller():
                     'parsing_th':      ('real_estate',   'thailand'),
                     'parsing_in':      ('real_estate',   'india'),
                     'parsing_indo':    ('real_estate',   'indonesia'),
+                    'bikeparsing_vn':  ('transport',     'vietnam'),
+                    'bikeparsing_th':  ('transport',     'thailand'),
+                    'bikeparsing_in':  ('transport',     'india'),
                     'chatparsing_vn':  ('chat',          'vietnam'),
                     'tusaparsing_vn':  ('entertainment', 'vietnam'),
                     'tusaparsing_th':  ('entertainment', 'thailand'),
@@ -4480,7 +4511,12 @@ def _gavibeshub_poller():
                     continue
 
                 category_r, country_r = route
-                text_r = cp.get('text', '') or cp.get('caption', '') or ''
+                _raw_text = cp.get('text', '') or cp.get('caption', '') or ''
+                import re as _re_f
+                text_r = _re_f.sub(
+                    r'\n*Источник:\s*@?\S+\s*\n?Ссылка:\s*https?://t\.me/\S+',
+                    '', _raw_text, flags=_re_f.IGNORECASE
+                ).strip()
                 msg_id = cp.get('message_id', 0)
 
                 # Первоисточник: forward_from_chat → ссылки в entities → ссылки в тексте
@@ -4573,14 +4609,18 @@ def _gavibeshub_poller():
                     # Определяем город из текста
                     _txt_low = (text_r or '').lower()
                     _vn_cities = {
-                        'nhatrang':  ['нячанг', 'nha trang', 'nhatrang', 'камрань', 'cam ranh', 'bắc nha trang'],
-                        'hochiminh': ['хошимин', 'сайгон', 'saigon', 'ho chi minh', 'hcm'],
-                        'danang':    ['дананг', 'da nang', 'danang'],
-                        'hanoi':     ['ханой', 'hanoi', 'ha noi'],
-                        'phuquoc':   ['фукуок', 'phu quoc', 'phuquoc'],
-                        'dalat':     ['далат', 'da lat', 'dalat'],
-                        'muine':     ['муйне', 'mui ne'],
-                        'hoian':     ['хойан', 'hoi an'],
+                        'nhatrang':  ['нячанг', 'nha trang', 'nhatrang', 'камрань', 'cam ranh',
+                                      'bắc nha trang', 'khanh hoa', 'bai dai', 'hon tre', 'vinh nguyen'],
+                        'hochiminh': ['хошимин', 'сайгон', 'saigon', 'ho chi minh', 'hcm',
+                                      'binh thanh', 'thu duc', 'tan binh', 'go vap'],
+                        'danang':    ['дананг', 'da nang', 'danang', 'da-nang', 'son tra', 'sơn trà',
+                                      'lien chieu', 'my khe', 'bac my an', 'hoa khanh',
+                                      'hai chau', 'thanh khe', 'ngu hanh son', 'nam o'],
+                        'hanoi':     ['ханой', 'hanoi', 'ha noi', 'tay ho', 'hoan kiem', 'ba dinh'],
+                        'phuquoc':   ['фукуок', 'phu quoc', 'phuquoc', 'duong dong', 'long beach'],
+                        'dalat':     ['далат', 'da lat', 'dalat', 'lam dong'],
+                        'muine':     ['муйне', 'mui ne', 'phan thiet', 'фантьет'],
+                        'hoian':     ['хойан', 'hoi an', 'hội an'],
                     }
                     _th_cities = {
                         'pattaya':  ['паттайя', 'pattaya', 'wongamat', 'jomtien'],
@@ -4611,7 +4651,29 @@ def _gavibeshub_poller():
                         if any(_kw in _txt_low for _kw in _kws):
                             _re_city = _cs
                             break
-                    _city_display = _country_city_default.get(country_r, country_r.capitalize())
+                    # Город: сначала из названия канала, затем из текста, затем страна
+                    try:
+                        from bot_channel_parser import city_from_channel as _city_from_ch
+                        _city_from_name = _city_from_ch(orig_username) or _city_from_ch(chat_username)
+                    except Exception:
+                        _city_from_name = ''
+                    if _city_from_name:
+                        _city_display = _city_from_name
+                    elif _re_city:
+                        # Слаг → русское название
+                        _slug_to_ru = {
+                            'nhatrang':'Нячанг','danang':'Дананг','hochiminh':'Хошимин',
+                            'hanoi':'Ханой','phuquoc':'Фукуок','dalat':'Далат',
+                            'muine':'Муйне','hoian':'Хойан','camranh':'Камрань',
+                            'pattaya':'Паттайя','phuket':'Пхукет','bangkok':'Бангкок',
+                            'samui':'Самуи','chiangmai':'Чиангмай',
+                            'goa':'Гоа','mumbai':'Мумбаи','delhi':'Дели','bangalore':'Бангалор',
+                            'bali':'Бали','jakarta':'Джакарта','lombok':'Ломбок',
+                        }
+                        _city_display = _slug_to_ru.get(_re_city,
+                                         _country_city_default.get(country_r, country_r.capitalize()))
+                    else:
+                        _city_display = _country_city_default.get(country_r, country_r.capitalize())
                     item_r = {
                         'id': f'{orig_username}_{orig_msg_id}',
                         'title': title_r,
@@ -4799,18 +4861,20 @@ threading.Thread(target=_sync_vibeshub_vn_entertainment, daemon=True, name='Vibe
 logger.info('GAvibeshub background poller started (every %ds)', GAVIBESHUB_POLL_INTERVAL)
 
 # ─── Периодический скрейпер всех каналов (t.me/s/) ────────────────────────
+# Опрашиваются каждые ALL_CHANNELS_SCRAPE_INTERVAL секунд (5 мин)
 _PERIODIC_SCRAPE_CHANNELS = [
-    ('parsing_vn',      'real_estate',    'listings_vietnam.json',  'vietnam'),
-    ('parsing_th',      'real_estate',    'listings_thailand.json', 'thailand'),
-    ('visarun_vn',      'visas',          'listings_vietnam.json',  'vietnam'),
-    ('paymens_vn',      'money_exchange', 'listings_vietnam.json',  'vietnam'),
-    ('bayk_vn',         'transport',      'listings_vietnam.json',  'vietnam'),
-    ('GAtours_vn',      'tours',          'listings_vietnam.json',  'vietnam'),
-    ('vibeshub_vn',     'entertainment',  'listings_vietnam.json',  'vietnam'),
-    ('restoranvietnam', 'restaurants',    'listings_vietnam.json',  'vietnam'),
-    ('tusaparsing_th',  'entertainment',  'listings_thailand.json', 'thailand'),
-    ('excursii_th',     'entertainment',  'listings_thailand.json', 'thailand'),
-    ('tusaparsing_indo','entertainment',  'listings_indonesia.json','indonesia'),
+    # Недвижимость
+    ('parsing_vn',     'real_estate',   'listings_vietnam.json',   'vietnam'),
+    ('parsing_th',     'real_estate',   'listings_thailand.json',  'thailand'),
+    ('parsing_in',     'real_estate',   'listings_india.json',     'india'),
+    ('parsing_indo',   'real_estate',   'listings_indonesia.json', 'indonesia'),
+    # Транспорт / байки
+    ('bikeparsing_vn', 'transport',     'listings_vietnam.json',   'vietnam'),
+    ('bikeparsing_th', 'transport',     'listings_thailand.json',  'thailand'),
+    ('bikeparsing_in', 'transport',     'listings_india.json',     'india'),
+    # Развлечения
+    ('tusaparsing_vn', 'entertainment', 'listings_vietnam.json',   'vietnam'),
+    # banner_vn — пропускаем, баннеры обновляются отдельно
 ]
 _CHAT_SCRAPE_CHANNELS = [
     ('obmenvietnam', 'chat', 'listings_vietnam.json', 'vietnam'),
