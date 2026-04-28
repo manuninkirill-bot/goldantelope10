@@ -5160,6 +5160,245 @@ logger.info('[periodic_scraper] Все каналы — каждые %ds, чат
             ALL_CHANNELS_SCRAPE_INTERVAL, CHAT_SCRAPE_INTERVAL)
 
 
+# ─── GitHub tours_nhatrang → listings_vietnam.json (Экскурсии) ───────────────
+_GITHUB_TOURS_REPO   = 'manuninkirill-bot/goldantelopeasia'
+_GITHUB_TOURS_DIR    = 'tours_nhatrang'
+_GITHUB_TOURS_RAW    = f'https://raw.githubusercontent.com/{_GITHUB_TOURS_REPO}/main/{_GITHUB_TOURS_DIR}'
+_GITHUB_TOURS_API    = f'https://api.github.com/repos/{_GITHUB_TOURS_REPO}/contents/{_GITHUB_TOURS_DIR}'
+_GITHUB_TOURS_INTERVAL = 1800  # каждые 30 минут
+
+
+def _load_tours_from_github() -> list:
+    """Читает все туры из GitHub tours_nhatrang → список листингов."""
+    gh_token = os.environ.get('GITHUB_PERSONAL_ACCESS_TOKEN', '').strip()
+    gh_headers = {'Authorization': f'token {gh_token}'} if gh_token else {}
+    try:
+        r = requests.get(_GITHUB_TOURS_API, headers=gh_headers, timeout=15)
+        if r.status_code != 200:
+            logger.warning('[gh_tours] Не удалось получить список папок: %s', r.status_code)
+            return []
+        dirs = sorted([f['name'] for f in r.json() if f['type'] == 'dir'])
+        tours = []
+        for tour_dir in dirs:
+            r2 = requests.get(f'{_GITHUB_TOURS_API}/{tour_dir}', headers=gh_headers, timeout=10)
+            if r2.status_code != 200:
+                continue
+            files_info = r2.json()
+            file_names = [f['name'] for f in files_info if isinstance(f, dict)]
+            # Описание
+            desc = ''
+            if 'description.txt' in file_names:
+                r3 = requests.get(f'{_GITHUB_TOURS_API}/{tour_dir}/description.txt',
+                                  headers=gh_headers, timeout=10)
+                if r3.status_code == 200:
+                    import base64 as _b64
+                    desc = _b64.b64decode(r3.json()['content']).decode('utf-8').strip()
+            # Фото (постоянные raw.githubusercontent.com ссылки — не истекают)
+            photo_files = sorted([fn for fn in file_names
+                                   if fn.lower().endswith(('.jpg','.jpeg','.png','.webp'))])
+            photos = [f'{_GITHUB_TOURS_RAW}/{tour_dir}/{fn}' for fn in photo_files]
+            title = desc.split('\n')[0].strip() if desc else tour_dir.replace('_', ' ')
+            price_m = _re.search(r'(\d[\d\s]*)\s*(usd|usд|\$|долл)', desc, _re.IGNORECASE)
+            price = int(price_m.group(1).replace(' ', '')) if price_m else 0
+            wa_m = _re.search(r'(https://wa\.me/\S+)', desc)
+            contact = wa_m.group(1) if wa_m else '@excursii_vn'
+            tours.append({
+                'id': f'excursii_vn_{tour_dir.lower()}',
+                'title': title,
+                'text': desc,
+                'description': desc,
+                'price': price,
+                'price_display': f'${price}' if price else '',
+                'city': 'Нячанг',
+                'city_ru': 'Нячанг',
+                'country': 'vietnam',
+                'category': 'tours',
+                'source_group': 'GAtours_vn',
+                'source_channel': 'excursii_vn',
+                'contact': contact,
+                'contact_name': 'excursii_vn',
+                'telegram': 'https://t.me/excursii_vn',
+                'telegram_link': 'https://t.me/excursii_vn',
+                'image_url': photos[0] if photos else '',
+                'all_images': photos,
+                'photos': photos,
+                'has_media': bool(photos),
+                'status': 'active',
+                'date': '',
+                'github_folder': f'{_GITHUB_TOURS_DIR}/{tour_dir}',
+            })
+        return tours
+    except Exception as e:
+        logger.warning('[gh_tours] Ошибка загрузки: %s', e)
+        return []
+
+
+def _sync_github_tours():
+    """Фоновый поток: GitHub tours_nhatrang → listings_vietnam.json каждые 30 мин."""
+    import time as _t
+    _t.sleep(10)  # небольшая задержка при старте
+    while True:
+        try:
+            tours = _load_tours_from_github()
+            if tours:
+                with open('listings_vietnam.json', 'r', encoding='utf-8') as _f:
+                    vn = json.load(_f)
+                vn['tours'] = tours
+                _tmp = 'listings_vietnam.json.tmp'
+                with open(_tmp, 'w', encoding='utf-8') as _f:
+                    json.dump(vn, _f, ensure_ascii=False, separators=(',', ':'))
+                os.replace(_tmp, 'listings_vietnam.json')
+                data_cache.pop('vietnam', None)
+                logger.info('[gh_tours] Синхронизировано %d туров из GitHub', len(tours))
+        except Exception as e:
+            logger.warning('[gh_tours] Ошибка синхронизации: %s', e)
+        _t.sleep(_GITHUB_TOURS_INTERVAL)
+
+
+threading.Thread(target=_sync_github_tours, daemon=True, name='GithubToursSync').start()
+logger.info('[gh_tours] Авто-синхронизация туров из GitHub запущена (каждые %ds)', _GITHUB_TOURS_INTERVAL)
+
+
+# ─── Telethon scraper: @excursii_vn → GitHub → tours ─────────────────────────
+def _upload_excursii_post_to_github(msg_id: int, text: str, photo_bytes_list: list,
+                                     folder_name: str) -> list:
+    """Загружает фото поста в GitHub tours_nhatrang/<folder_name>/, возвращает raw URLs."""
+    import base64 as _b64
+    gh_token = os.environ.get('GITHUB_PERSONAL_ACCESS_TOKEN', '').strip()
+    if not gh_token:
+        return []
+    gh_headers = {
+        'Authorization': f'token {gh_token}',
+        'Content-Type': 'application/json',
+    }
+    base_api = f'https://api.github.com/repos/{_GITHUB_TOURS_REPO}/contents/{_GITHUB_TOURS_DIR}/{folder_name}'
+    raw_urls = []
+    # Upload description.txt
+    try:
+        payload = {
+            'message': f'Add tour {folder_name} description',
+            'content': _b64.b64encode(text.encode('utf-8')).decode('ascii'),
+        }
+        requests.put(f'{base_api}/description.txt', headers=gh_headers,
+                     json=payload, timeout=15)
+    except Exception as e:
+        logger.warning('[gh_excursii] desc upload error: %s', e)
+    # Upload photos
+    for i, photo_bytes in enumerate(photo_bytes_list, 1):
+        fname = f'photo_{i}.jpg'
+        try:
+            payload = {
+                'message': f'Add {folder_name}/{fname}',
+                'content': _b64.b64encode(photo_bytes).decode('ascii'),
+            }
+            r = requests.put(f'{base_api}/{fname}', headers=gh_headers,
+                             json=payload, timeout=30)
+            if r.status_code in (200, 201):
+                raw_urls.append(f'{_GITHUB_TOURS_RAW}/{folder_name}/{fname}')
+        except Exception as e:
+            logger.warning('[gh_excursii] photo upload error: %s', e)
+    return raw_urls
+
+
+def _sync_excursii_vn_telethon():
+    """Фоновый поток: @excursii_vn → GitHub → listings.
+    Использует Telethon для получения постов с фото."""
+    import time as _t, asyncio as _asyncio
+    _t.sleep(30)
+    while True:
+        try:
+            sess_str = os.environ.get('TELETHON_SESSION', '')
+            if not sess_str:
+                _t.sleep(3600)
+                continue
+            api_id   = int(os.environ.get('TELETHON_API_ID', '32881984'))
+            api_hash = os.environ.get('TELETHON_API_HASH', 'd2588f09dfbc5103ef77ef21c07dbf8b')
+
+            async def _run():
+                from telethon import TelegramClient
+                from telethon.sessions import StringSession
+                from telethon.tl.types import MessageMediaPhoto
+                client = TelegramClient(StringSession(sess_str), api_id, api_hash)
+                await client.start()
+                try:
+                    entity = await client.get_entity('@excursii_vn')
+                except Exception as e:
+                    logger.warning('[excursii_telethon] get_entity: %s', e)
+                    await client.disconnect()
+                    return
+
+                # Загружаем существующие IDs из JSON
+                with open('listings_vietnam.json', 'r', encoding='utf-8') as _f:
+                    vn = json.load(_f)
+                existing_ids = {t.get('id','') for t in vn.get('tours', [])}
+
+                added = 0
+                async for msg in client.iter_messages(entity, limit=200):
+                    if not msg.media or not isinstance(msg.media, MessageMediaPhoto):
+                        continue
+                    item_id = f'excursii_vn_{msg.id}'
+                    if item_id in existing_ids:
+                        continue
+                    text = msg.text or msg.message or ''
+                    if not text.strip():
+                        continue
+                    # Download photos
+                    photo_bytes_list = []
+                    try:
+                        buf = await client.download_media(msg, file=bytes)
+                        if buf:
+                            photo_bytes_list.append(buf)
+                    except Exception as e:
+                        logger.warning('[excursii_telethon] download: %s', e)
+                    folder_name = f'msg_{msg.id}'
+                    raw_urls = _upload_excursii_post_to_github(
+                        msg.id, text, photo_bytes_list, folder_name)
+                    title = text.split('\n')[0].strip()[:120]
+                    vn['tours'].insert(0, {
+                        'id': item_id,
+                        'title': title,
+                        'text': text,
+                        'description': text,
+                        'price': 0, 'price_display': '',
+                        'city': 'Нячанг', 'city_ru': 'Нячанг',
+                        'country': 'vietnam', 'category': 'tours',
+                        'source_group': 'GAtours_vn',
+                        'source_channel': 'excursii_vn',
+                        'contact': '@excursii_vn',
+                        'telegram': 'https://t.me/excursii_vn',
+                        'telegram_link': f'https://t.me/excursii_vn/{msg.id}',
+                        'image_url': raw_urls[0] if raw_urls else '',
+                        'all_images': raw_urls,
+                        'photos': raw_urls,
+                        'has_media': bool(raw_urls),
+                        'status': 'active',
+                        'date': msg.date.isoformat() if msg.date else '',
+                    })
+                    existing_ids.add(item_id)
+                    added += 1
+
+                await client.disconnect()
+                if added > 0:
+                    _tmp = 'listings_vietnam.json.tmp'
+                    with open(_tmp, 'w', encoding='utf-8') as _f:
+                        json.dump(vn, _f, ensure_ascii=False, separators=(',', ':'))
+                    os.replace(_tmp, 'listings_vietnam.json')
+                    data_cache.pop('vietnam', None)
+                    logger.info('[excursii_telethon] +%d новых туров из @excursii_vn', added)
+
+            try:
+                _asyncio.run(_run())
+            except Exception as e:
+                logger.warning('[excursii_telethon] run error: %s', e)
+        except Exception as e:
+            logger.warning('[excursii_telethon] outer error: %s', e)
+        _t.sleep(3600)  # раз в час
+
+
+threading.Thread(target=_sync_excursii_vn_telethon, daemon=True, name='ExcursiiVnSync').start()
+logger.info('[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)')
+
+
 # ─── Авто-синхронизация данных с HF Space ───────────────────────────────────
 HF_SYNC_REPO = 'poweramanita/goldantelopeasia.com'
 HF_SYNC_INTERVAL = 600  # каждые 10 минут
