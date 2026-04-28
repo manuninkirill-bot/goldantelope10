@@ -287,6 +287,22 @@ def make_listing(channel: str, msg_id: int, post: dict, category: str, country: 
         'has_media': bool(photos),
         'category': category,
     }
+    # Авто-определение transport_type
+    if category == 'transport':
+        _tc = (title + ' ' + text).lower()
+        if '🚗' in _tc or '🚙' in _tc or any(kw in _tc for kw in [
+                'mazda','toyota','mercedes','mitsubishi','hyundai','kia','nissan',
+                'lexus','bmw','audi','ford','subaru','автомобил','машин','sedan',
+                'suv','cx-','expander','innova','camry','corolla','rav4','fortuner',
+                'vios','yaris','vinfast']):
+            listing['transport_type'] = 'cars'
+        elif '🏍' in _tc or '🛵' in _tc or any(kw in _tc for kw in [
+                'мото','байк','скутер','мопед','yamaha','kawasaki','vespa','piaggio',
+                'honda wave','honda sh','honda vision','honda pcx','honda lead',
+                'cbr','cbf','winner','airblade','exciter','nvx']):
+            listing['transport_type'] = 'bikes'
+        else:
+            listing['transport_type'] = 'bikes'
     return listing
 
 

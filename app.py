@@ -4700,6 +4700,23 @@ def _gavibeshub_poller():
                         'message_id': orig_msg_id,
                         'category': category_r,
                     }
+                    # Авто-определение transport_type для транспорта
+                    if category_r == 'transport':
+                        _txt_check = (title_r + ' ' + (text_r or '')).lower()
+                        if '🚗' in _txt_check or '🚙' in _txt_check or any(
+                            kw in _txt_check for kw in ['mazda','toyota','mercedes','mitsubishi',
+                            'hyundai','kia','nissan','lexus','bmw','audi','ford','subaru',
+                            'автомобил','машин','sedan','suv','cx-','expander','innova',
+                            'camry','corolla','rav4','fortuner','vios','yaris','vinfast']):
+                            item_r['transport_type'] = 'cars'
+                        elif '🏍' in _txt_check or '🛵' in _txt_check or any(
+                            kw in _txt_check for kw in ['мото','байк','скутер','мопед',
+                            'yamaha','kawasaki','vespa','piaggio','honda wave','honda sh',
+                            'honda vision','honda pcx','honda lead','cbr','cbf',
+                            'winner','airblade','exciter','winner','nvx']):
+                            item_r['transport_type'] = 'bikes'
+                        else:
+                            item_r['transport_type'] = 'bikes'
                     added = atomic_add_listing(category_r, item_r)
                     if added:
                         data_cache.pop(country_r, None)
