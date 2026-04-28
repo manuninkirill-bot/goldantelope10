@@ -5451,10 +5451,12 @@ def _sync_excursii_vn_telethon():
 
             try:
                 _loop = _asyncio.new_event_loop()
+                _asyncio.set_event_loop(_loop)
                 try:
                     _loop.run_until_complete(_run())
                 finally:
                     _loop.close()
+                    _asyncio.set_event_loop(None)
             except Exception as e:
                 logger.warning('[excursii_telethon] run error: %s', e)
         except Exception as e:
