@@ -17,23 +17,21 @@ from telethon.errors import (
     ChatAdminRequiredError, ChannelPrivateError, FloodWaitError
 )
 
-API_ID = 32881984
-API_HASH = 'd2588f09dfbc5103ef77ef21c07dbf8b'
+API_ID = int(os.environ.get('TELETHON_API_ID', '32881984'))
+API_HASH = os.environ.get('TELETHON_API_HASH', 'd2588f09dfbc5103ef77ef21c07dbf8b')
 SESSION = os.environ.get('TELETHON_SESSION', '')
 HF_TOKEN = os.environ.get('HF_TOKEN', '')
 HF_REPO = 'poweramanita/tg-users-data'
 
-CHAT_VN = [
-    'nhatrang_bg','NhaTrangchat','NhaTrang55','svoi_nhatrang',
-    'zhenskiy_nhatrang','NhaTrangLady','NhaTrangSun',
-    'Danang_Viet','danang_women','danangchat_ask','zhenskiy_danang',
-    'Danang_people','Vietnam_Danang1','chat_danang','danang_chats',
-    'phanthietchat111','Nyachang_Vietnam','onus_vietnam','Viza_Vietnam',
-    'Dalat_Vietnam','vietnam_chat1','vietnam_chats',
-    'HoChiMinh_Saigon','HoChiMinhChatik','hochiminh01_bg',
-    'phu_quoc_chat','phuquoc_getmir_chat','fukuok_chat','chat_fukuok',
-    'hanoichatvip',
-]
+CHAT_VN = ['nhatrang_bg','NhaTrangchat','NhaTrang55','svoi_nhatrang','zhenskiy_nhatrang','NhaTrangLady','NhaTrangSun','Danang_Viet','danang_women','danangchat_ask','zhenskiy_danang','Danang_people','Vietnam_Danang1','chat_danang','danang_chats','phanthietchat111','Nyachang_Vietnam','onus_vietnam','Viza_Vietnam','Dalat_Vietnam','vietnam_chat1','vietnam_chats','HoChiMinh_Saigon','HoChiMinhChatik','hochiminh01_bg','phu_quoc_chat','phuquoc_getmir_chat','fukuok_chat','chat_fukuok','hanoichatvip']
+RE_VN   = ['phuquoc_rent_wt','phyquocnedvigimost','Viet_Life_Phu_Quoc_rent','nhatrangapartment','tanrealtorgh','viet_life_niachang','nychang_arenda','rent_nha_trang','nyachang_nedvizhimost','nedvizimost_nhatrang','nhatrangforrent79','NhatrangRentl','arenda_v_nyachang','rent_appart_nha','Arenda_Nyachang_Zhilye','NhaTrang_rental','realestatebythesea_1','NhaTrang_Luxury','luckyhome_nhatrang','rentnhatrang','megasforrentnhatrang','viethome','Vietnam_arenda','huynhtruonq','DaNangRentAFlat','danag_viet_life_rent','Danang_House','DaNangApartmentRent','danang_arenda','arenda_v_danang','HoChiMinhRentI','hcmc_arenda','Hanoirentapartment','HanoiRentl','Hanoi_Rent','PhuquocRentl']
+BIKE_VN = ['bike_nhatrang','motohub_nhatrang','NhaTrang_moto_market','RentBikeUniq','BK_rental','nha_trang_rent','RentTwentyTwo22NhaTrang','danang_bike_rent','bikerental1','viet_sovet']
+RE_IN   = ['goa_arendaa','goa_rent_house','goaRentAll','GoaRent','myflats','goa_siolim_realty','HousingBangalore','Arenda_Zhilya_Indiya','goa_appart','House_for_rent_Goa','arendagoaarambol','homegoa']
+RE_INDO = ['CHAT_BALI_REAL_ESTATE','bali_appart','onerealestatebali','bali_arenda1','estetico_estate','kvartira_bali','rentbali_villa']
+CHAT_TH = ['Phuket_chatBG','barakholka_pkhuket','chat_phuket','chats_phuket','huahinrus','rentinthai','bangkok_chat_znakomstva','Bangkok_market_bg','vse_svoi_bangkok','visa_thailand_chat','thailand_4at','rent_thailand_chat','thailand_chatt1','chat_bangkok','Bangkok_chats','PattayaSale','pattayachatonline','Pattayapar','chats_pattaya','phuketdating','KrabiChat']
+RE_TH   = ['arenda_phukets','THAILAND_REAL_ESTATE_PHUKET','housephuket','arenda_phuket_thailand','phuket_nedvizhimost_rent','phuketsk_arenda','phuket_nedvizhimost_thailand','phuketsk_for_rent','phuket_rentas','rentalsphuketonli','rentbuyphuket','Phuket_thailand05','nedvizhimost_pattaya','arenda_pattaya','pattaya_realty_estate','HappyHomePattaya','sea_bangkok','Samui_for_you','sea_phuket','realty_in_thailand','nedvig_thailand','thailand_nedvizhimost','globe_nedvizhka_Thailand']
+BIKE_TH = ['arenda_thailandd','thailand_market','rental_service_thailand','samui_arenda2','motorrenta','nashi_phuket_auto','thailand_drive','PKHUKET_BAYKOV','Pattaya_Arenda_ru','pattaya_happy_auto','pattaya_arenda','pattayamoto']
+
 ENTERTAIN = [
     'nhatrang_tusa_afisha','nhatrang_affiche','nyachangafisha',
     'nhatrang_afisha','introconcertvn','afisha_nhatrang','T2TNhaTrangevents',
@@ -44,42 +42,16 @@ MED = [
     'viet_med','viet_medicine','viethandentalrus','VietnamDentist','doctor_viet',
     'Medicine_Vietnam','mediacenter_vietsovpetro_school','vietmedic','health_med_viet',
 ]
-RE_VN = [
-    'phuquoc_rent_wt','phyquocnedvigimost','Viet_Life_Phu_Quoc_rent','nhatrangapartment',
-    'tanrealtorgh','viet_life_niachang','nychang_arenda','rent_nha_trang','nyachang_nedvizhimost',
-    'nedvizimost_nhatrang','nhatrangforrent79','NhatrangRentl','arenda_v_nyachang','rent_appart_nha',
-    'Arenda_Nyachang_Zhilye','NhaTrang_rental','realestatebythesea_1','NhaTrang_Luxury',
-    'luckyhome_nhatrang','rentnhatrang','megasforrentnhatrang','viethome',
-    'Vietnam_arenda','huynhtruonq','DaNangRentAFlat','danag_viet_life_rent','Danang_House',
-    'DaNangApartmentRent','danang_arenda','arenda_v_danang','HoChiMinhRentI','hcmc_arenda',
-    'Hanoirentapartment','HanoiRentl','Hanoi_Rent','PhuquocRentl',
-]
-BIKE_VN = [
-    'bike_nhatrang','motohub_nhatrang','NhaTrang_moto_market','RentBikeUniq',
-    'BK_rental','nha_trang_rent','RentTwentyTwo22NhaTrang',
-    'danang_bike_rent','bikerental1','viet_sovet',
-]
-CHAT_TH = [
-    'Phuket_chatBG','barakholka_pkhuket','chat_phuket','chats_phuket',
-    'huahinrus','rentinthai','bangkok_chat_znakomstva','Bangkok_market_bg',
-    'vse_svoi_bangkok','visa_thailand_chat','thailand_4at','rent_thailand_chat',
-    'thailand_chatt1','chat_bangkok','Bangkok_chats','PattayaSale',
-    'pattayachatonline','Pattayapar','chats_pattaya','phuketdating','KrabiChat',
-]
-RE_TH = [
-    'arenda_phukets','THAILAND_REAL_ESTATE_PHUKET','housephuket','arenda_phuket_thailand',
-    'phuket_nedvizhimost_rent','phuketsk_arenda','phuket_nedvizhimost_thailand','phuketsk_for_rent',
-    'phuket_rentas','rentalsphuketonli','rentbuyphuket','Phuket_thailand05','nedvizhimost_pattaya',
-    'arenda_pattaya','pattaya_realty_estate','HappyHomePattaya','sea_bangkok','Samui_for_you',
-    'sea_phuket','realty_in_thailand','nedvig_thailand','thailand_nedvizhimost',
-    'globe_nedvizhka_Thailand',
-]
-BIKE_TH = [
-    'arenda_thailandd','thailand_market','rental_service_thailand',
-    'samui_arenda2','motorrenta','nashi_phuket_auto',
-    'thailand_drive','PKHUKET_BAYKOV','Pattaya_Arenda_ru',
-    'pattaya_happy_auto','pattaya_arenda','pattayamoto',
-]
+
+ROUTE_MAP = {}
+for ch in CHAT_VN:  ROUTE_MAP[ch.lower()] = 'chatparsing_vn'
+for ch in RE_VN:    ROUTE_MAP[ch.lower()] = 'parsing_vn'
+for ch in BIKE_VN:  ROUTE_MAP[ch.lower()] = 'bikeparsing_vn'
+for ch in RE_IN:    ROUTE_MAP[ch.lower()] = 'parsing_in'
+for ch in RE_INDO:  ROUTE_MAP[ch.lower()] = 'parsing_indo'
+for ch in CHAT_TH:  ROUTE_MAP[ch.lower()] = 'chatparsing_vn'
+for ch in RE_TH:    ROUTE_MAP[ch.lower()] = 'parsing_th'
+for ch in BIKE_TH:  ROUTE_MAP[ch.lower()] = 'bikeparsing_th'
 
 vn_channels = (
     [('chat',c) for c in CHAT_VN] +
@@ -88,14 +60,18 @@ vn_channels = (
     [('real_estate',c) for c in RE_VN] +
     [('transport',c) for c in BIKE_VN]
 )
+in_channels = [('real_estate',c) for c in RE_IN]
+indo_channels = [('real_estate',c) for c in RE_INDO]
 th_channels = (
     [('chat',c) for c in CHAT_TH] +
     [('real_estate',c) for c in RE_TH] +
     [('transport',c) for c in BIKE_TH]
 )
 TOTAL_VN = len(vn_channels)
+TOTAL_IN = len(in_channels)
+TOTAL_INDO = len(indo_channels)
 TOTAL_TH = len(th_channels)
-TOTAL = TOTAL_VN + TOTAL_TH
+TOTAL = TOTAL_VN + TOTAL_IN + TOTAL_INDO + TOTAL_TH
 
 status = {'running':False,'done':False,'vn':0,'th':0,'idx':0,'cur':'','log':[],'errors':0}
 RESULT = '/tmp/tg_users_database.json'
@@ -269,8 +245,11 @@ async def do_channel(client, ch, cat):
         status['errors'] += 1
     return []
 
-def save(vn, th, st='in_progress'):
-    both = set(vn.keys()) & set(th.keys())
+def save(vn, th, st='in_progress', india=None, indo=None):
+    india = india or {}
+    indo = indo or {}
+    all_ids = set(vn.keys()) | set(th.keys()) | set(india.keys()) | set(indo.keys())
+    both_vn_th = set(vn.keys()) & set(th.keys())
     r = {
         'collected_at': datetime.now(timezone.utc).isoformat(),
         'status': st,
@@ -278,13 +257,19 @@ def save(vn, th, st='in_progress'):
         'stats': {
             'vietnam_unique': len(vn),
             'thailand_unique': len(th),
-            'total_unique': len(set(vn.keys()) | set(th.keys())),
-            'in_both_countries': len(both),
+            'india_unique': len(india),
+            'indonesia_unique': len(indo),
+            'total_unique': len(all_ids),
+            'in_both_vn_th': len(both_vn_th),
             'channels_vn': TOTAL_VN,
             'channels_th': TOTAL_TH,
+            'channels_in': TOTAL_IN,
+            'channels_indo': TOTAL_INDO,
         },
         'vietnam': list(vn.values()),
         'thailand': list(th.values()),
+        'india': list(india.values()),
+        'indonesia': list(indo.values()),
     }
     with open(RESULT, 'w') as f:
         json.dump(r, f, ensure_ascii=False, indent=2)
@@ -296,9 +281,9 @@ def save(vn, th, st='in_progress'):
                 path_in_repo='tg_users_database.json',
                 repo_id=HF_REPO,
                 repo_type='dataset',
-                commit_message=f'Deep: VN={len(vn)} TH={len(th)} ({st})',
+                commit_message=f'Deep: VN={len(vn)} TH={len(th)} IN={len(india)} INDO={len(indo)} ({st})',
             )
-            log(f"  [HF: VN={len(vn)} TH={len(th)}]")
+            log(f"  [HF: VN={len(vn)} TH={len(th)} IN={len(india)} INDO={len(indo)}]")
     except Exception as e:
         log(f"  [HF ошибка: {e}]")
 
@@ -319,10 +304,27 @@ async def run():
     log(f"Авторизован: {me.first_name} id={me.id}")
     log(f"РЕЖИМ: ГЛУБОКИЙ — участники + авторы сообщений за 6 месяцев")
     log(f"+ пересланные сообщения (forwarded authors)")
-    log(f"Каналов: VN={TOTAL_VN} TH={TOTAL_TH} всего={TOTAL}")
+    log(f"Каналов: VN={TOTAL_VN} TH={TOTAL_TH} IN={TOTAL_IN} INDO={TOTAL_INDO} всего={TOTAL}")
     log("")
 
-    vn_u, th_u = {}, {}
+    vn_u, th_u, in_u, indo_u = {}, {}, {}, {}
+
+    def _merge_user(store, ch, u):
+        uid = u['user_id']
+        if uid not in store:
+            store[uid] = {
+                'user_id': uid,
+                'username': u['username'],
+                'first_name': u['first_name'],
+                'last_name': u['last_name'],
+                'phone': u['phone'],
+                'last_seen': u['last_seen'],
+                'channels': [],
+            }
+        if ch not in store[uid]['channels']:
+            store[uid]['channels'].append(ch)
+        if u.get('username') and not store[uid]['username']:
+            store[uid]['username'] = u['username']
 
     log("=" * 60)
     log("ВЬЕТНАМ")
@@ -332,61 +334,69 @@ async def run():
         status['cur'] = f"VN [{i}/{TOTAL_VN}] @{ch}"
         log(f"\n[{i}/{TOTAL_VN}] @{ch}")
         for u in await do_channel(client, ch, cat):
-            uid = u['user_id']
-            if uid not in vn_u:
-                vn_u[uid] = {
-                    'user_id': uid,
-                    'username': u['username'],
-                    'first_name': u['first_name'],
-                    'last_name': u['last_name'],
-                    'phone': u['phone'],
-                    'last_seen': u['last_seen'],
-                    'channels': [],
-                }
-            if ch not in vn_u[uid]['channels']:
-                vn_u[uid]['channels'].append(ch)
-            if u.get('username') and not vn_u[uid]['username']:
-                vn_u[uid]['username'] = u['username']
+            _merge_user(vn_u, ch, u)
         status['vn'] = len(vn_u)
         if i % 3 == 0:
-            save(vn_u, th_u)
+            save(vn_u, th_u, india=in_u, indo=indo_u)
             log(f"  [сохранено: VN={len(vn_u)}]")
         await asyncio.sleep(3)
 
-    save(vn_u, th_u)
+    save(vn_u, th_u, india=in_u, indo=indo_u)
     log(f"\nВьетнам завершён: {len(vn_u)} уникальных")
+
+    log("")
+    log("=" * 60)
+    log("ИНДИЯ (Гоа)")
+    log("=" * 60)
+    for i, (cat, ch) in enumerate(in_channels, 1):
+        status['idx'] = TOTAL_VN + i
+        status['cur'] = f"IN [{i}/{TOTAL_IN}] @{ch}"
+        log(f"\n[{i}/{TOTAL_IN}] @{ch}")
+        for u in await do_channel(client, ch, cat):
+            _merge_user(in_u, ch, u)
+        if i % 3 == 0:
+            save(vn_u, th_u, india=in_u, indo=indo_u)
+            log(f"  [сохранено: IN={len(in_u)}]")
+        await asyncio.sleep(3)
+
+    save(vn_u, th_u, india=in_u, indo=indo_u)
+    log(f"\nИндия завершена: {len(in_u)} уникальных")
+
+    log("")
+    log("=" * 60)
+    log("ИНДОНЕЗИЯ (Бали)")
+    log("=" * 60)
+    for i, (cat, ch) in enumerate(indo_channels, 1):
+        status['idx'] = TOTAL_VN + TOTAL_IN + i
+        status['cur'] = f"INDO [{i}/{TOTAL_INDO}] @{ch}"
+        log(f"\n[{i}/{TOTAL_INDO}] @{ch}")
+        for u in await do_channel(client, ch, cat):
+            _merge_user(indo_u, ch, u)
+        if i % 3 == 0:
+            save(vn_u, th_u, india=in_u, indo=indo_u)
+            log(f"  [сохранено: INDO={len(indo_u)}]")
+        await asyncio.sleep(3)
+
+    save(vn_u, th_u, india=in_u, indo=indo_u)
+    log(f"\nИндонезия завершена: {len(indo_u)} уникальных")
 
     log("")
     log("=" * 60)
     log("ТАЙЛАНД")
     log("=" * 60)
     for i, (cat, ch) in enumerate(th_channels, 1):
-        status['idx'] = TOTAL_VN + i
+        status['idx'] = TOTAL_VN + TOTAL_IN + TOTAL_INDO + i
         status['cur'] = f"TH [{i}/{TOTAL_TH}] @{ch}"
         log(f"\n[{i}/{TOTAL_TH}] @{ch}")
         for u in await do_channel(client, ch, cat):
-            uid = u['user_id']
-            if uid not in th_u:
-                th_u[uid] = {
-                    'user_id': uid,
-                    'username': u['username'],
-                    'first_name': u['first_name'],
-                    'last_name': u['last_name'],
-                    'phone': u['phone'],
-                    'last_seen': u['last_seen'],
-                    'channels': [],
-                }
-            if ch not in th_u[uid]['channels']:
-                th_u[uid]['channels'].append(ch)
-            if u.get('username') and not th_u[uid]['username']:
-                th_u[uid]['username'] = u['username']
+            _merge_user(th_u, ch, u)
         status['th'] = len(th_u)
         if i % 3 == 0:
-            save(vn_u, th_u)
+            save(vn_u, th_u, india=in_u, indo=indo_u)
             log(f"  [сохранено: TH={len(th_u)}]")
         await asyncio.sleep(3)
 
-    save(vn_u, th_u, 'complete')
+    save(vn_u, th_u, 'complete', india=in_u, indo=indo_u)
     total = len(set(vn_u.keys()) | set(th_u.keys()))
     both = len(set(vn_u.keys()) & set(th_u.keys()))
     log("")
