@@ -1899,12 +1899,21 @@ def get_listings(category):
                 'Краби': ['краби', 'krabi'],
             }
             
-            targets = city_keywords_map.get(city_filter, [city_filter.lower()])
+            _alias_to_ru_tr = {}
+            for _ru_name, _variants in city_keywords_map.items():
+                for _v in _variants:
+                    _alias_to_ru_tr[_v] = _ru_name
+            city_filter_norm = _alias_to_ru_tr.get(city_filter.lower(), city_filter)
+            targets = city_keywords_map.get(city_filter_norm, city_keywords_map.get(city_filter, [city_filter.lower()]))
             
             def matches_city(item):
                 item_city = str(item.get('city', '')).lower()
                 item_location = str(item.get('location', '')).lower()
-                search_text = f"{item.get('title', '')} {item.get('description', '')}".lower()
+                search_text = f"{item.get('title', '')} {item.get('description', '')} {item.get('text', '')}".lower()
+                
+                _country_level = ['вьетнам', 'vietnam', 'thailand', 'таиланд', 'india', 'индия', 'indonesia', 'индонезия']
+                if any(cl in item_city for cl in _country_level):
+                    return True
                 
                 for t in targets:
                     if t in item_city or t in item_location or t in search_text:
