@@ -1,0 +1,81 @@
+Logs
+
+build
+container
+
+Logs Endpoint
+
+
+
+
+Copy
+===== Application Startup at 2026-04-28 10:36:51 =====
+
+[2026-04-28 10:37:11 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-04-28 10:37:11 +0000] [1] [INFO] Listening at: http://0.0.0.0:7860 (1)
+[2026-04-28 10:37:11 +0000] [1] [INFO] Using worker: gevent
+[2026-04-28 10:37:11 +0000] [7] [INFO] Booting worker with pid: 7
+INFO:app:[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)
+INFO:app:[file_id_index] Проиндексировано 545 пар msg_id→file_id
+INFO:app:GAvibeshub background poller started (every 30s)
+INFO:app:[periodic_scraper] Все каналы — каждые 300s, чаты — каждые 30s
+INFO:app:[gh_tours] Авто-синхронизация туров из GitHub запущена (каждые 1800s)
+INFO:app:[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)
+INFO:app:[hf_sync] Авто-синхронизация с HF Space запущена (каждые 600s)
+INFO:app:PartyHunt Goa poller started (every 600s)
+INFO:app:Entertainment banner sync for Thailand/Indonesia started
+INFO:app:Telethon background forwarder отключён (используйте /api/admin/telethon-forward)
+INFO:app:Chatiparsing background poller started (every 5s)
+INFO:app:[india_ent_cleanup] Auto-cleanup started (every 6h, window=14d)
+INFO:telethon.crypto.aes:cryptg detected, it will be used for encryption
+INFO:app:TELETHON_SESSION найдена — запускаю парсер...
+INFO:tg_parser:Поток парсера запущен
+INFO:app:[RATES] Background rates updater started (every 1800s)
+INFO:tg_feed:[tg_feed] Загружено 763 постов с диска
+INFO:tg_feed:[tg_feed] Запущен. Постов: 763. Каналов: ['parsing_vn', 'parsing_th', 'parsing_in', 'parsing_indo', 'bikeparsing_vn', 'bikeparsing_th', 'bikeparsing_in', 'banner_vn', 'tusaparsing_vn']
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:✅ Авторизован: Карасик (id=7249526374)
+INFO:tg_parser:Загружаю диалоги...
+INFO:tg_parser:Диалоги загружены: 75
+INFO:vietnamparsing_parser:Parser started in background thread.
+INFO:app:file_path cache already warm.
+INFO:app:[gavibeshub_poller] Запущен (интервал 30s)
+INFO:tg_parser:[THAI] → @parsing_th: 23/23 OK, 0 не удалось
+WARNING:app:[bot] Исключение при удалении webhook: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=10)
+INFO:app:[partyhunt_poller] Started (interval 600s)
+INFO:app:[gh_tours] Синхронизировано 27 туров из GitHub
+INFO:app:[partyhunt_poller] India banners updated: 44 images (only future/active events from PartyHunt)
+WARNING:app:[banner_sync] Ошибка скрейпинга страницы: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+INFO:app:[banner_sync] Обновлено: 1 ссылок для баннеров
+INFO:app:[banner_sync] Синк @banner_vn: +0 новых, 0 URL обновлено, всего 1
+INFO:app:[disk_prewarm] Bot API: 0 скачано, 0 уже есть, 333 ошибок
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:tg_parser:[VIET] → @parsing_vn: 36/36 OK, 0 не удалось
+WARNING:app:[excursii_telethon] run error: asyncio.run() cannot be called from a running event loop
+/app/app.py:5403: RuntimeWarning: coroutine '_sync_excursii_vn_telethon.<locals>._run' was never awaited
+  logger.warning('[excursii_telethon] run error: %s', e)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+INFO:tg_parser:[BIKE] → @bikeparsing_vn: 10/10 OK, 0 не удалось
+INFO:tg_parser:[CHAT_VN] → @chatparsing_vn: 30/30 OK, 0 не удалось
+INFO:app:[chat_scraper] Запущен (чаты каждые 30s)
+INFO:vietnamparsing_parser:[repair] Нет объявлений для обогащения (4 пропущено)
+INFO:vietnamparsing_parser:[transport_repair] CDN ссылок не найдено.
+INFO:vietnamparsing_parser:Fetching last 200 messages from t.me/s/vietnamparsing...
+INFO:tg_parser:[CHAT_TH] → @chatparsing_vn: 21/21 OK, 0 не удалось
+INFO:tg_parser:[ENTERTAIN] → @tusaparsing_vn: 15/15 OK, 0 не удалось
+INFO:tg_parser:Итого 135 каналов. Слушаю новые сообщения...
+INFO:tg_parser:🚀 Парсер запущен!
+WARNING:app:[hf_sync] HF_TOKEN не задан — синхронизация отключена
+ERROR:vietnamparsing_parser:Failed to fetch https://t.me/s/vietnamparsing: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:vietnamparsing_parser:Total scraped: 0 messages across 0 pages
+INFO:vietnamparsing_parser:Initial fetch complete. Added 0 new real estate listings.
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+ERROR:vietnamparsing_parser:Failed to fetch https://t.me/s/arendabaykavietnam: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[restoran_sync] Ошибка: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+INFO:app:[periodic_scraper] Запущен (все каналы каждые 300s)
+WARNING:bot_channel_parser:[parsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:app:[india_ent_cleanup] Removed 20 events outside 14-day window, kept 24
+INFO:telethon.client.updates:Got difference for channel 1718608330 updates
+WARNING:bot_channel_parser:[parsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)

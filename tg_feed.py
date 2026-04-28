@@ -25,15 +25,23 @@ logger = logging.getLogger(__name__)
 # ── Конфигурация каналов ──────────────────────────────────────────────────────
 # username (без @) → (channel_id, заголовок, страна, категория)
 CHANNELS = {
-    'parsing_vn':     (-1003987939980, 'Недвижимость Вьетнам',   'vietnam',   'real_estate'),
-    'parsing_th':     (-1003411602924, 'Недвижимость Таиланд',   'thailand',  'real_estate'),
-    'parsing_in':     (-1003948057945, 'Недвижимость Индия',     'india',     'real_estate'),
-    'parsing_indo':   (-1003872341008, 'Недвижимость Индонезия', 'indonesia', 'real_estate'),
-    'bikeparsing_vn': (-1003922185577, 'Байки Вьетнам',          'vietnam',   'transport'),
-    'bikeparsing_th': (-1003894914160, 'Байки Таиланд',          'thailand',  'transport'),
-    'bikeparsing_in': (-1003811252596, 'Байки Индия',            'india',     'transport'),
-    'banner_vn':      (0,             'Баннеры Вьетнам',         'vietnam',   'banner'),
-    'tusaparsing_vn': (-1003603825848, 'Развлечения Вьетнам',    'vietnam',   'entertainment'),
+    'parsing_vn':        (-1003987939980, 'Недвижимость Вьетнам',    'vietnam',   'real_estate'),
+    'parsing_th':        (-1003411602924, 'Недвижимость Таиланд',    'thailand',  'real_estate'),
+    'parsing_in':        (-1003948057945, 'Недвижимость Индия',      'india',     'real_estate'),
+    'parsing_indo':      (-1003872341008, 'Недвижимость Индонезия',  'indonesia', 'real_estate'),
+    'bikeparsing_vn':    (-1003922185577, 'Байки Вьетнам',           'vietnam',   'transport'),
+    'bikeparsing_th':    (-1003894914160, 'Байки Таиланд',           'thailand',  'transport'),
+    'bikeparsing_in':    (-1003811252596, 'Байки Индия',             'india',     'transport'),
+    'bikeparsing_indo':  (-1003970901435, 'Байки Индонезия',         'indonesia', 'transport'),
+    'banner_vn':         (0,              'Баннеры Вьетнам',         'vietnam',   'banner'),
+    'tusaparsing_vn':    (-1003603825848, 'Развлечения Вьетнам',     'vietnam',   'entertainment'),
+    'tusaparsing_th':    (-1003932432750, 'Развлечения Таиланд',     'thailand',  'entertainment'),
+    'tusaparsing_in':    (-1003993270203, 'Развлечения Индия',       'india',     'entertainment'),
+    'tusaparsing_indo':  (-1003983228126, 'Развлечения Индонезия',   'indonesia', 'entertainment'),
+    'excursii_vn':       (-1003928690491, 'Экскурсии Вьетнам',       'vietnam',   'entertainment'),
+    'excursii_th':       (-1003605171202, 'Экскурсии Таиланд',       'thailand',  'entertainment'),
+    'restoranparsing_all': (-1003927043313, 'Рестораны все',         'vietnam',   'restaurants'),
+    'chatparsing_in':    (-1003864328793, 'Чаты Индия+Индонезия',    'india',     'chat'),
 }
 
 # Лимит постов на канал при импорте (None = все)

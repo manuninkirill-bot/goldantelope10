@@ -4204,6 +4204,11 @@ _tg_photo_cache = _load_tg_photo_cache()
 _FILE_PATH_CACHE_FILE = 'tg_file_paths_cache.json'
 _file_path_cache_lock = threading.Lock()
 
+# Кэш результатов t.me/s/ CDN-скрейпа (channel, post_id) → (cdn_url, expires_ts)
+_cdn_scrape_cache: dict = {}
+_cdn_scrape_cache_lock = threading.Lock()
+_CDN_SCRAPE_CACHE_TTL = 1200  # 20 минут
+
 def _load_file_path_cache():
     try:
         if os.path.exists(_FILE_PATH_CACHE_FILE):
@@ -5398,7 +5403,11 @@ def _sync_excursii_vn_telethon():
                     logger.info('[excursii_telethon] +%d новых туров из @excursii_vn', added)
 
             try:
-                _asyncio.run(_run())
+                _loop = _asyncio.new_event_loop()
+                try:
+                    _loop.run_until_complete(_run())
+                finally:
+                    _loop.close()
             except Exception as e:
                 logger.warning('[excursii_telethon] run error: %s', e)
         except Exception as e:
@@ -5854,6 +5863,9 @@ _CHANNEL_ALIAS = {
     'rental_service_thailand':      'rt1',
     'arenda_thailandd':             'th2',
     'renttwentytwo22nhatrang':      'vr1',
+    'tusaparsing_in':               'i3',
+    'tusaparsing_indo':             'd3',
+    'chatparsing_in':               'ci1',
 }
 _ALIAS_CHANNEL = {v: k for k, v in _CHANNEL_ALIAS.items()}
 
@@ -5904,11 +5916,23 @@ def tg_photo_proxy(channel, post_id):
                 logger.debug(f'tg_photo_proxy: Bot API redirect {channel}/{post_id}')
                 return redirect(direct_url, code=302)
 
-    # 2. Fallback: t.me/s/ scraping — полный CDN URL (лучше качество, чем og:image)
+    # 2. Fallback: t.me/s/ scraping — полный CDN URL (с кэшем 20 мин)
+    import time as _time_mod
+    _cache_key = (channel, post_id)
+    _cached_cdn = None
+    with _cdn_scrape_cache_lock:
+        _entry = _cdn_scrape_cache.get(_cache_key)
+        if _entry and _entry[1] > _time_mod.time():
+            _cached_cdn = _entry[0]
+    if _cached_cdn:
+        logger.debug(f'tg_photo_proxy: CDN cache hit {channel}/{post_id}')
+        return redirect(_cached_cdn, code=302)
     try:
         from vietnamparsing_parser import _scrape_cdn_photos_for_post
         cdn_urls = _scrape_cdn_photos_for_post(channel, post_id)
         if cdn_urls:
+            with _cdn_scrape_cache_lock:
+                _cdn_scrape_cache[_cache_key] = (cdn_urls[0], _time_mod.time() + _CDN_SCRAPE_CACHE_TTL)
             logger.debug(f'tg_photo_proxy: t.me/s/ CDN redirect {channel}/{post_id}')
             return redirect(cdn_urls[0], code=302)
     except Exception as e:
