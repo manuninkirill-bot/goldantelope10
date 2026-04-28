@@ -187,6 +187,20 @@
             opacity: 1;
             transform: scale(1.1);
         }
+        .tab-badge {
+            display: inline-block;
+            background: #d4af37;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 10px;
+            padding: 1px 5px;
+            margin-left: 3px;
+            min-width: 18px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 15px;
+        }
         
         .content { 
             display: none;
@@ -1968,13 +1982,13 @@
         </div>
 
         <div class="tabs">
-            <button class="tab" data-tab="entertainment" onclick="switchTab('entertainment')"><img src="/static/icons/entertainment_dark.png" data-light-src="/static/icons/entertainment.jpg" data-dark-src="/static/icons/entertainment_dark.png" alt=""><span>Развлечения</span></button>
-            <button class="tab" data-tab="restaurants" onclick="switchTab('restaurants')"><img src="/static/images/icons/restaurants_dark.png" data-light-src="/static/images/icons/restaurants.jpg" data-dark-src="/static/images/icons/restaurants_dark.png" alt=""><span>Рестораны</span></button>
-            <button class="tab active" data-tab="realestate" onclick="switchTab('realestate')"><img src="/static/icons/realestate_dark.png" data-light-src="/static/icons/realestate.png" data-dark-src="/static/icons/realestate_dark.png" alt=""><span>Недвижимость</span></button>
-            <button class="tab" data-tab="transport" onclick="switchTab('transport')"><img src="/static/icons/transport_dark.png" data-light-src="/static/icons/transport.png" data-dark-src="/static/icons/transport_dark.png" alt=""><span>Транспорт</span></button>
-            <button class="tab" data-tab="exchange" onclick="switchTab('exchange')"><img src="/static/icons/exchange_new.png" data-light-src="/static/icons/exchange.png" data-dark-src="/static/icons/exchange_new.png" alt=""><span>Финансы</span></button>
-            <button class="tab" data-tab="tours" onclick="switchTab('tours')"><img src="/static/images/icons/tours_dark.jpg" data-light-src="/static/images/icons/tours.jpg" data-dark-src="/static/images/icons/tours_dark.jpg" alt=""><span>Экскурсии</span></button>
-            <button class="tab" data-tab="visas" onclick="switchTab('visas')"><img src="/static/icons/visas_new.png" data-light-src="/static/icons/visas.jpg" data-dark-src="/static/icons/visas_new.png" alt=""><span>Визаран</span></button>
+            <button class="tab" data-tab="entertainment" onclick="switchTab('entertainment')"><img src="/static/icons/entertainment_dark.png" data-light-src="/static/icons/entertainment.jpg" data-dark-src="/static/icons/entertainment_dark.png" alt=""><span>Развлечения</span><span class="tab-badge" id="cnt-entertainment" style="display:none"></span></button>
+            <button class="tab" data-tab="restaurants" onclick="switchTab('restaurants')"><img src="/static/images/icons/restaurants_dark.png" data-light-src="/static/images/icons/restaurants.jpg" data-dark-src="/static/images/icons/restaurants_dark.png" alt=""><span>Рестораны</span><span class="tab-badge" id="cnt-restaurants" style="display:none"></span></button>
+            <button class="tab active" data-tab="realestate" onclick="switchTab('realestate')"><img src="/static/icons/realestate_dark.png" data-light-src="/static/icons/realestate.png" data-dark-src="/static/icons/realestate_dark.png" alt=""><span>Недвижимость</span><span class="tab-badge" id="cnt-realestate" style="display:none"></span></button>
+            <button class="tab" data-tab="transport" onclick="switchTab('transport')"><img src="/static/icons/transport_dark.png" data-light-src="/static/icons/transport.png" data-dark-src="/static/icons/transport_dark.png" alt=""><span>Транспорт</span><span class="tab-badge" id="cnt-transport" style="display:none"></span></button>
+            <button class="tab" data-tab="exchange" onclick="switchTab('exchange')"><img src="/static/icons/exchange_new.png" data-light-src="/static/icons/exchange.png" data-dark-src="/static/icons/exchange_new.png" alt=""><span>Финансы</span><span class="tab-badge" id="cnt-exchange" style="display:none"></span></button>
+            <button class="tab" data-tab="tours" onclick="switchTab('tours')"><img src="/static/images/icons/tours_dark.jpg" data-light-src="/static/images/icons/tours.jpg" data-dark-src="/static/images/icons/tours_dark.jpg" alt=""><span>Экскурсии</span><span class="tab-badge" id="cnt-tours" style="display:none"></span></button>
+            <button class="tab" data-tab="visas" onclick="switchTab('visas')"><img src="/static/icons/visas_new.png" data-light-src="/static/icons/visas.jpg" data-dark-src="/static/icons/visas_new.png" alt=""><span>Визаран</span><span class="tab-badge" id="cnt-visas" style="display:none"></span></button>
             <button class="tab" data-tab="chat" onclick="switchTab('chat')"><img src="/static/icons/chat_new.png" data-light-src="/static/images/icons/chat.jpg" data-dark-src="/static/icons/chat_new.png" alt=""><span>Все чаты</span></button>
             <button class="tab" data-tab="admin" onclick="switchTab('admin')"><span>⚙️ Админ</span></button>
         </div>
@@ -6534,6 +6548,7 @@
             
             updateRates();
             updateAllCityCounts();
+            updateTabCounts();
             if (document.getElementById('chat').classList.contains('active')) { loadChatFeed(); loadVnChatFeed(''); loadChatiparsing(); }
             // Сбрасываем фильтр даты развлечений и перестраиваем бар при смене страны
             currentEntertainmentDate = '';
@@ -6549,6 +6564,33 @@
             }
         }
         
+        // Счётчики на вкладках
+        function updateTabCounts() {
+            fetch('/api/counts?country=' + currentCountry)
+                .then(r => r.json())
+                .then(counts => {
+                    const tabMap = {
+                        'realestate': counts.real_estate,
+                        'transport':  counts.transport,
+                        'restaurants': counts.restaurants,
+                        'tours':      counts.tours,
+                        'entertainment': counts.entertainment,
+                        'exchange':   counts.money_exchange,
+                        'visas':      counts.visas,
+                    };
+                    Object.entries(tabMap).forEach(([tab, n]) => {
+                        const el = document.getElementById('cnt-' + tab);
+                        if (!el) return;
+                        if (n && n > 0) {
+                            el.textContent = n >= 1000 ? Math.floor(n/100)/10 + 'k' : n;
+                            el.style.display = 'inline-block';
+                        } else {
+                            el.style.display = 'none';
+                        }
+                    });
+                }).catch(() => {});
+        }
+
         // Погода по странам
         const weatherCities = {
             vietnam: { city: 'Ho Chi Minh', name: { ru: 'Хошимин', en: 'Ho Chi Minh', vi: 'TP.HCM' } },
@@ -9497,6 +9539,7 @@
         // Инициализируем баннер, статистику и курсы при открытии
         loadBanners();
         updateAllCityCounts();
+        updateTabCounts();
         renderKidsCityFilter();
         updateKidsCitySelect();
         updateFormCurrency();

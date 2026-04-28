@@ -589,6 +589,26 @@ def set_telegram_webhook():
     except Exception as e:
         return jsonify({'error': str(e)})
 
+@app.route('/api/counts')
+def api_counts():
+    """Счётчик объявлений по категориям для страны."""
+    country = request.args.get('country', 'vietnam')
+    try:
+        data = load_data(country)
+        counts = {
+            'real_estate': len(data.get('real_estate', [])),
+            'transport':   len(data.get('transport', [])),
+            'restaurants': len(data.get('restaurants', [])),
+            'tours':       len(data.get('tours', [])),
+            'entertainment': len(data.get('entertainment', [])),
+            'money_exchange': len(data.get('money_exchange', [])),
+            'visas':       len(data.get('visas', [])),
+            'marketplace': len(data.get('marketplace', [])),
+        }
+        return jsonify(counts)
+    except Exception as e:
+        return jsonify({})
+
 @app.route('/api/groups-stats')
 def groups_stats():
     """Статистика по группам: охват, онлайн, объявления"""
@@ -4987,8 +5007,108 @@ def _chat_periodic_scraper():
         _t2.sleep(CHAT_SCRAPE_INTERVAL)
 
 
+def _sync_restoranparsing_all():
+    """Периодически скрейпит @restoranparsing_all и распределяет рестораны по странам."""
+    import time as _t, re as _re
+    VN_KW = ['вьетнам','нячанг','сайгон','хошимин','дананг','ханой','фукуок','далат','муйне','хойан',
+             'hcm','ho chi minh','nha trang','da nang','hanoi','phu quoc','hoi an','phan thiet']
+    TH_KW = ['таиланд','паттайя','пхукет','бангкок','самуи','чиангмай','pattaya','phuket','bangkok','samui']
+    IN_KW = ['индия','гоа','мумбай','дели','бангалор','goa','mumbai','delhi','bangalore']
+    ID_KW = ['индонезия','бали','джакарта','ломбок','bali','jakarta','lombok','ubud','canggu']
+    def _detect(text):
+        t = text.lower()
+        for kw in TH_KW:
+            if kw in t: return 'thailand'
+        for kw in IN_KW:
+            if kw in t: return 'india'
+        for kw in ID_KW:
+            if kw in t: return 'indonesia'
+        for kw in VN_KW:
+            if kw in t: return 'vietnam'
+        return 'vietnam'
+    _FNAME = {'vietnam':'listings_vietnam.json','thailand':'listings_thailand.json',
+              'india':'listings_india.json','indonesia':'listings_indonesia.json'}
+    _CITY_RU = {'vietnam':'Вьетнам','thailand':'Таиланд','india':'Индия','indonesia':'Индонезия'}
+    CHANNEL = 'restoranparsing_all'
+    BASE_URL = f'https://t.me/s/{CHANNEL}'
+    HEADERS = {'User-Agent': 'Mozilla/5.0'}
+    _t.sleep(60)
+    while True:
+        try:
+            from bs4 import BeautifulSoup as _BS
+            resp = requests.get(BASE_URL, headers=HEADERS, timeout=20)
+            if resp.status_code != 200:
+                _t.sleep(600); continue
+            soup = _BS(resp.text, 'html.parser')
+            msgs = soup.select('.tgme_widget_message')
+            # Собираем существующие ID
+            existing = set()
+            for fname in _FNAME.values():
+                try:
+                    with open(fname) as _f:
+                        _d = json.load(_f)
+                    for it in _d.get('restaurants', []):
+                        existing.add(it.get('id',''))
+                except Exception: pass
+            added = {'vietnam':0,'thailand':0,'india':0,'indonesia':0}
+            country_data = {}
+            for country, fname in _FNAME.items():
+                try:
+                    with open(fname) as _f:
+                        country_data[country] = json.load(_f)
+                except Exception:
+                    country_data[country] = {}
+                if 'restaurants' not in country_data[country]:
+                    country_data[country]['restaurants'] = []
+            for m in msgs:
+                dp = m.get('data-post','')
+                if '/' not in dp: continue
+                try: mid = int(dp.split('/')[-1])
+                except: continue
+                item_id = f'{CHANNEL}_{mid}'
+                if item_id in existing: continue
+                txt_el = m.select_one('.tgme_widget_message_text')
+                text = txt_el.get_text('\n') if txt_el else ''
+                if not text.strip(): continue
+                photo_url = ''
+                for wrap in m.select('a.tgme_widget_message_photo_wrap,.tgme_widget_message_photo_wrap'):
+                    style = wrap.get('style','')
+                    m2 = _re.search(r"url\('([^']+)'\)", style)
+                    if m2: photo_url = m2.group(1); break
+                if not photo_url: continue
+                country = _detect(text)
+                date_el = m.select_one('.tgme_widget_message_date time')
+                date_str = date_el.get('datetime','') if date_el else ''
+                item = {
+                    'id': item_id, 'title': text[:120].replace('\n',' ').strip(),
+                    'text': text, 'description': '', 'price': 0, 'price_display': '',
+                    'city': _CITY_RU[country], 'city_ru': _CITY_RU[country], 'date': date_str,
+                    'contact': f'@{CHANNEL}', 'contact_name': CHANNEL,
+                    'source_group': CHANNEL, 'source_channel': CHANNEL,
+                    'telegram': f'https://t.me/{CHANNEL}', 'telegram_link': f'https://t.me/{CHANNEL}/{mid}',
+                    'image_url': photo_url, 'all_images': [photo_url], 'photos': [photo_url],
+                    'has_media': True, 'status': 'active', 'country': country,
+                    'message_id': mid, 'category': 'restaurants',
+                }
+                country_data[country]['restaurants'].insert(0, item)
+                existing.add(item_id)
+                added[country] += 1
+            # Сохраняем
+            for country, fname in _FNAME.items():
+                if added[country] > 0:
+                    tmp = fname + '.tmp'
+                    with open(tmp, 'w', encoding='utf-8') as _f:
+                        json.dump(country_data[country], _f, ensure_ascii=False, separators=(',',':'))
+                    os.replace(tmp, fname)
+                    data_cache.pop(country, None)
+                    logger.info('[restoran_sync] +%d ресторанов → %s', added[country], country)
+        except Exception as e:
+            logger.warning('[restoran_sync] Ошибка: %s', e)
+        _t.sleep(600)
+
 threading.Thread(target=_all_channels_periodic_scraper, daemon=True, name='AllChannelsScraper').start()
 threading.Thread(target=_chat_periodic_scraper, daemon=True, name='ChatScraper').start()
+threading.Thread(target=_sync_restoranparsing_all, daemon=True, name='RestoranSync').start()
 logger.info('[periodic_scraper] Все каналы — каждые %ds, чаты — каждые %ds',
             ALL_CHANNELS_SCRAPE_INTERVAL, CHAT_SCRAPE_INTERVAL)
 
@@ -5433,7 +5553,8 @@ _CHANNEL_ALIAS = {
     'media_vn':         'v8',
     'excursii_vn':      'v9',
     'excursii_th':      't5',
-    'restoranparsing_all': 'a1',
+    'restoranparsing_all':      'a1',
+    'rental_service_thailand':  'rt1',
 }
 _ALIAS_CHANNEL = {v: k for k, v in _CHANNEL_ALIAS.items()}
 
