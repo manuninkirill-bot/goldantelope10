@@ -6565,30 +6565,55 @@
         }
         
         // Счётчики на вкладках
-        function updateTabCounts() {
-            fetch('/api/counts?country=' + currentCountry)
-                .then(r => r.json())
-                .then(counts => {
-                    const tabMap = {
-                        'realestate': counts.real_estate,
-                        'transport':  counts.transport,
-                        'restaurants': counts.restaurants,
-                        'tours':      counts.tours,
-                        'entertainment': counts.entertainment,
-                        'exchange':   counts.money_exchange,
-                        'visas':      counts.visas,
-                    };
-                    Object.entries(tabMap).forEach(([tab, n]) => {
-                        const el = document.getElementById('cnt-' + tab);
-                        if (!el) return;
-                        if (n && n > 0) {
-                            el.textContent = n >= 1000 ? Math.floor(n/100)/10 + 'k' : n;
-                            el.style.display = 'inline-block';
-                        } else {
-                            el.style.display = 'none';
-                        }
-                    });
-                }).catch(() => {});
+        const _cityKeyToRu = {
+            'nhatrang':'Нячанг','danang':'Дананг','hochiminh':'Хошимин','phuquoc':'Фукуок',
+            'hanoi':'Ханой','phanthiet':'Фантьет','muine':'Муйне','camranh':'Камрань',
+            'dalat':'Далат','hoian':'Хойан','pattaya':'Паттайя','phuket':'Пхукет',
+            'bangkok':'Бангкок','samui':'Самуи','chiangmai':'Чиангмай',
+            'huahin':'Хуахин','krabi':'Краби','goa':'Гоа','kasol':'Касол',
+            'mumbai':'Мумбаи','delhi':'Дели','bangalore':'Бангалор','bali':'Бали'
+        };
+
+        function _setTabBadge(tab, n) {
+            const el = document.getElementById('cnt-' + tab);
+            if (!el) return;
+            if (n && n > 0) {
+                el.textContent = n >= 1000 ? (Math.floor(n / 100) / 10) + 'k' : n;
+                el.style.display = 'inline-block';
+            } else {
+                el.style.display = 'none';
+            }
+        }
+
+        async function updateTabCounts() {
+            try {
+                // 1. Загружаем общие счётчики по стране
+                const r = await fetch('/api/counts?country=' + currentCountry);
+                const counts = await r.json();
+                _setTabBadge('realestate',    counts.real_estate);
+                _setTabBadge('transport',     counts.transport);
+                _setTabBadge('restaurants',   counts.restaurants);
+                _setTabBadge('tours',         counts.tours);
+                _setTabBadge('entertainment', counts.entertainment);
+                _setTabBadge('exchange',      counts.money_exchange);
+                _setTabBadge('visas',         counts.visas);
+            } catch(e) {}
+
+            // 2. Параллельно уточняем по выбранному городу для каждой категории
+            const cityConfigs = [
+                { tab: 'realestate',    api: 'real_estate',    city: _cityKeyToRu[currentRealEstateCity] || currentRealEstateCity },
+                { tab: 'restaurants',   api: 'restaurants',    city: (typeof currentRestaurantCity   !== 'undefined') ? currentRestaurantCity   : '' },
+                { tab: 'entertainment', api: 'entertainment',  city: (typeof currentEntertainmentCity !== 'undefined') ? currentEntertainmentCity : '' },
+                { tab: 'transport',     api: 'transport',      city: (typeof currentTransportCity    !== 'undefined') ? currentTransportCity    : '' },
+            ];
+            await Promise.all(cityConfigs.filter(c => c.city).map(async ({ tab, api, city }) => {
+                try {
+                    const r2 = await fetch(`/api/city-counts/${api}?country=${currentCountry}`);
+                    const cityCounts = await r2.json();
+                    const n = cityCounts[city] || 0;
+                    _setTabBadge(tab, n);
+                } catch(e) {}
+            }));
         }
 
         // Погода по странам
@@ -7682,6 +7707,7 @@
                 btn.style.border = btn.dataset.city === city ? '3px solid #d4af37' : '3px solid transparent';
             });
             loadListings('entertainment', city);
+            updateTabCounts();
         }
 
         let currentEntertainmentDate = '';
@@ -7961,6 +7987,7 @@
                 btn.style.border = btn.dataset.city === city ? '3px solid #d4af37' : '3px solid transparent';
             });
             loadListings('restaurants', city);
+            updateTabCounts();
         }
         
         // Exchange city filter
@@ -8245,6 +8272,7 @@
                 }
             });
             loadListings('transport', currentTransportType);
+            updateTabCounts();
         }
         
         function filterTransportByType(type) {
@@ -8281,6 +8309,7 @@
                 btn.style.border = btn.dataset.city === city ? '3px solid #d4af37' : '3px solid transparent';
             });
             loadListings('real_estate');
+            updateTabCounts();
             setTimeout(() => {
                 const grid = document.getElementById('real_estate-grid');
                 if (grid && window.innerWidth <= 768) {
