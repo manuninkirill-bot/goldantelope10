@@ -2310,6 +2310,7 @@ def _do_sync_media_vn_banners():
                     if mid in _BANNER_EXCLUDE_IDS:
                         continue
                     cdn_url = ''
+                    # Проверяем фото-посты
                     photo_wraps = msg_div.select('.tgme_widget_message_photo_wrap')
                     if not photo_wraps:
                         photo_wraps = msg_div.select('a.tgme_widget_message_photo_wrap')
@@ -2320,6 +2321,15 @@ def _do_sync_media_vn_banners():
                             cdn_url = m.group(1)
                             break
                     has_photo = bool(photo_wraps)
+                    # Также обнаруживаем документы-изображения (PNG/JPG/WEBP/GIF загруженные как файл)
+                    if not has_photo:
+                        doc_wraps = msg_div.select('.tgme_widget_message_document_wrap, .tgme_widget_message_document')
+                        for dw in doc_wraps:
+                            title_el = dw.select_one('.tgme_widget_message_document_title')
+                            title = (title_el.get_text(strip=True) if title_el else '').lower()
+                            if any(title.endswith(ext) for ext in ('.png', '.jpg', '.jpeg', '.webp', '.gif')):
+                                has_photo = True  # трактуем как изображение
+                                break
                     if has_photo:
                         mid_str = str(mid)
                         now_ts = int(_t.time())
@@ -2389,30 +2399,17 @@ def _get_banner_file_id(msg_id):
 
 @app.route('/api/banner-img/<int:msg_id>')
 def banner_image_proxy(msg_id):
-    # 0) Приоритет — локальный файл полного качества
-    try:
-        banner_data = _load_banner_data()
-        entry = banner_data.get(str(msg_id), {})
-        local_url = entry.get('local_url', '')
-        if local_url:
-            local_path = local_url.lstrip('/')
-            if os.path.exists(local_path):
-                return redirect(local_url, code=302)
-    except Exception:
-        pass
+    banner_data_cache = _load_banner_data()
+    entry = banner_data_cache.get(str(msg_id), {})
 
-    cache_key = msg_id
-    if cache_key in _banner_og_cache:
-        cached = _banner_og_cache[cache_key]
-        # Validate cache is not expired (telesco.pe URLs expire in ~24h, keep for 1h)
-        if isinstance(cached, tuple):
-            url, ts = cached
-            if time.time() - ts < 3600:
-                return redirect(url)
-        else:
-            return redirect(cached)
+    # 0) Локальный файл (полное качество)
+    local_url = entry.get('local_url', '')
+    if local_url:
+        local_path = local_url.lstrip('/')
+        if os.path.exists(local_path):
+            return redirect(local_url, code=302)
 
-    # 1) Попробуем Bot API (полное качество) если есть file_id
+    # 1) Bot API через file_id (оригинальное качество)
     file_id = _get_banner_file_id(msg_id)
     tg_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
     if file_id and tg_token:
@@ -2421,25 +2418,58 @@ def banner_image_proxy(msg_id):
                 f'https://api.telegram.org/bot{tg_token}/getFile',
                 params={'file_id': file_id}, timeout=8
             )
-            if gf.status_code == 200:
-                gf_json = gf.json()
-                if gf_json.get('ok'):
-                    fp = gf_json['result']['file_path']
-                    img_url = f'https://api.telegram.org/file/bot{tg_token}/{fp}'
-                    _banner_og_cache[cache_key] = (img_url, time.time())
-                    return redirect(img_url)
+            if gf.status_code == 200 and gf.json().get('ok'):
+                fp = gf.json()['result']['file_path']
+                img_url = f'https://api.telegram.org/file/bot{tg_token}/{fp}'
+                _banner_og_cache[msg_id] = (img_url, time.time())
+                return redirect(img_url)
         except Exception as e:
             logger.warning(f'[banner-img] Bot API error for {msg_id}: {e}')
 
-    # 2) Fallback: og:image с t.me (работает без file_id, ниже качество)
+    # 2) Кэш (свежее CDN URL, < 1 часа)
+    cached = _banner_og_cache.get(msg_id)
+    if cached:
+        url, ts = cached if isinstance(cached, tuple) else (cached, 0)
+        if time.time() - ts < 3600:
+            return redirect(url)
+
+    # 3) CDN URL из banner_data.json (свежий, хорошее качество)
+    cdn_url = entry.get('cdn_url', '')
+    cdn_ts  = entry.get('cdn_ts', 0)
+    if cdn_url and (time.time() - cdn_ts) < 82800:   # моложе 23 часов
+        _banner_og_cache[msg_id] = (cdn_url, time.time())
+        return redirect(cdn_url)
+
+    # 4) t.me/s/ скрейпинг — полный CDN URL (лучше og:image)
     try:
-        og_headers = {'User-Agent': 'TelegramBot (like TwitterBot)'}
-        og_resp = requests.get(f'https://t.me/{_BANNER_TG_GROUP}/{msg_id}', headers=og_headers, timeout=10)
+        from vietnamparsing_parser import _scrape_cdn_photos_for_post
+        cdn_urls = _scrape_cdn_photos_for_post(_BANNER_TG_GROUP, msg_id)
+        if cdn_urls:
+            _banner_og_cache[msg_id] = (cdn_urls[0], time.time())
+            # Обновляем banner_data.json
+            banner_data_cache[str(msg_id)] = banner_data_cache.get(str(msg_id), {})
+            banner_data_cache[str(msg_id)]['cdn_url'] = cdn_urls[0]
+            banner_data_cache[str(msg_id)]['cdn_ts'] = int(time.time())
+            _save_banner_data(banner_data_cache)
+            return redirect(cdn_urls[0])
+    except Exception as e:
+        logger.debug(f'[banner-img] t.me/s scrape error for {msg_id}: {e}')
+
+    # 5) og:image fallback (ниже качество, но работает для документов)
+    try:
+        og_resp = requests.get(
+            f'https://t.me/{_BANNER_TG_GROUP}/{msg_id}',
+            headers={'User-Agent': 'TelegramBot (like TwitterBot)'}, timeout=10
+        )
         if og_resp.status_code == 200:
             img_m = re.search(r'<meta property="og:image" content="([^"]+)"', og_resp.text)
             if img_m:
                 img_url = img_m.group(1)
-                _banner_og_cache[cache_key] = (img_url, time.time())
+                _banner_og_cache[msg_id] = (img_url, time.time())
+                banner_data_cache[str(msg_id)] = banner_data_cache.get(str(msg_id), {})
+                banner_data_cache[str(msg_id)]['cdn_url'] = img_url
+                banner_data_cache[str(msg_id)]['cdn_ts'] = int(time.time())
+                _save_banner_data(banner_data_cache)
                 return redirect(img_url)
     except Exception as e:
         logger.warning(f'[banner-img] og:image error for {msg_id}: {e}')
