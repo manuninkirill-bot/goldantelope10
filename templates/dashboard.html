@@ -511,23 +511,22 @@
             width: 100%;
             height: 100%;
             display: block;
-            object-fit: cover;
-            object-position: center top;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: high-quality;
+            object-fit: contain;
+            object-position: center;
+            background: #1a1a2e;
         }
 
         /* Responsive banner sizes */
         @media (max-width: 1024px) {
-            .banner { height: 400px; }
+            .banner { height: auto; }
         }
         
         @media (max-width: 768px) {
-            .banner { height: 280px; margin-bottom: 15px; }
+            .banner { height: auto; margin-bottom: 15px; }
         }
 
         @media (max-width: 480px) {
-            .banner { height: 220px; margin-bottom: 10px; }
+            .banner { height: auto; margin-bottom: 10px; }
         }
         
         .banner-nav {
