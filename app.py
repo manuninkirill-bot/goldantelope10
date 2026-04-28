@@ -5100,12 +5100,14 @@ def _sync_restoranparsing_all():
                 txt_el = m.select_one('.tgme_widget_message_text')
                 text = txt_el.get_text('\n') if txt_el else ''
                 if not text.strip(): continue
-                photo_url = ''
+                all_photo_urls = []
                 for wrap in m.select('a.tgme_widget_message_photo_wrap,.tgme_widget_message_photo_wrap'):
                     style = wrap.get('style','')
                     m2 = _re.search(r"url\('([^']+)'\)", style)
-                    if m2: photo_url = m2.group(1); break
-                if not photo_url: continue
+                    if m2 and m2.group(1) not in all_photo_urls:
+                        all_photo_urls.append(m2.group(1))
+                if not all_photo_urls: continue
+                photo_url = all_photo_urls[0]
                 country = _detect(text)
                 date_el = m.select_one('.tgme_widget_message_date time')
                 date_str = date_el.get('datetime','') if date_el else ''
@@ -5116,7 +5118,7 @@ def _sync_restoranparsing_all():
                     'contact': f'@{CHANNEL}', 'contact_name': CHANNEL,
                     'source_group': CHANNEL, 'source_channel': CHANNEL,
                     'telegram': f'https://t.me/{CHANNEL}', 'telegram_link': f'https://t.me/{CHANNEL}/{mid}',
-                    'image_url': photo_url, 'all_images': [photo_url], 'photos': [photo_url],
+                    'image_url': photo_url, 'all_images': all_photo_urls, 'photos': all_photo_urls,
                     'has_media': True, 'status': 'active', 'country': country,
                     'message_id': mid, 'category': 'restaurants',
                 }
