@@ -12,12 +12,12 @@ API_HASH = 'd2588f09dfbc5103ef77ef21c07dbf8b'
 SESSION_FILE = 'parser_session.txt'
 
 DEST = {
-    'VIET': 'vietnamparsing',
-    'THAI': 'thailandparsing',
-    'CHAT_VN': 'chatiparsing',
-    'CHAT_TH': 'chatiparsing',
-    'ENTERTAIN': 'gavibeshub',
-    'MED': 'medvietnam',
+    'VIET': 'parsing_vn',
+    'THAI': 'parsing_th',
+    'BIKE': 'bikeparsing_vn',
+    'CHAT_VN': 'chatparsing_vn',
+    'CHAT_TH': 'chatparsing_vn',
+    'ENTERTAIN': 'tusaparsing_vn',
 }
 
 CHAT_VN_CHANNELS = [
@@ -47,10 +47,6 @@ ENTERTAIN_CHANNELS = [
     'danangnew', 'ads_danang', 'danang_tysa', 'danang_afisha',
 ]
 
-MED_CHANNELS = [
-    'viet_med', 'viet_medicine', 'viethandentalrus', 'VietnamDentist', 'doctor_viet',
-    'Medicine_Vietnam', 'mediacenter_vietsovpetro_school', 'vietmedic', 'health_med_viet',
-]
 
 CHANNELS = {
     'THAI': [
@@ -351,31 +347,6 @@ async def _run_client(sess):
     STATS['failed']['ENTERTAIN'] = entertain_fail
     _log(f'[ENTERTAIN] → @{DEST["ENTERTAIN"]}: {len(entertain_ok)}/{len(ENTERTAIN_CHANNELS)} OK, {len(entertain_fail)} не удалось')
 
-    # Entity resolution для MED каналов
-    all_med_ents = []
-    med_ok, med_fail = [], []
-    for n in MED_CHANNELS:
-        key = n.lower()
-        if key in dialogs_map:
-            all_med_ents.append(dialogs_map[key])
-            med_ok.append(n)
-        else:
-            try:
-                ent = await asyncio.wait_for(client.get_input_entity(n), timeout=10)
-                all_med_ents.append(ent)
-                med_ok.append(n)
-                await asyncio.sleep(0.3)
-            except asyncio.TimeoutError:
-                med_fail.append(n)
-            except FloodWaitError as fw:
-                await asyncio.sleep(min(fw.seconds, 30))
-                med_fail.append(n)
-            except Exception:
-                med_fail.append(n)
-    STATS['connected']['MED'] = med_ok
-    STATS['failed']['MED'] = med_fail
-    _log(f'[MED] → @{DEST["MED"]}: {len(med_ok)}/{len(MED_CHANNELS)} OK, {len(med_fail)} не удалось')
-
     total_ok = sum(len(v) for v in STATS['connected'].values())
     _log(f'Итого {total_ok} каналов. Слушаю новые сообщения...')
 
@@ -460,7 +431,6 @@ async def _run_client(sess):
 
     all_chat_set = chat_vn_set | chat_th_set
     entertain_set = {c.lower() for c in entertain_ok}
-    med_set = {c.lower() for c in med_ok}
 
     @client.on(events.NewMessage(chats=all_entertain_ents if all_entertain_ents else ENTERTAIN_CHANNELS))
     async def handle_entertain(e):
@@ -486,35 +456,6 @@ async def _run_client(sess):
             STATS['last_forward'] = time.strftime('%H:%M:%S UTC', time.gmtime())
             STATS['per_channel'][un] = STATS['per_channel'].get(un, 0) + 1
             _log(f'ENTERTAIN @{un} → @{DEST["ENTERTAIN"]}')
-        except FloodWaitError as fw:
-            await asyncio.sleep(fw.seconds + 5)
-        except Exception as ex:
-            STATS['errors'] += 1
-
-    @client.on(events.NewMessage(chats=all_med_ents if all_med_ents else MED_CHANNELS))
-    async def handle_med(e):
-        try:
-            chat = await e.get_chat()
-            un = (getattr(chat, 'username', None) or '').lower()
-        except Exception:
-            return
-        if un not in med_set:
-            return
-        t = clean_text(e.raw_text or e.text or '')
-        if not t or len(t) < 3:
-            return
-        if len(t) > 2000:
-            t = t[:1997] + '...'
-        try:
-            src = f'https://t.me/{un}/{e.id}'
-            if e.media:
-                await client.send_message(DEST['MED'], t or '.', file=e.media, parse_mode=None)
-            else:
-                await client.send_message(DEST['MED'], f'{t}\n\n{src}', parse_mode=None)
-            STATS['forwarded'] += 1
-            STATS['last_forward'] = time.strftime('%H:%M:%S UTC', time.gmtime())
-            STATS['per_channel'][un] = STATS['per_channel'].get(un, 0) + 1
-            _log(f'MED @{un} → @{DEST["MED"]}')
         except FloodWaitError as fw:
             await asyncio.sleep(fw.seconds + 5)
         except Exception as ex:

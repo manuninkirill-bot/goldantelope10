@@ -10,10 +10,10 @@ API_ID = 32881984
 API_HASH = 'd2588f09dfbc5103ef77ef21c07dbf8b'
 
 DEST = {
-    'VIET': 'vietnamparsing',
-    'THAI': 'thailandparsing',
-    'ENTERTAIN': 'gavibeshub',
-    'MED': 'medvietnam',
+    'VIET': 'parsing_vn',
+    'THAI': 'parsing_th',
+    'BIKE': 'bikeparsing_vn',
+    'ENTERTAIN': 'tusaparsing_vn',
 }
 
 SOURCES = {
@@ -44,10 +44,6 @@ SOURCES = {
         'nhatrang_afisha','introconcertvn','afisha_nhatrang','T2TNhaTrangevents',
         'nachang_tusa','drinkparty666','nyachang_ru',
         'danangnew','ads_danang','danang_tysa','danang_afisha',
-    ],
-    'MED': [
-        'viet_med','viet_medicine','viethandentalrus','VietnamDentist','doctor_viet',
-        'Medicine_Vietnam','mediacenter_vietsovpetro_school','vietmedic','health_med_viet',
     ],
 }
 

@@ -1062,7 +1062,7 @@ _INTERNAL_CHANNELS = {
     'bikeparsing_vn', 'bikeparsing_th', 'bikeparsing_in', 'bikeparsing_indo',
     'chatparsing_vn', 'chatparsing_in',
     'tusaparsing_vn', 'tusaparsing_th', 'tusaparsing_in', 'tusaparsing_indo',
-    'vietnamparsing', 'thailandparsing',
+    'thailandparsing',
     'media_vn', 'banner_vn',
     'excursii_vn', 'excursii_th',
     'restoranparsing_all',
@@ -1520,9 +1520,9 @@ def get_listings(category):
         filtered = [x for x in listings if not x.get('hidden', False)]
     
     _GA_TRUSTED_SOURCES = {
-        'gavibeshub', 'gavisarun', 'gatours', 'gafoods', 'gapayments',
+        'gavisarun', 'gatours', 'gafoods', 'gapayments',
         'tusaparsing_vn', 'tusaparsing_th', 'tusaparsing_in', 'tusaparsing_indo',
-        'vibeshub_vn', 'excursii_th',
+        'excursii_th',
     }
 
     # Туры Вьетнама — только из группы GAtours_vn
@@ -3785,7 +3785,7 @@ def admin_moderate():
         
         CATEGORY_CHANNELS = {
             'entertainment': {
-                'vietnam': '@gavibeshub',
+                'vietnam': '@tusaparsing_vn',
             },
             'restaurants': {
                 'vietnam': '@restoranvietnam',
@@ -4559,14 +4559,11 @@ def _gavibeshub_poller():
 
                 # Роутинг всех каналов → категория + страна
                 _CH_ROUTE = {
-                    'vietnamparsing':  ('real_estate',   'vietnam'),
                     'thailandparsing': ('real_estate',   'thailand'),
                     'visarun_vn':      ('visas',         'vietnam'),
                     'paymens_vn':      ('money_exchange','vietnam'),
                     'gatours_vn':      ('tours',         'vietnam'),
-                    'vibeshub_vn':     ('entertainment', 'vietnam'),
                     'restoranvietnam': ('restaurants',   'vietnam'),
-                    'obmenvietnam':    ('chat',          'vietnam'),
                     # Агрегаторы-приёмники (HF Space пересылает сюда)
                     'parsing_vn':      ('real_estate',   'vietnam'),
                     'parsing_th':      ('real_estate',   'thailand'),
@@ -4949,7 +4946,6 @@ def _sync_vibeshub_vn_entertainment():
         _t.sleep(600)  # Повторяем каждые 10 минут
 
 threading.Thread(target=_gavibeshub_poller, daemon=True, name='GAvibeshubPoller').start()
-threading.Thread(target=_sync_vibeshub_vn_entertainment, daemon=True, name='VibeshubVnSync').start()
 logger.info('GAvibeshub background poller started (every %ds)', GAVIBESHUB_POLL_INTERVAL)
 
 # ─── Периодический скрейпер всех каналов (t.me/s/) ────────────────────────
@@ -4968,9 +4964,7 @@ _PERIODIC_SCRAPE_CHANNELS = [
     ('tusaparsing_vn', 'entertainment', 'listings_vietnam.json',   'vietnam'),
     # banner_vn — пропускаем, баннеры обновляются отдельно
 ]
-_CHAT_SCRAPE_CHANNELS = [
-    ('obmenvietnam', 'chat', 'listings_vietnam.json', 'vietnam'),
-]
+_CHAT_SCRAPE_CHANNELS = []
 ALL_CHANNELS_SCRAPE_INTERVAL = 300  # 5 минут
 CHAT_SCRAPE_INTERVAL = 30           # 30 секунд
 
@@ -7549,7 +7543,7 @@ def _run_forward_100(only_groups=None):
         _FWD100_STATE.update({'running': False, 'done': True, 'error': 'no bot token'})
         return
 
-    DST = {'VIET': 'vietnamparsing', 'THAI': 'thailandparsing'}
+    DST = {'VIET': 'parsing_vn', 'THAI': 'parsing_th'}
 
     M = {
         'THAI': [
