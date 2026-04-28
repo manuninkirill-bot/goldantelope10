@@ -2265,13 +2265,20 @@ def _update_banner_config_from_data(data):
     sorted_ids = sorted(data.keys(), key=lambda x: int(x))
     new_banners = []
     for mid in sorted_ids:
-        # Используем прокси /api/banner-img/<msg_id> — Bot API redirect, без CDN
-        new_banners.append(f'/api/banner-img/{mid}')
+        # Если есть локальный файл высокого качества — используем его напрямую
+        local_jpg = f'static/images/banner_vn_{mid}.jpg'
+        local_png = f'static/images/banner_vn_{mid}.png'
+        if os.path.exists(local_jpg):
+            new_banners.append(f'/static/images/banner_vn_{mid}.jpg')
+        elif os.path.exists(local_png):
+            new_banners.append(f'/static/images/banner_vn_{mid}.png')
+        else:
+            new_banners.append(f'/api/banner-img/{mid}')
     config = load_banner_config()
     config['vietnam']['mobile'] = new_banners
     config['vietnam']['web'] = new_banners
     save_banner_config(config)
-    logger.info(f'[banner_sync] Обновлено: {len(new_banners)} прокси-ссылок для баннеров')
+    logger.info(f'[banner_sync] Обновлено: {len(new_banners)} ссылок для баннеров')
 
 def _load_banner_file_ids_to_cache():
     import time as _t
@@ -4989,6 +4996,7 @@ def _scrape_channel_latest(channel, category, target_file, country):
             file_data = {}
         existing = file_data.get(category, [])
         existing_ids = {item['id'] for item in existing}
+        existing_titles = {item.get('title','').strip()[:80] for item in existing if item.get('title','')}
         logo_fps = detect_logo_fingerprints(scraped)
         _SKIP = {'channel created', 'канал создан', 'channel photo updated', 'telegram'}
         added = 0
@@ -5004,8 +5012,14 @@ def _scrape_channel_latest(channel, category, target_file, country):
             # Для туров Вьетнама — добавляем source_group
             if category == 'tours' and country == 'vietnam':
                 new_item['source_group'] = 'GAtours_vn'
+            # Пропускаем дубли по заголовку
+            item_title = new_item.get('title','').strip()[:80]
+            if item_title and item_title in existing_titles:
+                continue
             existing.insert(0, new_item)
             existing_ids.add(item_id)
+            if item_title:
+                existing_titles.add(item_title)
             added += 1
         if added > 0:
             file_data[category] = existing

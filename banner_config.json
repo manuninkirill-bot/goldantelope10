@@ -1,10 +1,10 @@
 {
   "vietnam": {
     "web": [
-      "/api/banner-img/7"
+      "/static/images/banner_vn_7.jpg"
     ],
     "mobile": [
-      "/api/banner-img/7"
+      "/static/images/banner_vn_7.jpg"
     ]
   },
   "thailand": {
