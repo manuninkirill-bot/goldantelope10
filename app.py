@@ -5187,7 +5187,9 @@ _GITHUB_TOURS_INTERVAL = 1800  # каждые 30 минут
 def _load_tours_from_github() -> list:
     """Читает все туры из GitHub tours_nhatrang → список листингов."""
     gh_token = os.environ.get('GITHUB_PERSONAL_ACCESS_TOKEN', '').strip()
-    gh_headers = {'Authorization': f'token {gh_token}'} if gh_token else {}
+    if not gh_token:
+        return []  # токен не задан — пропускаем
+    gh_headers = {'Authorization': f'token {gh_token}'}
     try:
         r = requests.get(_GITHUB_TOURS_API, headers=gh_headers, timeout=15)
         if r.status_code != 200:
