@@ -2007,10 +2007,10 @@
                         <div class="tcs-sw-arrow" id="rvn-sw-arrow">▾</div>
                     </div>
                     <div class="tcs-drop" id="rvn-drop">
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('rvn',0)"><img src="/static/images/restaurants/nyachang.jpg" alt="">Нячанг</div>
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('rvn',1)"><img src="/static/images/restaurants/danang.jpg" alt="">Дананг</div>
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('rvn',2)"><img src="/static/images/restaurants/hochiminh.jpg" alt="">Хошимин</div>
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('rvn',3)"><img src="/static/images/restaurants/phuquoc.jpg" alt="">Фукуок</div>
+                        <div class="tcs-drop-item" data-city-value="nhatrang" onclick="selectCityFromDrop('rvn',0)"><img src="/static/images/restaurants/nyachang.jpg" alt=""><span class="drop-item-label">Нячанг</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-city-value="danang" onclick="selectCityFromDrop('rvn',1)"><img src="/static/images/restaurants/danang.jpg" alt=""><span class="drop-item-label">Дананг</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-city-value="hochiminh" onclick="selectCityFromDrop('rvn',2)"><img src="/static/images/restaurants/hochiminh.jpg" alt=""><span class="drop-item-label">Хошимин</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-city-value="phuquoc" onclick="selectCityFromDrop('rvn',3)"><img src="/static/images/restaurants/phuquoc.jpg" alt=""><span class="drop-item-label">Фукуок</span><span class="drop-city-count"></span></div>
                     </div>
                 </div>
             </div>
@@ -3048,10 +3048,10 @@
                         <div class="tcs-sw-arrow" id="envn-sw-arrow">▾</div>
                     </div>
                     <div class="tcs-drop" id="envn-drop">
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('envn',0)"><img src="/static/images/entertainment/nyachang.jpg" alt="">Нячанг</div>
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('envn',1)"><img src="/static/images/entertainment/danang.jpg" alt="">Дананг</div>
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('envn',2)"><img src="/static/images/entertainment/hochiminh.jpg" alt="">Хошимин</div>
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('envn',3)"><img src="/static/images/entertainment/phuquoc.jpg" alt="">Фукуок</div>
+                        <div class="tcs-drop-item" data-city-value="nhatrang" onclick="selectCityFromDrop('envn',0)"><img src="/static/images/entertainment/nyachang.jpg" alt=""><span class="drop-item-label">Нячанг</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-city-value="danang" onclick="selectCityFromDrop('envn',1)"><img src="/static/images/entertainment/danang.jpg" alt=""><span class="drop-item-label">Дананг</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-city-value="hochiminh" onclick="selectCityFromDrop('envn',2)"><img src="/static/images/entertainment/hochiminh.jpg" alt=""><span class="drop-item-label">Хошимин</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-city-value="phuquoc" onclick="selectCityFromDrop('envn',3)"><img src="/static/images/entertainment/phuquoc.jpg" alt=""><span class="drop-item-label">Фукуок</span><span class="drop-city-count"></span></div>
                     </div>
                 </div>
             </div>
@@ -8168,10 +8168,12 @@
                 drop.classList.add('open');
                 if (arrow) arrow.classList.add('open');
                 if (sw)    sw.classList.add('open');
-                // Загружаем счётчики для недвижимости и транспорта
-                if (key === 'revn') loadDropCityCounts('revn', 'real_estate');
+                // Загружаем счётчики при открытии дропдауна
+                if (key === 'revn')  loadDropCityCounts('revn',  'real_estate');
                 if (key === 're-oth') loadDropCityCounts('re-oth', 'real_estate');
-                if (key === 'trvn') loadDropCityCounts('trvn', 'transport');
+                if (key === 'trvn')  loadDropCityCounts('trvn',  'transport');
+                if (key === 'rvn')   loadDropCityCounts('rvn',   'restaurants');
+                if (key === 'envn')  loadDropCityCounts('envn',  'entertainment');
                 setTimeout(function() {
                     document.addEventListener('click', function() {
                         drop.classList.remove('open');
