@@ -4976,6 +4976,86 @@ logger.info('[periodic_scraper] Все каналы — каждые %ds, чат
             ALL_CHANNELS_SCRAPE_INTERVAL, CHAT_SCRAPE_INTERVAL)
 
 
+# ─── Авто-синхронизация данных с HF Space ───────────────────────────────────
+HF_SYNC_REPO = 'poweramanita/goldantelopeasia.com'
+HF_SYNC_INTERVAL = 600  # каждые 10 минут
+
+_hf_sync_files = [
+    'listings_vietnam.json',
+    'listings_thailand.json',
+    'listings_india.json',
+    'listings_indonesia.json',
+    'listings_data.json',
+    'tg_feed_posts.json',
+    'banner_config.json',
+    'banner_data.json',
+    'analytics.json',
+    'file_id_index.json',
+    'tg_file_paths_cache.json',
+    'groups_stats_vietnam.json',
+    'groups_stats_thailand.json',
+    'bot_sources.json',
+]
+
+_hf_sync_last_mtime = {}
+
+
+def _hf_auto_sync():
+    """Фоновый поток: каждые 10 минут пушит изменённые JSON-файлы в HF Space."""
+    import time as _t3
+    _t3.sleep(60)  # дать приложению запуститься
+    hf_token = os.environ.get('HF_TOKEN', '').strip()
+    if not hf_token:
+        logger.warning('[hf_sync] HF_TOKEN не задан — синхронизация отключена')
+        return
+    try:
+        from huggingface_hub import HfApi as _HfApi
+        _hf_api = _HfApi(token=hf_token)
+        logger.info('[hf_sync] Запущен (репо: %s, интервал: %ds)', HF_SYNC_REPO, HF_SYNC_INTERVAL)
+    except Exception as _e:
+        logger.warning('[hf_sync] Ошибка инициализации HfApi: %s', _e)
+        return
+
+    while True:
+        changed = []
+        for fname in _hf_sync_files:
+            if not os.path.exists(fname):
+                continue
+            try:
+                mtime = os.path.getmtime(fname)
+                if _hf_sync_last_mtime.get(fname) != mtime:
+                    changed.append(fname)
+            except Exception:
+                pass
+
+        if changed:
+            logger.info('[hf_sync] Изменено %d файлов, пушим в HF...', len(changed))
+            pushed = 0
+            for fname in changed:
+                try:
+                    _hf_api.upload_file(
+                        path_or_fileobj=fname,
+                        path_in_repo=fname,
+                        repo_id=HF_SYNC_REPO,
+                        repo_type='space',
+                        commit_message=f'auto-sync: {fname}',
+                    )
+                    _hf_sync_last_mtime[fname] = os.path.getmtime(fname)
+                    pushed += 1
+                    logger.info('[hf_sync] ✓ %s', fname)
+                except Exception as _ue:
+                    logger.warning('[hf_sync] ✗ %s: %s', fname, _ue)
+            logger.info('[hf_sync] Синхронизация завершена: %d/%d файлов', pushed, len(changed))
+        else:
+            logger.debug('[hf_sync] Нет изменений')
+
+        _t3.sleep(HF_SYNC_INTERVAL)
+
+
+threading.Thread(target=_hf_auto_sync, daemon=True, name='HfAutoSync').start()
+logger.info('[hf_sync] Авто-синхронизация с HF Space запущена (каждые %ds)', HF_SYNC_INTERVAL)
+
+
 PARTYHUNT_API_BASE = 'https://api.anbocas.com'
 PARTYHUNT_EVENTS_EP = '/webapp/v1/events'
 PARTYHUNT_SITE = 'https://tickets.partyhunt.com/events'
