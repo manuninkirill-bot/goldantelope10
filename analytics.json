@@ -195,13 +195,13 @@
         "user_kdpsj48a9_1777362083775",
         "user_r3sgjzyji_1777362801532"
       ],
-      "page_views": 221,
+      "page_views": 227,
       "countries": {
-        "vietnam": 221
+        "vietnam": 227
       },
       "categories": {
-        "real_estate": 170,
-        "transport": 28,
+        "real_estate": 173,
+        "transport": 31,
         "entertainment": 10,
         "restaurants": 4,
         "realestate": 6,
@@ -209,12 +209,12 @@
       },
       "hours": {
         "06": 113,
-        "07": 108
+        "07": 114
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 221
+        "desktop": 227
       }
     }
   },
@@ -356,7 +356,7 @@
     },
     "user_ze2ike3ww_1777356464910": {
       "first_seen": "2026-04-28",
-      "visits": 209,
+      "visits": 215,
       "last_seen": "2026-04-28"
     },
     "user_151p2eoar_1777356497118": {

@@ -2234,10 +2234,10 @@
                         <div class="tcs-sw-arrow" id="trvn-sw-arrow">▾</div>
                     </div>
                     <div class="tcs-drop" id="trvn-drop">
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('trvn',0)"><img src="/static/images/restaurants/nyachang.jpg" alt="">Нячанг</div>
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('trvn',1)"><img src="/static/images/restaurants/danang.jpg" alt="">Дананг</div>
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('trvn',2)"><img src="/static/images/restaurants/hochiminh.jpg" alt="">Хошимин</div>
-                        <div class="tcs-drop-item" onclick="selectCityFromDrop('trvn',3)"><img src="/static/images/restaurants/phuquoc.jpg" alt="">Фукуок</div>
+                        <div class="tcs-drop-item" data-city-value="nhatrang" onclick="selectCityFromDrop('trvn',0)"><img src="/static/images/restaurants/nyachang.jpg" alt=""><span class="drop-item-label">Нячанг</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-city-value="danang" onclick="selectCityFromDrop('trvn',1)"><img src="/static/images/restaurants/danang.jpg" alt=""><span class="drop-item-label">Дананг</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-city-value="hochiminh" onclick="selectCityFromDrop('trvn',2)"><img src="/static/images/restaurants/hochiminh.jpg" alt=""><span class="drop-item-label">Хошимин</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-city-value="phuquoc" onclick="selectCityFromDrop('trvn',3)"><img src="/static/images/restaurants/phuquoc.jpg" alt=""><span class="drop-item-label">Фукуок</span><span class="drop-city-count"></span></div>
                     </div>
                 </div>
             </div>
@@ -8168,9 +8168,10 @@
                 drop.classList.add('open');
                 if (arrow) arrow.classList.add('open');
                 if (sw)    sw.classList.add('open');
-                // Загружаем счётчики для недвижимости
+                // Загружаем счётчики для недвижимости и транспорта
                 if (key === 'revn') loadDropCityCounts('revn', 'real_estate');
                 if (key === 're-oth') loadDropCityCounts('re-oth', 'real_estate');
+                if (key === 'trvn') loadDropCityCounts('trvn', 'transport');
                 setTimeout(function() {
                     document.addEventListener('click', function() {
                         drop.classList.remove('open');
