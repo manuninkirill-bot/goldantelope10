@@ -25,7 +25,6 @@ CHANNELS = [
     ('thailandparsing', -1003897335333, 'real_estate',    'listings_thailand.json', 2000),
     ('visarun_vn',      -1003660400331, 'visas',          'listings_vietnam.json',  None),
     ('paymens_vn',      -1003774177042, 'money_exchange', 'listings_vietnam.json',  None),
-    ('baykivietnam',    -1003675974940, 'transport',      'listings_vietnam.json',  None),
     ('GAtours_vn',      -1003807018167, 'tours',          'listings_vietnam.json',  None),
     ('vibeshub_vn',     -1003733304010, 'entertainment',  'listings_vietnam.json',  None),
     ('restoranvietnam', -1003828019481, 'restaurants',    'listings_vietnam.json',  None),

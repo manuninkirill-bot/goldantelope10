@@ -12,7 +12,6 @@ API_HASH = 'd2588f09dfbc5103ef77ef21c07dbf8b'
 DEST = {
     'VIET': 'vietnamparsing',
     'THAI': 'thailandparsing',
-    'BIKE': 'baykivietnam',
     'ENTERTAIN': 'gavibeshub',
     'MED': 'medvietnam',
 }

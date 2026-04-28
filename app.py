@@ -1824,12 +1824,7 @@ def get_listings(category):
     # Фильтры для медицины
     if category == 'transport':
         # Спам-фильтр: исключаем явно нетранспортный контент
-        _TRANSPORT_SPAM_IDS = {
-            'baykivietnam_3390', 'baykivietnam_3388', 'baykivietnam_3387',
-            'baykivietnam_3386', 'baykivietnam_3383', 'baykivietnam_3374',
-            'baykivietnam_3373', 'baykivietnam_3371', 'baykivietnam_2630',
-            'baykivietnam_2607',
-        }
+        _TRANSPORT_SPAM_IDS = set()
         _TRANSPORT_SPAM_KEYWORDS = [
             'продажа готового бизнеса',
             'apple watch',
@@ -4568,7 +4563,6 @@ def _gavibeshub_poller():
                     'thailandparsing': ('real_estate',   'thailand'),
                     'visarun_vn':      ('visas',         'vietnam'),
                     'paymens_vn':      ('money_exchange','vietnam'),
-                    'baykivietnam':    ('transport',     'vietnam'),
                     'gatours_vn':      ('tours',         'vietnam'),
                     'vibeshub_vn':     ('entertainment', 'vietnam'),
                     'restoranvietnam': ('restaurants',   'vietnam'),
@@ -7070,7 +7064,7 @@ def monitoring_stats():
                 category_totals[cat] = category_totals.get(cat, 0) + len(items)
                 country_totals[country] += len(items)
                 for item in items:
-                    _AGGREGATORS = {'vietnamparsing','thailandparsing','baykivietnam'}
+                    _AGGREGATORS = {'vietnamparsing','thailandparsing'}
                     _IGNORE_SRC = _AGGREGATORS | {'https','http','s','joinchat','c'}
                     src = ''
                     tl = item.get('telegram_link', '')
@@ -7555,7 +7549,7 @@ def _run_forward_100(only_groups=None):
         _FWD100_STATE.update({'running': False, 'done': True, 'error': 'no bot token'})
         return
 
-    DST = {'BIKE': 'baykivietnam', 'VIET': 'vietnamparsing', 'THAI': 'thailandparsing'}
+    DST = {'VIET': 'vietnamparsing', 'THAI': 'thailandparsing'}
 
     M = {
         'THAI': [

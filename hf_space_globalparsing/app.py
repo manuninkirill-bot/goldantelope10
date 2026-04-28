@@ -28,7 +28,6 @@ SESS = os.environ.get('TELETHON_SESSION', '')
 DEST = {
     'VIET': 'vietnamparsing',
     'THAI': 'thailandparsing',
-    'BIKE': 'baykivietnam',
     'CHAT': 'chatiparsing',
 }
 

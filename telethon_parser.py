@@ -14,7 +14,6 @@ SESSION_FILE = 'parser_session.txt'
 DEST = {
     'VIET': 'vietnamparsing',
     'THAI': 'thailandparsing',
-    'BIKE': 'baykivietnam',
     'CHAT_VN': 'chatiparsing',
     'CHAT_TH': 'chatiparsing',
     'ENTERTAIN': 'gavibeshub',
