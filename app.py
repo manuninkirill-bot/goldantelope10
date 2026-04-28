@@ -5249,23 +5249,56 @@ def _load_tours_from_github() -> list:
         return []
 
 
+def _dedup_tours(tours: list) -> list:
+    """Дедупликация туров по нормализованному заголовку (первая строка текста)."""
+    seen = {}
+    result = []
+    for t in tours:
+        raw = t.get('title') or (t.get('text') or t.get('description') or '')[:100]
+        key = _re.sub(r'[^\w]', '', raw.lower())[:60]
+        if not key:
+            result.append(t)
+            continue
+        if key not in seen:
+            seen[key] = True
+            result.append(t)
+    return result
+
+
 def _sync_github_tours():
     """Фоновый поток: GitHub tours_nhatrang → listings_vietnam.json каждые 30 мин."""
     import time as _t
-    _t.sleep(10)  # небольшая задержка при старте
+    _t.sleep(10)
     while True:
         try:
-            tours = _load_tours_from_github()
-            if tours:
+            gh_tours = _load_tours_from_github()
+            if gh_tours:
                 with open('listings_vietnam.json', 'r', encoding='utf-8') as _f:
                     vn = json.load(_f)
-                vn['tours'] = tours
+                # Объединяем: GitHub — мастер, Telethon-добавленные (с has_media=True и без
+                # github_folder) сохраняем только если нет совпадения по заголовку
+                gh_ids = {t['id'] for t in gh_tours}
+                gh_keys = set()
+                for t in gh_tours:
+                    raw = t.get('title') or (t.get('text') or '')[:100]
+                    gh_keys.add(_re.sub(r'[^\w]', '', raw.lower())[:60])
+                extra = []
+                for t in vn.get('tours', []):
+                    if t.get('id') in gh_ids or t.get('github_folder'):
+                        continue  # уже есть в GitHub
+                    raw = t.get('title') or (t.get('text') or '')[:100]
+                    key = _re.sub(r'[^\w]', '', raw.lower())[:60]
+                    if key and key not in gh_keys:
+                        extra.append(t)
+                merged = _dedup_tours(gh_tours + extra)
+                vn['tours'] = merged
                 _tmp = 'listings_vietnam.json.tmp'
                 with open(_tmp, 'w', encoding='utf-8') as _f:
                     json.dump(vn, _f, ensure_ascii=False, separators=(',', ':'))
                 os.replace(_tmp, 'listings_vietnam.json')
                 data_cache.pop('vietnam', None)
-                logger.info('[gh_tours] Синхронизировано %d туров из GitHub', len(tours))
+                logger.info('[gh_tours] Синхронизировано %d туров из GitHub (всего %d)',
+                            len(gh_tours), len(merged))
         except Exception as e:
             logger.warning('[gh_tours] Ошибка синхронизации: %s', e)
         _t.sleep(_GITHUB_TOURS_INTERVAL)
@@ -5343,17 +5376,29 @@ def _sync_excursii_vn_telethon():
                     await client.disconnect()
                     return
 
-                # Загружаем существующие IDs из JSON
+                # Загружаем существующие IDs и заголовки из JSON
                 with open('listings_vietnam.json', 'r', encoding='utf-8') as _f:
                     vn = json.load(_f)
                 existing_ids = {t.get('id','') for t in vn.get('tours', [])}
+                existing_titles = set()
+                for t in vn.get('tours', []):
+                    raw = t.get('title') or (t.get('text') or t.get('description') or '')[:100]
+                    key = re.sub(r'[^\w]', '', raw.lower())[:60]
+                    if key:
+                        existing_titles.add(key)
 
                 added = 0
                 async for msg in client.iter_messages(entity, limit=200):
                     if not msg.media or not isinstance(msg.media, MessageMediaPhoto):
                         continue
-                    item_id = f'excursii_vn_{msg.id}'
+                    item_id = f'excursii_vn_msg_{msg.id}'
                     if item_id in existing_ids:
+                        continue
+                    # Дедуп по нормализованному заголовку
+                    _text_tmp = msg.text or msg.message or ''
+                    _title_tmp = _text_tmp.split('\n')[0].strip()[:120]
+                    _title_key = re.sub(r'[^\w]', '', _title_tmp.lower())[:60]
+                    if _title_key and _title_key in existing_titles:
                         continue
                     text = msg.text or msg.message or ''
                     if not text.strip():
@@ -5391,6 +5436,8 @@ def _sync_excursii_vn_telethon():
                         'date': msg.date.isoformat() if msg.date else '',
                     })
                     existing_ids.add(item_id)
+                    if _title_key:
+                        existing_titles.add(_title_key)
                     added += 1
 
                 await client.disconnect()
