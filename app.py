@@ -5553,8 +5553,10 @@ _CHANNEL_ALIAS = {
     'media_vn':         'v8',
     'excursii_vn':      'v9',
     'excursii_th':      't5',
-    'restoranparsing_all':      'a1',
-    'rental_service_thailand':  'rt1',
+    'restoranparsing_all':          'a1',
+    'rental_service_thailand':      'rt1',
+    'arenda_thailandd':             'th2',
+    'renttwentytwo22nhatrang':      'vr1',
 }
 _ALIAS_CHANNEL = {v: k for k, v in _CHANNEL_ALIAS.items()}
 
@@ -5605,7 +5607,17 @@ def tg_photo_proxy(channel, post_id):
                 logger.debug(f'tg_photo_proxy: Bot API redirect {channel}/{post_id}')
                 return redirect(direct_url, code=302)
 
-    # 2. Fallback: og:image — браузер получает 302 на свежий CDN URL
+    # 2. Fallback: t.me/s/ scraping — полный CDN URL (лучше качество, чем og:image)
+    try:
+        from vietnamparsing_parser import _scrape_cdn_photos_for_post
+        cdn_urls = _scrape_cdn_photos_for_post(channel, post_id)
+        if cdn_urls:
+            logger.debug(f'tg_photo_proxy: t.me/s/ CDN redirect {channel}/{post_id}')
+            return redirect(cdn_urls[0], code=302)
+    except Exception as e:
+        logger.debug(f'tg_photo_proxy t.me/s scrape error {channel}/{post_id}: {e}')
+
+    # 3. Последний резерв: og:image (ниже качество)
     try:
         og_resp = requests.get(
             f'https://t.me/{channel}/{post_id}',
