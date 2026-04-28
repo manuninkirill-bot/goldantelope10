@@ -1005,6 +1005,21 @@ def get_city_counts(category):
     
     return jsonify(counts)
 
+@app.route('/api/transport-type-counts')
+def get_transport_type_counts():
+    """Возвращает количество транспортных объявлений по типу (bikes/cars/yachts/bicycles)."""
+    country = request.args.get('country', 'vietnam')
+    data = load_data(country)
+    listings = data.get('transport', [])
+    listings = [x for x in listings if not x.get('hidden', False)]
+    type_keys = ['bikes', 'cars', 'yachts', 'bicycles']
+    counts = {k: 0 for k in type_keys}
+    for item in listings:
+        t = (item.get('transport_type') or '').lower().strip()
+        if t in counts:
+            counts[t] += 1
+    return jsonify(counts)
+
 VIETNAM_REALESTATE_GROUPS = {
     '@arenda_v_danang', '@danang_arenda', '@rent_nha_trang', '@nychang_arenda',
     '@nedvizimost_nhatrang', '@danangrentaflat', '@rent_appart_nha',

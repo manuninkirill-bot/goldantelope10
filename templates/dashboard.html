@@ -2257,10 +2257,10 @@
                         <div class="tcs-sw-arrow" id="trvn-type-sw-arrow">▾</div>
                     </div>
                     <div class="tcs-drop" id="trvn-type-drop">
-                        <div class="tcs-drop-item" data-transport-key="bikes" onclick="selectCityFromDrop('trvn-type',0)"><img src="/static/images/transport/bikes.jpg" alt="">🏍️ Байки</div>
-                        <div class="tcs-drop-item" data-transport-key="cars" onclick="selectCityFromDrop('trvn-type',1)"><img src="/static/images/transport/cars.jpg" alt="">🚗 Авто</div>
-                        <div class="tcs-drop-item" data-transport-key="yachts" onclick="selectCityFromDrop('trvn-type',2)"><img src="/static/images/transport/yachts.jpg" alt="">⛵ Яхты</div>
-                        <div class="tcs-drop-item" data-transport-key="bicycles" onclick="selectCityFromDrop('trvn-type',3)"><img src="/static/images/transport/bicycles.jpg" alt="">🚲 Велосипеды</div>
+                        <div class="tcs-drop-item" data-transport-key="bikes" onclick="selectCityFromDrop('trvn-type',0)"><img src="/static/images/transport/bikes.jpg" alt=""><span class="drop-item-label">🏍️ Байки</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-transport-key="cars" onclick="selectCityFromDrop('trvn-type',1)"><img src="/static/images/transport/cars.jpg" alt=""><span class="drop-item-label">🚗 Авто</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-transport-key="yachts" onclick="selectCityFromDrop('trvn-type',2)"><img src="/static/images/transport/yachts.jpg" alt=""><span class="drop-item-label">⛵ Яхты</span><span class="drop-city-count"></span></div>
+                        <div class="tcs-drop-item" data-transport-key="bicycles" onclick="selectCityFromDrop('trvn-type',3)"><img src="/static/images/transport/bicycles.jpg" alt=""><span class="drop-item-label">🚲 Велосипеды</span><span class="drop-city-count"></span></div>
                     </div>
                 </div>
             </div>
@@ -8169,11 +8169,12 @@
                 if (arrow) arrow.classList.add('open');
                 if (sw)    sw.classList.add('open');
                 // Загружаем счётчики при открытии дропдауна
-                if (key === 'revn')  loadDropCityCounts('revn',  'real_estate');
-                if (key === 're-oth') loadDropCityCounts('re-oth', 'real_estate');
-                if (key === 'trvn')  loadDropCityCounts('trvn',  'transport');
-                if (key === 'rvn')   loadDropCityCounts('rvn',   'restaurants');
-                if (key === 'envn')  loadDropCityCounts('envn',  'entertainment');
+                if (key === 'revn')       loadDropCityCounts('revn',  'real_estate');
+                if (key === 're-oth')     loadDropCityCounts('re-oth', 'real_estate');
+                if (key === 'trvn')       loadDropCityCounts('trvn',  'transport');
+                if (key === 'rvn')        loadDropCityCounts('rvn',   'restaurants');
+                if (key === 'envn')       loadDropCityCounts('envn',  'entertainment');
+                if (key === 'trvn-type')  loadTransportTypeCounts();
                 setTimeout(function() {
                     document.addEventListener('click', function() {
                         drop.classList.remove('open');
@@ -8202,6 +8203,26 @@
                     if (!badge) return;
                     var apiKey = _cityValueToApiKey[cityVal] || cityVal;
                     var num = counts[apiKey];
+                    if (num !== undefined && num !== null && num > 0) {
+                        badge.textContent = 'Предложений: ' + num;
+                    } else {
+                        badge.textContent = '';
+                    }
+                });
+            } catch(e) {}
+        }
+
+        async function loadTransportTypeCounts() {
+            try {
+                var drop = document.getElementById('trvn-type-drop');
+                if (!drop) return;
+                var r = await fetch('/api/transport-type-counts?country=' + currentCountry);
+                var counts = await r.json();
+                drop.querySelectorAll('.tcs-drop-item[data-transport-key]').forEach(function(el) {
+                    var key = el.dataset.transportKey;
+                    var badge = el.querySelector('.drop-city-count');
+                    if (!badge) return;
+                    var num = counts[key];
                     if (num !== undefined && num !== null && num > 0) {
                         badge.textContent = 'Предложений: ' + num;
                     } else {
