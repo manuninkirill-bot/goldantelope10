@@ -4960,7 +4960,7 @@ _PERIODIC_SCRAPE_CHANNELS = [
     ('parsing_in',     'real_estate',   'listings_india.json',     'india'),
     ('parsing_indo',   'real_estate',   'listings_indonesia.json', 'indonesia'),
     # Транспорт / байки
-    ('bikeparsing_vn', 'transport',     'listings_vietnam.json',   'vietnam'),
+    # bikeparsing_vn управляется вручную (GitHub + Telethon), автоскрапер отключён
     ('bikeparsing_th', 'transport',     'listings_thailand.json',  'thailand'),
     ('bikeparsing_in', 'transport',     'listings_india.json',     'india'),
     # Развлечения
