@@ -1,0 +1,53 @@
+
+Logs
+
+build
+container
+
+Logs Endpoint
+
+
+
+
+Copy
+===== Application Startup at 2026-04-28 09:32:26 =====
+
+[2026-04-28 09:32:47 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-04-28 09:32:47 +0000] [1] [INFO] Listening at: http://0.0.0.0:7860 (1)
+[2026-04-28 09:32:47 +0000] [1] [INFO] Using worker: gevent
+[2026-04-28 09:32:47 +0000] [6] [INFO] Booting worker with pid: 6
+INFO:app:[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)
+INFO:app:[file_id_index] Проиндексировано 324 пар msg_id→file_id
+INFO:app:GAvibeshub background poller started (every 30s)
+INFO:app:[periodic_scraper] Все каналы — каждые 300s, чаты — каждые 30s
+INFO:app:[gh_tours] Авто-синхронизация туров из GitHub запущена (каждые 1800s)
+INFO:app:[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)
+INFO:app:[hf_sync] Авто-синхронизация с HF Space запущена (каждые 600s)
+INFO:app:PartyHunt Goa poller started (every 600s)
+INFO:app:Entertainment banner sync for Thailand/Indonesia started
+INFO:app:Telethon background forwarder отключён (используйте /api/admin/telethon-forward)
+INFO:app:Chatiparsing background poller started (every 5s)
+INFO:app:[india_ent_cleanup] Auto-cleanup started (every 6h, window=14d)
+INFO:telethon.crypto.aes:cryptg detected, it will be used for encryption
+INFO:app:TELETHON_SESSION не задана — авторизуйтесь через /tg-auth
+INFO:app:[RATES] Background rates updater started (every 1800s)
+INFO:tg_feed:[tg_feed] Загружено 533 постов с диска
+INFO:tg_feed:[tg_feed] Запущен. Постов: 533. Каналов: ['parsing_vn', 'parsing_th', 'parsing_in', 'parsing_indo', 'bikeparsing_vn', 'bikeparsing_th', 'bikeparsing_in', 'banner_vn', 'tusaparsing_vn']
+INFO:vietnamparsing_parser:Parser started in background thread.
+INFO:app:file_path cache already warm.
+INFO:app:[gavibeshub_poller] Запущен (интервал 30s)
+WARNING:app:[gh_tours] Не удалось получить список папок: 403
+WARNING:app:[bot] Исключение при удалении webhook: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=10)
+INFO:app:[partyhunt_poller] Started (interval 600s)
+INFO:app:[partyhunt_poller] India banners updated: 44 images (only future/active events from PartyHunt)
+WARNING:app:[banner_sync] Ошибка скрейпинга страницы: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+INFO:app:[banner_sync] Обновлено: 1 прокси-ссылок для баннеров
+INFO:app:[banner_sync] Синк @banner_vn: +0 новых, 0 URL обновлено, всего 1
+INFO:app:[disk_prewarm] Bot API: 0 скачано, 0 уже есть, 356 ошибок
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:app:[chat_scraper] Запущен (чаты каждые 30s)
+WARNING:app:[hf_sync] HF_TOKEN не задан — синхронизация отключена
+WARNING:bot_channel_parser:[obmenvietnam] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[restoran_sync] Ошибка: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+INFO:app:[periodic_scraper] Запущен (все каналы каждые 300s)

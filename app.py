@@ -8529,8 +8529,8 @@ def thailand_auth_verify():
 
 # --- StringSession Generator for Globalparsing HF Space ---
 _gp_auth_state = {}
-_GP_API_ID = 32881984
-_GP_API_HASH = 'd2588f09dfbc5103ef77ef21c07dbf8b'
+_GP_API_ID = int(os.environ.get('TELETHON_API_ID', '32881984'))
+_GP_API_HASH = os.environ.get('TELETHON_API_HASH', 'd2588f09dfbc5103ef77ef21c07dbf8b')
 
 
 @app.route('/api/admin/gen-session-start', methods=['POST'])
