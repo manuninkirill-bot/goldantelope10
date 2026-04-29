@@ -5128,7 +5128,7 @@ def _scrape_channel_latest(channel, category, target_file, country):
                     _imgs = [
                         it.get('image_url', '') or it.get('image', '')
                         for it in file_data.get('entertainment', [])
-                        if (it.get('image_url', '') or it.get('image', '')).startswith('http')
+                        if (it.get('image_url', '') or it.get('image', ''))
                     ]
                     _imgs = list(dict.fromkeys(_imgs))  # уникальные, порядок сохранён
                     if _imgs:
@@ -6048,14 +6048,19 @@ logger.info('PartyHunt Goa poller started (every %ds)', PARTYHUNT_POLL_INTERVAL)
 
 
 def _sync_entertainment_banners_th_indo():
-    """Синхронизирует баннеры Тайланда и Индонезии из раздела Развлечения (как Индия)."""
+    """Синхронизирует баннеры Тайланда, Индонезии и Индии из раздела Развлечения."""
     import time as _time
+    import ast as _ast
     _INTERVAL = 900  # каждые 15 минут
     while True:
         try:
             cfg = load_banner_config()
             changed = False
-            for country, fname in [('thailand', 'listings_thailand.json'), ('indonesia', 'listings_indonesia.json')]:
+            for country, fname in [
+                ('thailand',  'listings_thailand.json'),
+                ('indonesia', 'listings_indonesia.json'),
+                ('india',     'listings_india.json'),
+            ]:
                 try:
                     with open(fname, 'r', encoding='utf-8') as _f:
                         _data = json.load(_f)
@@ -6065,7 +6070,18 @@ def _sync_entertainment_banners_th_indo():
                 images = []
                 for item in ent_items:
                     img = item.get('image_url', '') or item.get('image', '') or ''
-                    if img and img.startswith('http') and img not in images:
+                    # Для India: photos хранится как строка вида "['url1','url2']"
+                    if not img:
+                        raw_photos = item.get('photos', '')
+                        if isinstance(raw_photos, list):
+                            img = raw_photos[0] if raw_photos else ''
+                        elif isinstance(raw_photos, str) and raw_photos.startswith('['):
+                            try:
+                                lst = _ast.literal_eval(raw_photos)
+                                img = lst[0] if lst else ''
+                            except Exception:
+                                img = ''
+                    if img and img not in images:
                         images.append(img)
                 if country not in cfg:
                     cfg[country] = {'web': [], 'mobile': []}

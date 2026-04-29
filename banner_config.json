@@ -10,8 +10,18 @@
     ]
   },
   "thailand": {
-    "web": [],
-    "mobile": []
+    "web": [
+      "/g/t3/11",
+      "/g/t3/10",
+      "/g/t3/9",
+      "/g/t3/8"
+    ],
+    "mobile": [
+      "/g/t3/11",
+      "/g/t3/10",
+      "/g/t3/9",
+      "/g/t3/8"
+    ]
   },
   "india": {
     "web": [
@@ -110,7 +120,13 @@
     ]
   },
   "indonesia": {
-    "web": [],
-    "mobile": []
+    "web": [
+      "/static/images/entertainment/indo_5.jpg",
+      "/static/images/entertainment/indo_3.jpg"
+    ],
+    "mobile": [
+      "/static/images/entertainment/indo_5.jpg",
+      "/static/images/entertainment/indo_3.jpg"
+    ]
   }
 }
