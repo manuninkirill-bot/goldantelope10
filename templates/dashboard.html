@@ -6264,10 +6264,12 @@
                 const diffX = startX - endX;
                 const diffY = startY - endY;
                 if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
-                    if (diffX > 0) {
-                        slideSlider(slider, 1);
-                    } else {
-                        slideSlider(slider, -1);
+                    const dir = diffX > 0 ? 1 : -1;
+                    if (slider.querySelector('.slides')) {
+                        slideSlider(slider, dir);
+                    } else if (slider.id && slider.id.startsWith('slider-')) {
+                        const listingId = slider.id.slice(7);
+                        changeListingImage(listingId, dir, null);
                     }
                 }
                 delete slider.dataset.touchStartX;
