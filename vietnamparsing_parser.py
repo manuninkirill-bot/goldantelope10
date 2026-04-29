@@ -1308,7 +1308,8 @@ def atomic_add_listing(category: str, item: dict) -> bool:
     _txt = (item.get('description') or item.get('text') or '').strip()
     _title = (item.get('title') or '').strip()
     import re as _re
-    if category in ('real_estate', 'transport') and not _txt and not _title:
+    # Разрешаем фото без текста если это продолжение альбома (media_group_id есть)
+    if category in ('real_estate', 'transport') and not _txt and not _title and not item.get('media_group_id'):
         logger.info(f"[filter] Отклонено (нет текста) [{category}]: {item.get('id','')}")
         return False
     with _listings_lock:
@@ -1375,6 +1376,40 @@ def atomic_add_listing(category: str, item: dict) -> bool:
                                 shutil.move(tmp, LISTINGS_FILE)
                         except Exception as e:
                             logger.error(f"atomic_add_listing photo update failed: {e}")
+                    return False
+        # Медиагруппа: ищем существующий листинг с тем же media_group_id (разные ID фотографий одного альбома)
+        _mgid = item.get('media_group_id', '')
+        if _mgid and category in data and isinstance(data[category], list):
+            _new_url0 = (_new_photos[0] if _new_photos else '') or item.get('image_url', '')
+            for idx, existing in enumerate(data[category]):
+                if not isinstance(existing, dict):
+                    continue
+                if existing.get('media_group_id') != _mgid:
+                    continue
+                _ex_photos = existing.get('photos') or existing.get('all_images') or []
+                if _new_url0 and _new_url0 not in _ex_photos and len(_ex_photos) < 10:
+                    merged = _ex_photos + [_new_url0]
+                    existing['photos'] = merged
+                    existing['all_images'] = merged
+                    existing['has_media'] = True
+                    # Если у нового элемента есть текст, а у существующего нет — обновим
+                    if not existing.get('description') and item.get('description'):
+                        existing['description'] = item['description']
+                        existing['text'] = item.get('text', item['description'])
+                        existing['title'] = item.get('title', existing.get('title', ''))
+                    data[category][idx] = existing
+                    try:
+                        tmp = LISTINGS_FILE + '.tmp'
+                        with open(tmp, 'w', encoding='utf-8') as f:
+                            json.dump(data, f, ensure_ascii=False, indent=2)
+                        try:
+                            os.replace(tmp, LISTINGS_FILE)
+                        except OSError:
+                            import shutil
+                            shutil.move(tmp, LISTINGS_FILE)
+                    except Exception as e:
+                        logger.error(f"atomic_add_listing album merge failed: {e}")
+                    logger.info(f"[album_mgid] Фото {len(merged)} добавлено к mgid={_mgid} ({existing.get('id','')})")
                     return False
         # Проверяем дубль по ID во всех категориях (без обновления)
         ids = set()

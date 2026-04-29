@@ -4895,11 +4895,13 @@ def _process_routed_channel_post(cp):
             photos_r = [f'/api/tgphoto/{fid}']
             break
 
+    _mgid_early = cp.get('media_group_id', '')
     if not text_r and not photos_r:
         return
     if category_r in ('real_estate', 'transport') and not photos_r:
         return
-    if category_r in ('real_estate', 'transport') and not text_r:
+    # Разрешаем фото без текста ТОЛЬКО если это продолжение альбома (media_group_id есть)
+    if category_r in ('real_estate', 'transport') and not text_r and not _mgid_early:
         return
 
     try:
@@ -4971,6 +4973,7 @@ def _process_routed_channel_post(cp):
                              _country_city_default.get(country_r, country_r.capitalize()))
         else:
             _city_display = _country_city_default.get(country_r, country_r.capitalize())
+        _mgid = _mgid_early
         item_r = {
             'id': f'{orig_username}_{orig_msg_id}',
             'title': title_r,
@@ -4998,6 +5001,7 @@ def _process_routed_channel_post(cp):
             'country': country_r,
             'message_id': orig_msg_id,
             'category': category_r,
+            'media_group_id': _mgid,
         }
         if category_r == 'transport':
             _txt_check = (title_r + ' ' + (text_r or '')).lower()
@@ -5791,7 +5795,12 @@ def _hf_auto_sync():
                     pushed += 1
                     logger.info('[hf_sync] ✓ %s', fname)
                 except Exception as _ue:
-                    logger.warning('[hf_sync] ✗ %s: %s', fname, _ue)
+                    _ue_str = str(_ue)
+                    if 'storage limit' in _ue_str or '403' in _ue_str:
+                        logger.error('[hf_sync] ✗ %s: HF хранилище переполнено (1GB LFS лимит). '
+                                     'Очистите LFS в настройках репозитория HF Space.', fname)
+                    else:
+                        logger.warning('[hf_sync] ✗ %s: %s', fname, _ue)
             logger.info('[hf_sync] Синхронизация завершена: %d/%d файлов', pushed, len(changed))
         else:
             logger.debug('[hf_sync] Нет изменений')
@@ -10270,15 +10279,20 @@ a{{color:#d4af37;}}</style></head>
 </body></html>'''
 
 
-try:
-    import telethon_parser as _tp_init
-    if _tp_init.get_session():
-        logger.info('TELETHON_SESSION найдена — запускаю парсер...')
-        _tp_init.start()
-    else:
-        logger.info('TELETHON_SESSION не задана — авторизуйтесь через /tg-auth')
-except Exception as _e:
-    logger.warning(f'Парсер не запущен: {_e}')
+_on_replit = bool(os.environ.get('REPLIT_DEV_DOMAIN') or os.environ.get('REPLIT_DOMAINS'))
+_on_hf = bool(os.environ.get('SPACE_HOST') or os.environ.get('HF_SPACE_ID'))
+if _on_replit and not _on_hf:
+    logger.info('Replit-среда: Telethon-парсер отключён (работает только на HF Space)')
+else:
+    try:
+        import telethon_parser as _tp_init
+        if _tp_init.get_session():
+            logger.info('TELETHON_SESSION найдена — запускаю парсер...')
+            _tp_init.start()
+        else:
+            logger.info('TELETHON_SESSION не задана — авторизуйтесь через /tg-auth')
+    except Exception as _e:
+        logger.warning(f'Парсер не запущен: {_e}')
 
 RATES_UPDATE_INTERVAL = 1800
 
