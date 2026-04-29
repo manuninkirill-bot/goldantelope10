@@ -4474,7 +4474,8 @@ threading.Thread(target=_file_id_autosave_loop, daemon=True, name='FileIdAutosav
 
 
 def _auto_set_webhook():
-    """Автоматически устанавливает webhook бота при запуске на актуальный Replit URL."""
+    """Автоматически устанавливает webhook бота при запуске.
+    Приоритет: WEBHOOK_URL → SPACE_HOST (HF Spaces) → REPLIT_DOMAINS → REPLIT_DEV_DOMAIN"""
     import time as _time
     _time.sleep(5)
     try:
@@ -4482,13 +4483,23 @@ def _auto_set_webhook():
         if not bot_token:
             logger.warning('[bot] TELEGRAM_BOT_TOKEN не задан — webhook не установлен')
             return
-        domains = os.environ.get('REPLIT_DOMAINS', '')
-        dev_domain = os.environ.get('REPLIT_DEV_DOMAIN', '')
-        domain = domains.split(',')[0] if domains else dev_domain
-        if not domain:
+        # Ручной override (приоритет)
+        webhook_url = os.environ.get('WEBHOOK_URL', '').strip()
+        if not webhook_url:
+            # HF Spaces автоматически задаёт SPACE_HOST
+            space_host = os.environ.get('SPACE_HOST', '').strip()
+            if space_host:
+                webhook_url = f'https://{space_host}/bot/webhook'
+        if not webhook_url:
+            # Replit
+            domains = os.environ.get('REPLIT_DOMAINS', '')
+            dev_domain = os.environ.get('REPLIT_DEV_DOMAIN', '')
+            domain = domains.split(',')[0] if domains else dev_domain
+            if domain:
+                webhook_url = f'https://{domain}/bot/webhook'
+        if not webhook_url:
             logger.warning('[bot] Не удалось определить домен — webhook не установлен')
             return
-        webhook_url = f'https://{domain}/bot/webhook'
         r = requests.post(
             f'https://api.telegram.org/bot{bot_token}/setWebhook',
             json={'url': webhook_url, 'drop_pending_updates': False, 'allowed_updates': ['message', 'callback_query', 'channel_post']},
