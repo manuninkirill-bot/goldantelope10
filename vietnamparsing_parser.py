@@ -1302,6 +1302,15 @@ def atomic_add_listing(category: str, item: dict) -> bool:
         return False
     _new_photos = item.get('photos') or item.get('all_images') or []
     _new_has_photo = bool(_new_photos or item.get('image_url') or item.get('has_media'))
+    if category in ('real_estate', 'transport') and not _new_has_photo:
+        logger.info(f"[filter] Отклонено (нет фото) [{category}]: {item.get('id','')}")
+        return False
+    _txt = (item.get('description') or item.get('text') or '').strip()
+    _title = (item.get('title') or '').strip()
+    import re as _re
+    if category in ('real_estate', 'transport') and not _txt and not _title:
+        logger.info(f"[filter] Отклонено (нет текста) [{category}]: {item.get('id','')}")
+        return False
     with _listings_lock:
         try:
             with open(LISTINGS_FILE, 'r', encoding='utf-8') as f:

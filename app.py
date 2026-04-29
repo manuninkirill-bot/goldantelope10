@@ -4897,7 +4897,9 @@ def _process_routed_channel_post(cp):
 
     if not text_r and not photos_r:
         return
-    if category_r == 'real_estate' and not photos_r:
+    if category_r in ('real_estate', 'transport') and not photos_r:
+        return
+    if category_r in ('real_estate', 'transport') and not text_r:
         return
 
     try:
