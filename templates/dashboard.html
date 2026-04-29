@@ -506,6 +506,33 @@
             z-index: 5;
             border: 3px solid #d4af37;
             overflow: hidden;
+            touch-action: pan-y;
+            user-select: none;
+            -webkit-user-select: none;
+            cursor: grab;
+        }
+        .banner-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .banner-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.55);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .banner-dot.active {
+            background: #d4af37;
+            transform: scale(1.35);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.6);
         }
         
         .banner img {
@@ -1981,6 +2008,7 @@
             <img id="banner-img" src="" alt="Banner">
             <button class="banner-nav prev" onclick="event.stopPropagation(); changeBanner(-1)">‹</button>
             <button class="banner-nav next" onclick="event.stopPropagation(); changeBanner(1)">›</button>
+            <div id="banner-dots" class="banner-dots"></div>
         </div>
 
         <div class="tabs">
@@ -6249,12 +6277,34 @@
         function initSwipeListeners() {
             document.addEventListener('touchstart', function(e) {
                 const slider = e.target.closest('.card-slider');
-                if (!slider) return;
-                slider.dataset.touchStartX = e.touches[0].clientX;
-                slider.dataset.touchStartY = e.touches[0].clientY;
+                if (slider) {
+                    slider.dataset.touchStartX = e.touches[0].clientX;
+                    slider.dataset.touchStartY = e.touches[0].clientY;
+                }
+                const banner = e.target.closest('#banner');
+                if (banner) {
+                    banner.dataset.touchStartX = e.touches[0].clientX;
+                    banner.dataset.touchStartY = e.touches[0].clientY;
+                }
             }, { passive: true });
 
             document.addEventListener('touchend', function(e) {
+                // Banner swipe
+                const banner = e.target.closest('#banner');
+                if (banner && banner.dataset.touchStartX) {
+                    const startX = parseFloat(banner.dataset.touchStartX);
+                    const startY = parseFloat(banner.dataset.touchStartY);
+                    const endX = e.changedTouches[0].clientX;
+                    const endY = e.changedTouches[0].clientY;
+                    const diffX = startX - endX;
+                    const diffY = startY - endY;
+                    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+                        changeBanner(diffX > 0 ? 1 : -1);
+                    }
+                    delete banner.dataset.touchStartX;
+                    delete banner.dataset.touchStartY;
+                }
+                // Card slider swipe
                 const slider = e.target.closest('.card-slider');
                 if (!slider || !slider.dataset.touchStartX) return;
                 const startX = parseFloat(slider.dataset.touchStartX);
@@ -6388,6 +6438,7 @@
             if (!banner) return;
             
             const navs = banner.querySelectorAll('.banner-nav');
+            const dotsEl = document.getElementById('banner-dots');
             
             if (banners.length > 0) {
                 if (countryConfig[currentCountry].currentBanner === undefined) countryConfig[currentCountry].currentBanner = 0;
@@ -6406,14 +6457,23 @@
                     bannerImg.src = imgUrl;
                 }
                 banner.style.display = 'block';
-                
-                banner.onclick = (e) => {
-                    if (!e.target.classList.contains('banner-nav')) {
-                        if (typeof changeBanner === 'function') changeBanner(1);
+
+                // Dots indicator
+                if (dotsEl) {
+                    if (banners.length > 1) {
+                        dotsEl.innerHTML = banners.map((_, i) =>
+                            `<span class="banner-dot${i === currentIdx ? ' active' : ''}"></span>`
+                        ).join('');
+                        dotsEl.style.display = 'flex';
+                    } else {
+                        dotsEl.style.display = 'none';
                     }
-                };
+                }
+
+                banner.onclick = null;
             } else {
                 banner.style.display = 'none';
+                if (dotsEl) dotsEl.style.display = 'none';
             }
         }
 
