@@ -1,0 +1,117 @@
+
+Logs
+
+build
+container
+
+Logs Endpoint
+
+
+
+
+Copy
+===== Application Startup at 2026-04-29 09:37:21 =====
+
+[2026-04-29 09:37:33 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-04-29 09:37:33 +0000] [1] [INFO] Listening at: http://0.0.0.0:7860 (1)
+[2026-04-29 09:37:33 +0000] [1] [INFO] Using worker: sync
+[2026-04-29 09:37:33 +0000] [7] [INFO] Booting worker with pid: 7
+[2026-04-29 09:37:33 +0000] [8] [INFO] Booting worker with pid: 8
+INFO:app:[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)
+INFO:app:[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)
+INFO:app:GAvibeshub background poller started (every 30s)
+INFO:app:GAvibeshub background poller started (every 30s)
+INFO:app:[periodic_scraper] Все каналы — каждые 300s, чаты — каждые 30s
+INFO:app:[periodic_scraper] Все каналы — каждые 300s, чаты — каждые 30s
+INFO:app:[gh_tours] Авто-синхронизация туров из GitHub запущена (каждые 1800s)
+INFO:app:[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)
+INFO:app:[hf_sync] Авто-синхронизация с HF Space запущена (каждые 600s)
+INFO:app:PartyHunt Goa poller started (every 600s)
+INFO:app:Entertainment banner sync for Thailand/Indonesia started
+INFO:app:[gh_tours] Авто-синхронизация туров из GitHub запущена (каждые 1800s)
+INFO:app:[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)
+INFO:app:[file_id_index] Проиндексировано 707 пар msg_id→file_id
+INFO:app:[hf_sync] Авто-синхронизация с HF Space запущена (каждые 600s)
+INFO:app:PartyHunt Goa poller started (every 600s)
+INFO:app:Entertainment banner sync for Thailand/Indonesia started
+INFO:app:Telethon background forwarder отключён (используйте /api/admin/telethon-forward)
+INFO:app:Chatiparsing background poller started (every 5s)
+INFO:app:[india_ent_cleanup] Auto-cleanup started (every 6h, window=14d)
+INFO:app:[file_id_index] Проиндексировано 707 пар msg_id→file_id
+INFO:app:Telethon background forwarder отключён (используйте /api/admin/telethon-forward)
+INFO:app:Chatiparsing background poller started (every 5s)
+INFO:app:[india_ent_cleanup] Auto-cleanup started (every 6h, window=14d)
+WARNING:app:Парсер не запущен: No module named 'telethon_parser'
+INFO:app:[RATES] Background rates updater started (every 1800s)
+WARNING:app:Парсер не запущен: No module named 'telethon_parser'
+INFO:app:[RATES] Background rates updater started (every 1800s)
+INFO:tg_feed:[tg_feed] Загружено 1019 постов с диска
+INFO:tg_feed:[tg_feed] Запущен. Постов: 1019. Каналов: ['parsing_vn', 'parsing_th', 'parsing_in', 'parsing_indo', 'bikeparsing_vn', 'bikeparsing_th', 'bikeparsing_in', 'bikeparsing_indo', 'banner_vn', 'tusaparsing_vn', 'tusaparsing_th', 'tusaparsing_in', 'tusaparsing_indo', 'excursii_vn', 'excursii_th', 'restoranparsing_all', 'chatparsing_in']
+INFO:tg_feed:[tg_feed] Загружено 1019 постов с диска
+INFO:tg_feed:[tg_feed] Запущен. Постов: 1019. Каналов: ['parsing_vn', 'parsing_th', 'parsing_in', 'parsing_indo', 'bikeparsing_vn', 'bikeparsing_th', 'bikeparsing_in', 'bikeparsing_indo', 'banner_vn', 'tusaparsing_vn', 'tusaparsing_th', 'tusaparsing_in', 'tusaparsing_indo', 'excursii_vn', 'excursii_th', 'restoranparsing_all', 'chatparsing_in']
+INFO:vietnamparsing_parser:Parser started in background thread.
+INFO:vietnamparsing_parser:Parser started in background thread.
+INFO:app:[gavibeshub_poller] Запущен (интервал 30s)
+INFO:app:[gavibeshub_poller] Запущен (интервал 30s)
+INFO:app:file_path cache already warm.
+INFO:app:file_path cache already warm.
+INFO:app:[partyhunt_poller] Started (interval 600s)
+INFO:app:[partyhunt_poller] Started (interval 600s)
+WARNING:app:[bot] Исключение при установке webhook: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=10)
+WARNING:app:[bot] Исключение при установке webhook: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=10)
+INFO:app:[partyhunt_poller] Added: Ethnoentheo (₹5714.00)
+INFO:app:[partyhunt_poller] Added: Bir Music Festival (₹8999.00)
+INFO:app:[partyhunt_poller] Added: Maze Of Mystery Vol.1 (₹999.00)
+INFO:app:[partyhunt_poller] Added: Sonic Sands (₹2000.00)
+INFO:app:[partyhunt_poller] Added: Maze Of Mystery Vol.1 (₹1427.00)
+INFO:app:[partyhunt_poller] Added: Ritual Connection (₹?)
+INFO:app:[partyhunt_poller] Added: Ritual Connection (₹?)
+INFO:app:[partyhunt_poller] Added: Ritual Connection (₹2500.00)
+INFO:app:[partyhunt_poller] Added: Magical Himalayas (₹1500.00)
+INFO:app:[partyhunt_poller] Added: Celestial Grooves (₹4284.00)
+INFO:app:[partyhunt_poller] Added: Jungle Spirit (₹6000.00)
+INFO:app:[partyhunt_poller] Added: Post Modern Music (₹2499.00)
+INFO:app:[partyhunt_poller] Added: Mountain Calling (₹1500.00)
+INFO:app:[partyhunt_poller] Added: Magical Festival (₹1500.00)
+INFO:app:[partyhunt_poller] Added: Pre Sao Joao Bash (₹700.00)
+INFO:app:[partyhunt_poller] Added: Sonic Swaraj (₹500.00)
+INFO:app:[partyhunt_poller] Added: Way To Heaven Festival-1 (₹899.00)
+INFO:app:[partyhunt_poller] Added: Way To Heaven Festival 1 (₹899.00)
+INFO:app:[partyhunt_poller] Added: Vanaghotra (₹1999.00)
+INFO:app:[partyhunt_poller] Added: PARTY HUNT - Tix! (₹1.00)
+INFO:app:[partyhunt_poller] Batch done: 20 new events added to India entertainment
+INFO:app:[partyhunt_poller] India banners updated: 45 images (only future/active events from PartyHunt)
+INFO:app:[partyhunt_poller] India banners updated: 45 images (only future/active events from PartyHunt)
+WARNING:app:[banner_sync] Ошибка скрейпинга страницы: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+INFO:app:[banner_sync] Обновлено: 1 ссылок для баннеров
+INFO:app:[banner_sync] Синк @banner_vn: +0 новых, 0 URL обновлено, всего 1
+WARNING:app:[banner_sync] Ошибка скрейпинга страницы: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+INFO:app:[banner_sync] Обновлено: 1 ссылок для баннеров
+INFO:app:[banner_sync] Синк @banner_vn: +0 новых, 0 URL обновлено, всего 1
+INFO:app:[disk_prewarm] Bot API: 0 скачано, 0 уже есть, 333 ошибок
+INFO:app:[disk_prewarm] Bot API: 0 скачано, 0 уже есть, 333 ошибок
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:app:[chat_scraper] Запущен (чаты каждые 30s)
+INFO:app:[chat_scraper] Запущен (чаты каждые 30s)
+WARNING:app:[hf_sync] HF_TOKEN не задан — синхронизация отключена
+WARNING:app:[hf_sync] HF_TOKEN не задан — синхронизация отключена
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[restoran_sync] Ошибка: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+WARNING:app:[restoran_sync] Ошибка: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+INFO:app:[periodic_scraper] Запущен (все каналы каждые 300s)
+INFO:app:[periodic_scraper] Запущен (все каналы каждые 300s)
+WARNING:bot_channel_parser:[parsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:app:[india_ent_cleanup] Removed 20 events outside 14-day window, kept 25
+WARNING:bot_channel_parser:[parsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
