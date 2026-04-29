@@ -4514,7 +4514,12 @@ def _auto_set_webhook():
         logger.warning(f'[bot] Исключение при установке webhook: {e}')
 
 
-threading.Thread(target=_auto_set_webhook, daemon=True, name='BotWebhookSet').start()
+# Webhook автосет запускается только на HF Space (SPACE_HOST задан) или при FORCE_WEBHOOK=1
+# На Replit — не переопределяем webhook, чтобы не конкурировать с HF
+if os.environ.get('SPACE_HOST') or os.environ.get('FORCE_WEBHOOK') == '1':
+    threading.Thread(target=_auto_set_webhook, daemon=True, name='BotWebhookSet').start()
+else:
+    logger.info('[bot] Webhook autoset отключён (запуск не на HF Space). Для принудительного запуска задайте FORCE_WEBHOOK=1')
 
 
 # ============ ОБРАБОТКА CHANNEL POSTS ЧЕРЕЗ BOT API ============
