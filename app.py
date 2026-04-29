@@ -6048,7 +6048,7 @@ logger.info('PartyHunt Goa poller started (every %ds)', PARTYHUNT_POLL_INTERVAL)
 
 
 def _sync_entertainment_banners_th_indo():
-    """Синхронизирует баннеры Тайланда, Индонезии и Индии из раздела Развлечения."""
+    """Синхронизирует баннеры Вьетнама, Тайланда, Индонезии и Индии из раздела Развлечения."""
     import time as _time
     import ast as _ast
     _INTERVAL = 900  # каждые 15 минут
@@ -6057,6 +6057,7 @@ def _sync_entertainment_banners_th_indo():
             cfg = load_banner_config()
             changed = False
             for country, fname in [
+                ('vietnam',   'listings_vietnam.json'),
                 ('thailand',  'listings_thailand.json'),
                 ('indonesia', 'listings_indonesia.json'),
                 ('india',     'listings_india.json'),
