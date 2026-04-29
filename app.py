@@ -4377,6 +4377,151 @@ def tg_photo_redirect(file_id):
     return Response(status=404)
 
 
+@app.route('/admin/rebuild_index')
+def admin_rebuild_index():
+    """Запускает полную пересборку обратного file_id индекса (background) и сразу мигрирует."""
+    from flask import request as _req, jsonify as _jsonify
+    bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+    if not bot_token:
+        return _jsonify({'error': 'no token'}), 503
+    provided = _req.args.get('token', '')
+    if provided != bot_token[:8]:
+        return _jsonify({'error': 'forbidden'}), 403
+
+    def _run_rebuild():
+        with _msg_to_file_id_lock:
+            fid_map = dict(_msg_to_file_id)
+        new_pairs = {}
+        _AGGR_CHANNELS = ['parsing_vn', 'parsing_th', 'parsing_in', 'parsing_indo',
+                          'bikeparsing_vn', 'bikeparsing_th', 'tusaparsing_vn',
+                          'tusaparsing_th', 'tusaparsing_indo']
+        for ch in _AGGR_CHANNELS:
+            try:
+                ch_new = _scrape_reverse_index_for_channel(ch, fid_map)
+                new_pairs.update(ch_new)
+            except Exception as e:
+                logger.debug(f'[rebuild_idx] {ch}: {e}')
+        if new_pairs:
+            with _msg_to_file_id_lock:
+                _msg_to_file_id.update(new_pairs)
+            _save_file_id_index()
+            logger.info(f'[rebuild_idx] Добавлено {len(new_pairs)} маппингов')
+
+    threading.Thread(target=_run_rebuild, daemon=True, name='RebuildIndex').start()
+    return _jsonify({'status': 'rebuild started in background — check logs for progress'})
+
+
+@app.route('/admin/migrate_photos')
+def admin_migrate_photos():
+    """Массовая миграция CDN/telesco.pe URL → /api/tgphoto/{file_id} через Bot API.
+    Защита: ?token= должен совпадать с первыми 8 символами TELEGRAM_BOT_TOKEN."""
+    from flask import request as _req, jsonify as _jsonify
+    bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+    if not bot_token:
+        return _jsonify({'error': 'no token'}), 503
+    provided = _req.args.get('token', '')
+    if provided != bot_token[:8]:
+        return _jsonify({'error': 'forbidden'}), 403
+
+    _LIST_FILES = [
+        ('listings_vietnam.json',   'vietnam'),
+        ('listings_thailand.json',  'thailand'),
+        ('listings_india.json',     'india'),
+        ('listings_indonesia.json', 'indonesia'),
+    ]
+
+    def _is_cdn_url(u):
+        if not u:
+            return False
+        return ('telesco.pe' in u or 'cdn.telegram' in u
+                or ('api.telegram.org' in u and '/file/' in u)
+                or u.startswith('/g/') or u.startswith('/gg/'))
+
+    updated_total = 0
+    skipped_total = 0
+    no_fid_total = 0
+    results = []
+
+    with _msg_to_file_id_lock:
+        fid_snapshot = dict(_msg_to_file_id)
+
+    for fname, country in _LIST_FILES:
+        if not os.path.exists(fname):
+            continue
+        try:
+            with open(fname, 'r', encoding='utf-8') as _f:
+                data = json.load(_f)
+        except Exception as e:
+            results.append({'file': fname, 'error': str(e)})
+            continue
+
+        changed = 0
+        cats = data if isinstance(data, dict) else {'_all': data}
+        for cat, posts in cats.items():
+            if not isinstance(posts, list):
+                continue
+            for p in posts:
+                url0 = (p.get('photos') or p.get('all_images') or [p.get('image_url', '')])[0] or p.get('image_url', '')
+                if not _is_cdn_url(url0):
+                    skipped_total += 1
+                    continue
+                # Попытка 1: поиск по (source_group, message_id)
+                pid_src = p.get('source_group', '')
+                pid_mid = p.get('message_id', 0)
+                fid = fid_snapshot.get((pid_src, pid_mid)) if pid_src and pid_mid else None
+                # Попытка 2: поиск по listing id "channel_msgid"
+                if not fid:
+                    lid = p.get('id', '')
+                    parts = lid.rsplit('_', 1)
+                    if len(parts) == 2:
+                        try:
+                            fid = fid_snapshot.get((parts[0], int(parts[1])))
+                        except Exception:
+                            pass
+                # Попытка 3: поиск по (source_channel, bot_msg_id)
+                if not fid:
+                    src_ch = p.get('source_channel', '')
+                    b_mid = p.get('bot_msg_id', 0)
+                    if src_ch and b_mid:
+                        fid = fid_snapshot.get((src_ch, b_mid))
+                if not fid:
+                    no_fid_total += 1
+                    continue
+                # Обновляем запись
+                new_url = f'/api/tgphoto/{fid}'
+                p['image_url'] = new_url
+                p['photos'] = [new_url]
+                p['all_images'] = [new_url]
+                p['has_media'] = True
+                p['file_id'] = fid
+                changed += 1
+                updated_total += 1
+
+        if changed:
+            tmp = fname + '.tmp'
+            try:
+                with open(tmp, 'w', encoding='utf-8') as _f:
+                    json.dump(data, _f, ensure_ascii=False, indent=2)
+                os.replace(tmp, fname)
+            except Exception as e:
+                results.append({'file': fname, 'error': str(e)})
+                continue
+            # Сбрасываем кэш
+            try:
+                data_cache.pop(country, None)
+            except Exception:
+                pass
+        results.append({'file': fname, 'updated': changed})
+
+    return _jsonify({
+        'updated': updated_total,
+        'skipped_already_api': skipped_total,
+        'no_file_id_found': no_fid_total,
+        'details': results,
+        'file_id_index_size': len(fid_snapshot),
+    })
+
+
 @app.route('/tg_file/<path:file_id>')
 def tg_file_proxy(file_id):
     """Redirect browser to direct Telegram file URL via Bot API. No server-side download."""
@@ -4444,6 +4589,89 @@ def _build_msg_to_file_id_index():
         logger.info(f'[file_id_index] Проиндексировано {len(idx)} пар msg_id→file_id')
     except Exception as e:
         logger.warning(f'[file_id_index] Ошибка: {e}')
+
+
+def _scrape_reverse_index_for_channel(ch, fid_map, max_pages=2000):
+    """Скрапит t.me/s/{ch} с пагинацией и строит (orig_ch, orig_mid) → file_id маппинг."""
+    import re as _re_idx
+    import time as _time_idx
+    # Определяем нижнюю границу ID которые нужно покрыть
+    ch_ids = [mid for (c, mid) in fid_map if c == ch]
+    if not ch_ids:
+        return {}
+    min_id_needed = min(ch_ids)
+    new_pairs = {}
+    before_id = None
+    for page in range(max_pages):
+        url = f'https://t.me/s/{ch}'
+        if before_id:
+            url += f'?before={before_id}'
+        try:
+            resp = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=12)
+        except Exception as e:
+            logger.debug(f'[rev_idx] {ch} page {page}: {e}')
+            break
+        if resp.status_code != 200:
+            break
+        html = resp.text
+        all_links = _re_idx.findall(r'href="https://t\.me/([^/"?\s]+)/(\d+)"', html)
+        if not all_links:
+            break
+        # Строим пары (agg_mid → orig)
+        prev_lch, prev_lmid = '', 0
+        page_ids = []
+        for lch, lmid_s in all_links:
+            lch_lower = lch.lower()
+            lmid = int(lmid_s)
+            if lch_lower == ch:
+                page_ids.append(lmid)
+                if prev_lch and prev_lch != ch:
+                    fid = fid_map.get((ch, lmid))
+                    if fid:
+                        new_pairs[(prev_lch, prev_lmid)] = fid
+            prev_lch, prev_lmid = lch_lower, lmid
+        if not page_ids:
+            break
+        min_page_id = min(page_ids)
+        if min_page_id <= min_id_needed:
+            break  # Покрыли весь нужный диапазон
+        before_id = min_page_id
+        _time_idx.sleep(0.7)
+    return new_pairs
+
+
+def _build_reverse_file_id_index():
+    """Строит обратный индекс (orig_channel, orig_msg_id) → file_id через t.me/s/ скрапинг."""
+    import time as _time_idx
+    _AGGR_CHANNELS = ['parsing_vn', 'parsing_th', 'parsing_in', 'parsing_indo',
+                      'bikeparsing_vn', 'bikeparsing_th', 'tusaparsing_vn',
+                      'tusaparsing_th', 'tusaparsing_indo']
+    _time_idx.sleep(5)  # Ждём загрузки основного индекса
+    try:
+        with _msg_to_file_id_lock:
+            fid_map = dict(_msg_to_file_id)
+        new_pairs = {}
+        for ch in _AGGR_CHANNELS:
+            try:
+                ch_new = _scrape_reverse_index_for_channel(ch, fid_map)
+                new_pairs.update(ch_new)
+                if ch_new:
+                    logger.debug(f'[rev_idx] {ch}: {len(ch_new)} маппингов')
+                _time_idx.sleep(1)
+            except Exception as e:
+                logger.debug(f'[rev_idx] {ch}: {e}')
+        if new_pairs:
+            with _msg_to_file_id_lock:
+                _msg_to_file_id.update(new_pairs)
+            logger.info(f'[rev_idx] Добавлено {len(new_pairs)} обратных маппингов (orig→file_id)')
+            _save_file_id_index()
+        else:
+            logger.debug('[rev_idx] Новых маппингов не найдено')
+    except Exception as e:
+        logger.warning(f'[rev_idx] Ошибка: {e}')
+
+
+threading.Thread(target=_build_reverse_file_id_index, daemon=True, name='ReverseFileIdIndexer').start()
 
 
 threading.Thread(target=_build_msg_to_file_id_index, daemon=True, name='FileIdIndexer').start()
@@ -4617,14 +4845,20 @@ def _process_routed_channel_post(cp):
     orig_msg_id = orig_msg_id or msg_id
 
     photos_r = []
+    photo_file_id = ''
     photo_list = cp.get('photo', [])
     if photo_list and msg_id:
         for _ph in sorted(photo_list, key=lambda p: p.get('file_size', 0), reverse=True):
             fid = _ph.get('file_id', '')
             if not fid:
                 continue
+            photo_file_id = fid
             with _msg_to_file_id_lock:
                 _msg_to_file_id[(chat_username, msg_id)] = fid
+            # Сохраняем также по оригинальному каналу для прямого поиска
+            if orig_username and orig_msg_id:
+                with _msg_to_file_id_lock:
+                    _msg_to_file_id[(orig_username, orig_msg_id)] = fid
             # Всегда используем /api/tgphoto/{fid} — прямые file-URL истекают
             photos_r = [f'/api/tgphoto/{fid}']
             break
@@ -4724,6 +4958,8 @@ def _process_routed_channel_post(cp):
             'all_images': photos_r,
             'photos': photos_r,
             'has_media': bool(photos_r),
+            'file_id': photo_file_id,
+            'bot_msg_id': msg_id,
             'status': 'active',
             'country': country_r,
             'message_id': orig_msg_id,

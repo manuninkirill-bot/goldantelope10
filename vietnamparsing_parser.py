@@ -1315,12 +1315,25 @@ def atomic_add_listing(category: str, item: dict) -> bool:
                 if isinstance(existing, dict) and existing.get('id') == _item_id:
                     _ex_photos = existing.get('photos') or existing.get('all_images') or []
                     _ex_has_photo = bool(_ex_photos or existing.get('image_url') or existing.get('has_media'))
-                    if _new_has_photo and not _ex_has_photo:
+                    _ex_url0 = (_ex_photos[0] if _ex_photos else '') or existing.get('image_url', '')
+                    _new_url0 = (_new_photos[0] if _new_photos else '') or item.get('image_url', '')
+                    _ex_is_cdn = bool(_ex_url0 and (
+                        'telesco.pe' in _ex_url0 or 'cdn.telegram' in _ex_url0
+                        or ('api.telegram.org' in _ex_url0 and '/file/' in _ex_url0)
+                        or _ex_url0.startswith('/g/') or _ex_url0.startswith('/gg/')
+                    ))
+                    _new_is_api = bool(_new_url0 and _new_url0.startswith('/api/tgphoto/'))
+                    _should_upgrade = _new_has_photo and (not _ex_has_photo or (_ex_is_cdn and _new_is_api))
+                    if _should_upgrade:
                         # Обновляем фото в существующей записи
                         existing['photos'] = _new_photos
                         existing['all_images'] = _new_photos
                         existing['image_url'] = item.get('image_url', _new_photos[0] if _new_photos else '')
                         existing['has_media'] = True
+                        if item.get('file_id'):
+                            existing['file_id'] = item['file_id']
+                        if item.get('bot_msg_id'):
+                            existing['bot_msg_id'] = item['bot_msg_id']
                         data[category][idx] = existing
                         try:
                             tmp = LISTINGS_FILE + '.tmp'

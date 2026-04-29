@@ -238,29 +238,31 @@
         "user_yzkxii6v0_1777455076429",
         "user_1y91j62jd_1777455932894",
         "user_q5p4f351n_1777456380129",
-        "user_sbyc6eqpt_1777456925597"
+        "user_sbyc6eqpt_1777456925597",
+        "user_3xibdidkb_1777457770600",
+        "user_rcqcd7ebh_1777458728927"
       ],
-      "page_views": 225,
+      "page_views": 309,
       "countries": {
-        "vietnam": 225
+        "vietnam": 309
       },
       "categories": {
-        "real_estate": 140,
+        "real_estate": 174,
         "restaurants": 7,
-        "entertainment": 20,
+        "entertainment": 56,
         "transport": 24,
-        "realestate": 9,
-        "tours": 25
+        "realestate": 22,
+        "tours": 26
       },
       "hours": {
         "08": 4,
         "09": 186,
-        "10": 35
+        "10": 119
       },
       "referrers": {},
       "devices": {
-        "mobile": 15,
-        "desktop": 210
+        "mobile": 28,
+        "desktop": 281
       }
     }
   },
@@ -462,7 +464,7 @@
     },
     "user_hiqfx2blk_1777453152675": {
       "first_seen": "2026-04-29",
-      "visits": 145,
+      "visits": 191,
       "last_seen": "2026-04-29"
     },
     "user_i3f9bcyiq_1777453155296": {
@@ -472,7 +474,7 @@
     },
     "user_t3ik1le13_1777454107929": {
       "first_seen": "2026-04-29",
-      "visits": 61,
+      "visits": 83,
       "last_seen": "2026-04-29"
     },
     "user_yzkxii6v0_1777455076429": {
@@ -487,10 +489,20 @@
     },
     "user_q5p4f351n_1777456380129": {
       "first_seen": "2026-04-29",
-      "visits": 1,
+      "visits": 14,
       "last_seen": "2026-04-29"
     },
     "user_sbyc6eqpt_1777456925597": {
+      "first_seen": "2026-04-29",
+      "visits": 1,
+      "last_seen": "2026-04-29"
+    },
+    "user_3xibdidkb_1777457770600": {
+      "first_seen": "2026-04-29",
+      "visits": 2,
+      "last_seen": "2026-04-29"
+    },
+    "user_rcqcd7ebh_1777458728927": {
       "first_seen": "2026-04-29",
       "visits": 1,
       "last_seen": "2026-04-29"

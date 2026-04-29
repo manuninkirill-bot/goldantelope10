@@ -460,6 +460,348 @@
   ],
   "real_estate": [
     {
+      "id": "arenda_v_danang_241930",
+      "title": "1BR Apartment for Rent - Son Tra area Location: Nguyen Thi Ba street Rent: 13 million/month Type: Cozy, fully furnished,",
+      "description": "1BR Apartment for Rent\n- Son Tra area\nLocation: Nguyen Thi Ba street\nRent: 13 million/month\nType: Cozy, fully furnished, modern design, bright and airy space\nAvailable: Now\nMap:",
+      "text": "1BR Apartment for Rent\n- Son Tra area\nLocation: Nguyen Thi Ba street\nRent: 13 million/month\nType: Cozy, fully furnished, modern design, bright and airy space\nAvailable: Now\nMap:",
+      "price": 0,
+      "price_display": "",
+      "city": "Дананг",
+      "city_ru": "Дананг",
+      "realestate_city": "danang",
+      "date": "2026-04-29T10:32:10.506407+00:00",
+      "contact": "@arenda_v_danang",
+      "contact_name": "arenda_v_danang",
+      "source_group": "arenda_v_danang",
+      "source_channel": "parsing_vn",
+      "telegram": "https://t.me/arenda_v_danang",
+      "telegram_link": "https://t.me/arenda_v_danang/241930",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAImCGnx3inCea2jzeT9jNL4AAFiqUvrzQACDhRrG3TSkUsL8QLSE-HylAEAAwIAA3kAAzsE",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAImCGnx3inCea2jzeT9jNL4AAFiqUvrzQACDhRrG3TSkUsL8QLSE-HylAEAAwIAA3kAAzsE"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAImCGnx3inCea2jzeT9jNL4AAFiqUvrzQACDhRrG3TSkUsL8QLSE-HylAEAAwIAA3kAAzsE"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATtsyKMAAImCGnx3inCea2jzeT9jNL4AAFiqUvrzQACDhRrG3TSkUsL8QLSE-HylAEAAwIAA3kAAzsE",
+      "bot_msg_id": 9736,
+      "status": "active",
+      "country": "vietnam",
+      "message_id": 241930,
+      "category": "real_estate"
+    },
+    {
+      "id": "megasforrentnhatrang_43994",
+      "title": "rent: 9,500,000/month FOR RENT STUDIO APARTMENT WITH BALCONY - FULL FURNITURE - BALCONY - NEAR PHUOC LONG Location:Phuoc",
+      "description": "rent: 9,500,000/month\nFOR RENT STUDIO APARTMENT WITH BALCONY - FULL FURNITURE - BALCONY - NEAR PHUOC LONG\nLocation:Phuoc Long - Nha Trang\nNear supermarket, gym, residential area, restaurants, cafes...\nFull furniture as pictured, 100% new, fully equipped, spacious space, balcony...\nDeposit 1, pay 1\nContact Phone/zalo/Mess/Whatapps: 0368.607.115 for detailed advice and best support",
+      "text": "rent: 9,500,000/month\nFOR RENT STUDIO APARTMENT WITH BALCONY - FULL FURNITURE - BALCONY - NEAR PHUOC LONG\nLocation:Phuoc Long - Nha Trang\nNear supermarket, gym, residential area, restaurants, cafes...\nFull furniture as pictured, 100% new, fully equipped, spacious space, balcony...\nDeposit 1, pay 1\nContact Phone/zalo/Mess/Whatapps: 0368.607.115 for detailed advice and best support",
+      "price": 0,
+      "price_display": "",
+      "city": "Нячанг",
+      "city_ru": "Нячанг",
+      "realestate_city": "nhatrang",
+      "date": "2026-04-29T10:31:35.273291+00:00",
+      "contact": "@megasforrentnhatrang",
+      "contact_name": "megasforrentnhatrang",
+      "source_group": "megasforrentnhatrang",
+      "source_channel": "parsing_vn",
+      "telegram": "https://t.me/megasforrentnhatrang",
+      "telegram_link": "https://t.me/megasforrentnhatrang/43994",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAImAWnx3bVq27L1uP_jJo9rozRO6niWAAIFFGsbdNKRS0eSqPqhkdYdAQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAImAWnx3bVq27L1uP_jJo9rozRO6niWAAIFFGsbdNKRS0eSqPqhkdYdAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAImAWnx3bVq27L1uP_jJo9rozRO6niWAAIFFGsbdNKRS0eSqPqhkdYdAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATtsyKMAAImAWnx3bVq27L1uP_jJo9rozRO6niWAAIFFGsbdNKRS0eSqPqhkdYdAQADAgADeQADOwQ",
+      "bot_msg_id": 9729,
+      "status": "active",
+      "country": "vietnam",
+      "message_id": 43994,
+      "category": "real_estate"
+    },
+    {
+      "id": "realestatebythesea_1_28253",
+      "title": "сдается квартира в центре - комплекс HUD, 90м., угловая квартира, 3 спальни, кухня-гостиная, 2 c/у, балкон - до моря мин",
+      "description": "сдается квартира в центре\n- комплекс HUD, 90м., угловая квартира, 3 спальни, кухня-гостиная, 2 c/у, балкон\n- до моря минут 7\n- от 6 мес\nЦена:  27 млн",
+      "text": "сдается квартира в центре\n- комплекс HUD, 90м., угловая квартира, 3 спальни, кухня-гостиная, 2 c/у, балкон\n- до моря минут 7\n- от 6 мес\nЦена:  27 млн",
+      "price": 0,
+      "price_display": "",
+      "city": "Вьетнам",
+      "city_ru": "Вьетнам",
+      "realestate_city": "",
+      "date": "2026-04-29T10:28:06.003133+00:00",
+      "contact": "@realestatebythesea_1",
+      "contact_name": "realestatebythesea_1",
+      "source_group": "realestatebythesea_1",
+      "source_channel": "parsing_vn",
+      "telegram": "https://t.me/realestatebythesea_1",
+      "telegram_link": "https://t.me/realestatebythesea_1/28253",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl92nx3TQ1id5Kfird8Z9kcfn8d9MvAAL3F2sbdNKJS8v0KuJNNubTAQADAgADdwADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl92nx3TQ1id5Kfird8Z9kcfn8d9MvAAL3F2sbdNKJS8v0KuJNNubTAQADAgADdwADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl92nx3TQ1id5Kfird8Z9kcfn8d9MvAAL3F2sbdNKJS8v0KuJNNubTAQADAgADdwADOwQ"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIl92nx3TQ1id5Kfird8Z9kcfn8d9MvAAL3F2sbdNKJS8v0KuJNNubTAQADAgADdwADOwQ",
+      "bot_msg_id": 9719,
+      "status": "active",
+      "country": "vietnam",
+      "message_id": 28253,
+      "category": "real_estate"
+    },
+    {
+      "id": "viet_life_niachang_114498",
+      "title": "Сдаётся квартира в Нячанге на Юге Цена: 9.5 миллионов Залог: 1 месяц , 1 месяц оплаты Контракт от 3-6 месяцев до моря 5",
+      "description": "Сдаётся квартира в Нячанге на Юге\nЦена: 9.5 миллионов\nЗалог: 1 месяц , 1 месяц\nоплаты\nКонтракт от 3-6 месяцев\nдо моря 5  минут на байке\nСвободна\nСвязаться с нами по этой квартире или подобрать индивидуально вариант в любой части города:\nНаш телеграмм канал :\nКонтакт для связи:\nЕвгений: rentnhatrangviet\nДмитрий:VietLiferentVietnam\nПочему стоит выбрать нас?\nПредоставляем Гайд по Нячангу из 30 страниц\nСамые низкие цены на рынке!\nУ нас много хороших вариантов квартир, домов ,Вилл по всему Нячангу, Данангу, Фукуок\nС уважением команда VietLife",
+      "text": "Сдаётся квартира в Нячанге на Юге\nЦена: 9.5 миллионов\nЗалог: 1 месяц , 1 месяц\nоплаты\nКонтракт от 3-6 месяцев\nдо моря 5  минут на байке\nСвободна\nСвязаться с нами по этой квартире или подобрать индивидуально вариант в любой части города:\nНаш телеграмм канал :\nКонтакт для связи:\nЕвгений: rentnhatrangviet\nДмитрий:VietLiferentVietnam\nПочему стоит выбрать нас?\nПредоставляем Гайд по Нячангу из 30 страниц\nСамые низкие цены на рынке!\nУ нас много хороших вариантов квартир, домов ,Вилл по всему Нячангу, Данангу, Фукуок\nС уважением команда VietLife",
+      "price": 0,
+      "price_display": "",
+      "city": "Нячанг",
+      "city_ru": "Нячанг",
+      "realestate_city": "nhatrang",
+      "date": "2026-04-29T10:27:05.571791+00:00",
+      "contact": "@viet_life_niachang",
+      "contact_name": "viet_life_niachang",
+      "source_group": "viet_life_niachang",
+      "source_channel": "parsing_vn",
+      "telegram": "https://t.me/viet_life_niachang",
+      "telegram_link": "https://t.me/viet_life_niachang/114498",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl7Wnx3PhbkI0RsGiHrm5afTSBV7USAALsF2sbdNKJS8HIUrJ340rwAQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl7Wnx3PhbkI0RsGiHrm5afTSBV7USAALsF2sbdNKJS8HIUrJ340rwAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl7Wnx3PhbkI0RsGiHrm5afTSBV7USAALsF2sbdNKJS8HIUrJ340rwAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIl7Wnx3PhbkI0RsGiHrm5afTSBV7USAALsF2sbdNKJS8HIUrJ340rwAQADAgADeQADOwQ",
+      "bot_msg_id": 9709,
+      "status": "active",
+      "country": "vietnam",
+      "message_id": 114498,
+      "category": "real_estate"
+    },
+    {
+      "id": "tanrealtorgh_28030",
+      "title": "ДОМ DUPLEX 2 СПАЛЬНИ  СЕВЕР НЯЧАНГА (VĨNH HÒA) 20 млн донгов / месяц   NNC-2337 160 м (жилая площадь) Гостиная + кухня (",
+      "description": "ДОМ DUPLEX 2 СПАЛЬНИ  СЕВЕР НЯЧАНГА (VĨNH HÒA)\n20 млн донгов / месяц   NNC-2337\n160 м (жилая площадь)\nГостиная + кухня (open space), 2 спальни (наверху), 2 ванные\nОбщий двор для парковки\nПолностью меблирован, новая мебель\nЮг\nРядом море, рынок, школы, тихий и престижный район\nДепозит 2 месяца  оплата каждые 2 месяца\nКонтракт от 1 года\n0399780651\ncheenfindhouse",
+      "text": "ДОМ DUPLEX 2 СПАЛЬНИ  СЕВЕР НЯЧАНГА (VĨNH HÒA)\n20 млн донгов / месяц   NNC-2337\n160 м (жилая площадь)\nГостиная + кухня (open space), 2 спальни (наверху), 2 ванные\nОбщий двор для парковки\nПолностью меблирован, новая мебель\nЮг\nРядом море, рынок, школы, тихий и престижный район\nДепозит 2 месяца  оплата каждые 2 месяца\nКонтракт от 1 года\n0399780651\ncheenfindhouse",
+      "price": 0,
+      "price_display": "",
+      "city": "Нячанг",
+      "city_ru": "Нячанг",
+      "realestate_city": "nhatrang",
+      "date": "2026-04-29T10:26:44.770542+00:00",
+      "contact": "@tanrealtorgh",
+      "contact_name": "tanrealtorgh",
+      "source_group": "tanrealtorgh",
+      "source_channel": "parsing_vn",
+      "telegram": "https://t.me/tanrealtorgh",
+      "telegram_link": "https://t.me/tanrealtorgh/28030",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl5Wnx3OM_vhlKvPfthTWuXn9igCgpAALkF2sbdNKJSzHCjLZsevqOAQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl5Wnx3OM_vhlKvPfthTWuXn9igCgpAALkF2sbdNKJSzHCjLZsevqOAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl5Wnx3OM_vhlKvPfthTWuXn9igCgpAALkF2sbdNKJSzHCjLZsevqOAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIl5Wnx3OM_vhlKvPfthTWuXn9igCgpAALkF2sbdNKJSzHCjLZsevqOAQADAgADeQADOwQ",
+      "bot_msg_id": 9701,
+      "status": "active",
+      "country": "vietnam",
+      "message_id": 28030,
+      "category": "real_estate"
+    },
+    {
+      "id": "nedvizhimost_pattaya_663408",
+      "title": "Сдается 1 bedroom Arcadia Beach Continental СВОБОДНА Бронь с 24.06.26 - 21.07.26 6 этаж Есть все для комфортного прожива",
+      "description": "Сдается 1 bedroom Arcadia Beach Continental\nСВОБОДНА\nБронь с 24.06.26 - 21.07.26\n6 этаж\nЕсть все для комфортного проживания\nНа территории:\nБассейн\nТренажёрный зал\nКрытая парковка\nОт месяца - цена по запросу\nДепозит - 1 месяц\nМестоположение(\nНаша группа в телеграм(\nНаша страница в инстаграм(\nВНИМАНИЕ!!! НАШИ ОФИЦИАЛЬНЫЕ АККАУНТЫ:\nLisaservice\nlisaservicerent\nЗАКАЗАТЬ КЛИНИНГ(",
+      "text": "Сдается 1 bedroom Arcadia Beach Continental\nСВОБОДНА\nБронь с 24.06.26 - 21.07.26\n6 этаж\nЕсть все для комфортного проживания\nНа территории:\nБассейн\nТренажёрный зал\nКрытая парковка\nОт месяца - цена по запросу\nДепозит - 1 месяц\nМестоположение(\nНаша группа в телеграм(\nНаша страница в инстаграм(\nВНИМАНИЕ!!! НАШИ ОФИЦИАЛЬНЫЕ АККАУНТЫ:\nLisaservice\nlisaservicerent\nЗАКАЗАТЬ КЛИНИНГ(",
+      "price": 0,
+      "price_display": "",
+      "city": "Таиланд",
+      "city_ru": "Таиланд",
+      "realestate_city": "",
+      "date": "2026-04-29T10:24:05.072415+00:00",
+      "contact": "@nedvizhimost_pattaya",
+      "contact_name": "nedvizhimost_pattaya",
+      "source_group": "nedvizhimost_pattaya",
+      "source_channel": "parsing_th",
+      "telegram": "https://t.me/nedvizhimost_pattaya",
+      "telegram_link": "https://t.me/nedvizhimost_pattaya/663408",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcVGnx3AtGden6RWQ-CehEb6IkT7s_AAL_F2sbiCCQS68NBQFxJehNAQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcVGnx3AtGden6RWQ-CehEb6IkT7s_AAL_F2sbiCCQS68NBQFxJehNAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcVGnx3AtGden6RWQ-CehEb6IkT7s_AAL_F2sbiCCQS68NBQFxJehNAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATLWO3sAAIcVGnx3AtGden6RWQ-CehEb6IkT7s_AAL_F2sbiCCQS68NBQFxJehNAQADAgADeQADOwQ",
+      "bot_msg_id": 7252,
+      "status": "active",
+      "country": "thailand",
+      "message_id": 663408,
+      "category": "real_estate"
+    },
+    {
+      "id": "arenda_pattaya_465905",
+      "title": "Сдается 1 bedroom в Riviera Jomtien 17 этаж Корпус B 36м2 Стиральная машина Вид на море Раскладной диван Интернет роутер",
+      "description": "Сдается 1 bedroom в Riviera Jomtien\n17 этаж\nКорпус B\n36м2\nСтиральная машина\nВид на море\nРаскладной диван\nИнтернет роутер включен в стоимость\n21000 бат/месяц\nДепозит 5000\nСвободна с 13.05 до 13.07\nБольше вариантов квартир в нашей группе недвижимости Паттайя\nHappyHomePattaya\nГруппа по Вьетнаму:\nHappyHomeNhaTrang\nНаш сайт : happyhomeagency.ru",
+      "text": "Сдается 1 bedroom в Riviera Jomtien\n17 этаж\nКорпус B\n36м2\nСтиральная машина\nВид на море\nРаскладной диван\nИнтернет роутер включен в стоимость\n21000 бат/месяц\nДепозит 5000\nСвободна с 13.05 до 13.07\nБольше вариантов квартир в нашей группе недвижимости Паттайя\nHappyHomePattaya\nГруппа по Вьетнаму:\nHappyHomeNhaTrang\nНаш сайт : happyhomeagency.ru",
+      "price": 0,
+      "price_display": "",
+      "city": "Паттайя",
+      "city_ru": "Паттайя",
+      "realestate_city": "pattaya",
+      "date": "2026-04-29T10:18:26.063419+00:00",
+      "contact": "@arenda_pattaya",
+      "contact_name": "arenda_pattaya",
+      "source_group": "arenda_pattaya",
+      "source_channel": "parsing_th",
+      "telegram": "https://t.me/arenda_pattaya",
+      "telegram_link": "https://t.me/arenda_pattaya/465905",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcTmnx2vEDSu_CcES-VT66pa0FQ1GIAALsF2sbiCCQS6yU8c6vr5h4AQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcTmnx2vEDSu_CcES-VT66pa0FQ1GIAALsF2sbiCCQS6yU8c6vr5h4AQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcTmnx2vEDSu_CcES-VT66pa0FQ1GIAALsF2sbiCCQS6yU8c6vr5h4AQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "status": "active",
+      "country": "thailand",
+      "message_id": 465905,
+      "category": "real_estate"
+    },
+    {
+      "id": "realty_in_thailand_1220866",
+      "title": "Зашел в корейском тауне в рестик, очень вкусно",
+      "description": "Зашел в корейском тауне в рестик, очень вкусно",
+      "text": "Зашел в корейском тауне в рестик, очень вкусно",
+      "price": 0,
+      "price_display": "",
+      "city": "Таиланд",
+      "city_ru": "Таиланд",
+      "realestate_city": "",
+      "date": "2026-04-29T10:18:22.894716+00:00",
+      "contact": "@realty_in_thailand",
+      "contact_name": "realty_in_thailand",
+      "source_group": "realty_in_thailand",
+      "source_channel": "parsing_th",
+      "telegram": "https://t.me/realty_in_thailand",
+      "telegram_link": "https://t.me/realty_in_thailand/1220866",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcQmnx2SKyBS5IK2MwONA06qXr18x0AALbF2sbiCCQS3SJPljBmNbDAQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcQmnx2SKyBS5IK2MwONA06qXr18x0AALbF2sbiCCQS3SJPljBmNbDAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcQmnx2SKyBS5IK2MwONA06qXr18x0AALbF2sbiCCQS3SJPljBmNbDAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "status": "active",
+      "country": "thailand",
+      "message_id": 1220866,
+      "category": "real_estate"
+    },
+    {
+      "id": "nedvig_thailand_213378",
+      "title": "продажа пхукет Старт продаж: THE TITLE BIANCANA, 200 метров от пляжа Сурин Современное жилье для комфортной жизни, отпус",
+      "description": "продажа пхукет\nСтарт продаж: THE TITLE BIANCANA, 200 метров от пляжа Сурин\nСовременное жилье для комфортной жизни, отпуска и выгодных инвестиций в престижном районе западного побережья Пхукета.\nЦены от 5 млн. бат.\nБеспроцентная рассрочка на весь период строительства.\nСрок завершения строительства: 2028 г.\nРайон: Surin Beach\nЗастройщик: Rhom Bho Property с более чем 30-летним опытом на рынке Таиланда.\nЭтажность: 5 этажей\nВсего: 350 апартаментов\nВиды квартир:\nСтудии и апартаменты с 1-3 спальнями\nПлощадь от 31 до 131 кв.м.\nИнфраструктура ЖК:\nНесколько бассейнов, фитнес центр\nКоворкинг\nСпециальный корпус для владельцев домашних животных\nОхрана 24/7, подземная парковка\nВсе новостройки Пхукета:\nphuketnedvizhimostthailand\nАренда жилья на Пхукете по запросу: phuketnedvizhimostbot\nЗа подробной информацией напишите нашему менеджеру:\nWhatsApp: wa.me/66619846478\nTelegram: AKSUMMER992",
+      "text": "продажа пхукет\nСтарт продаж: THE TITLE BIANCANA, 200 метров от пляжа Сурин\nСовременное жилье для комфортной жизни, отпуска и выгодных инвестиций в престижном районе западного побережья Пхукета.\nЦены от 5 млн. бат.\nБеспроцентная рассрочка на весь период строительства.\nСрок завершения строительства: 2028 г.\nРайон: Surin Beach\nЗастройщик: Rhom Bho Property с более чем 30-летним опытом на рынке Таиланда.\nЭтажность: 5 этажей\nВсего: 350 апартаментов\nВиды квартир:\nСтудии и апартаменты с 1-3 спальнями\nПлощадь от 31 до 131 кв.м.\nИнфраструктура ЖК:\nНесколько бассейнов, фитнес центр\nКоворкинг\nСпециальный корпус для владельцев домашних животных\nОхрана 24/7, подземная парковка\nВсе новостройки Пхукета:\nphuketnedvizhimostthailand\nАренда жилья на Пхукете по запросу: phuketnedvizhimostbot\nЗа подробной информацией напишите нашему менеджеру:\nWhatsApp: wa.me/66619846478\nTelegram: AKSUMMER992",
+      "price": 0,
+      "price_display": "",
+      "city": "Пхукет",
+      "city_ru": "Пхукет",
+      "realestate_city": "phuket",
+      "date": "2026-04-29T10:16:02.724634+00:00",
+      "contact": "@nedvig_thailand",
+      "contact_name": "nedvig_thailand",
+      "source_group": "nedvig_thailand",
+      "source_channel": "parsing_th",
+      "telegram": "https://t.me/nedvig_thailand",
+      "telegram_link": "https://t.me/nedvig_thailand/213378",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcR2nx2jIT6OqTtgdEGPEWDmU_9773AALiF2sbiCCQS23oQm25vQjZAQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcR2nx2jIT6OqTtgdEGPEWDmU_9773AALiF2sbiCCQS23oQm25vQjZAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcR2nx2jIT6OqTtgdEGPEWDmU_9773AALiF2sbiCCQS23oQm25vQjZAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "status": "active",
+      "country": "thailand",
+      "message_id": 213378,
+      "category": "real_estate"
+    },
+    {
+      "id": "nychang_arenda_535123",
+      "title": "Квартира в аренду на севере Нячанга Здание 1 2 спальни 2 ванные комнаты Полностью меблирована  идеально для вашего отпус",
+      "description": "Квартира в аренду на севере Нячанга\nЗдание 1\n2 спальни\n2 ванные комнаты\nПолностью меблирована  идеально для вашего отпуска!\nСтоимость аренды: 19 миллионов донгов в месяц\nДепозит: 19 миллионов донгов\nКомиссия за управление: 700 000 донгов в месяц\nWi-Fi: 275 000 донгов в месяц\nЭлектричество и вода оплачиваются по счетчику\nСрок договора: 03 - 12 месяца\nДоступно с 5 мая\nБЕЗ КОМИССИИ\nСвяжитесь со мной сейчас\nSamaraRental\n+84862517058\nПрисоединяйтесь к моей группе, чтобы увидеть больше вариантов",
+      "text": "Квартира в аренду на севере Нячанга\nЗдание 1\n2 спальни\n2 ванные комнаты\nПолностью меблирована  идеально для вашего отпуска!\nСтоимость аренды: 19 миллионов донгов в месяц\nДепозит: 19 миллионов донгов\nКомиссия за управление: 700 000 донгов в месяц\nWi-Fi: 275 000 донгов в месяц\nЭлектричество и вода оплачиваются по счетчику\nСрок договора: 03 - 12 месяца\nДоступно с 5 мая\nБЕЗ КОМИССИИ\nСвяжитесь со мной сейчас\nSamaraRental\n+84862517058\nПрисоединяйтесь к моей группе, чтобы увидеть больше вариантов",
+      "price": 0,
+      "price_display": "",
+      "city": "Нячанг",
+      "city_ru": "Нячанг",
+      "realestate_city": "nhatrang",
+      "date": "2026-04-29T10:16:01.652293+00:00",
+      "contact": "@nychang_arenda",
+      "contact_name": "nychang_arenda",
+      "source_group": "nychang_arenda",
+      "source_channel": "parsing_vn",
+      "telegram": "https://t.me/nychang_arenda",
+      "telegram_link": "https://t.me/nychang_arenda/535123",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl4Gnx2jFOxovwL59wXjgKEh3leCEmAALRF2sbdNKJSz-amhhfoKzrAQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl4Gnx2jFOxovwL59wXjgKEh3leCEmAALRF2sbdNKJSz-amhhfoKzrAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIl4Gnx2jFOxovwL59wXjgKEh3leCEmAALRF2sbdNKJSz-amhhfoKzrAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "status": "active",
+      "country": "vietnam",
+      "message_id": 535123,
+      "category": "real_estate"
+    },
+    {
+      "id": "nedvig_thailand_213377",
+      "title": "Лучшая цена в CityGate 5!!! Камала! Комплекс класса ЛЮКС!!!  1 bedroom +, в гостиной раскладной диван. Большой холодильн",
+      "description": "Лучшая цена в CityGate 5!!! Камала! Комплекс класса ЛЮКС!!!  1 bedroom +, в гостиной раскладной диван. Большой холодильник, варочная панель на кухне, микроволновка. Комплекс идеально подходит, как для отдыха, так и длительного проживания. До популярного пляжа Камала 500 м, от отеля до моря ходит шатл бас. В отеле отличный спортзал, есть русский детский врач, на крыше лаунж зона с потрясающим видом  на море и горы. Вся инфраструктура в шаговой доступности.\nРядом\nдетский развлекательный центр Fantasia, топовое Cafe del Mar, магазины, бары, рестораны, СПА.\nапрель/май - 25,000 бат/мес\nОплата электричества и воды отдельно по счетчикам.\nPetrErof",
+      "text": "Лучшая цена в CityGate 5!!! Камала! Комплекс класса ЛЮКС!!!  1 bedroom +, в гостиной раскладной диван. Большой холодильник, варочная панель на кухне, микроволновка. Комплекс идеально подходит, как для отдыха, так и длительного проживания. До популярного пляжа Камала 500 м, от отеля до моря ходит шатл бас. В отеле отличный спортзал, есть русский детский врач, на крыше лаунж зона с потрясающим видом  на море и горы. Вся инфраструктура в шаговой доступности.\nРядом\nдетский развлекательный центр Fantasia, топовое Cafe del Mar, магазины, бары, рестораны, СПА.\nапрель/май - 25,000 бат/мес\nОплата электричества и воды отдельно по счетчикам.\nPetrErof",
+      "price": 0,
+      "price_display": "",
+      "city": "Таиланд",
+      "city_ru": "Таиланд",
+      "realestate_city": "",
+      "date": "2026-04-29T10:10:43.034001+00:00",
+      "contact": "@nedvig_thailand",
+      "contact_name": "nedvig_thailand",
+      "source_group": "nedvig_thailand",
+      "source_channel": "parsing_th",
+      "telegram": "https://t.me/nedvig_thailand",
+      "telegram_link": "https://t.me/nedvig_thailand/213377",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcQmnx2SKyBS5IK2MwONA06qXr18x0AALbF2sbiCCQS3SJPljBmNbDAQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcQmnx2SKyBS5IK2MwONA06qXr18x0AALbF2sbiCCQS3SJPljBmNbDAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcQmnx2SKyBS5IK2MwONA06qXr18x0AALbF2sbiCCQS3SJPljBmNbDAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "status": "active",
+      "country": "thailand",
+      "message_id": 213377,
+      "category": "real_estate"
+    },
+    {
       "id": "tanrealtorgh_28021",
       "title": "СТУДИЯ С ВИДОМ И БАССЕЙНОМ  ЦЕНТР НЯЧАНГА (VẠN THẠNH) 7 млн донгов / месяц   STU-2508 30 м  студия, 1 ванная, окно с кра",
       "description": "СТУДИЯ С ВИДОМ И БАССЕЙНОМ  ЦЕНТР НЯЧАНГА (VẠN THẠNH)\n7 млн донгов / месяц   STU-2508\n30 м  студия, 1 ванная, окно с красивым видом\nПолностью меблирована и новая (отдельная кухня, микроволновка, базовая посуда, собственная стиральная машина)\nСеверо-восток\nЛифт   Не общий дом, свободный доступ\nЕсть бассейн   Рядом море, рынок, школы, оживлённый центр города\nЭлектричество 5.000/kWh  Вода 150k/чел\nУправление + уборка + Wi-Fi: 200k/комната\nДомашние животные: 500k/питомец\nДепозит 1 месяц  оплата ежемесячно\n0399780651\ncheenfindhouse",
@@ -546,32 +888,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/luckyhome_nhatrang",
       "telegram_link": "https://t.me/luckyhome_nhatrang/17195",
-      "image_url": "https://cdn4.telesco.pe/file/n4osRqAz-qvJ0ji3JIKgvF66Dv6OiDSrSJxp3xzAFyzt0VVaQzvzOTH7wYJyQinEWYA9yi13fvacz0AhwCDNryyLFCp2LZsI5vQ8KB4UGk9ttFYOAhFvfCCpolWr69b-GiNfqCSFEhbFGAhuwoZfOt9YWAMX02HY46NpVZerWSNrFQd7iidXlwEbBGfKS3GEmQzSnInkjmz0V7q9G4yLegUSJNuiW-VvExhg-5dMLsIOSUQua9tb-gxkqbZghCB795Uh6swBxMCwCwn5CxPiAkij5Pj8Xk07eKgenyLtUcWNxuWDUmRWMRJ9m4Ww5tQkvJ3f_2jrDK2ISwz5USe1Ww.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlqWnx1iWOkCTCHEJKbiS_Bc8US6BRAAKMF2sbdNKJS1xPmalARcbEAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/n4osRqAz-qvJ0ji3JIKgvF66Dv6OiDSrSJxp3xzAFyzt0VVaQzvzOTH7wYJyQinEWYA9yi13fvacz0AhwCDNryyLFCp2LZsI5vQ8KB4UGk9ttFYOAhFvfCCpolWr69b-GiNfqCSFEhbFGAhuwoZfOt9YWAMX02HY46NpVZerWSNrFQd7iidXlwEbBGfKS3GEmQzSnInkjmz0V7q9G4yLegUSJNuiW-VvExhg-5dMLsIOSUQua9tb-gxkqbZghCB795Uh6swBxMCwCwn5CxPiAkij5Pj8Xk07eKgenyLtUcWNxuWDUmRWMRJ9m4Ww5tQkvJ3f_2jrDK2ISwz5USe1Ww.jpg",
-        "https://cdn4.telesco.pe/file/WJ8ct7DpeAutyWgSaqIxmlwXZ8HrXT6Kw6RkS8vzCtEBO2pYmW92CPtd30FRw60AiSNLulvRqrqCN6lSSLWb1pIJ6HU_c4CrASOzzVTzmAW7emUYhQMpx4RcUP8v4JfXjOGUxX6iaUQjpyKB1VJesAp4ZOgZdO-NwzVtC15axvmgguoC7wNTBeRlzzbsHaHpt1jUSqjln8-ZBXm7EneQAICv0uZEi7bS9_6jOhUlLGv8ZikmLWvJvbzbdhV6PDtmvxf1XAQ6KzVCahYsCXIioO3ff6rx_ugf7E6jFal0qmoqGEqpwI3rzd6sciAL-H8w8T2C-gIPE3Sz9EItpOGwCw.jpg",
-        "https://cdn4.telesco.pe/file/Gbp_9eu9WOeddrFsXGVLrM9ePdG89IB8tbFUqXQybKcBbBPEK-VEove9PFL1cArJm3lQ-Sh_bRrI4PIOYmXdLjcEU85b2CL8s460UJSP_ck-ZWuR6l-lRho9TmH-0xHqOaOWUqjZpOAYDY3n-PbdAGrMJHv70KS8fMg9QD139kpgSL3FEWskZVzIwd6HOD-Qk3Q-5Nl1cy80nHYDLK45mfnRybWOyBpay4kXHloBaxMhV-bFP71DH06TVJtt_hrVI8TpfarszF6U-qLwmKk2F4UWgBjiQOtYvxUI_WG5c99LcXoSzWEQkaPRkq1elmYFhrUjQBN9IX6IIJ8lbnTJgw.jpg",
-        "https://cdn4.telesco.pe/file/dtuRGx1MhEhG9Ys2TKG0SZqBRwAWgYswT67QubSYVP-Bk9lG-jXBx_XxkO_TYZSPtudjDuIQpd1Jq_rKOYOcHgf5XYfmKTEiJZ5RIDco4wHykO_LpLfmjzDZZHYcWEDgdbvynBERHj4f6N-Adkf4zip7gr5LCwJ7CHUNee2WNqD7g3Tp5XjnqwkT5eQMM2sZKpns3dKripItV_96bxs22249x6wnEcL9D39kluWsihwqZrPpmffwEK6ex3oLY3HEaNTgEvTzoSiq4iK6s6j0yvSfdhHuL5HM9CZXP9wv_yyqnPwNcX8McnXj_Vy__M3wG8ryNNcQt7Q_mxkMjn2Pkg.jpg",
-        "https://cdn4.telesco.pe/file/OAVUgMq3gA7NemIjZ1Gi_OJJMqGrRZbAWGrYya3Uc2PWmWpGU3fiOxIN859X4PoF1b2oNasaZy-0k3HXwKdTpilODHZ2ujh-3ZUUHzErYe212WA45nTAcQLvnsf3-1kTaruGEtrcqHbT0IQ_wolTnqmWzpja0LaRWxyYWOisyEcoo8pY3g1yeTylQuJ26sBAQQpRx5lM9DAWFMnjVst3fZr0aXvCjmJZWiwjo05qg-kkOl2wirQ4zWfB4pAV5ZmttAlWvSGp4mgLeHoWEIz0jEPPFnPrNr5y63cjSy5_prT6rR7-hFZZSlZvHwjHGqtqLCPWmrthDdzLTvk5ggE__w.jpg",
-        "https://cdn4.telesco.pe/file/g4SGT8wVnfTnQClYcvHet7qTPf8O_P561FzPfpiLjuLj_Kf8sJn6LhUyzGcijB1hFtSNYm5WSYq_7pJDKXhe69If33v_GfonirBdTTH91IJ4ciUQJxIx7sCxAW-R3JGFnO0hltHBeT7IuFSh1yfc73JCB_54Oj4G84_3HoUk58bxUtnlTM0tKwOOnb_t-Pgv_iTxcP4udp6yyiPvYEkE6OkpmofERjqqFDgoLmQOQHA2rMqftTAWItxTEH-i774-EIGlZcws1ydwTUc1H-QvIsuubWfNQ3e87tjrYl83EGvauiHYEjNNd7ip07U_Y1NHBanKCVs6MGa76Dw-150Nog.jpg",
-        "https://cdn4.telesco.pe/file/VHy0tOny-GKa0Ng9zoDef5HyEZ72_-88X3RvZrYGa8ER4HGhJGQTMBxNB1m9BYlaLbnYGviGFR-gs6_VB1mqlg92tcu3APuXkcwKR9r-t7yrBBSVC7-2jo3wCXPqXmhI4-80wjER3O6Cy_vQa1MLSThMtZRJnMqp8ZMyvTWhjTrUDxDnprwLiVjnb4mT425XRWQ0vtIea8L3KjYsFYcnuv5CVZgQU1fTKSBuDv6mnx4DS3VFg9KbO2XjtYgT44ccYPjo3qb-MYmFohrgxVvd0x6ATiwcglHpJhnWSg-P9IFtg_jrx0WD7YNwC7IJIjg1Al5xi9zl2WSUjFsi1ljDTA.jpg",
-        "https://cdn4.telesco.pe/file/SEbwnNzJ2fgDmGrEDVcoc1LctK7RyoiJnnUNfrGkr_SzlytLnQRbt2JuEPa40p2TWfbTN0GEHFxCCqpCdYjXdVg8GMEkbtC0ogtVTNfu7xhxWUiEpFGVjlR2F0i0N038sJ3J03fixKym0m2BaYJzhDFRiYtp6gDG2J7focNkoViebr9XSn5ZXku_fXBaA_9pTDOhggUt2b2wfkfOsiVZZ9d89V9WNapJ2MNOztwxsg-QTXWk3O79SmDSos_nWhdQ7K4Jht26A_LDnT-D3DqGmAwZ1lRIZL9Zbl8s_voxEym39OsvvSV2R2yBk8uaca6-ourXq8Ue31brfNc8ci9Yaw.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlqWnx1iWOkCTCHEJKbiS_Bc8US6BRAAKMF2sbdNKJS1xPmalARcbEAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/n4osRqAz-qvJ0ji3JIKgvF66Dv6OiDSrSJxp3xzAFyzt0VVaQzvzOTH7wYJyQinEWYA9yi13fvacz0AhwCDNryyLFCp2LZsI5vQ8KB4UGk9ttFYOAhFvfCCpolWr69b-GiNfqCSFEhbFGAhuwoZfOt9YWAMX02HY46NpVZerWSNrFQd7iidXlwEbBGfKS3GEmQzSnInkjmz0V7q9G4yLegUSJNuiW-VvExhg-5dMLsIOSUQua9tb-gxkqbZghCB795Uh6swBxMCwCwn5CxPiAkij5Pj8Xk07eKgenyLtUcWNxuWDUmRWMRJ9m4Ww5tQkvJ3f_2jrDK2ISwz5USe1Ww.jpg",
-        "https://cdn4.telesco.pe/file/WJ8ct7DpeAutyWgSaqIxmlwXZ8HrXT6Kw6RkS8vzCtEBO2pYmW92CPtd30FRw60AiSNLulvRqrqCN6lSSLWb1pIJ6HU_c4CrASOzzVTzmAW7emUYhQMpx4RcUP8v4JfXjOGUxX6iaUQjpyKB1VJesAp4ZOgZdO-NwzVtC15axvmgguoC7wNTBeRlzzbsHaHpt1jUSqjln8-ZBXm7EneQAICv0uZEi7bS9_6jOhUlLGv8ZikmLWvJvbzbdhV6PDtmvxf1XAQ6KzVCahYsCXIioO3ff6rx_ugf7E6jFal0qmoqGEqpwI3rzd6sciAL-H8w8T2C-gIPE3Sz9EItpOGwCw.jpg",
-        "https://cdn4.telesco.pe/file/Gbp_9eu9WOeddrFsXGVLrM9ePdG89IB8tbFUqXQybKcBbBPEK-VEove9PFL1cArJm3lQ-Sh_bRrI4PIOYmXdLjcEU85b2CL8s460UJSP_ck-ZWuR6l-lRho9TmH-0xHqOaOWUqjZpOAYDY3n-PbdAGrMJHv70KS8fMg9QD139kpgSL3FEWskZVzIwd6HOD-Qk3Q-5Nl1cy80nHYDLK45mfnRybWOyBpay4kXHloBaxMhV-bFP71DH06TVJtt_hrVI8TpfarszF6U-qLwmKk2F4UWgBjiQOtYvxUI_WG5c99LcXoSzWEQkaPRkq1elmYFhrUjQBN9IX6IIJ8lbnTJgw.jpg",
-        "https://cdn4.telesco.pe/file/dtuRGx1MhEhG9Ys2TKG0SZqBRwAWgYswT67QubSYVP-Bk9lG-jXBx_XxkO_TYZSPtudjDuIQpd1Jq_rKOYOcHgf5XYfmKTEiJZ5RIDco4wHykO_LpLfmjzDZZHYcWEDgdbvynBERHj4f6N-Adkf4zip7gr5LCwJ7CHUNee2WNqD7g3Tp5XjnqwkT5eQMM2sZKpns3dKripItV_96bxs22249x6wnEcL9D39kluWsihwqZrPpmffwEK6ex3oLY3HEaNTgEvTzoSiq4iK6s6j0yvSfdhHuL5HM9CZXP9wv_yyqnPwNcX8McnXj_Vy__M3wG8ryNNcQt7Q_mxkMjn2Pkg.jpg",
-        "https://cdn4.telesco.pe/file/OAVUgMq3gA7NemIjZ1Gi_OJJMqGrRZbAWGrYya3Uc2PWmWpGU3fiOxIN859X4PoF1b2oNasaZy-0k3HXwKdTpilODHZ2ujh-3ZUUHzErYe212WA45nTAcQLvnsf3-1kTaruGEtrcqHbT0IQ_wolTnqmWzpja0LaRWxyYWOisyEcoo8pY3g1yeTylQuJ26sBAQQpRx5lM9DAWFMnjVst3fZr0aXvCjmJZWiwjo05qg-kkOl2wirQ4zWfB4pAV5ZmttAlWvSGp4mgLeHoWEIz0jEPPFnPrNr5y63cjSy5_prT6rR7-hFZZSlZvHwjHGqtqLCPWmrthDdzLTvk5ggE__w.jpg",
-        "https://cdn4.telesco.pe/file/g4SGT8wVnfTnQClYcvHet7qTPf8O_P561FzPfpiLjuLj_Kf8sJn6LhUyzGcijB1hFtSNYm5WSYq_7pJDKXhe69If33v_GfonirBdTTH91IJ4ciUQJxIx7sCxAW-R3JGFnO0hltHBeT7IuFSh1yfc73JCB_54Oj4G84_3HoUk58bxUtnlTM0tKwOOnb_t-Pgv_iTxcP4udp6yyiPvYEkE6OkpmofERjqqFDgoLmQOQHA2rMqftTAWItxTEH-i774-EIGlZcws1ydwTUc1H-QvIsuubWfNQ3e87tjrYl83EGvauiHYEjNNd7ip07U_Y1NHBanKCVs6MGa76Dw-150Nog.jpg",
-        "https://cdn4.telesco.pe/file/VHy0tOny-GKa0Ng9zoDef5HyEZ72_-88X3RvZrYGa8ER4HGhJGQTMBxNB1m9BYlaLbnYGviGFR-gs6_VB1mqlg92tcu3APuXkcwKR9r-t7yrBBSVC7-2jo3wCXPqXmhI4-80wjER3O6Cy_vQa1MLSThMtZRJnMqp8ZMyvTWhjTrUDxDnprwLiVjnb4mT425XRWQ0vtIea8L3KjYsFYcnuv5CVZgQU1fTKSBuDv6mnx4DS3VFg9KbO2XjtYgT44ccYPjo3qb-MYmFohrgxVvd0x6ATiwcglHpJhnWSg-P9IFtg_jrx0WD7YNwC7IJIjg1Al5xi9zl2WSUjFsi1ljDTA.jpg",
-        "https://cdn4.telesco.pe/file/SEbwnNzJ2fgDmGrEDVcoc1LctK7RyoiJnnUNfrGkr_SzlytLnQRbt2JuEPa40p2TWfbTN0GEHFxCCqpCdYjXdVg8GMEkbtC0ogtVTNfu7xhxWUiEpFGVjlR2F0i0N038sJ3J03fixKym0m2BaYJzhDFRiYtp6gDG2J7focNkoViebr9XSn5ZXku_fXBaA_9pTDOhggUt2b2wfkfOsiVZZ9d89V9WNapJ2MNOztwxsg-QTXWk3O79SmDSos_nWhdQ7K4Jht26A_LDnT-D3DqGmAwZ1lRIZL9Zbl8s_voxEym39OsvvSV2R2yBk8uaca6-ourXq8Ue31brfNc8ci9Yaw.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlqWnx1iWOkCTCHEJKbiS_Bc8US6BRAAKMF2sbdNKJS1xPmalARcbEAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9641,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlqWnx1iWOkCTCHEJKbiS_Bc8US6BRAAKMF2sbdNKJS1xPmalARcbEAQADAgADeQADOwQ"
     },
     {
       "id": "nychang_arenda_535100",
@@ -589,22 +918,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/nychang_arenda",
       "telegram_link": "https://t.me/nychang_arenda/535100",
-      "image_url": "https://cdn4.telesco.pe/file/s8ZXZDia9UhjnUnlIIIvZMqFNt0CUGKV5ZNE9ooTMF1Qk8UZ4TC5k2bTVnRsYBGwHGsHtN1JDJ-x2Ha_ZCBP1GkflvhT9MaL7pCwjNuHZ1NLWZhIFp4kLCAk_VB9F9hTZYSw0Vanml6khM6N0Jtpk93yQa6Lhn28WFU1r9g2GkE_Pdwe84DWYL1TXf3OZfn0CMtD5OGW9JlZk_Aj8Kx8_sZf7iFkTZhgBmZ5Hrd2Orxq_9_hpKZQVH9NyjGhWwW2J3xQB5wVx1E4zM-RQuoYzljGYZY41FL0nPQ4fp3aPBo7puT_-ejEWW179xoiKuEOwS6BWjyBtzw0bhCDvgSXFw.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlsWnx1pb0Qc8J8sXZNm5QG2fn9wnBAAKVF2sbdNKJS0ebC3EITRcLAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/s8ZXZDia9UhjnUnlIIIvZMqFNt0CUGKV5ZNE9ooTMF1Qk8UZ4TC5k2bTVnRsYBGwHGsHtN1JDJ-x2Ha_ZCBP1GkflvhT9MaL7pCwjNuHZ1NLWZhIFp4kLCAk_VB9F9hTZYSw0Vanml6khM6N0Jtpk93yQa6Lhn28WFU1r9g2GkE_Pdwe84DWYL1TXf3OZfn0CMtD5OGW9JlZk_Aj8Kx8_sZf7iFkTZhgBmZ5Hrd2Orxq_9_hpKZQVH9NyjGhWwW2J3xQB5wVx1E4zM-RQuoYzljGYZY41FL0nPQ4fp3aPBo7puT_-ejEWW179xoiKuEOwS6BWjyBtzw0bhCDvgSXFw.jpg",
-        "https://cdn4.telesco.pe/file/aBejy-0bx4sChSsqs8ixs3KkSSeZuc7ePiXHKEh6Kz2qPv-9F0mASBBXGTvfPBO_FHryE2xpMni6SFdedJnVZyNAsuRCsOyULCEpNbdP3U5VYimrdOLhof7nhTwWg1iSK8mbFijvwCNNlUqFXwwWCeyoYRnZaRrkuooS508IswTERVGo_XVhK1sv3KKLY98tbVfIHm9M35DfYQnFd0v3QFMNYJbECOBC_jK91l3Yal1Q-uPl_FX5GiYnFguX--b-q0sOLgSmskt4ZPlvxljWcgCGJygEKB6CRdBBdGihBiRoWdJE6oLj1pe8W-68_H9rVsphaskrTumoucJmjRd9SQ.jpg",
-        "https://cdn4.telesco.pe/file/Mh8d0Z-4ypQOhdXrv9u3i8LOvLeHP4k0wvgNpgqE3g6FZR4s8nIuXsvkiIrh7nrZ7Rf8OsIxPbf6NJ1fegjzb1dVdBJglXEvERSbjU-IdyxQUQG60XVJJtE9wN77UWRs3cRQR0cidPq4rpyXoJNh5fooa3pSjx9hqEKE4iwCGR1Fu-kGJZNWe2IDnV81fAw2hId807BcyrDQGdoLdpCjUH42QMs6c5cBnDRtPy8hG-k6P8NYr5sItklR2KMpeqI33mxHz0o0CPQNQawQtF2DZM49Et-jUeMH6MgeNinw2fMpJM9RUI99lxL7wHNuhUAzwC1Wng9nWI_BdMwzAKL5Gg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlsWnx1pb0Qc8J8sXZNm5QG2fn9wnBAAKVF2sbdNKJS0ebC3EITRcLAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/s8ZXZDia9UhjnUnlIIIvZMqFNt0CUGKV5ZNE9ooTMF1Qk8UZ4TC5k2bTVnRsYBGwHGsHtN1JDJ-x2Ha_ZCBP1GkflvhT9MaL7pCwjNuHZ1NLWZhIFp4kLCAk_VB9F9hTZYSw0Vanml6khM6N0Jtpk93yQa6Lhn28WFU1r9g2GkE_Pdwe84DWYL1TXf3OZfn0CMtD5OGW9JlZk_Aj8Kx8_sZf7iFkTZhgBmZ5Hrd2Orxq_9_hpKZQVH9NyjGhWwW2J3xQB5wVx1E4zM-RQuoYzljGYZY41FL0nPQ4fp3aPBo7puT_-ejEWW179xoiKuEOwS6BWjyBtzw0bhCDvgSXFw.jpg",
-        "https://cdn4.telesco.pe/file/aBejy-0bx4sChSsqs8ixs3KkSSeZuc7ePiXHKEh6Kz2qPv-9F0mASBBXGTvfPBO_FHryE2xpMni6SFdedJnVZyNAsuRCsOyULCEpNbdP3U5VYimrdOLhof7nhTwWg1iSK8mbFijvwCNNlUqFXwwWCeyoYRnZaRrkuooS508IswTERVGo_XVhK1sv3KKLY98tbVfIHm9M35DfYQnFd0v3QFMNYJbECOBC_jK91l3Yal1Q-uPl_FX5GiYnFguX--b-q0sOLgSmskt4ZPlvxljWcgCGJygEKB6CRdBBdGihBiRoWdJE6oLj1pe8W-68_H9rVsphaskrTumoucJmjRd9SQ.jpg",
-        "https://cdn4.telesco.pe/file/Mh8d0Z-4ypQOhdXrv9u3i8LOvLeHP4k0wvgNpgqE3g6FZR4s8nIuXsvkiIrh7nrZ7Rf8OsIxPbf6NJ1fegjzb1dVdBJglXEvERSbjU-IdyxQUQG60XVJJtE9wN77UWRs3cRQR0cidPq4rpyXoJNh5fooa3pSjx9hqEKE4iwCGR1Fu-kGJZNWe2IDnV81fAw2hId807BcyrDQGdoLdpCjUH42QMs6c5cBnDRtPy8hG-k6P8NYr5sItklR2KMpeqI33mxHz0o0CPQNQawQtF2DZM49Et-jUeMH6MgeNinw2fMpJM9RUI99lxL7wHNuhUAzwC1Wng9nWI_BdMwzAKL5Gg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlsWnx1pb0Qc8J8sXZNm5QG2fn9wnBAAKVF2sbdNKJS0ebC3EITRcLAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9649,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlsWnx1pb0Qc8J8sXZNm5QG2fn9wnBAAKVF2sbdNKJS0ebC3EITRcLAQADAgADeQADOwQ"
     },
     {
       "id": "tanrealtorgh_28004",
@@ -622,18 +948,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/tanrealtorgh",
       "telegram_link": "https://t.me/tanrealtorgh/28004",
-      "image_url": "https://cdn4.telesco.pe/file/N50IzEoFIdanLnRaYtOKGluuoJAVJ7cAZ5f0QL0t_l_PbqODHTsgCZizLcWeDlOC22oLPrvC5osL5Xv6f6_zcuz9NWRey3AI0m8yxpu9JxP6Xbl0CbnQ-WCRgGDybNtbdylCSic1-w6k31y1DpveGQPhyR3O66NX_kHnknRj4Enc54SS6WaQGMLK0hiadLjZyjUCHWzboLUobw477RDKbK4efuRk-_KFpJah3TTNuTHVVwzyx2ECnNmU4o-235t-UHz-ZSW0IATYgzcBTTsASrberMHcjB2-zXm43Brb_2jo3gdj_78SeUMDuiMz_23YogS0X0X5fY32ZROw_k2e_w.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIltGnx1rr7f5Y0GC0MRzAevosOavGMAAKZF2sbdNKJS-1zHseG9_aSAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/N50IzEoFIdanLnRaYtOKGluuoJAVJ7cAZ5f0QL0t_l_PbqODHTsgCZizLcWeDlOC22oLPrvC5osL5Xv6f6_zcuz9NWRey3AI0m8yxpu9JxP6Xbl0CbnQ-WCRgGDybNtbdylCSic1-w6k31y1DpveGQPhyR3O66NX_kHnknRj4Enc54SS6WaQGMLK0hiadLjZyjUCHWzboLUobw477RDKbK4efuRk-_KFpJah3TTNuTHVVwzyx2ECnNmU4o-235t-UHz-ZSW0IATYgzcBTTsASrberMHcjB2-zXm43Brb_2jo3gdj_78SeUMDuiMz_23YogS0X0X5fY32ZROw_k2e_w.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIltGnx1rr7f5Y0GC0MRzAevosOavGMAAKZF2sbdNKJS-1zHseG9_aSAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/N50IzEoFIdanLnRaYtOKGluuoJAVJ7cAZ5f0QL0t_l_PbqODHTsgCZizLcWeDlOC22oLPrvC5osL5Xv6f6_zcuz9NWRey3AI0m8yxpu9JxP6Xbl0CbnQ-WCRgGDybNtbdylCSic1-w6k31y1DpveGQPhyR3O66NX_kHnknRj4Enc54SS6WaQGMLK0hiadLjZyjUCHWzboLUobw477RDKbK4efuRk-_KFpJah3TTNuTHVVwzyx2ECnNmU4o-235t-UHz-ZSW0IATYgzcBTTsASrberMHcjB2-zXm43Brb_2jo3gdj_78SeUMDuiMz_23YogS0X0X5fY32ZROw_k2e_w.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIltGnx1rr7f5Y0GC0MRzAevosOavGMAAKZF2sbdNKJS-1zHseG9_aSAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9652,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIltGnx1rr7f5Y0GC0MRzAevosOavGMAAKZF2sbdNKJS-1zHseG9_aSAQADAgADeQADOwQ"
     },
     {
       "id": "luckyhome_nhatrang_17203",
@@ -651,28 +978,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/luckyhome_nhatrang",
       "telegram_link": "https://t.me/luckyhome_nhatrang/17203",
-      "image_url": "https://cdn4.telesco.pe/file/SsDlhsYMCwDly05ECUqmXfGytq9v99jqxtnbVTp1qsbwSLPshu7UjhWn06_O0q7qp2-ycAml4mxhHTyJZAOsYUOF9oOn77dkD2Y9ojN7E9t9rl05_r1i6KFfCrdYtrFrvdiK0NUJwoeXg5wwk9JDB-gkxH0PbZ8Tb3Xurf1OYREG2zI97OzfGd9F3mnHujTsrPMxBoxgkSgOD126zV6vBKqErSwZGqWX_etjXxP0iRTGlTV4yfnl5zvtlQP3bOsLmAJaeQSVFEOPPmiQq5j39JjjEsHxq6jcIUbgCCnfl-an_FlV7JYhyuIQ_P47uJuiqIOtiSxR25ChS8A3ipvMgg.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIltWnx1sSKDiSnzOacvYcJV8YMtf8oAAKaF2sbdNKJS666Ue9Q5uc5AQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/SsDlhsYMCwDly05ECUqmXfGytq9v99jqxtnbVTp1qsbwSLPshu7UjhWn06_O0q7qp2-ycAml4mxhHTyJZAOsYUOF9oOn77dkD2Y9ojN7E9t9rl05_r1i6KFfCrdYtrFrvdiK0NUJwoeXg5wwk9JDB-gkxH0PbZ8Tb3Xurf1OYREG2zI97OzfGd9F3mnHujTsrPMxBoxgkSgOD126zV6vBKqErSwZGqWX_etjXxP0iRTGlTV4yfnl5zvtlQP3bOsLmAJaeQSVFEOPPmiQq5j39JjjEsHxq6jcIUbgCCnfl-an_FlV7JYhyuIQ_P47uJuiqIOtiSxR25ChS8A3ipvMgg.jpg",
-        "https://cdn4.telesco.pe/file/M-HUIqJJYkPdmsRicHVF-xnajKM5NDV5SNrzTMpNh04QQhSGOhQi2gRcN_K5k0CW6-EhR0CDISs-Vg0Vs7xSyGluvVouGbtK8pw8HTlxev7582n1jBmBdaStkxwKnq5GYdN9Q0QOzK4ULfxHB2-tJ_4jU2ko3m6IYfx01q1fNoij4Gp5HqBDSHFF9AgIqF-rzRLAWBWA3W5zPcG_NKS78pWyXwETUSfPJtrDXUH8JESeleYnBcnWVmQb4xgaScAuVGEaNloJ34x1oqRtYk_ChAAChO4R2U89agwvDs7782LeFZJQEM9kdwaE-doBiyEP3I_9OA56w_m8fDJmct0k9A.jpg",
-        "https://cdn4.telesco.pe/file/Nz1In6VAA8tTjA1AreM5Y5ZHnHnpDvJjrOJ4j1w4GgS1bqUQTEno6XRkMAWWx1njMvj2F9JEbmGDb65BC1a-LhBLMpsz1pXpIOjBLJ3mVP5TyvCcsE8JWtcg8FQjdk5nlWC32WjMZNwNrgOXe_vQqWujRQB7UpO0yEOyV1HiG3nxI8x67mMzQAhugEr9B3414r8h0Gehb8xuFioSAbziP_ZrFCaohwVrAUCVY1QfRTIcZLRpmDnO5qYR7S0yf-AqshaOBjWHRPdGsW3D_7qsDlg0n_iHqecuCvaDiUktdvwjiHEjU1_yjbn7autR5hGlQUi-vHHMAJQQBgTsVCWM9Q.jpg",
-        "https://cdn4.telesco.pe/file/Fb-2GCJpCDbAtW_33_3Zvt1gUWF2ao4e759uX_mNpSKdRGM5Lz8hMquw-A1BbsTIimdi4Yv7prpjbW3Iawrd3W7WScN-sslCQgGj-Xeer3GNXlyxkGFxtb2Q-QLzFKpX262FkqLEBqbnpQ5RqZhdob18I_1KTLk0OPHTURZVJBkOzHfgSxMcx6uRiYgZYE2zjDcptt4hTOKagR87jbNkngYTA951xnM-EApYJYWdugFf72zZFe-ZFehOGqsA0gbvcjTQo-IpSNj9mH_uZXvHXndj7QcQuLgEGHGDOZ2hscL75Ux9UeBDGOHliZfh4PjtpwGceTtLt6nnKAa8v_0lIQ.jpg",
-        "https://cdn4.telesco.pe/file/JHxt0Bwybxn_D-_dzEEE-9QczuRyRONKlSWKYRPVMbSQw3lWv57jLKQCbyKQphMDqu1kCpljkLxx0U5EKtAL3mnOa9USLXIROwthrRR-8GOVQxxCwyZeBLYG94qtf1PYnEKpRy3kbYikwrHjUEKN8Hv2EfZ7e_vzSlGItTlZSSU3c0PUyxmtNQxIcRr4w9nvL4xPwKiVAuF5FpH89kkpBMPawaKM5papjSNK-_c6qDljqXPcNBE_hrOpb7gpgbxnqCLpxOiMBg1v4x2HmorwWQE64DI37u4B7J7lSHBJXzERBVrp9dXoZu-adlhwvSlljm0oXxRBURfp1jIGqJ3Jsg.jpg",
-        "https://cdn4.telesco.pe/file/jHYaHed1mnzfiCXne4yUI2iWk4v9AmzUwil2UqBDtv7ig4P2go-vkntLlzoJRRl9Vw9YOaDxAUYhuv5qV7vs7VvN4LMDn3SoL8Zs8qCBhLAf1cb75xZ4mBu1Ff2H1tsEruvfop1bAD_rmKBz8NOrYz9aY71CsIws4vjACVwpuXPV5MELLhaFqxf7Q4WxDrougCWQyHZed1qmkwTsn-sVUO5zt2xBpWQBs-7U7dqkqoYESbtuI0CFFUwDtwBD8FWOk3P8rp9yy-zJ4jafL-fsb2xovdHEhXWRedXi4pJarcaBDOQuvjcQrOLqaMs-Jb6Wa3joAG9ZFDv-Gj9IRpUwJg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIltWnx1sSKDiSnzOacvYcJV8YMtf8oAAKaF2sbdNKJS666Ue9Q5uc5AQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/SsDlhsYMCwDly05ECUqmXfGytq9v99jqxtnbVTp1qsbwSLPshu7UjhWn06_O0q7qp2-ycAml4mxhHTyJZAOsYUOF9oOn77dkD2Y9ojN7E9t9rl05_r1i6KFfCrdYtrFrvdiK0NUJwoeXg5wwk9JDB-gkxH0PbZ8Tb3Xurf1OYREG2zI97OzfGd9F3mnHujTsrPMxBoxgkSgOD126zV6vBKqErSwZGqWX_etjXxP0iRTGlTV4yfnl5zvtlQP3bOsLmAJaeQSVFEOPPmiQq5j39JjjEsHxq6jcIUbgCCnfl-an_FlV7JYhyuIQ_P47uJuiqIOtiSxR25ChS8A3ipvMgg.jpg",
-        "https://cdn4.telesco.pe/file/M-HUIqJJYkPdmsRicHVF-xnajKM5NDV5SNrzTMpNh04QQhSGOhQi2gRcN_K5k0CW6-EhR0CDISs-Vg0Vs7xSyGluvVouGbtK8pw8HTlxev7582n1jBmBdaStkxwKnq5GYdN9Q0QOzK4ULfxHB2-tJ_4jU2ko3m6IYfx01q1fNoij4Gp5HqBDSHFF9AgIqF-rzRLAWBWA3W5zPcG_NKS78pWyXwETUSfPJtrDXUH8JESeleYnBcnWVmQb4xgaScAuVGEaNloJ34x1oqRtYk_ChAAChO4R2U89agwvDs7782LeFZJQEM9kdwaE-doBiyEP3I_9OA56w_m8fDJmct0k9A.jpg",
-        "https://cdn4.telesco.pe/file/Nz1In6VAA8tTjA1AreM5Y5ZHnHnpDvJjrOJ4j1w4GgS1bqUQTEno6XRkMAWWx1njMvj2F9JEbmGDb65BC1a-LhBLMpsz1pXpIOjBLJ3mVP5TyvCcsE8JWtcg8FQjdk5nlWC32WjMZNwNrgOXe_vQqWujRQB7UpO0yEOyV1HiG3nxI8x67mMzQAhugEr9B3414r8h0Gehb8xuFioSAbziP_ZrFCaohwVrAUCVY1QfRTIcZLRpmDnO5qYR7S0yf-AqshaOBjWHRPdGsW3D_7qsDlg0n_iHqecuCvaDiUktdvwjiHEjU1_yjbn7autR5hGlQUi-vHHMAJQQBgTsVCWM9Q.jpg",
-        "https://cdn4.telesco.pe/file/Fb-2GCJpCDbAtW_33_3Zvt1gUWF2ao4e759uX_mNpSKdRGM5Lz8hMquw-A1BbsTIimdi4Yv7prpjbW3Iawrd3W7WScN-sslCQgGj-Xeer3GNXlyxkGFxtb2Q-QLzFKpX262FkqLEBqbnpQ5RqZhdob18I_1KTLk0OPHTURZVJBkOzHfgSxMcx6uRiYgZYE2zjDcptt4hTOKagR87jbNkngYTA951xnM-EApYJYWdugFf72zZFe-ZFehOGqsA0gbvcjTQo-IpSNj9mH_uZXvHXndj7QcQuLgEGHGDOZ2hscL75Ux9UeBDGOHliZfh4PjtpwGceTtLt6nnKAa8v_0lIQ.jpg",
-        "https://cdn4.telesco.pe/file/JHxt0Bwybxn_D-_dzEEE-9QczuRyRONKlSWKYRPVMbSQw3lWv57jLKQCbyKQphMDqu1kCpljkLxx0U5EKtAL3mnOa9USLXIROwthrRR-8GOVQxxCwyZeBLYG94qtf1PYnEKpRy3kbYikwrHjUEKN8Hv2EfZ7e_vzSlGItTlZSSU3c0PUyxmtNQxIcRr4w9nvL4xPwKiVAuF5FpH89kkpBMPawaKM5papjSNK-_c6qDljqXPcNBE_hrOpb7gpgbxnqCLpxOiMBg1v4x2HmorwWQE64DI37u4B7J7lSHBJXzERBVrp9dXoZu-adlhwvSlljm0oXxRBURfp1jIGqJ3Jsg.jpg",
-        "https://cdn4.telesco.pe/file/jHYaHed1mnzfiCXne4yUI2iWk4v9AmzUwil2UqBDtv7ig4P2go-vkntLlzoJRRl9Vw9YOaDxAUYhuv5qV7vs7VvN4LMDn3SoL8Zs8qCBhLAf1cb75xZ4mBu1Ff2H1tsEruvfop1bAD_rmKBz8NOrYz9aY71CsIws4vjACVwpuXPV5MELLhaFqxf7Q4WxDrougCWQyHZed1qmkwTsn-sVUO5zt2xBpWQBs-7U7dqkqoYESbtuI0CFFUwDtwBD8FWOk3P8rp9yy-zJ4jafL-fsb2xovdHEhXWRedXi4pJarcaBDOQuvjcQrOLqaMs-Jb6Wa3joAG9ZFDv-Gj9IRpUwJg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIltWnx1sSKDiSnzOacvYcJV8YMtf8oAAKaF2sbdNKJS666Ue9Q5uc5AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9653,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIltWnx1sSKDiSnzOacvYcJV8YMtf8oAAKaF2sbdNKJS666Ue9Q5uc5AQADAgADeQADOwQ"
     },
     {
       "id": "arenda_v_danang_241911",
@@ -690,18 +1008,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/arenda_v_danang",
       "telegram_link": "https://t.me/arenda_v_danang/241911",
-      "image_url": "https://cdn4.telesco.pe/file/uthktcMewBS3pw3nOTchsQZ0ae72kbPbUn6jigNWBXF8OEE2A63ovNCH83PQVUMH49Z4YTRK0p_BRjaObQJ9IqlayCBJX7CUvaeSvuhM5n4poScWs7uWauatcNVZLrHniiY-Puamiqvo68Pkk00gEr8O_aGiNdr7ij1LpNPHnCtNjCWLg2-N59cXtg8yc9na1aMMv6DVp3yqlxw45ZKLb593ARidkRutuXmZo-PSiUFsXrPUOd4n9sfkTr_40alAkqLUrQp8dnH_QVm6dvTG2qyTHgE6pWCc8xnhPN5UyG8GkHhUNRDiryYH62b2wtjk7Pg2qBiz8l5gmCSsdio4qQ.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlu2nx1t52jej4fTjihbT8A9xdeiVUAAKgF2sbdNKJS0MH2CHdRr-KAQADAgADdwADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/uthktcMewBS3pw3nOTchsQZ0ae72kbPbUn6jigNWBXF8OEE2A63ovNCH83PQVUMH49Z4YTRK0p_BRjaObQJ9IqlayCBJX7CUvaeSvuhM5n4poScWs7uWauatcNVZLrHniiY-Puamiqvo68Pkk00gEr8O_aGiNdr7ij1LpNPHnCtNjCWLg2-N59cXtg8yc9na1aMMv6DVp3yqlxw45ZKLb593ARidkRutuXmZo-PSiUFsXrPUOd4n9sfkTr_40alAkqLUrQp8dnH_QVm6dvTG2qyTHgE6pWCc8xnhPN5UyG8GkHhUNRDiryYH62b2wtjk7Pg2qBiz8l5gmCSsdio4qQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlu2nx1t52jej4fTjihbT8A9xdeiVUAAKgF2sbdNKJS0MH2CHdRr-KAQADAgADdwADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/uthktcMewBS3pw3nOTchsQZ0ae72kbPbUn6jigNWBXF8OEE2A63ovNCH83PQVUMH49Z4YTRK0p_BRjaObQJ9IqlayCBJX7CUvaeSvuhM5n4poScWs7uWauatcNVZLrHniiY-Puamiqvo68Pkk00gEr8O_aGiNdr7ij1LpNPHnCtNjCWLg2-N59cXtg8yc9na1aMMv6DVp3yqlxw45ZKLb593ARidkRutuXmZo-PSiUFsXrPUOd4n9sfkTr_40alAkqLUrQp8dnH_QVm6dvTG2qyTHgE6pWCc8xnhPN5UyG8GkHhUNRDiryYH62b2wtjk7Pg2qBiz8l5gmCSsdio4qQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlu2nx1t52jej4fTjihbT8A9xdeiVUAAKgF2sbdNKJS0MH2CHdRr-KAQADAgADdwADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9659,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlu2nx1t52jej4fTjihbT8A9xdeiVUAAKgF2sbdNKJS0MH2CHdRr-KAQADAgADdwADOwQ"
     },
     {
       "id": "arenda_v_nyachang_59018",
@@ -719,30 +1038,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/arenda_v_nyachang",
       "telegram_link": "https://t.me/arenda_v_nyachang/59018",
-      "image_url": "https://cdn4.telesco.pe/file/OkbWcMfISBN8Dpm4LIob3z1PfKNYMGwsFGROeXaYQyxQLaopEEBT49iPnVsrOSUhTOBTcCuTvNHAIiSsVrStULqidzrF1b28vtFd2kx9vB7SUF-w-lIiXbP1RNRNM0BdYNuhg_dNuLRIKFLZZa1inR2R4PaTZ5E03sfMvVt_Sh2_jxZwdIUr7RHAWDrfIzNXGJ_eMTR3igud-GOsIcRf0OrSbGbUjwpsa58-4I4V2-htaquT997x4RUl79JI3D-k2yW58ad6O5JN1-mJKc0xTPfHLGXVgOYJxLpnCvAmaVI3ugFHOS7pYmKx2ZmuhKRGk86TAgdPRo44Xi3Gt7psjg.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlvGnx10yRQlB4BDwluPgLrP_PlsDIAAKiF2sbdNKJSwVVUMU6WviYAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/OkbWcMfISBN8Dpm4LIob3z1PfKNYMGwsFGROeXaYQyxQLaopEEBT49iPnVsrOSUhTOBTcCuTvNHAIiSsVrStULqidzrF1b28vtFd2kx9vB7SUF-w-lIiXbP1RNRNM0BdYNuhg_dNuLRIKFLZZa1inR2R4PaTZ5E03sfMvVt_Sh2_jxZwdIUr7RHAWDrfIzNXGJ_eMTR3igud-GOsIcRf0OrSbGbUjwpsa58-4I4V2-htaquT997x4RUl79JI3D-k2yW58ad6O5JN1-mJKc0xTPfHLGXVgOYJxLpnCvAmaVI3ugFHOS7pYmKx2ZmuhKRGk86TAgdPRo44Xi3Gt7psjg.jpg",
-        "https://cdn4.telesco.pe/file/OV0PJcfDBMI7zWRlTKMU1l3tQXNB19pnnte5-lvhPIqJ5amEv90uJGp8vYU423PSjB9_Y5WKVHsvYngeRAYzzpP31jtHKAk9TKwwJFIKTvVXRk4-ReF7t8RH2eddLsC6lZVO7zrt8sjvihyRei84aCre4GkCNvvkWoT-F3gBbJUf1C7olJwJqEXMKBtIpToTkbe0GQbCqIMDX5A1jVJrx2zP393CdqWuDvuevKWWA1lnTO0_tqXp7bU0044mD9r2Zyj0_rNEV8ZNzFqKqxIakJv_s9VHXvYDL31PXJlkyWV8jsnDeGkwqdB-hGbzIssiGK08WH3Hf0Nkmg-Ezqflfw.jpg",
-        "https://cdn4.telesco.pe/file/bB3yJJAqkP2yMy6ci_IbR3mC03mTwKrDt6NOLJzwMaFdDmjXamAgeVQt-T-zMyc5H2h3i2zSc3bPmVV37W3FMnD1UB8jNxIs10oqNy4moRL8Fffw00bMDwf3kYjCjtCN8Tv5n_A1XlKsZlzUJ6EPzOiF5LLa9gkA1sdmo8IrMpFKIseBCVKhYaRnjedDcZuCijcvTvRqmPBYfVxFxH4-v9GzjIxkS4IZTVCU-RCa-KMp7G2xXWBfdISdHhXFUq_BlgMhQgK2PoCF6jpOOAwS3fkD3GHGN43e7q3Kakcu9G2vAEkx_wmVGfW5DfHOVNDCVm8AkzcyBfX09Phm-TvCig.jpg",
-        "https://cdn4.telesco.pe/file/cJ-o1f9iQw7GDke4pi6sGR8MMwzvyOeOECs86TbpxOlnJJZzSNQZrXw8LuKmSAIBtxyWmD8o1O5P8DJlNJqO8FMjeGM-crk3CrSXGec-VnFNkiYNCX5BZspaNNBWwjd6MeCGJuZBt_n8z0oGcJe6fp-nCXneNlY2IvwO2PN6rPR3kQ6-Y4aEKzB4Uizx8cjYj_az2OGOtJr9gR_3ncs6NzDof11fIucFHpLjI06N3Yqeo95HuMiNI4KEXWm0MYThwnJTv7o9s_t-fX-q8Nvbz1joObYDJrBn-H2j0JnXktLMKXG1SxdWm9KDsu8yXQ8-KWsnmCeeM62RKv2vABrh9A.jpg",
-        "https://cdn4.telesco.pe/file/CuLBrf2Df3uVQ22ee19nGBqzitKxd9cjB3hGEhlyOo-aVplRT7UZvpzJsyo3RHIKs44_0oL9kvyGvV_a08D86BQYifyQLO2oRkqPYFWjopJmdAK5epQzOV7PqmztbsztPLuUsuN_GcDVoI6e4-M5dCBsohyyK7v_VZMfYG1wU8bgUckS6nwf7dI11OwCs-Gu50WJ8MsM8NteCS1gpewn7zjtd-2NuxnGs9trBQgXXL__D7Y1QBvKrkx-lmo2ZRTWE3XXBSpitliBnD6HyTqJnXHHj4-PW_pvX9Va2Eg0MY6401Hvcp13ZfGZGz1MRTJQjt8lAiXotegszOezwF0lmQ.jpg",
-        "https://cdn4.telesco.pe/file/tX176TsgaZuz1haGAvBqTBmARpol6oceHdFjxtyTRyEcRp7iK7K3UOAkh8R0C4WkqTzakPy5vxQ2i6SoNOaxpCa3g2CjDYPBmD4doUhEAk4RcWKrRONYp3ZQPGsPCUGtNDsvUtaSu0ZvrVjvQROp8IggA7DQtMPyRKfVbOk6aAaJTe5JHbkRNBrHmSqgyzGbDdfQrm3YZQRolXCFnjswvgxrPiIbDy6m9QN__biE8xbE5y6xJJEckHtDWJABusE_CURCDdwL4ohFDESSyd6pJ9E2b1XYmmIcDB_KRolHQ5V-5d7_axZATjTVmERutazFlJCCZtR0pqhLhDLVK8dH4g.jpg",
-        "https://cdn4.telesco.pe/file/IlAHbKFQCJFpmwrmCP2yvHNm77NgGUoy5OCE23qHGYmr06FtBYq_dxaRU-PRySd_XqcB6nuealIPHAUywAdg8nE4G9nnmV5eORegI7aPpoPDHdmVohRYIaUVwVTQcsjhQhehjLDLXjmZUJZUPSrvfl5uZCivj0aRjFb9X1F40D8EA9IwHNPskgsYJq2P_KFQpO1g57OMV4r0ccWBycE4OUTq73-KEQJ3sn5JmJit-cRehW3OJ1a7P_RLAHmEd9VOF3eBhmi8GE5aTbuGRmw1DUEtOWXxZm4V2q7pQWqiTa4p5AK1R_OHVUOSdwwJ4z6xu2pwJ8wx7ZGHV_XIYVgXhg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlvGnx10yRQlB4BDwluPgLrP_PlsDIAAKiF2sbdNKJSwVVUMU6WviYAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/OkbWcMfISBN8Dpm4LIob3z1PfKNYMGwsFGROeXaYQyxQLaopEEBT49iPnVsrOSUhTOBTcCuTvNHAIiSsVrStULqidzrF1b28vtFd2kx9vB7SUF-w-lIiXbP1RNRNM0BdYNuhg_dNuLRIKFLZZa1inR2R4PaTZ5E03sfMvVt_Sh2_jxZwdIUr7RHAWDrfIzNXGJ_eMTR3igud-GOsIcRf0OrSbGbUjwpsa58-4I4V2-htaquT997x4RUl79JI3D-k2yW58ad6O5JN1-mJKc0xTPfHLGXVgOYJxLpnCvAmaVI3ugFHOS7pYmKx2ZmuhKRGk86TAgdPRo44Xi3Gt7psjg.jpg",
-        "https://cdn4.telesco.pe/file/OV0PJcfDBMI7zWRlTKMU1l3tQXNB19pnnte5-lvhPIqJ5amEv90uJGp8vYU423PSjB9_Y5WKVHsvYngeRAYzzpP31jtHKAk9TKwwJFIKTvVXRk4-ReF7t8RH2eddLsC6lZVO7zrt8sjvihyRei84aCre4GkCNvvkWoT-F3gBbJUf1C7olJwJqEXMKBtIpToTkbe0GQbCqIMDX5A1jVJrx2zP393CdqWuDvuevKWWA1lnTO0_tqXp7bU0044mD9r2Zyj0_rNEV8ZNzFqKqxIakJv_s9VHXvYDL31PXJlkyWV8jsnDeGkwqdB-hGbzIssiGK08WH3Hf0Nkmg-Ezqflfw.jpg",
-        "https://cdn4.telesco.pe/file/bB3yJJAqkP2yMy6ci_IbR3mC03mTwKrDt6NOLJzwMaFdDmjXamAgeVQt-T-zMyc5H2h3i2zSc3bPmVV37W3FMnD1UB8jNxIs10oqNy4moRL8Fffw00bMDwf3kYjCjtCN8Tv5n_A1XlKsZlzUJ6EPzOiF5LLa9gkA1sdmo8IrMpFKIseBCVKhYaRnjedDcZuCijcvTvRqmPBYfVxFxH4-v9GzjIxkS4IZTVCU-RCa-KMp7G2xXWBfdISdHhXFUq_BlgMhQgK2PoCF6jpOOAwS3fkD3GHGN43e7q3Kakcu9G2vAEkx_wmVGfW5DfHOVNDCVm8AkzcyBfX09Phm-TvCig.jpg",
-        "https://cdn4.telesco.pe/file/cJ-o1f9iQw7GDke4pi6sGR8MMwzvyOeOECs86TbpxOlnJJZzSNQZrXw8LuKmSAIBtxyWmD8o1O5P8DJlNJqO8FMjeGM-crk3CrSXGec-VnFNkiYNCX5BZspaNNBWwjd6MeCGJuZBt_n8z0oGcJe6fp-nCXneNlY2IvwO2PN6rPR3kQ6-Y4aEKzB4Uizx8cjYj_az2OGOtJr9gR_3ncs6NzDof11fIucFHpLjI06N3Yqeo95HuMiNI4KEXWm0MYThwnJTv7o9s_t-fX-q8Nvbz1joObYDJrBn-H2j0JnXktLMKXG1SxdWm9KDsu8yXQ8-KWsnmCeeM62RKv2vABrh9A.jpg",
-        "https://cdn4.telesco.pe/file/CuLBrf2Df3uVQ22ee19nGBqzitKxd9cjB3hGEhlyOo-aVplRT7UZvpzJsyo3RHIKs44_0oL9kvyGvV_a08D86BQYifyQLO2oRkqPYFWjopJmdAK5epQzOV7PqmztbsztPLuUsuN_GcDVoI6e4-M5dCBsohyyK7v_VZMfYG1wU8bgUckS6nwf7dI11OwCs-Gu50WJ8MsM8NteCS1gpewn7zjtd-2NuxnGs9trBQgXXL__D7Y1QBvKrkx-lmo2ZRTWE3XXBSpitliBnD6HyTqJnXHHj4-PW_pvX9Va2Eg0MY6401Hvcp13ZfGZGz1MRTJQjt8lAiXotegszOezwF0lmQ.jpg",
-        "https://cdn4.telesco.pe/file/tX176TsgaZuz1haGAvBqTBmARpol6oceHdFjxtyTRyEcRp7iK7K3UOAkh8R0C4WkqTzakPy5vxQ2i6SoNOaxpCa3g2CjDYPBmD4doUhEAk4RcWKrRONYp3ZQPGsPCUGtNDsvUtaSu0ZvrVjvQROp8IggA7DQtMPyRKfVbOk6aAaJTe5JHbkRNBrHmSqgyzGbDdfQrm3YZQRolXCFnjswvgxrPiIbDy6m9QN__biE8xbE5y6xJJEckHtDWJABusE_CURCDdwL4ohFDESSyd6pJ9E2b1XYmmIcDB_KRolHQ5V-5d7_axZATjTVmERutazFlJCCZtR0pqhLhDLVK8dH4g.jpg",
-        "https://cdn4.telesco.pe/file/IlAHbKFQCJFpmwrmCP2yvHNm77NgGUoy5OCE23qHGYmr06FtBYq_dxaRU-PRySd_XqcB6nuealIPHAUywAdg8nE4G9nnmV5eORegI7aPpoPDHdmVohRYIaUVwVTQcsjhQhehjLDLXjmZUJZUPSrvfl5uZCivj0aRjFb9X1F40D8EA9IwHNPskgsYJq2P_KFQpO1g57OMV4r0ccWBycE4OUTq73-KEQJ3sn5JmJit-cRehW3OJ1a7P_RLAHmEd9VOF3eBhmi8GE5aTbuGRmw1DUEtOWXxZm4V2q7pQWqiTa4p5AK1R_OHVUOSdwwJ4z6xu2pwJ8wx7ZGHV_XIYVgXhg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlvGnx10yRQlB4BDwluPgLrP_PlsDIAAKiF2sbdNKJSwVVUMU6WviYAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9660,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlvGnx10yRQlB4BDwluPgLrP_PlsDIAAKiF2sbdNKJSwVVUMU6WviYAQADAgADeQADOwQ"
     },
     {
       "id": "danang_arenda_292053",
@@ -760,18 +1068,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/danang_arenda",
       "telegram_link": "https://t.me/danang_arenda/292053",
-      "image_url": "https://cdn4.telesco.pe/file/pF-8-JhaMWiUV7dRorXx6HmYEv50AKNtZBSTPy7x9TfAK7iNnmLhz13mtm94QBuKdKZ9-i4OKbeeij7jpWtktVfA2HD0obwhd5skZFQxDIYYQrF3MrJV13UyFTIM4Ik_BCrU5-DcuNUvZNE-iOqzM_YarFvEUkyr558jgA7nfGeoDM-mKDnCVtjVozyyNcGEb_FRPpQIveUxvqGGEmcFXjP9LImVQdrANfZZMtn0-oMJLozD8bn5-b0QF0LzjvKeNz28OXknoQjrRCUqMqRJRkYeyaxp06pJ0dLuf4xg6dRGyzV3ePMwls7RjBSdLf9QVCvQcdBiP9k3byv1_TJWXQ.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlw2nx12mKGbKboMn5f9AHtopsirAnAAKpF2sbdNKJS97TBI2M8ds_AQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/pF-8-JhaMWiUV7dRorXx6HmYEv50AKNtZBSTPy7x9TfAK7iNnmLhz13mtm94QBuKdKZ9-i4OKbeeij7jpWtktVfA2HD0obwhd5skZFQxDIYYQrF3MrJV13UyFTIM4Ik_BCrU5-DcuNUvZNE-iOqzM_YarFvEUkyr558jgA7nfGeoDM-mKDnCVtjVozyyNcGEb_FRPpQIveUxvqGGEmcFXjP9LImVQdrANfZZMtn0-oMJLozD8bn5-b0QF0LzjvKeNz28OXknoQjrRCUqMqRJRkYeyaxp06pJ0dLuf4xg6dRGyzV3ePMwls7RjBSdLf9QVCvQcdBiP9k3byv1_TJWXQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlw2nx12mKGbKboMn5f9AHtopsirAnAAKpF2sbdNKJS97TBI2M8ds_AQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/pF-8-JhaMWiUV7dRorXx6HmYEv50AKNtZBSTPy7x9TfAK7iNnmLhz13mtm94QBuKdKZ9-i4OKbeeij7jpWtktVfA2HD0obwhd5skZFQxDIYYQrF3MrJV13UyFTIM4Ik_BCrU5-DcuNUvZNE-iOqzM_YarFvEUkyr558jgA7nfGeoDM-mKDnCVtjVozyyNcGEb_FRPpQIveUxvqGGEmcFXjP9LImVQdrANfZZMtn0-oMJLozD8bn5-b0QF0LzjvKeNz28OXknoQjrRCUqMqRJRkYeyaxp06pJ0dLuf4xg6dRGyzV3ePMwls7RjBSdLf9QVCvQcdBiP9k3byv1_TJWXQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlw2nx12mKGbKboMn5f9AHtopsirAnAAKpF2sbdNKJS97TBI2M8ds_AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9667,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlw2nx12mKGbKboMn5f9AHtopsirAnAAKpF2sbdNKJS97TBI2M8ds_AQADAgADeQADOwQ"
     },
     {
       "id": "phuketsk_arenda_811997",
@@ -841,28 +1150,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/nychang_arenda",
       "telegram_link": "https://t.me/nychang_arenda/535067",
-      "image_url": "https://cdn4.telesco.pe/file/v-A64FLvhfLSZtOv_uf46rAr6tynC76S9gyv7tQCEMjoK-zqr2fzR5jh5U6fdXgdYbgy_vke3-3pU3MC6id-_yq9GnTjCrmj0cQxsPyYhMvtPGzyNKFYy0g8yOjpPh61KMgn5Q_B2dwkAhg07UULRwjPqmhwVOxQPmgihy-fCT0InKIJANBu1_l8B6NMskGfVy6fBLHrB34n_H5bmZxGo7afNqMZ6yv70jFqIjKF1JSYC_fGe-1OO2wxhWVmZJpvLN5XYA28Cy0TyH2dxSuob0o3FjhLSttvE1UwibWXfbwS6IILFc-bPYXmSwngjxwdvt3SfeMCzQMHYskKS90aqw.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlmmnx1OID2U9Yz6F8rwzxw2rdp2p0AAJ2F2sbdNKJS7gf-vlOXxglAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/v-A64FLvhfLSZtOv_uf46rAr6tynC76S9gyv7tQCEMjoK-zqr2fzR5jh5U6fdXgdYbgy_vke3-3pU3MC6id-_yq9GnTjCrmj0cQxsPyYhMvtPGzyNKFYy0g8yOjpPh61KMgn5Q_B2dwkAhg07UULRwjPqmhwVOxQPmgihy-fCT0InKIJANBu1_l8B6NMskGfVy6fBLHrB34n_H5bmZxGo7afNqMZ6yv70jFqIjKF1JSYC_fGe-1OO2wxhWVmZJpvLN5XYA28Cy0TyH2dxSuob0o3FjhLSttvE1UwibWXfbwS6IILFc-bPYXmSwngjxwdvt3SfeMCzQMHYskKS90aqw.jpg",
-        "https://cdn4.telesco.pe/file/hvhg7zf8TDaVFKIV4uVkxpMYPWW8T-n0xfGfEieMqBm5CN7iYBcF0jC05AEKZJaCQAm_3s841vQg51QqOUHLphvxf3PSY0B-32IKjHxVpVTLF29V29-2aMev9MkgwFyiHfVyl_5m_MJiLuC3IrtuSENNtbCBrc1L6wzQXKLt15UTLWWg1Na5OR0znIUV9DXntWcmap9wkDwWWMHYfE6PJrsKsX7KmQ9OY8fQ3GYcTyT8bLQNH9XfcGtizmQR9gU_FH8UYf-M1EKG1yCW7601oAMaemW3-5joc6xNcbMwdq4snJoJ4sZbrUY8O_tq7QYkBP8Nx1mLhJGRGBBNfTEySg.jpg",
-        "https://cdn4.telesco.pe/file/mW41__Mjbhz4ygdKhysLx-y3ycA76FQd91Ne6qhkvLkBO4BJj2fc1ukf9_JO8vvkYj0AqYJ4a3fozwps9H44xZZxvme18YxJ3Z1Wpj-nMGoUOdeQ5RTrLnArNpGHKJ5BT_RtGR60j4zs8MZR-hh_sVtWn9Th7dZ4dYfXhxWq4EDGxJ-k4FtdsEDngXZvwseK8ZAFWiRzGO11yDCpYRp4vk-G_gnxsjiU7AqxeXh9s84K75JlcDQFv4J6g-rw7UJnSSx-306XvtlQ_zj1fkCqQHfk9dKuLo1EbXZPPXPttbm4GBZs7JzVU58mqcXbwNFNahY0blkB7ey3r_g2-4PosA.jpg",
-        "https://cdn4.telesco.pe/file/puosukJeJMEOM5XpI9k3QEvObmS1fSttzBBCHyikFQlW_It_IU2mM5QrvT1DS3GJjvBxzmSpKuJaK6ZOLqAGZ95Gp8rCgkPeNv8QamglcvZXyZT9Yb-9FsYyDSVhPfUAhIiqyGQR6eZIgjABQos5RA_4DTxkBEMT9Z-BbjLw9i8sgZPtf4ZuSb6UkzEO3IUpN9DmIpATrDrORdgNRprUvpUIJKG3QPe3YaDC5nRKmMTyZPlkDwlZSZ4oDq76-Cig4H__aMJ5-x8rFJ3JEpWE1OMj2TS3V2_QoMUtg8i09x-H9GsPNHiyjC6vSl77HwhdSrCDdEvbS2uV6nIb9VqEpA.jpg",
-        "https://cdn4.telesco.pe/file/o5eLq5pN6SVPDxcVnhpwtkE9oLSTmARMvOuMNLMnl6KdVBhiAoNrRTaMFLXCiZsDMTSZaD49bgxxSkfF9QTgqKJyJsp23nJkmDUGJupB4QEwiXhpXQhStRbG1TFUHmb1sWPo58DaQJ_qqnrl37Xp51-__WLnmTIxDFOR84-lxc35Dt2JPKsvROl6ZoMEG-IAqIgaTcO6_ZSQd20f9zVWBt6OvSRg-dA-xi4wYcO3Y7sMjgeYpZu2BohSjlGdDEqUZDZNj-G5Et6fU1gYeCuD2Lj2jeJNvqviU_VcKkr0E5YcFG2l3IWz2BS6FWAiHmjhgwjaUSgXT3gf29tZA24VZw.jpg",
-        "https://cdn4.telesco.pe/file/gmd6Uqss0lCG8lcF9PvijhfM5HF88LF4YpxmVTJ-dGQVCJjpLVazJ2FIJL7AOiOuxLyzu6KzLjvDkYqDz2gz37uVEfj6YLuncf3xUambr20JUSOZ2yzDxivPpp-XnMOlOdrGJRbMRzKgs0nA0tPh5ZW2O40j3o7XrckKAIRk3NbNKLpJhzio5UQYgPKiiBMXp5MHTo2oKDrEg8KpT6YofVV-hhdgE-2U_dVxZPeB6LJkCvR1PYH5zFsqMCWbjfxwBB9ndQW7Qs6VGf04HEdMUD2_GEsNO9iZJi9inJyT74icVcwZ6h5pDNo7pS_PWalj-rCEQuYlv-K7Q4vtl3WiUQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlmmnx1OID2U9Yz6F8rwzxw2rdp2p0AAJ2F2sbdNKJS7gf-vlOXxglAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/v-A64FLvhfLSZtOv_uf46rAr6tynC76S9gyv7tQCEMjoK-zqr2fzR5jh5U6fdXgdYbgy_vke3-3pU3MC6id-_yq9GnTjCrmj0cQxsPyYhMvtPGzyNKFYy0g8yOjpPh61KMgn5Q_B2dwkAhg07UULRwjPqmhwVOxQPmgihy-fCT0InKIJANBu1_l8B6NMskGfVy6fBLHrB34n_H5bmZxGo7afNqMZ6yv70jFqIjKF1JSYC_fGe-1OO2wxhWVmZJpvLN5XYA28Cy0TyH2dxSuob0o3FjhLSttvE1UwibWXfbwS6IILFc-bPYXmSwngjxwdvt3SfeMCzQMHYskKS90aqw.jpg",
-        "https://cdn4.telesco.pe/file/hvhg7zf8TDaVFKIV4uVkxpMYPWW8T-n0xfGfEieMqBm5CN7iYBcF0jC05AEKZJaCQAm_3s841vQg51QqOUHLphvxf3PSY0B-32IKjHxVpVTLF29V29-2aMev9MkgwFyiHfVyl_5m_MJiLuC3IrtuSENNtbCBrc1L6wzQXKLt15UTLWWg1Na5OR0znIUV9DXntWcmap9wkDwWWMHYfE6PJrsKsX7KmQ9OY8fQ3GYcTyT8bLQNH9XfcGtizmQR9gU_FH8UYf-M1EKG1yCW7601oAMaemW3-5joc6xNcbMwdq4snJoJ4sZbrUY8O_tq7QYkBP8Nx1mLhJGRGBBNfTEySg.jpg",
-        "https://cdn4.telesco.pe/file/mW41__Mjbhz4ygdKhysLx-y3ycA76FQd91Ne6qhkvLkBO4BJj2fc1ukf9_JO8vvkYj0AqYJ4a3fozwps9H44xZZxvme18YxJ3Z1Wpj-nMGoUOdeQ5RTrLnArNpGHKJ5BT_RtGR60j4zs8MZR-hh_sVtWn9Th7dZ4dYfXhxWq4EDGxJ-k4FtdsEDngXZvwseK8ZAFWiRzGO11yDCpYRp4vk-G_gnxsjiU7AqxeXh9s84K75JlcDQFv4J6g-rw7UJnSSx-306XvtlQ_zj1fkCqQHfk9dKuLo1EbXZPPXPttbm4GBZs7JzVU58mqcXbwNFNahY0blkB7ey3r_g2-4PosA.jpg",
-        "https://cdn4.telesco.pe/file/puosukJeJMEOM5XpI9k3QEvObmS1fSttzBBCHyikFQlW_It_IU2mM5QrvT1DS3GJjvBxzmSpKuJaK6ZOLqAGZ95Gp8rCgkPeNv8QamglcvZXyZT9Yb-9FsYyDSVhPfUAhIiqyGQR6eZIgjABQos5RA_4DTxkBEMT9Z-BbjLw9i8sgZPtf4ZuSb6UkzEO3IUpN9DmIpATrDrORdgNRprUvpUIJKG3QPe3YaDC5nRKmMTyZPlkDwlZSZ4oDq76-Cig4H__aMJ5-x8rFJ3JEpWE1OMj2TS3V2_QoMUtg8i09x-H9GsPNHiyjC6vSl77HwhdSrCDdEvbS2uV6nIb9VqEpA.jpg",
-        "https://cdn4.telesco.pe/file/o5eLq5pN6SVPDxcVnhpwtkE9oLSTmARMvOuMNLMnl6KdVBhiAoNrRTaMFLXCiZsDMTSZaD49bgxxSkfF9QTgqKJyJsp23nJkmDUGJupB4QEwiXhpXQhStRbG1TFUHmb1sWPo58DaQJ_qqnrl37Xp51-__WLnmTIxDFOR84-lxc35Dt2JPKsvROl6ZoMEG-IAqIgaTcO6_ZSQd20f9zVWBt6OvSRg-dA-xi4wYcO3Y7sMjgeYpZu2BohSjlGdDEqUZDZNj-G5Et6fU1gYeCuD2Lj2jeJNvqviU_VcKkr0E5YcFG2l3IWz2BS6FWAiHmjhgwjaUSgXT3gf29tZA24VZw.jpg",
-        "https://cdn4.telesco.pe/file/gmd6Uqss0lCG8lcF9PvijhfM5HF88LF4YpxmVTJ-dGQVCJjpLVazJ2FIJL7AOiOuxLyzu6KzLjvDkYqDz2gz37uVEfj6YLuncf3xUambr20JUSOZ2yzDxivPpp-XnMOlOdrGJRbMRzKgs0nA0tPh5ZW2O40j3o7XrckKAIRk3NbNKLpJhzio5UQYgPKiiBMXp5MHTo2oKDrEg8KpT6YofVV-hhdgE-2U_dVxZPeB6LJkCvR1PYH5zFsqMCWbjfxwBB9ndQW7Qs6VGf04HEdMUD2_GEsNO9iZJi9inJyT74icVcwZ6h5pDNo7pS_PWalj-rCEQuYlv-K7Q4vtl3WiUQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlmmnx1OID2U9Yz6F8rwzxw2rdp2p0AAJ2F2sbdNKJS7gf-vlOXxglAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9626,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlmmnx1OID2U9Yz6F8rwzxw2rdp2p0AAJ2F2sbdNKJS7gf-vlOXxglAQADAgADeQADOwQ"
     },
     {
       "id": "nychang_arenda_535077",
@@ -880,20 +1180,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/nychang_arenda",
       "telegram_link": "https://t.me/nychang_arenda/535077",
-      "image_url": "https://cdn4.telesco.pe/file/oq1JVJPn-BVwv1cKdpKW5CXeXaCxK-ccm6gCDK-9PAoBjuCOhMC6K5RUI8EYwNpvACSElwBeOVw-DAT7jybQPpfbEspkIsKOVGQlzHvcG7jYkYJZ2Of-fg_Aba6CYltBtEe1RcCzNfMAraPG7B7lyOR-akiIUSu-yP6vXr5geHJH1Gbk9ZN2PeCAoL93KCfpCxdaPDVRjt1Ngg049S8qvjug5lTWgBjL6G5OnYXZktq8_Cjj-IQTS8AcYVuZa7avdIbVkstuzvPzExuG8dCgwhdaN453fjtVtIPzq_Uq-6Xj8f6I4Jd7GXCntjWpUni3QHE_lKD2a3J2ffMFzk7WgA.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIloGnx1SlA4XiRZLqTu19YguOgL2tbAAJ-F2sbdNKJS0n5dVSuQlJZAQADAgADdwADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/oq1JVJPn-BVwv1cKdpKW5CXeXaCxK-ccm6gCDK-9PAoBjuCOhMC6K5RUI8EYwNpvACSElwBeOVw-DAT7jybQPpfbEspkIsKOVGQlzHvcG7jYkYJZ2Of-fg_Aba6CYltBtEe1RcCzNfMAraPG7B7lyOR-akiIUSu-yP6vXr5geHJH1Gbk9ZN2PeCAoL93KCfpCxdaPDVRjt1Ngg049S8qvjug5lTWgBjL6G5OnYXZktq8_Cjj-IQTS8AcYVuZa7avdIbVkstuzvPzExuG8dCgwhdaN453fjtVtIPzq_Uq-6Xj8f6I4Jd7GXCntjWpUni3QHE_lKD2a3J2ffMFzk7WgA.jpg",
-        "https://cdn4.telesco.pe/file/OgENO_tg9R7XqToGcCHVsKbCGcuH1iaCotCBQdbkmvj0agowxHMwNtJq0T7IiXAXlmQNK45bkOLDWUVclOexUDJzRUXJNBB7skS32F09E0nZEgNhQy7uMWlWO8tc2GgyTYSR5qE-_zH6gCNJmNzw48YvFrQjWImftVpVLIpsOIiU6p3hRlRjpUFMXN_hi-Mg1Ggy2ezeKoOv_ol_WmWIcw2rKpa2fkwIhDX5xGTb277E2qBO7ClWVJCYo8RjojEIpD5fWB9wtAXWAsop82wjxv4BnIeylwhVX2ulqGOtlW5dgQ_lGkDZSIxwSIiHFBUcbqp90ndYvFH9GVqc9Xaw7w.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIloGnx1SlA4XiRZLqTu19YguOgL2tbAAJ-F2sbdNKJS0n5dVSuQlJZAQADAgADdwADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/oq1JVJPn-BVwv1cKdpKW5CXeXaCxK-ccm6gCDK-9PAoBjuCOhMC6K5RUI8EYwNpvACSElwBeOVw-DAT7jybQPpfbEspkIsKOVGQlzHvcG7jYkYJZ2Of-fg_Aba6CYltBtEe1RcCzNfMAraPG7B7lyOR-akiIUSu-yP6vXr5geHJH1Gbk9ZN2PeCAoL93KCfpCxdaPDVRjt1Ngg049S8qvjug5lTWgBjL6G5OnYXZktq8_Cjj-IQTS8AcYVuZa7avdIbVkstuzvPzExuG8dCgwhdaN453fjtVtIPzq_Uq-6Xj8f6I4Jd7GXCntjWpUni3QHE_lKD2a3J2ffMFzk7WgA.jpg",
-        "https://cdn4.telesco.pe/file/OgENO_tg9R7XqToGcCHVsKbCGcuH1iaCotCBQdbkmvj0agowxHMwNtJq0T7IiXAXlmQNK45bkOLDWUVclOexUDJzRUXJNBB7skS32F09E0nZEgNhQy7uMWlWO8tc2GgyTYSR5qE-_zH6gCNJmNzw48YvFrQjWImftVpVLIpsOIiU6p3hRlRjpUFMXN_hi-Mg1Ggy2ezeKoOv_ol_WmWIcw2rKpa2fkwIhDX5xGTb277E2qBO7ClWVJCYo8RjojEIpD5fWB9wtAXWAsop82wjxv4BnIeylwhVX2ulqGOtlW5dgQ_lGkDZSIxwSIiHFBUcbqp90ndYvFH9GVqc9Xaw7w.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIloGnx1SlA4XiRZLqTu19YguOgL2tbAAJ-F2sbdNKJS0n5dVSuQlJZAQADAgADdwADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9632,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIloGnx1SlA4XiRZLqTu19YguOgL2tbAAJ-F2sbdNKJS0n5dVSuQlJZAQADAgADdwADOwQ"
     },
     {
       "id": "megasforrentnhatrang_43982",
@@ -911,26 +1210,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/megasforrentnhatrang",
       "telegram_link": "https://t.me/megasforrentnhatrang/43982",
-      "image_url": "https://cdn4.telesco.pe/file/PaT5Z5xpWg7kblPJqv3Fedc4VululyVQpNbZz6a1FIttl86nb4msSilYdArEWgptZrpFQGlt43W9eta7fe2p03JHlIgHbVglgwq0pRRssfA0mCtjsFYw_DcToeMm8Jq5tTpoqYGHd5atfqE2NkMmt9TTcGrpzIN1KwgdbXYJCddtQQQHkYkhmYU5eTxPjzFkRIjIgG22p2a6mFUR5efOtOOr8L2B_ZUEh_FHVH_TJqhTM1r4HzJgZii1d_E3nIZ3zKz3L2yJlE5CBxaLcRrstsdowuHXoWdF3lmzleFjhiwE2DEEwNJYjoOaRTqhs0oc4B3tSA4Ow1zHacJvQzCAJg.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlomnx1VtmmW1FGfWMw8sZQM_b9aSWAAKAF2sbdNKJSyHjFj5zekcGAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/PaT5Z5xpWg7kblPJqv3Fedc4VululyVQpNbZz6a1FIttl86nb4msSilYdArEWgptZrpFQGlt43W9eta7fe2p03JHlIgHbVglgwq0pRRssfA0mCtjsFYw_DcToeMm8Jq5tTpoqYGHd5atfqE2NkMmt9TTcGrpzIN1KwgdbXYJCddtQQQHkYkhmYU5eTxPjzFkRIjIgG22p2a6mFUR5efOtOOr8L2B_ZUEh_FHVH_TJqhTM1r4HzJgZii1d_E3nIZ3zKz3L2yJlE5CBxaLcRrstsdowuHXoWdF3lmzleFjhiwE2DEEwNJYjoOaRTqhs0oc4B3tSA4Ow1zHacJvQzCAJg.jpg",
-        "https://cdn4.telesco.pe/file/WZGsGxTlkAW_xfrJ5o7vn7yE2NYi8PSPUmW4uoms60FkDuhb3mr4geiWs8bOtqVmWtc76jNqkgND4rrdSRGuM12VsZoPH715f_w5Kg5JToJ3gy0siAvCOCiqYq1dLu8tIKD0MLV_crxbRxJAz92YfKRrlIUFfBuQixHdGHiqvrh-d-HLeyk-wqQ47ELhtoea2tD43H5dDzJ4hNkcTeka7jFcbSy2t9dAswCjPHBJVwzI--3utEdHXG8fBHWLNpCHIPjfQPSNtii-PygnY7YKcKHX89l2-D2CD-R5_JPmWd4x50aWaw_CS_KMRjGtBQ7rgsQ5cOMbQcXaCEnweIw7Qw.jpg",
-        "https://cdn4.telesco.pe/file/Zxe2WtwtWGsgB-6DE8_RC5DJ1tkpvwJ1oZDbA0erYaK-SON_pNiSLcqZn90MtKT7aGjqb2CMmTsyKXrJulyG4wswLTn7Q2gwXamzukAdgrEtW35BE3Y_teK2-b3BT4svZF3XKhvSakVw4BYTZ6xzUV6xIstElwRBDOH_t0U8HBZOrkeIdmfT5NvLJuOSqrMMTUTwhzfP6IIXKiCxZXXsF5DysSQY89zKPx_tupl9WTYb8FQqCnzEIYltZCAuy_1nxsSw8fG8bOOT1pO5pzQe2dGFQgoJTJmaXnKDRJWCYGq6SoWUvvp6f-UMf6rcd33LwHKrHjyO1Az-pcq1YcDbqw.jpg",
-        "https://cdn4.telesco.pe/file/WtMW9EjXIEY0fubBqKAc4vt5W7-H_jlYrdGND0Wa-eCS9N7XjC7OuwABMK1qDY9ebWFYIjyi4HWsvV2lQ9WwRYJwRCZKTAFCF8ONvNoWKDt8aC0HYRSDnnTrn7kZLS4qFTrLGSztRxdIKzCQamvRfre88o1NXMDAOsFNFYlUhinF6azKOxA0ZS5NTNwtMHuINsM-r01J1IIIqN2jojkGRwG7LKSzX08SrvMceP1jk0UCGadIJ7uwbu1w-0WcOsNBxfj-SpEOkBw21mzW3ZFXytB0UkdjkhL7iuSnJ4keLy1ZhQ0NjwFdfEAzeGG3aBAVkttDIQjhTfa-8DMSh1zE6w.jpg",
-        "https://cdn4.telesco.pe/file/lpKOunzKHa9-MepZROCV2auVbxVuQ05ZvBSdSnMtMbD23PC2td5e8BMMV_bky0yO5LNhRNlFGRtIsliLpx5MTxKqRU9xYGiHo0OS-ZT3qq3F0yXsT8ZEGabsDFfcc4Yo4aJlpc-SjpI_Uv7-KIk6GqUZwpvfWwWWJ2TumPdNOeIebuq5NztTAvbWSE3tEAtHWKtL4MZFqdThEYlN2U2owt8qvrUsLn8wgX3RU5G5_6f_I76ERqqBSs0yaUB7hwc-xE6-_e1R-zj2uoDbibQlkm354q6IxUN0NZy-xNsGLXaoTzyU8B15EJsiZMMEb4NGHvi1av2nY1xM-IxSy7lehg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlomnx1VtmmW1FGfWMw8sZQM_b9aSWAAKAF2sbdNKJSyHjFj5zekcGAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/PaT5Z5xpWg7kblPJqv3Fedc4VululyVQpNbZz6a1FIttl86nb4msSilYdArEWgptZrpFQGlt43W9eta7fe2p03JHlIgHbVglgwq0pRRssfA0mCtjsFYw_DcToeMm8Jq5tTpoqYGHd5atfqE2NkMmt9TTcGrpzIN1KwgdbXYJCddtQQQHkYkhmYU5eTxPjzFkRIjIgG22p2a6mFUR5efOtOOr8L2B_ZUEh_FHVH_TJqhTM1r4HzJgZii1d_E3nIZ3zKz3L2yJlE5CBxaLcRrstsdowuHXoWdF3lmzleFjhiwE2DEEwNJYjoOaRTqhs0oc4B3tSA4Ow1zHacJvQzCAJg.jpg",
-        "https://cdn4.telesco.pe/file/WZGsGxTlkAW_xfrJ5o7vn7yE2NYi8PSPUmW4uoms60FkDuhb3mr4geiWs8bOtqVmWtc76jNqkgND4rrdSRGuM12VsZoPH715f_w5Kg5JToJ3gy0siAvCOCiqYq1dLu8tIKD0MLV_crxbRxJAz92YfKRrlIUFfBuQixHdGHiqvrh-d-HLeyk-wqQ47ELhtoea2tD43H5dDzJ4hNkcTeka7jFcbSy2t9dAswCjPHBJVwzI--3utEdHXG8fBHWLNpCHIPjfQPSNtii-PygnY7YKcKHX89l2-D2CD-R5_JPmWd4x50aWaw_CS_KMRjGtBQ7rgsQ5cOMbQcXaCEnweIw7Qw.jpg",
-        "https://cdn4.telesco.pe/file/Zxe2WtwtWGsgB-6DE8_RC5DJ1tkpvwJ1oZDbA0erYaK-SON_pNiSLcqZn90MtKT7aGjqb2CMmTsyKXrJulyG4wswLTn7Q2gwXamzukAdgrEtW35BE3Y_teK2-b3BT4svZF3XKhvSakVw4BYTZ6xzUV6xIstElwRBDOH_t0U8HBZOrkeIdmfT5NvLJuOSqrMMTUTwhzfP6IIXKiCxZXXsF5DysSQY89zKPx_tupl9WTYb8FQqCnzEIYltZCAuy_1nxsSw8fG8bOOT1pO5pzQe2dGFQgoJTJmaXnKDRJWCYGq6SoWUvvp6f-UMf6rcd33LwHKrHjyO1Az-pcq1YcDbqw.jpg",
-        "https://cdn4.telesco.pe/file/WtMW9EjXIEY0fubBqKAc4vt5W7-H_jlYrdGND0Wa-eCS9N7XjC7OuwABMK1qDY9ebWFYIjyi4HWsvV2lQ9WwRYJwRCZKTAFCF8ONvNoWKDt8aC0HYRSDnnTrn7kZLS4qFTrLGSztRxdIKzCQamvRfre88o1NXMDAOsFNFYlUhinF6azKOxA0ZS5NTNwtMHuINsM-r01J1IIIqN2jojkGRwG7LKSzX08SrvMceP1jk0UCGadIJ7uwbu1w-0WcOsNBxfj-SpEOkBw21mzW3ZFXytB0UkdjkhL7iuSnJ4keLy1ZhQ0NjwFdfEAzeGG3aBAVkttDIQjhTfa-8DMSh1zE6w.jpg",
-        "https://cdn4.telesco.pe/file/lpKOunzKHa9-MepZROCV2auVbxVuQ05ZvBSdSnMtMbD23PC2td5e8BMMV_bky0yO5LNhRNlFGRtIsliLpx5MTxKqRU9xYGiHo0OS-ZT3qq3F0yXsT8ZEGabsDFfcc4Yo4aJlpc-SjpI_Uv7-KIk6GqUZwpvfWwWWJ2TumPdNOeIebuq5NztTAvbWSE3tEAtHWKtL4MZFqdThEYlN2U2owt8qvrUsLn8wgX3RU5G5_6f_I76ERqqBSs0yaUB7hwc-xE6-_e1R-zj2uoDbibQlkm354q6IxUN0NZy-xNsGLXaoTzyU8B15EJsiZMMEb4NGHvi1av2nY1xM-IxSy7lehg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlomnx1VtmmW1FGfWMw8sZQM_b9aSWAAKAF2sbdNKJSyHjFj5zekcGAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9634,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlomnx1VtmmW1FGfWMw8sZQM_b9aSWAAKAF2sbdNKJSyHjFj5zekcGAQADAgADeQADOwQ"
     },
     {
       "id": "arenda_v_danang_241900",
@@ -948,20 +1240,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/arenda_v_danang",
       "telegram_link": "https://t.me/arenda_v_danang/241900",
-      "image_url": "https://cdn4.telesco.pe/file/ci3DvU2XnvMCB7d28y3JOJeaVFEaFn1VZvLRe_XTKYG2VnnTnxxmEAm22n4DM6Zmmdu621yUlYu5uL3tX47D8nvceuLnXsuvW2rfm79iAGs9dAHPwD6PhbsqRSCzT18Uoi75jYy4RZziAoyCOnH0R7B9OYVaFeHjVoYdDdEFUiJGWiEQEvtVPpiklhjw7yVolDWhAwMgPnGig1OPvqmL26ErRQrQ-MxlPYoa65ClTJalkdxbBD1r6fdnE67Y8nIqmOQ44p7OS_vH7O9K9amvkAr54ftotcbXsGKCKwTjLlC2KcKSoQtDNg9EjhZnyFmqnudHR-x2gn0Bbs44NrHYQQ.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlp2nx1bd7GxOgJfnxShWiXieWsP0xAAKIF2sbdNKJS_p_tvItYx8zAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/ci3DvU2XnvMCB7d28y3JOJeaVFEaFn1VZvLRe_XTKYG2VnnTnxxmEAm22n4DM6Zmmdu621yUlYu5uL3tX47D8nvceuLnXsuvW2rfm79iAGs9dAHPwD6PhbsqRSCzT18Uoi75jYy4RZziAoyCOnH0R7B9OYVaFeHjVoYdDdEFUiJGWiEQEvtVPpiklhjw7yVolDWhAwMgPnGig1OPvqmL26ErRQrQ-MxlPYoa65ClTJalkdxbBD1r6fdnE67Y8nIqmOQ44p7OS_vH7O9K9amvkAr54ftotcbXsGKCKwTjLlC2KcKSoQtDNg9EjhZnyFmqnudHR-x2gn0Bbs44NrHYQQ.jpg",
-        "https://cdn4.telesco.pe/file/R7WY43m2a4HS0yNBCjEZYy9Ori38yUDJR_zMvToipY3dX_Eo-joYA3EfETIXS7I5Ouyz20Qs82VT62S_bEMWcgS1GtdTycREqYLs5Vn2KbkSAJ3vIY4Pyb0UkzZgKB5D5VPf1R0n8K4GLUEyRJHljnHGUCZFTxS6p47NJ04NtDqOI0PnetIv_gKCiNByjlB0xuei_I3DfpE2L0w83T31ab4bmmLo3KzzkZWStioBAQX2otD8y0uYva9KGVgG_OzNnYqADthDAFyctO37Z55oK3RGCLSZewbjLhY6BZAIbI5vZxA0oTCwfQhjrYnyJYweKgh8MGaUlXA-lKX5eIaqow.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlp2nx1bd7GxOgJfnxShWiXieWsP0xAAKIF2sbdNKJS_p_tvItYx8zAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/ci3DvU2XnvMCB7d28y3JOJeaVFEaFn1VZvLRe_XTKYG2VnnTnxxmEAm22n4DM6Zmmdu621yUlYu5uL3tX47D8nvceuLnXsuvW2rfm79iAGs9dAHPwD6PhbsqRSCzT18Uoi75jYy4RZziAoyCOnH0R7B9OYVaFeHjVoYdDdEFUiJGWiEQEvtVPpiklhjw7yVolDWhAwMgPnGig1OPvqmL26ErRQrQ-MxlPYoa65ClTJalkdxbBD1r6fdnE67Y8nIqmOQ44p7OS_vH7O9K9amvkAr54ftotcbXsGKCKwTjLlC2KcKSoQtDNg9EjhZnyFmqnudHR-x2gn0Bbs44NrHYQQ.jpg",
-        "https://cdn4.telesco.pe/file/R7WY43m2a4HS0yNBCjEZYy9Ori38yUDJR_zMvToipY3dX_Eo-joYA3EfETIXS7I5Ouyz20Qs82VT62S_bEMWcgS1GtdTycREqYLs5Vn2KbkSAJ3vIY4Pyb0UkzZgKB5D5VPf1R0n8K4GLUEyRJHljnHGUCZFTxS6p47NJ04NtDqOI0PnetIv_gKCiNByjlB0xuei_I3DfpE2L0w83T31ab4bmmLo3KzzkZWStioBAQX2otD8y0uYva9KGVgG_OzNnYqADthDAFyctO37Z55oK3RGCLSZewbjLhY6BZAIbI5vZxA0oTCwfQhjrYnyJYweKgh8MGaUlXA-lKX5eIaqow.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlp2nx1bd7GxOgJfnxShWiXieWsP0xAAKIF2sbdNKJS_p_tvItYx8zAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9639,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlp2nx1bd7GxOgJfnxShWiXieWsP0xAAKIF2sbdNKJS_p_tvItYx8zAQADAgADeQADOwQ"
     },
     {
       "id": "sea_bangkok_402151",
@@ -1005,32 +1296,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/nychang_arenda",
       "telegram_link": "https://t.me/nychang_arenda/535038",
-      "image_url": "https://cdn4.telesco.pe/file/esqtTsODoVE4_ePqKqo4SyIdZnNYMVLFTVFi5JlqGmM9PpsthnFv38ewsuINnLMu-mKqA6ehzsr3dc-XJuSmcVxOz0tq2LQ-0spZY7Nd8ULEQsq7p1HQnxE4CG8Kb8tx4JPBWWaDEH6_7eOPQ0Yi-LSWcMr5WZ1WLJtaZ7kcq7d0ICPUxyKUv4uH4pjqaTDS_949XSOMIUM8v0HLh1vpLmebU5hR6alVKowhgQu5F9P9WCR6UhZEwT67nG9_q_5NP-80Sa6tCZK9uf2IjKgKK96EgwqSH1qk61UjON4WhiCx_QnkWj2NAO7T5HwAVl1EMXLfo3MnlvzO6ISC5cePRw.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlgWnx0cnPu3JQkkl844kHIyuz9er3AAJNF2sbdNKJSzDVx1O-iXbuAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/esqtTsODoVE4_ePqKqo4SyIdZnNYMVLFTVFi5JlqGmM9PpsthnFv38ewsuINnLMu-mKqA6ehzsr3dc-XJuSmcVxOz0tq2LQ-0spZY7Nd8ULEQsq7p1HQnxE4CG8Kb8tx4JPBWWaDEH6_7eOPQ0Yi-LSWcMr5WZ1WLJtaZ7kcq7d0ICPUxyKUv4uH4pjqaTDS_949XSOMIUM8v0HLh1vpLmebU5hR6alVKowhgQu5F9P9WCR6UhZEwT67nG9_q_5NP-80Sa6tCZK9uf2IjKgKK96EgwqSH1qk61UjON4WhiCx_QnkWj2NAO7T5HwAVl1EMXLfo3MnlvzO6ISC5cePRw.jpg",
-        "https://cdn4.telesco.pe/file/kmfSMQp9702XeCMzTtX8Bw_lUZDHuvl8A9ium5sqgbuvAXn62S4HoFcwJJHtx2QKw24e9LVng386TbWOTFlAYS22OCjr4QcK2H8ksN6h30AvJNjZzTqktUygqaYuVlMX_UY8gf1SWgIlk7sqk6RUR-b0Tbgx-zxsf1QMLvgfi05VwabKybm02wtsXcTYi6zlyXTf-nKVBvNy3JIgYsV8a_hrXH43Yu-hA8V_38-U9AV9GfS4lKEgI5oM1DfaWO5vVlCk5BZ7P6w9bo5RA5lpYuDXUK1tPXoY6gjk8uDeeQ5aiTG6tfsrYoyl2IspC9T_0q65ogm3kMvVpvRngSadwA.jpg",
-        "https://cdn4.telesco.pe/file/vt_Lq8L5WmouHZcodwN1DstJHH38z5F7BLeC8-NNZ-5Hd_rX7qxcINbOspt4RtKUcgB5mbQ9DrVoFxdSIYgQTGS7Da4vM3J8Ru2E_8KetkcLtMX2XXAHWa5pkXUH_Ts45EerMIABQoG893UhQVOa8GcDwAtYncFbmaXNAG05cSy2QfW3JRbGY3rt5InGNYszouQfrtV7lD5CUGrKQzf9eVZ45LX7J1wF5oJhIsAiQSRpbra6neSamt1ohhXtm8DQrEDOQkupcwk5MDgv4l7yENNqr5PT8lEe0PAoru48dMsG3_gjNvYuiYInCAYiebah8bRtrThAKpYKHaOzdI6dWA.jpg",
-        "https://cdn4.telesco.pe/file/ELD4h2SqZTN4pLrOA_KcvYqHQ3yatAhn3w2VaHul5_kYLy5PvdT0Jq--YfO3W9nqn4CHXMdShO_pFKHC-4gHsECYi_kys7e7-Q7FHzi7TNeDInraoOkZ-ioErac3_vnU7n0KcVCbZCy8OfctgxKLBnsHZKXin8b8hu5ZdZDx2kTQVnHEzRMyKnf6T0l96_xESZmR5xpNNqFGhyOMTy9pgS8Ag0b9OKKoD0E95G1Wyr6G_JfCAd_qolQVagE5J8MnWeJn8mp-937k6ost8BkY4QMVIoC8inosJAruN6nuA_RBjmu8Z9JMHHe0D6SKsq7uBqLbYk3gc5zjpCF3OGSymw.jpg",
-        "https://cdn4.telesco.pe/file/IhJt4vsLRBvfoC4dy3WW1h-I9ixxhUEyAQsMckVEZhDoHNQZkrY8_Junb5NtTnljZAfxxs4_o_PT1J9cGPxbp1l-HGTNUnbrjHru_0p4wgWYyvPjQ5KTvJGC1JoQDiXmzcFhJJSCNDU1GTL6WJxIsr3z8zT9r1rWXcLjXiAQInx82vZJx344OA-2pfjjitzmqKA_C3ex28vmtXgwXFi4VWMtiDYVWCV1YMpO4jaNNDE87pk9TwTHz0Pc926jltTX8w-8Y2I2zbwGa_yqI3t0IGPHfWC593xDPxe0Ap3t_uWID4rCoaVBTsQ-M49WjPuAbJLrNwftQ1B0g9aA-7517w.jpg",
-        "https://cdn4.telesco.pe/file/hnGE02_3PzH6df_LEWnJ3n_i8MNSpZMzqHPGHeLsWI_gehjGjOVYKK7LPmsQDEkrK91fLBIl2anqqG9ApGaN-TrYY6v3F-qI_V6YqPWO4jxqw7vAAB5fCjTPA4FpVuq4R4u0XsCjLzdmmFFDv0vKg5utBmiacRYCm9wHr5Y2uh-RRlppmXSNH7yL2NnmQwH6Yjl8qTE6akn6ESo6Z68WJEzVnwqJE3avvfcuDY37ZtTFjg_AVCLZqtQYn6plC5nYv6naUnxrHoivKdo-D36zpqrRs4R0IT5pemNotL0l0q7z7IFz1u8t-9K_PWnFvWp5obC3OS79V0idiXjwo9MiWg.jpg",
-        "https://cdn4.telesco.pe/file/BsvLJMVCqTjpAdBrDRnzvfe1VesbQ8B6R9MYTLn4zp8pZTTGVjL0_YlYKAZsbdZn4yP7gqMGPCkP_jBtZ0FN44c_UQomfsBVq2tvdzfv0gucVszM7FXWDzqOj490zH9gV52FOinu7Q8vOJt8fEDM8lxktPgmS439WQk7l-raHkGPFHaWVJ2B6daejedSftSS-UGqcmFjAXeNsFHLyF46iYYVBbmKFFKLY_bHS78Mfo91Akt2BnE7e-sb6KUE2M3EivZteT9Fn-wThdmczVYdkZYmJ_FzJLx7doKyw_A2csy5K8qnRv23imn5Nc3sIPiM1X7cckyLfX1fGNCjdc4z1w.jpg",
-        "https://cdn4.telesco.pe/file/A30M4v0CLrc_RCJykMOGM6e453jileAI-MhZFaLq7j1dEANm9kmR_kpR7qbfUN_YT6nfCJn0ArFvL47lwEvqnZV6XWfYzeXdDl6OQxQ15V4kVjsSn3MourfIeGR44Wm-gmxmZKztcGcG0FBJHvkY2hqGissGSbRqxb-1h32McObQWk7mCPqSxh2fb0CmQkw3HlJ-P2Dnvtp3ARhCoxJcF5OTArOlO0eiMj3ScOL3wAFe7DTveTFsPAh9IQDSoGIK4IdfvOKkPfwv_YHcNv1MVrpu_4NfLM6o_-M8xiRqelfD_ttgngT-ohDEHf0EH1e0DMfQa_zCq3aFdG37phHYHg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlgWnx0cnPu3JQkkl844kHIyuz9er3AAJNF2sbdNKJSzDVx1O-iXbuAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/esqtTsODoVE4_ePqKqo4SyIdZnNYMVLFTVFi5JlqGmM9PpsthnFv38ewsuINnLMu-mKqA6ehzsr3dc-XJuSmcVxOz0tq2LQ-0spZY7Nd8ULEQsq7p1HQnxE4CG8Kb8tx4JPBWWaDEH6_7eOPQ0Yi-LSWcMr5WZ1WLJtaZ7kcq7d0ICPUxyKUv4uH4pjqaTDS_949XSOMIUM8v0HLh1vpLmebU5hR6alVKowhgQu5F9P9WCR6UhZEwT67nG9_q_5NP-80Sa6tCZK9uf2IjKgKK96EgwqSH1qk61UjON4WhiCx_QnkWj2NAO7T5HwAVl1EMXLfo3MnlvzO6ISC5cePRw.jpg",
-        "https://cdn4.telesco.pe/file/kmfSMQp9702XeCMzTtX8Bw_lUZDHuvl8A9ium5sqgbuvAXn62S4HoFcwJJHtx2QKw24e9LVng386TbWOTFlAYS22OCjr4QcK2H8ksN6h30AvJNjZzTqktUygqaYuVlMX_UY8gf1SWgIlk7sqk6RUR-b0Tbgx-zxsf1QMLvgfi05VwabKybm02wtsXcTYi6zlyXTf-nKVBvNy3JIgYsV8a_hrXH43Yu-hA8V_38-U9AV9GfS4lKEgI5oM1DfaWO5vVlCk5BZ7P6w9bo5RA5lpYuDXUK1tPXoY6gjk8uDeeQ5aiTG6tfsrYoyl2IspC9T_0q65ogm3kMvVpvRngSadwA.jpg",
-        "https://cdn4.telesco.pe/file/vt_Lq8L5WmouHZcodwN1DstJHH38z5F7BLeC8-NNZ-5Hd_rX7qxcINbOspt4RtKUcgB5mbQ9DrVoFxdSIYgQTGS7Da4vM3J8Ru2E_8KetkcLtMX2XXAHWa5pkXUH_Ts45EerMIABQoG893UhQVOa8GcDwAtYncFbmaXNAG05cSy2QfW3JRbGY3rt5InGNYszouQfrtV7lD5CUGrKQzf9eVZ45LX7J1wF5oJhIsAiQSRpbra6neSamt1ohhXtm8DQrEDOQkupcwk5MDgv4l7yENNqr5PT8lEe0PAoru48dMsG3_gjNvYuiYInCAYiebah8bRtrThAKpYKHaOzdI6dWA.jpg",
-        "https://cdn4.telesco.pe/file/ELD4h2SqZTN4pLrOA_KcvYqHQ3yatAhn3w2VaHul5_kYLy5PvdT0Jq--YfO3W9nqn4CHXMdShO_pFKHC-4gHsECYi_kys7e7-Q7FHzi7TNeDInraoOkZ-ioErac3_vnU7n0KcVCbZCy8OfctgxKLBnsHZKXin8b8hu5ZdZDx2kTQVnHEzRMyKnf6T0l96_xESZmR5xpNNqFGhyOMTy9pgS8Ag0b9OKKoD0E95G1Wyr6G_JfCAd_qolQVagE5J8MnWeJn8mp-937k6ost8BkY4QMVIoC8inosJAruN6nuA_RBjmu8Z9JMHHe0D6SKsq7uBqLbYk3gc5zjpCF3OGSymw.jpg",
-        "https://cdn4.telesco.pe/file/IhJt4vsLRBvfoC4dy3WW1h-I9ixxhUEyAQsMckVEZhDoHNQZkrY8_Junb5NtTnljZAfxxs4_o_PT1J9cGPxbp1l-HGTNUnbrjHru_0p4wgWYyvPjQ5KTvJGC1JoQDiXmzcFhJJSCNDU1GTL6WJxIsr3z8zT9r1rWXcLjXiAQInx82vZJx344OA-2pfjjitzmqKA_C3ex28vmtXgwXFi4VWMtiDYVWCV1YMpO4jaNNDE87pk9TwTHz0Pc926jltTX8w-8Y2I2zbwGa_yqI3t0IGPHfWC593xDPxe0Ap3t_uWID4rCoaVBTsQ-M49WjPuAbJLrNwftQ1B0g9aA-7517w.jpg",
-        "https://cdn4.telesco.pe/file/hnGE02_3PzH6df_LEWnJ3n_i8MNSpZMzqHPGHeLsWI_gehjGjOVYKK7LPmsQDEkrK91fLBIl2anqqG9ApGaN-TrYY6v3F-qI_V6YqPWO4jxqw7vAAB5fCjTPA4FpVuq4R4u0XsCjLzdmmFFDv0vKg5utBmiacRYCm9wHr5Y2uh-RRlppmXSNH7yL2NnmQwH6Yjl8qTE6akn6ESo6Z68WJEzVnwqJE3avvfcuDY37ZtTFjg_AVCLZqtQYn6plC5nYv6naUnxrHoivKdo-D36zpqrRs4R0IT5pemNotL0l0q7z7IFz1u8t-9K_PWnFvWp5obC3OS79V0idiXjwo9MiWg.jpg",
-        "https://cdn4.telesco.pe/file/BsvLJMVCqTjpAdBrDRnzvfe1VesbQ8B6R9MYTLn4zp8pZTTGVjL0_YlYKAZsbdZn4yP7gqMGPCkP_jBtZ0FN44c_UQomfsBVq2tvdzfv0gucVszM7FXWDzqOj490zH9gV52FOinu7Q8vOJt8fEDM8lxktPgmS439WQk7l-raHkGPFHaWVJ2B6daejedSftSS-UGqcmFjAXeNsFHLyF46iYYVBbmKFFKLY_bHS78Mfo91Akt2BnE7e-sb6KUE2M3EivZteT9Fn-wThdmczVYdkZYmJ_FzJLx7doKyw_A2csy5K8qnRv23imn5Nc3sIPiM1X7cckyLfX1fGNCjdc4z1w.jpg",
-        "https://cdn4.telesco.pe/file/A30M4v0CLrc_RCJykMOGM6e453jileAI-MhZFaLq7j1dEANm9kmR_kpR7qbfUN_YT6nfCJn0ArFvL47lwEvqnZV6XWfYzeXdDl6OQxQ15V4kVjsSn3MourfIeGR44Wm-gmxmZKztcGcG0FBJHvkY2hqGissGSbRqxb-1h32McObQWk7mCPqSxh2fb0CmQkw3HlJ-P2Dnvtp3ARhCoxJcF5OTArOlO0eiMj3ScOL3wAFe7DTveTFsPAh9IQDSoGIK4IdfvOKkPfwv_YHcNv1MVrpu_4NfLM6o_-M8xiRqelfD_ttgngT-ohDEHf0EH1e0DMfQa_zCq3aFdG37phHYHg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlgWnx0cnPu3JQkkl844kHIyuz9er3AAJNF2sbdNKJSzDVx1O-iXbuAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9601,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlgWnx0cnPu3JQkkl844kHIyuz9er3AAJNF2sbdNKJSzDVx1O-iXbuAQADAgADeQADOwQ"
     },
     {
       "id": "arenda_v_danang_241883",
@@ -1145,32 +1423,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/nychang_arenda",
       "telegram_link": "https://t.me/nychang_arenda/535057",
-      "image_url": "https://cdn4.telesco.pe/file/KIEPvZhLc-e3ovMY7DTB-nbwitE-zMzKKRstGrHzNzmjeiI8zWxeHRQZwEZoUarACSjhML7y0s7KF2m3DCcAwiYlQZvcKsY4fw_hv9q-aesAZNstJTv7HIZ1br-s-4EBGOF1f-NPUxI4frtEmaeBJrusQM7UGvoJZ3WUZU-j5vHF-A1pZpir6hDgRQxyjTI7qPiso8tGMvx0pMz4849t8s5QronUyWWbFgz_BYZm3mn2D2ymvZtKV1eBNlmT4m6vi6ZEleIiu56u_obyt5KL2sOENx8na9usMVM6xnzyNKKOVP2v1O3cIhDNRvejPfPBMPkqffnYk2t0MLPQvGiQQw.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlkmnx1Lz9LS8c5vpe73jVk0_UfegwAAJtF2sbdNKJS5KfjPxfPq90AQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/KIEPvZhLc-e3ovMY7DTB-nbwitE-zMzKKRstGrHzNzmjeiI8zWxeHRQZwEZoUarACSjhML7y0s7KF2m3DCcAwiYlQZvcKsY4fw_hv9q-aesAZNstJTv7HIZ1br-s-4EBGOF1f-NPUxI4frtEmaeBJrusQM7UGvoJZ3WUZU-j5vHF-A1pZpir6hDgRQxyjTI7qPiso8tGMvx0pMz4849t8s5QronUyWWbFgz_BYZm3mn2D2ymvZtKV1eBNlmT4m6vi6ZEleIiu56u_obyt5KL2sOENx8na9usMVM6xnzyNKKOVP2v1O3cIhDNRvejPfPBMPkqffnYk2t0MLPQvGiQQw.jpg",
-        "https://cdn4.telesco.pe/file/jAyiUNW8pjn6B6IWhAMQcd76suWi9sZf9ddDB3mq2SEYVtvq7sl2r56ib4l3cMxdxKMI_V5uzodwdi6zdRfjuZopKNZ2KHLqw12Ayv8jTiBXNPEOF2SE99sImqgOJLhdgIlvu7b1OzDAztRUo63ScOEoDqGZIlC3i9YaoJwY_-6g_EsQA8LeHBOeDFrVUABpsamiCAfoYHfF0VacrGMbcgePVCfvYUISRkLHYyPk5sfcn3cqsJxCHzoHCTrdm1bfHj5tC5rX5_1yRfO3-669-FOnXJBulPt0Cv-CRmVJ2_IL9KNZXBTBYrcVeycrvU9EuQ44XUFQkiFcU80AdPR4xw.jpg",
-        "https://cdn4.telesco.pe/file/uw54jy-ymI-iFpiVIzhrPlXe-TI9sEvNZB1MRIuHdLcGbXypgNXBi9wFzfWjV-hNCAK5Kj7qOz1ZeFsZx7q-JWdrOxAwCYRg5KkPBZFKy8FXE8C12WDf9d0MHO_Ciw8-VBItezqi8ZBpZ9VXZxrxW_HscWaz990KnzyopeztvgExXosgfNyd9cQyTmikK1FAhxd8NPRmAJO6gkGuD4JRTr94GFQJ53GdtVPpv4-VGVX_4GVeeWkdNFKni56dgnGnv6qpO99lGITai4t4hisDnlPPJgf8dUulNYP9I2feAKzwHGe-FLe8q8yIhB2YRFtneVCgJ-hlt1eF6ZfNsDfv8Q.jpg",
-        "https://cdn4.telesco.pe/file/t7i_ejgcwVHlwq6uOAPWROxjZXURcTEGSCnIUh_nXS9OUl9xL1jfsT6IeRzamrncm1b5Knpu2WHoWwWdhqG2UfNC4xqu8D0lV2kV2W8bth7mooki4gJ-PGBzrT7RmutREEUEZCvCqFyIjMxkzWsdDa_gNehX3q5r9ZmIkvO3SF9P9GcpV1U4MGWWNv1iJUxBWqLDfQ8AmrwdLGmQdrfo4_m1cqrkxvYTmbLPAqNZoysdcnFViGIAyDj7iv9TIyzcV1wtgMe-pyQYDJv-IZ-fOyraVMlxtb5qHcdlUDR-KcIsXxp5xEzhPfK5uT4_FG_x0PHHjfGtJ0XWENgjaQqZWg.jpg",
-        "https://cdn4.telesco.pe/file/mnVjWuyhnSsyjFBVYNs2DKTC_MgdQ0_mjM4pUzZakKG_kRiCZNriKwqVcnJvWOxpJVlhTSutQildRWW_6ptju5pxqrutAdFenkBAB9YxJ_obOQQaMnl-6gRb1PS2B-_6jy-URri6nSpsWmWDUm2aBUi0JsC5kn2yyuln4KBQu1iyKjWI7TUiSIAlhNOCrQR-q5gdauhw-q-ZCYZZ4XDF136bPSiL0JHYO8v8kHw05mXaBNR7x9_QLwCWZw-Nji5MsHmeZoBaHgV-sINgl17G0ZzeYJzpgEdzm1I3PBgdfxf5N2eMxW1IwwANEkLCJVk9zga7CEiMQ4IojjKRYPBing.jpg",
-        "https://cdn4.telesco.pe/file/i-5uFg_EgIrsPwroBiVHA4O_oY6dSG-O4LgcvjC6mSJwROeW_z4J_acVK5EAV993xJcKF8cCmoznN6aCFf0dwADZpMqBRBjBMScUNllsghsmvoHwks3s084m-otLOf1R0LYO9_gqWb7hi8cKw_VlsxX6E1cKrcv6Pwsw6QkV-vSmFk0sxajPH3L7Kn13p5wSgMgciBADmGX1e5ABdkBogsRU1SeJRn1p_I1VCA2iqm-y01JGFNajjQZxgCtNOs4nN7d5y60sD6kZlQhPz5TVW1fj-7mW0p-v13LFyc48P5U0ZaQ3amQN7rf9h15UoaINdU4SEeSGohCp-BcWs0G5bA.jpg",
-        "https://cdn4.telesco.pe/file/JL3qA5_2qffvNnbkhkgdq2eh8p1u_G83lSaSfGmYiAWNS7eCCCkKJJBzn6aG3CIiSd7TUrgELniCgVLznHBqVCmwSO60UOTMj4YzcP7VWPi9rmEpakhLqSU_19LMYiOpULMK-KPpLLgZPNCK2zGHdFHLRASobWrl0kUGc8L-JHfNsTk448cMtolkc_nYQuxAv1irFVzKzw4Ln_EzoQXg3jipF2muabqURMdXf6wUsgEu1RVowBMnDm1hOurocSeOOp0WKuK8uBt9myHPOaCHiDY1vWrfPBJUbyYMIvdhDD66Dm26kkyrbn8e2pWraWWnudl7RaGAmARzZ4--AtCUhQ.jpg",
-        "https://cdn4.telesco.pe/file/K8AnSl2NhvpsVZFNgMAzJLsJkC2VWABcJ9Ktzg20_iwDasRRTFfHac5fkbX0haXXUsarRf9sFLAa_tXZpDDV-WJKhUqWQVVIU631x6pqkiXibir4RcFshP-eJEt3sVMI-Q9-HspGqOUhaxJ_kpw3fur2FQwXUO1vxVrdy1bHjwo_N870aegLNAPp5_-odayFEDtiouHJqn_XKqQIDsqTFbajvLDp9p71-1MBjAt7_2zyf6rHwuiRQB3NPc-o1NbOSiATXfUbTHE4d1d8yLR1IHrOte8jv_VH8dWee4qyKOKmmRSX5SGnahYNDfBNHVQHY4FS7xJiFbpE04Na71p4Ew.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlkmnx1Lz9LS8c5vpe73jVk0_UfegwAAJtF2sbdNKJS5KfjPxfPq90AQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/KIEPvZhLc-e3ovMY7DTB-nbwitE-zMzKKRstGrHzNzmjeiI8zWxeHRQZwEZoUarACSjhML7y0s7KF2m3DCcAwiYlQZvcKsY4fw_hv9q-aesAZNstJTv7HIZ1br-s-4EBGOF1f-NPUxI4frtEmaeBJrusQM7UGvoJZ3WUZU-j5vHF-A1pZpir6hDgRQxyjTI7qPiso8tGMvx0pMz4849t8s5QronUyWWbFgz_BYZm3mn2D2ymvZtKV1eBNlmT4m6vi6ZEleIiu56u_obyt5KL2sOENx8na9usMVM6xnzyNKKOVP2v1O3cIhDNRvejPfPBMPkqffnYk2t0MLPQvGiQQw.jpg",
-        "https://cdn4.telesco.pe/file/jAyiUNW8pjn6B6IWhAMQcd76suWi9sZf9ddDB3mq2SEYVtvq7sl2r56ib4l3cMxdxKMI_V5uzodwdi6zdRfjuZopKNZ2KHLqw12Ayv8jTiBXNPEOF2SE99sImqgOJLhdgIlvu7b1OzDAztRUo63ScOEoDqGZIlC3i9YaoJwY_-6g_EsQA8LeHBOeDFrVUABpsamiCAfoYHfF0VacrGMbcgePVCfvYUISRkLHYyPk5sfcn3cqsJxCHzoHCTrdm1bfHj5tC5rX5_1yRfO3-669-FOnXJBulPt0Cv-CRmVJ2_IL9KNZXBTBYrcVeycrvU9EuQ44XUFQkiFcU80AdPR4xw.jpg",
-        "https://cdn4.telesco.pe/file/uw54jy-ymI-iFpiVIzhrPlXe-TI9sEvNZB1MRIuHdLcGbXypgNXBi9wFzfWjV-hNCAK5Kj7qOz1ZeFsZx7q-JWdrOxAwCYRg5KkPBZFKy8FXE8C12WDf9d0MHO_Ciw8-VBItezqi8ZBpZ9VXZxrxW_HscWaz990KnzyopeztvgExXosgfNyd9cQyTmikK1FAhxd8NPRmAJO6gkGuD4JRTr94GFQJ53GdtVPpv4-VGVX_4GVeeWkdNFKni56dgnGnv6qpO99lGITai4t4hisDnlPPJgf8dUulNYP9I2feAKzwHGe-FLe8q8yIhB2YRFtneVCgJ-hlt1eF6ZfNsDfv8Q.jpg",
-        "https://cdn4.telesco.pe/file/t7i_ejgcwVHlwq6uOAPWROxjZXURcTEGSCnIUh_nXS9OUl9xL1jfsT6IeRzamrncm1b5Knpu2WHoWwWdhqG2UfNC4xqu8D0lV2kV2W8bth7mooki4gJ-PGBzrT7RmutREEUEZCvCqFyIjMxkzWsdDa_gNehX3q5r9ZmIkvO3SF9P9GcpV1U4MGWWNv1iJUxBWqLDfQ8AmrwdLGmQdrfo4_m1cqrkxvYTmbLPAqNZoysdcnFViGIAyDj7iv9TIyzcV1wtgMe-pyQYDJv-IZ-fOyraVMlxtb5qHcdlUDR-KcIsXxp5xEzhPfK5uT4_FG_x0PHHjfGtJ0XWENgjaQqZWg.jpg",
-        "https://cdn4.telesco.pe/file/mnVjWuyhnSsyjFBVYNs2DKTC_MgdQ0_mjM4pUzZakKG_kRiCZNriKwqVcnJvWOxpJVlhTSutQildRWW_6ptju5pxqrutAdFenkBAB9YxJ_obOQQaMnl-6gRb1PS2B-_6jy-URri6nSpsWmWDUm2aBUi0JsC5kn2yyuln4KBQu1iyKjWI7TUiSIAlhNOCrQR-q5gdauhw-q-ZCYZZ4XDF136bPSiL0JHYO8v8kHw05mXaBNR7x9_QLwCWZw-Nji5MsHmeZoBaHgV-sINgl17G0ZzeYJzpgEdzm1I3PBgdfxf5N2eMxW1IwwANEkLCJVk9zga7CEiMQ4IojjKRYPBing.jpg",
-        "https://cdn4.telesco.pe/file/i-5uFg_EgIrsPwroBiVHA4O_oY6dSG-O4LgcvjC6mSJwROeW_z4J_acVK5EAV993xJcKF8cCmoznN6aCFf0dwADZpMqBRBjBMScUNllsghsmvoHwks3s084m-otLOf1R0LYO9_gqWb7hi8cKw_VlsxX6E1cKrcv6Pwsw6QkV-vSmFk0sxajPH3L7Kn13p5wSgMgciBADmGX1e5ABdkBogsRU1SeJRn1p_I1VCA2iqm-y01JGFNajjQZxgCtNOs4nN7d5y60sD6kZlQhPz5TVW1fj-7mW0p-v13LFyc48P5U0ZaQ3amQN7rf9h15UoaINdU4SEeSGohCp-BcWs0G5bA.jpg",
-        "https://cdn4.telesco.pe/file/JL3qA5_2qffvNnbkhkgdq2eh8p1u_G83lSaSfGmYiAWNS7eCCCkKJJBzn6aG3CIiSd7TUrgELniCgVLznHBqVCmwSO60UOTMj4YzcP7VWPi9rmEpakhLqSU_19LMYiOpULMK-KPpLLgZPNCK2zGHdFHLRASobWrl0kUGc8L-JHfNsTk448cMtolkc_nYQuxAv1irFVzKzw4Ln_EzoQXg3jipF2muabqURMdXf6wUsgEu1RVowBMnDm1hOurocSeOOp0WKuK8uBt9myHPOaCHiDY1vWrfPBJUbyYMIvdhDD66Dm26kkyrbn8e2pWraWWnudl7RaGAmARzZ4--AtCUhQ.jpg",
-        "https://cdn4.telesco.pe/file/K8AnSl2NhvpsVZFNgMAzJLsJkC2VWABcJ9Ktzg20_iwDasRRTFfHac5fkbX0haXXUsarRf9sFLAa_tXZpDDV-WJKhUqWQVVIU631x6pqkiXibir4RcFshP-eJEt3sVMI-Q9-HspGqOUhaxJ_kpw3fur2FQwXUO1vxVrdy1bHjwo_N870aegLNAPp5_-odayFEDtiouHJqn_XKqQIDsqTFbajvLDp9p71-1MBjAt7_2zyf6rHwuiRQB3NPc-o1NbOSiATXfUbTHE4d1d8yLR1IHrOte8jv_VH8dWee4qyKOKmmRSX5SGnahYNDfBNHVQHY4FS7xJiFbpE04Na71p4Ew.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlkmnx1Lz9LS8c5vpe73jVk0_UfegwAAJtF2sbdNKJS5KfjPxfPq90AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9618,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlkmnx1Lz9LS8c5vpe73jVk0_UfegwAAJtF2sbdNKJS5KfjPxfPq90AQADAgADeQADOwQ"
     },
     {
       "id": "sea_bangkok_402126",
@@ -1214,18 +1479,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/arenda_v_danang",
       "telegram_link": "https://t.me/arenda_v_danang/241882",
-      "image_url": "https://cdn4.telesco.pe/file/OZqGOzIx_d2_8RaOks-72prgIuANdjD-VMqg3MOI2lObD_SEYZSMlkoEdqnFJuGu5gCfq8anWyegd-ye2Ah9z2rZ-KlShJ4DejdkOpkB18XtD-eF_41en3oF7dbNY-eNHHT2BNydZE3IAnjdREn6jHg4Jjv10pltj4jMbPIIb8skp4gF2oJ5uUIBOUfEGS21mFGOlZfOjrRQN-kuyysNSwHFhUtR1HXczbWbyS8i2C9LShrlvmg2h5DasplrrKONO4N9rwAAW6RQaQ49S2ziOmyOce4ulNI8ko4S3hF-l1MOm_xaby5EE59USje_rYxlDVztjCS2A2kga-DsW3i87A.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIliWnx0mfHPSEnwHeN9AiAieALiDNkAAJYF2sbdNKJS3eEQE-n3GWGAQADAgADdwADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/OZqGOzIx_d2_8RaOks-72prgIuANdjD-VMqg3MOI2lObD_SEYZSMlkoEdqnFJuGu5gCfq8anWyegd-ye2Ah9z2rZ-KlShJ4DejdkOpkB18XtD-eF_41en3oF7dbNY-eNHHT2BNydZE3IAnjdREn6jHg4Jjv10pltj4jMbPIIb8skp4gF2oJ5uUIBOUfEGS21mFGOlZfOjrRQN-kuyysNSwHFhUtR1HXczbWbyS8i2C9LShrlvmg2h5DasplrrKONO4N9rwAAW6RQaQ49S2ziOmyOce4ulNI8ko4S3hF-l1MOm_xaby5EE59USje_rYxlDVztjCS2A2kga-DsW3i87A.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIliWnx0mfHPSEnwHeN9AiAieALiDNkAAJYF2sbdNKJS3eEQE-n3GWGAQADAgADdwADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/OZqGOzIx_d2_8RaOks-72prgIuANdjD-VMqg3MOI2lObD_SEYZSMlkoEdqnFJuGu5gCfq8anWyegd-ye2Ah9z2rZ-KlShJ4DejdkOpkB18XtD-eF_41en3oF7dbNY-eNHHT2BNydZE3IAnjdREn6jHg4Jjv10pltj4jMbPIIb8skp4gF2oJ5uUIBOUfEGS21mFGOlZfOjrRQN-kuyysNSwHFhUtR1HXczbWbyS8i2C9LShrlvmg2h5DasplrrKONO4N9rwAAW6RQaQ49S2ziOmyOce4ulNI8ko4S3hF-l1MOm_xaby5EE59USje_rYxlDVztjCS2A2kga-DsW3i87A.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIliWnx0mfHPSEnwHeN9AiAieALiDNkAAJYF2sbdNKJS3eEQE-n3GWGAQADAgADdwADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9609,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIliWnx0mfHPSEnwHeN9AiAieALiDNkAAJYF2sbdNKJS3eEQE-n3GWGAQADAgADdwADOwQ"
     },
     {
       "id": "arenda_phukets_319306",
@@ -1269,28 +1535,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/nychang_arenda",
       "telegram_link": "https://t.me/nychang_arenda/535011",
-      "image_url": "https://cdn4.telesco.pe/file/AoJSs3rtlqJ2r9nuKy846pv1hy4sHr3xTpvVZ06SVEyKMgCm-Oysde0T-sUTNTqY-o34TNU7uQTm0eJf7NgcvC7NBM9ZOSfiSBlkt61fDjuKYcmqQV8_i1xshj6r0QL0O_6C9zimSjeIrT76EInvizLdRZZG1QGMRfGsAW6bMvBkB3S-5EktxovWkLP_In4zX_DGfddlTB4DY4vnRsoAjq8UeYUZf-HjT8PxT51y-ZgSctRMuHE1t5uWoaMJda-e2j5AuyC4VK-AqqLUZVdRGq4kXFM7Dy8u3hN3FPTe5NhQfEm6xJnZNIRMQPTjxTXQfJiDF4GlAwCnNtZVwiwJhg.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlamnxyq0VA2crwhEhvj2aLj4dme_qAAMXaxt00olLe-x21ul4erUBAAMCAAN5AAM7BA",
       "all_images": [
-        "https://cdn4.telesco.pe/file/AoJSs3rtlqJ2r9nuKy846pv1hy4sHr3xTpvVZ06SVEyKMgCm-Oysde0T-sUTNTqY-o34TNU7uQTm0eJf7NgcvC7NBM9ZOSfiSBlkt61fDjuKYcmqQV8_i1xshj6r0QL0O_6C9zimSjeIrT76EInvizLdRZZG1QGMRfGsAW6bMvBkB3S-5EktxovWkLP_In4zX_DGfddlTB4DY4vnRsoAjq8UeYUZf-HjT8PxT51y-ZgSctRMuHE1t5uWoaMJda-e2j5AuyC4VK-AqqLUZVdRGq4kXFM7Dy8u3hN3FPTe5NhQfEm6xJnZNIRMQPTjxTXQfJiDF4GlAwCnNtZVwiwJhg.jpg",
-        "https://cdn4.telesco.pe/file/NYuegyPeQ59PtOmH_3eQa7iHM2BKiFf3r_ZCkmixIziMidn23uWsIwJ34nGjPOEBhLnV_CmPXiCJizKyidmRnIM9dybiQ8KvoVLUa8KriQG62Uv_vJF1qEyJlXvm0enVFpK1RCHX6yXKT6DPXPDig3ShCkwDodL8btRYqTOp3Avik_hwuPGh_IK1HpOiQzE9X7v_1_IcQL9jOeEcMx8ppggIibOCL9OKWCvLfTlVTNgJLQ2Jj9Ks8yRgPXdakk4HOn3DLvC2-Dx43aVtzhEl51kj8QW3W8Q88sdVqvb-dKXa73riZzoZQA0kQa_u0uYukgRBSo8guzhczNs9_kefTA.jpg",
-        "https://cdn4.telesco.pe/file/ANNc1stQjFZ_rXewgGW7ICiII8Z3JZBmDZRT_3v6mVciEcwUbZamDf_78to5gb1kEhebmwZY62rOiTQYtrwC0-L5p_zBxrW3pOfiUZRJ34-RVA_xdiog8Cxc4_D52UVbOo1GPvbI11FI9MKXDjwdLkBMNoF-vxoQ8JBaU-xjS1Y6nMVqCZyI3VA5TGjfb-ZygRLBGQ1jrJYX30pEtY34n60eLhcz-negxS5-zemShrnIrvrDebcE5Bief7GQmFNzx0jv7OY1Wmu4M-DlqdWDPiSOnm3lDSiG-v5AftEGTKjIbl-385leZXsFf7LhZ1Aif1ZMKH7g_sT1NZB5BHXiLQ.jpg",
-        "https://cdn4.telesco.pe/file/e_bIxHQfDqrFjlQ5MM5efHvPzmmxzPSA2AjtO1-PadAUlR1mqLmA3NO3cu5vQHN9rYdMwd3MUoIQSEtmnfsX9-oa9w5eBBiUjQ9eGNSsJf-eFjmMH82wQ4yGirctb7CViCcY8g0DnhRa1M6KCzCDiJjjvCSowj6Ws7pvYpdLn_pWnS3ygZTP9X-Bvx_EYFPvYchaqcCsltWV0onRqqxDZI2RolPbnmE9BJf8yD7kTOpa_0MdJaCFt0U8kDrf1p0x1bf626qFGDrXUSeaqIgtftLCs9u4npCu6yx2LsYswoClIpzNEsiQNGY0mbiJgZKQWAXLBXMGVlCEPQuutO6cBA.jpg",
-        "https://cdn4.telesco.pe/file/X8tNTYd1YCNX5PJQg3rMyrjVoMH4ObzNuEVD1o67Ey2DO4jdSxk3E3oKgQMUfbwplakYZ15RjBYnEHfdQg1G30L-J8joGbiFOwOQQNjEpa2RkB3ytinjaxgV0r710xUEsieyJIzeAiYUpplk3BxeQDQ9c7zlbiM1KA_M80VrnmNNiKc_EhWYqc7Ls35G5cx55rv2k33I-3ONmwLkssfI5zzKbmHhkYihRnERxQEAmJ9VPx5Z9Q3adFar2MzH0UCCBSr9aM8mG-p2mtZoMxFGqbdtWLJuC3Z0iPkKE3ytylEnF_SetIuWvsCeoonLuoTFhJFvCtsiwAecGu1yVeT09g.jpg",
-        "https://cdn4.telesco.pe/file/ltVacohW1wkx3Yv5HuYJCR0C5J8eDQ1y_VtUF-0NgF79RtxS1gXhM-Cjk6LtTLiV5NIxIdpQ1dp0ARlWknf3VOu5lNLIWUgkd4ub1k54UlFITz-sW8hTlwROWolUtMDwhuZgmXRrDJJgiVh-DS1nlbk7CR8eY-Lc2myIPSBHOA1aHwP9_un1WL0bJlUaMud_0c_zR5uP8WQHzMGRbKOmw8L6pgEWcxKTCpZDbyPfQNz9ISmbMq5Pl1GlKqQDYDmiSX7T7PYjsBwukPQy9KwuavkyjMWfQdWlZlgywHBU8GuFcHxneD0DAiR4weW59BNFIFkILaoqQ0oXxgJKe-3oJQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlamnxyq0VA2crwhEhvj2aLj4dme_qAAMXaxt00olLe-x21ul4erUBAAMCAAN5AAM7BA"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/AoJSs3rtlqJ2r9nuKy846pv1hy4sHr3xTpvVZ06SVEyKMgCm-Oysde0T-sUTNTqY-o34TNU7uQTm0eJf7NgcvC7NBM9ZOSfiSBlkt61fDjuKYcmqQV8_i1xshj6r0QL0O_6C9zimSjeIrT76EInvizLdRZZG1QGMRfGsAW6bMvBkB3S-5EktxovWkLP_In4zX_DGfddlTB4DY4vnRsoAjq8UeYUZf-HjT8PxT51y-ZgSctRMuHE1t5uWoaMJda-e2j5AuyC4VK-AqqLUZVdRGq4kXFM7Dy8u3hN3FPTe5NhQfEm6xJnZNIRMQPTjxTXQfJiDF4GlAwCnNtZVwiwJhg.jpg",
-        "https://cdn4.telesco.pe/file/NYuegyPeQ59PtOmH_3eQa7iHM2BKiFf3r_ZCkmixIziMidn23uWsIwJ34nGjPOEBhLnV_CmPXiCJizKyidmRnIM9dybiQ8KvoVLUa8KriQG62Uv_vJF1qEyJlXvm0enVFpK1RCHX6yXKT6DPXPDig3ShCkwDodL8btRYqTOp3Avik_hwuPGh_IK1HpOiQzE9X7v_1_IcQL9jOeEcMx8ppggIibOCL9OKWCvLfTlVTNgJLQ2Jj9Ks8yRgPXdakk4HOn3DLvC2-Dx43aVtzhEl51kj8QW3W8Q88sdVqvb-dKXa73riZzoZQA0kQa_u0uYukgRBSo8guzhczNs9_kefTA.jpg",
-        "https://cdn4.telesco.pe/file/ANNc1stQjFZ_rXewgGW7ICiII8Z3JZBmDZRT_3v6mVciEcwUbZamDf_78to5gb1kEhebmwZY62rOiTQYtrwC0-L5p_zBxrW3pOfiUZRJ34-RVA_xdiog8Cxc4_D52UVbOo1GPvbI11FI9MKXDjwdLkBMNoF-vxoQ8JBaU-xjS1Y6nMVqCZyI3VA5TGjfb-ZygRLBGQ1jrJYX30pEtY34n60eLhcz-negxS5-zemShrnIrvrDebcE5Bief7GQmFNzx0jv7OY1Wmu4M-DlqdWDPiSOnm3lDSiG-v5AftEGTKjIbl-385leZXsFf7LhZ1Aif1ZMKH7g_sT1NZB5BHXiLQ.jpg",
-        "https://cdn4.telesco.pe/file/e_bIxHQfDqrFjlQ5MM5efHvPzmmxzPSA2AjtO1-PadAUlR1mqLmA3NO3cu5vQHN9rYdMwd3MUoIQSEtmnfsX9-oa9w5eBBiUjQ9eGNSsJf-eFjmMH82wQ4yGirctb7CViCcY8g0DnhRa1M6KCzCDiJjjvCSowj6Ws7pvYpdLn_pWnS3ygZTP9X-Bvx_EYFPvYchaqcCsltWV0onRqqxDZI2RolPbnmE9BJf8yD7kTOpa_0MdJaCFt0U8kDrf1p0x1bf626qFGDrXUSeaqIgtftLCs9u4npCu6yx2LsYswoClIpzNEsiQNGY0mbiJgZKQWAXLBXMGVlCEPQuutO6cBA.jpg",
-        "https://cdn4.telesco.pe/file/X8tNTYd1YCNX5PJQg3rMyrjVoMH4ObzNuEVD1o67Ey2DO4jdSxk3E3oKgQMUfbwplakYZ15RjBYnEHfdQg1G30L-J8joGbiFOwOQQNjEpa2RkB3ytinjaxgV0r710xUEsieyJIzeAiYUpplk3BxeQDQ9c7zlbiM1KA_M80VrnmNNiKc_EhWYqc7Ls35G5cx55rv2k33I-3ONmwLkssfI5zzKbmHhkYihRnERxQEAmJ9VPx5Z9Q3adFar2MzH0UCCBSr9aM8mG-p2mtZoMxFGqbdtWLJuC3Z0iPkKE3ytylEnF_SetIuWvsCeoonLuoTFhJFvCtsiwAecGu1yVeT09g.jpg",
-        "https://cdn4.telesco.pe/file/ltVacohW1wkx3Yv5HuYJCR0C5J8eDQ1y_VtUF-0NgF79RtxS1gXhM-Cjk6LtTLiV5NIxIdpQ1dp0ARlWknf3VOu5lNLIWUgkd4ub1k54UlFITz-sW8hTlwROWolUtMDwhuZgmXRrDJJgiVh-DS1nlbk7CR8eY-Lc2myIPSBHOA1aHwP9_un1WL0bJlUaMud_0c_zR5uP8WQHzMGRbKOmw8L6pgEWcxKTCpZDbyPfQNz9ISmbMq5Pl1GlKqQDYDmiSX7T7PYjsBwukPQy9KwuavkyjMWfQdWlZlgywHBU8GuFcHxneD0DAiR4weW59BNFIFkILaoqQ0oXxgJKe-3oJQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlamnxyq0VA2crwhEhvj2aLj4dme_qAAMXaxt00olLe-x21ul4erUBAAMCAAN5AAM7BA"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9578,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlamnxyq0VA2crwhEhvj2aLj4dme_qAAMXaxt00olLe-x21ul4erUBAAMCAAN5AAM7BA"
     },
     {
       "id": "nychang_arenda_535018",
@@ -1409,30 +1666,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/arenda_v_danang",
       "telegram_link": "https://t.me/arenda_v_danang/241874",
-      "image_url": "https://cdn4.telesco.pe/file/T52tpx4I8LYnFxQnClen_NgKfRhyMiGvaw16u0-NejK11FfpfLTWlez8u1eNV23svCJ0SkfLF7M_O7UwdAwwaaojJP0iQTcJUCsUbQlTkSK7dHJbhKLKiTPekA8sHyol9Ft6Y7uOICfuAJhpfFRXBRLBprrnU17X4eHKrGJCwyNImreeM-eaFrIxiIP5KYF9OjCAZPRRN6DBRiKWhzyTJFJ4IkOOfNHvYXUKYmk9GiK4sj_EwLxZ0DPJnYmwy6hnPVe6_na5o-AWlNiuyCuqdZZSPoKbTRWOiHAlEPL3g4Hw8jITVCBdhG23CyCc5Ub5yU4-8zMKMsB8Cgqd1SRMyQ.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlemnx0UOjzMevNMBR7BfFDy864pdYAAJDF2sbdNKJS3WlQCsX6NnmAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/T52tpx4I8LYnFxQnClen_NgKfRhyMiGvaw16u0-NejK11FfpfLTWlez8u1eNV23svCJ0SkfLF7M_O7UwdAwwaaojJP0iQTcJUCsUbQlTkSK7dHJbhKLKiTPekA8sHyol9Ft6Y7uOICfuAJhpfFRXBRLBprrnU17X4eHKrGJCwyNImreeM-eaFrIxiIP5KYF9OjCAZPRRN6DBRiKWhzyTJFJ4IkOOfNHvYXUKYmk9GiK4sj_EwLxZ0DPJnYmwy6hnPVe6_na5o-AWlNiuyCuqdZZSPoKbTRWOiHAlEPL3g4Hw8jITVCBdhG23CyCc5Ub5yU4-8zMKMsB8Cgqd1SRMyQ.jpg",
-        "https://cdn4.telesco.pe/file/cr4Xs5WeQnMp3c_0plds9FJFluz9Uo5XM962a5tUfiCg1U68qN3Jo6cbCscXG7qHVvYUqYuzurjUT36_3im0caLUiPuB0NnnAx4CjTpbNdUy0671rbv8-YnfdDt2qSi4csOa2GKwINtkjXpXTbEYls36dPUGCjn2fkqZ1fXIBBrg77W_XvfxMlW5E6wHgjxiU5R-kRuyQIYEKW0EiyAFrn1E-Yv7umday7JevUhcqm9o9Cxoy3IdXO6WH5KrNnjy0ztwZEe0cn2ZMtsQ-1dbrOh3ocY9ZnnPO3BY2Pjpr1pPr8vWUj6X3b8El0bYtqhnj7aAsiBalJs6FOzRxfb1TA.jpg",
-        "https://cdn4.telesco.pe/file/eqjHGeNyzFyF9YGB_J14BUTRbIZzkJSIbot9wJmAp6w1c1tfQoIE0umZYONoYhUwe9XYgY6MikGbZfNTxFhq0hzzyzItYt0cGUbQFXcjcoe3oYziYnS_tnrIP3Bh9qxOvxjZQLBirb7JQBFXW5oBYkq0uPiolvf1iLtjbDrNsnf5-_pnYA26MRRvfHkS-pEkPB0hSAimm8ZGt-FN3L3g-L9Uk3NyfHn9vDPRSzg42yZfgx3809Cs6ww4CmDj8M4BZTGuJ0b4dROX6Liuzs2OkaH4s3Ay0jSp8otOzR6zkJjqBlyTtaPCVUkw8iYmLYtp0akD6JprvQ0Rh-RJMB8wCw.jpg",
-        "https://cdn4.telesco.pe/file/mMWfQzI1aw6cKY1sFfjQv4nxaxGyI2Vr4vmNwTidwcquwG1a7GUERNLbnOVPAVQQKWV--w9XddSO0BBbaUjaxEeakyc-AOGB4Oi4ZpM9ymlgx8w7QaHpegHrYmSTBPHE1bdf60TGk8eSKitj0uqLqRZbCq63pXe7eCSYxQwRrL0P8Jn6risTjxGu7FPhZJPopozAOJmaSgn37egoMzzby7WMiEuJX0nDMTZXghxojAup5DA7bzeaRRL_qJaayBstruj0PIbMCSAdvotWYA0vyaIpw_A5zJOh-qRjywi60HnwajiitVuEPjdfRUTz4f5kfBjcz2f-w7fCMDSUhGXmAw.jpg",
-        "https://cdn4.telesco.pe/file/OT0ClZw3ubd_9IC6Drm4CZh4Nq2MG8R6KgD4Gc62XB_mGvC2QOJNK3rTln7PXi-VHGmUsPcRF8JkOtFcDzvSqxpzP_l9i6t7YlhWtWQlBoCwKWMqUsoIrhzzunbpBOBDI3lPgRIAZD8S693_m2l6tlmklICyRLN6KjoBFm23M6LaXGMqMmP3i_CAvyuqnr_73gH9Fx-JLxnaGYM3doSft6LLFucGK6Fhv5FxhPwOh6m_CAUsgjAHut3m87yeXHtPI4XEJAjRGeXXfQQnqhu0g3b6_A_o10tIW0e4b-xWKNkut1uaXRKotp6zQI4toRY1c6-f-M--HPPT910KT47gMw.jpg",
-        "https://cdn4.telesco.pe/file/JU_kTlZ5Cw3lmOY17jWQc3ez3lEYG5q7vADNP5UOhPAj1y8nZZCtwJoq93pK_OfRdW6x57D08rVahRBcsNz1F_bXIQs2eAQnWZcC-NZsUPHOMbTd1e3dfd44hQQH8Oxf9-Y4vxWBnQmdSuqsMfAeIc65YefWKUrmnpochEUE149d0wiH2YUayYDZakt1i3iHg-Baa9p3G1CZXecHHq01TpZkPSJNqX9WJ7ARgp0Uq036OzNiIGFDWcmNJnfwhhJ39JBb14XkL0LhT1A7elv3eYKPXTgJL-I08rpFczHFhxkudyNJBDGs_l4dqIOqACjWdrhP2VMC6fE4Tegj-pBtcg.jpg",
-        "https://cdn4.telesco.pe/file/ayH0utvzgdg-drHcCodFgbn49m8BXvLOZdNkMzlUrVRSDbvgq-nhS0znXYTaPrwAkIpOtppZ0aBx8GIPstuhVyhbUnYNvPURO5z5jLxbUvt5QBXFVwD5CRjDrgupKDNnT8_m9nbWWTkL4zEUBvu-LxEqKEmXBZuJkJsjFybz8coQm8fxwqbyZhO6DLIcSv2v907pYzxs24Wbl6-7frrmHY5Ic61n_5k9wXPi8BtI-faaeu3dP_AWaDpPvlLUiYnrlzxQdut28CgJZoQMPCCeZQMazVGVh5Rh0fFMq2blJYnm4fNRRc5kX6bz087FN7FawQLYTpI677RXy7Xq6tx5DQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlemnx0UOjzMevNMBR7BfFDy864pdYAAJDF2sbdNKJS3WlQCsX6NnmAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/T52tpx4I8LYnFxQnClen_NgKfRhyMiGvaw16u0-NejK11FfpfLTWlez8u1eNV23svCJ0SkfLF7M_O7UwdAwwaaojJP0iQTcJUCsUbQlTkSK7dHJbhKLKiTPekA8sHyol9Ft6Y7uOICfuAJhpfFRXBRLBprrnU17X4eHKrGJCwyNImreeM-eaFrIxiIP5KYF9OjCAZPRRN6DBRiKWhzyTJFJ4IkOOfNHvYXUKYmk9GiK4sj_EwLxZ0DPJnYmwy6hnPVe6_na5o-AWlNiuyCuqdZZSPoKbTRWOiHAlEPL3g4Hw8jITVCBdhG23CyCc5Ub5yU4-8zMKMsB8Cgqd1SRMyQ.jpg",
-        "https://cdn4.telesco.pe/file/cr4Xs5WeQnMp3c_0plds9FJFluz9Uo5XM962a5tUfiCg1U68qN3Jo6cbCscXG7qHVvYUqYuzurjUT36_3im0caLUiPuB0NnnAx4CjTpbNdUy0671rbv8-YnfdDt2qSi4csOa2GKwINtkjXpXTbEYls36dPUGCjn2fkqZ1fXIBBrg77W_XvfxMlW5E6wHgjxiU5R-kRuyQIYEKW0EiyAFrn1E-Yv7umday7JevUhcqm9o9Cxoy3IdXO6WH5KrNnjy0ztwZEe0cn2ZMtsQ-1dbrOh3ocY9ZnnPO3BY2Pjpr1pPr8vWUj6X3b8El0bYtqhnj7aAsiBalJs6FOzRxfb1TA.jpg",
-        "https://cdn4.telesco.pe/file/eqjHGeNyzFyF9YGB_J14BUTRbIZzkJSIbot9wJmAp6w1c1tfQoIE0umZYONoYhUwe9XYgY6MikGbZfNTxFhq0hzzyzItYt0cGUbQFXcjcoe3oYziYnS_tnrIP3Bh9qxOvxjZQLBirb7JQBFXW5oBYkq0uPiolvf1iLtjbDrNsnf5-_pnYA26MRRvfHkS-pEkPB0hSAimm8ZGt-FN3L3g-L9Uk3NyfHn9vDPRSzg42yZfgx3809Cs6ww4CmDj8M4BZTGuJ0b4dROX6Liuzs2OkaH4s3Ay0jSp8otOzR6zkJjqBlyTtaPCVUkw8iYmLYtp0akD6JprvQ0Rh-RJMB8wCw.jpg",
-        "https://cdn4.telesco.pe/file/mMWfQzI1aw6cKY1sFfjQv4nxaxGyI2Vr4vmNwTidwcquwG1a7GUERNLbnOVPAVQQKWV--w9XddSO0BBbaUjaxEeakyc-AOGB4Oi4ZpM9ymlgx8w7QaHpegHrYmSTBPHE1bdf60TGk8eSKitj0uqLqRZbCq63pXe7eCSYxQwRrL0P8Jn6risTjxGu7FPhZJPopozAOJmaSgn37egoMzzby7WMiEuJX0nDMTZXghxojAup5DA7bzeaRRL_qJaayBstruj0PIbMCSAdvotWYA0vyaIpw_A5zJOh-qRjywi60HnwajiitVuEPjdfRUTz4f5kfBjcz2f-w7fCMDSUhGXmAw.jpg",
-        "https://cdn4.telesco.pe/file/OT0ClZw3ubd_9IC6Drm4CZh4Nq2MG8R6KgD4Gc62XB_mGvC2QOJNK3rTln7PXi-VHGmUsPcRF8JkOtFcDzvSqxpzP_l9i6t7YlhWtWQlBoCwKWMqUsoIrhzzunbpBOBDI3lPgRIAZD8S693_m2l6tlmklICyRLN6KjoBFm23M6LaXGMqMmP3i_CAvyuqnr_73gH9Fx-JLxnaGYM3doSft6LLFucGK6Fhv5FxhPwOh6m_CAUsgjAHut3m87yeXHtPI4XEJAjRGeXXfQQnqhu0g3b6_A_o10tIW0e4b-xWKNkut1uaXRKotp6zQI4toRY1c6-f-M--HPPT910KT47gMw.jpg",
-        "https://cdn4.telesco.pe/file/JU_kTlZ5Cw3lmOY17jWQc3ez3lEYG5q7vADNP5UOhPAj1y8nZZCtwJoq93pK_OfRdW6x57D08rVahRBcsNz1F_bXIQs2eAQnWZcC-NZsUPHOMbTd1e3dfd44hQQH8Oxf9-Y4vxWBnQmdSuqsMfAeIc65YefWKUrmnpochEUE149d0wiH2YUayYDZakt1i3iHg-Baa9p3G1CZXecHHq01TpZkPSJNqX9WJ7ARgp0Uq036OzNiIGFDWcmNJnfwhhJ39JBb14XkL0LhT1A7elv3eYKPXTgJL-I08rpFczHFhxkudyNJBDGs_l4dqIOqACjWdrhP2VMC6fE4Tegj-pBtcg.jpg",
-        "https://cdn4.telesco.pe/file/ayH0utvzgdg-drHcCodFgbn49m8BXvLOZdNkMzlUrVRSDbvgq-nhS0znXYTaPrwAkIpOtppZ0aBx8GIPstuhVyhbUnYNvPURO5z5jLxbUvt5QBXFVwD5CRjDrgupKDNnT8_m9nbWWTkL4zEUBvu-LxEqKEmXBZuJkJsjFybz8coQm8fxwqbyZhO6DLIcSv2v907pYzxs24Wbl6-7frrmHY5Ic61n_5k9wXPi8BtI-faaeu3dP_AWaDpPvlLUiYnrlzxQdut28CgJZoQMPCCeZQMazVGVh5Rh0fFMq2blJYnm4fNRRc5kX6bz087FN7FawQLYTpI677RXy7Xq6tx5DQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlemnx0UOjzMevNMBR7BfFDy864pdYAAJDF2sbdNKJS3WlQCsX6NnmAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9594,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlemnx0UOjzMevNMBR7BfFDy864pdYAAJDF2sbdNKJS3WlQCsX6NnmAQADAgADeQADOwQ"
     },
     {
       "id": "nedvig_thailand_213348",
@@ -1502,28 +1748,19 @@
       "source_channel": "parsing_vn",
       "telegram": "https://t.me/nychang_arenda",
       "telegram_link": "https://t.me/nychang_arenda/535005",
-      "image_url": "https://cdn4.telesco.pe/file/GYfOYQXPN9G9vpBfBwTu36-iNMCMgrmvCS34exH4k5Cv9qbPFWzftlEVPIGHdZrdcn3KvAdPnhaaTWerlYekrMdHUk4LNeR2huBG39zxToEOxROT_pLicIzALNfh4mx-kMX7WPBXTwgvkXkB7pG3QeWZD6sxI8GaNHbG4kZforDAH3UztH06fzlfrfcr6ZifvN1cob4kZtF4Jh43hQL5Ifnx5eY-NZqkbHoUdfnqJyWWJg6ejUl8XkiyYCGzTbplJLR5Yy1GEaltKZ1BOODhUxln0aOGsGy0fDSbtenPwgCZGtwJfXE0rxb69lz2V61sDtX6BRk42GZWyIX2i-MAmQ.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlZGnxykYhTYdq36BDabo5khj6AmaeAAL6FmsbdNKJS1IfAhfCtgABiwEAAwIAA3kAAzsE",
       "all_images": [
-        "https://cdn4.telesco.pe/file/GYfOYQXPN9G9vpBfBwTu36-iNMCMgrmvCS34exH4k5Cv9qbPFWzftlEVPIGHdZrdcn3KvAdPnhaaTWerlYekrMdHUk4LNeR2huBG39zxToEOxROT_pLicIzALNfh4mx-kMX7WPBXTwgvkXkB7pG3QeWZD6sxI8GaNHbG4kZforDAH3UztH06fzlfrfcr6ZifvN1cob4kZtF4Jh43hQL5Ifnx5eY-NZqkbHoUdfnqJyWWJg6ejUl8XkiyYCGzTbplJLR5Yy1GEaltKZ1BOODhUxln0aOGsGy0fDSbtenPwgCZGtwJfXE0rxb69lz2V61sDtX6BRk42GZWyIX2i-MAmQ.jpg",
-        "https://cdn4.telesco.pe/file/TBzgH1TWyrmMVk9CMHwV6b7F9T7BiC0a6LFl007aTLGb-eyGdphA-VWQoOixgpzkVLprp-_4uoSPE6S4kgdElLJZ92tsArjvF1FzTm923iAiSdhQxwwa34oaoJMXRwswITOnpOTxK7ShOZg4NswuFqpZxVqnQeZwAwd5e_6kg2vM01q8_RgiwB2M9stKYUgIQYM72Dzjbrqz5poSAFUYQj7ycsciJBf8YULqtAX5jVn3JHMyMIDJqmXJC9TAerwm3amCl4GnOyXLxvZj75YtVmsvl8l4HZPW0BFwqea_gaT3NLprs9J41JsrH30NPHXgKJhVdWYNJaNpwtNisg1lZQ.jpg",
-        "https://cdn4.telesco.pe/file/v7sWSdAlCH52bnucdFxc7tL_056XwuOGswRdGp34-roorYZevUUWKAc4cGl8guDwqN-3h-6pFvwxsCYTsxul3EzA5zGbWfKvBbHP39SChfLXeMmqPzTDlrtu1v4by1v0jm5MC__NXBCm_71ASI-cYEj90Um-7bx4IaM5BbtAAlUJgmIU1-IHEZW0p9wbkLXruNeIuBXtukPCBK3hvWLh2zh8Uwi2Rll0o1L36OikOwH-tutcihOIyqlwRX1_r6X_IcqnlJxgMz97MWYeH2o2B43Ev4gWGTJcP6C6pzM9YlX7WAFx6SXLjJ2pN7WENEoqUrcO3mcG0wPFZPBlmqX5yA.jpg",
-        "https://cdn4.telesco.pe/file/nNr5LdUBFI8jVM5uYAsnb_xk6hboLIhnXtGE2Qt3z4BbSlc9fFLakaEYeEfuFjEmOgg3IUNj-QiA_CPytD6ZYxRy7i1l3RcXwre9an9KaXz3C8DIJS08Y82sKg_FBF4_hucb4nCBsAemr79Es-YShfEfNErzfGxOp4_wvwuTRk81TXRySv0dtrOwkahEpX7aKZfaN41UeRMDRgTe2QeDYsqLrADwAVfH5KlyW0-zJM9Me3v-MeRSqFaOhFyslOGMRHZF24QAy0JfnC08i-Oczwnm9SRCWOhAQ9p390HE7eg_4jA11HGWcdWych6RlX4W6DqILl2i-YG_pHiuhwaDug.jpg",
-        "https://cdn4.telesco.pe/file/rFNUB6fJ3nmO5c9BvubhgsGdXgluxMny10HDMxQykF-vnySJOkWIKywKdkZa77WyMCcSXMstFI7naMCWU1LgsfpZNdVmKIOHbE57xyNd4MkGcdrQSkR8lfFb04jZ06lULRKYyr1EpDTX5Pj_xMuFTwoVxQ4T4hhBUUkPZzU3nywIaOWSC73CoQd-79gT0qL_-6vTWgGUmYBHNxfP3afQxLjKkDZ4qZSFH07j6ciGX7wuki9JtIXlwEqxFa8iTyW9FuNqUX5A5zK2efNd_8tm4qbGTlM2sAcOCYIXeMlrxt3wyVIN-MhXKe1wG3ggN6qTCOIHpOValhQiJxtdT8U2Nw.jpg",
-        "https://cdn4.telesco.pe/file/FPPjjrbwK8oaUESEnOkTDOdqbXvLLzOm8qERxS4xdrznHNaYJ9rN0yG8UjNiHW97RKBvRDW94sVsMW8CrcU_QkGZpWpO24ICt9qJN38OBYdA2Zqf3mHj7Rip_XyTD3qPYyaH2Gi52u3gJZckwW1BUPfE9sLCwG31RSaToYBM992R6FxchEbmb5iZXvjcQVE6CBEJcR55ii5CLgyFnhh2-HyCTUM3R3lEmmEa7f2gTritxhFeRJ1VzNFADpDoaeXnWc1xmOmZEMZxIchgDLIJkVse-blY9PXtE-RnJ-z7DuGBNpT4UdpkLEUTpmV8yTjeagd7ovgIwvElvJfKnKulnQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlZGnxykYhTYdq36BDabo5khj6AmaeAAL6FmsbdNKJS1IfAhfCtgABiwEAAwIAA3kAAzsE"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/GYfOYQXPN9G9vpBfBwTu36-iNMCMgrmvCS34exH4k5Cv9qbPFWzftlEVPIGHdZrdcn3KvAdPnhaaTWerlYekrMdHUk4LNeR2huBG39zxToEOxROT_pLicIzALNfh4mx-kMX7WPBXTwgvkXkB7pG3QeWZD6sxI8GaNHbG4kZforDAH3UztH06fzlfrfcr6ZifvN1cob4kZtF4Jh43hQL5Ifnx5eY-NZqkbHoUdfnqJyWWJg6ejUl8XkiyYCGzTbplJLR5Yy1GEaltKZ1BOODhUxln0aOGsGy0fDSbtenPwgCZGtwJfXE0rxb69lz2V61sDtX6BRk42GZWyIX2i-MAmQ.jpg",
-        "https://cdn4.telesco.pe/file/TBzgH1TWyrmMVk9CMHwV6b7F9T7BiC0a6LFl007aTLGb-eyGdphA-VWQoOixgpzkVLprp-_4uoSPE6S4kgdElLJZ92tsArjvF1FzTm923iAiSdhQxwwa34oaoJMXRwswITOnpOTxK7ShOZg4NswuFqpZxVqnQeZwAwd5e_6kg2vM01q8_RgiwB2M9stKYUgIQYM72Dzjbrqz5poSAFUYQj7ycsciJBf8YULqtAX5jVn3JHMyMIDJqmXJC9TAerwm3amCl4GnOyXLxvZj75YtVmsvl8l4HZPW0BFwqea_gaT3NLprs9J41JsrH30NPHXgKJhVdWYNJaNpwtNisg1lZQ.jpg",
-        "https://cdn4.telesco.pe/file/v7sWSdAlCH52bnucdFxc7tL_056XwuOGswRdGp34-roorYZevUUWKAc4cGl8guDwqN-3h-6pFvwxsCYTsxul3EzA5zGbWfKvBbHP39SChfLXeMmqPzTDlrtu1v4by1v0jm5MC__NXBCm_71ASI-cYEj90Um-7bx4IaM5BbtAAlUJgmIU1-IHEZW0p9wbkLXruNeIuBXtukPCBK3hvWLh2zh8Uwi2Rll0o1L36OikOwH-tutcihOIyqlwRX1_r6X_IcqnlJxgMz97MWYeH2o2B43Ev4gWGTJcP6C6pzM9YlX7WAFx6SXLjJ2pN7WENEoqUrcO3mcG0wPFZPBlmqX5yA.jpg",
-        "https://cdn4.telesco.pe/file/nNr5LdUBFI8jVM5uYAsnb_xk6hboLIhnXtGE2Qt3z4BbSlc9fFLakaEYeEfuFjEmOgg3IUNj-QiA_CPytD6ZYxRy7i1l3RcXwre9an9KaXz3C8DIJS08Y82sKg_FBF4_hucb4nCBsAemr79Es-YShfEfNErzfGxOp4_wvwuTRk81TXRySv0dtrOwkahEpX7aKZfaN41UeRMDRgTe2QeDYsqLrADwAVfH5KlyW0-zJM9Me3v-MeRSqFaOhFyslOGMRHZF24QAy0JfnC08i-Oczwnm9SRCWOhAQ9p390HE7eg_4jA11HGWcdWych6RlX4W6DqILl2i-YG_pHiuhwaDug.jpg",
-        "https://cdn4.telesco.pe/file/rFNUB6fJ3nmO5c9BvubhgsGdXgluxMny10HDMxQykF-vnySJOkWIKywKdkZa77WyMCcSXMstFI7naMCWU1LgsfpZNdVmKIOHbE57xyNd4MkGcdrQSkR8lfFb04jZ06lULRKYyr1EpDTX5Pj_xMuFTwoVxQ4T4hhBUUkPZzU3nywIaOWSC73CoQd-79gT0qL_-6vTWgGUmYBHNxfP3afQxLjKkDZ4qZSFH07j6ciGX7wuki9JtIXlwEqxFa8iTyW9FuNqUX5A5zK2efNd_8tm4qbGTlM2sAcOCYIXeMlrxt3wyVIN-MhXKe1wG3ggN6qTCOIHpOValhQiJxtdT8U2Nw.jpg",
-        "https://cdn4.telesco.pe/file/FPPjjrbwK8oaUESEnOkTDOdqbXvLLzOm8qERxS4xdrznHNaYJ9rN0yG8UjNiHW97RKBvRDW94sVsMW8CrcU_QkGZpWpO24ICt9qJN38OBYdA2Zqf3mHj7Rip_XyTD3qPYyaH2Gi52u3gJZckwW1BUPfE9sLCwG31RSaToYBM992R6FxchEbmb5iZXvjcQVE6CBEJcR55ii5CLgyFnhh2-HyCTUM3R3lEmmEa7f2gTritxhFeRJ1VzNFADpDoaeXnWc1xmOmZEMZxIchgDLIJkVse-blY9PXtE-RnJ-z7DuGBNpT4UdpkLEUTpmV8yTjeagd7ovgIwvElvJfKnKulnQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIlZGnxykYhTYdq36BDabo5khj6AmaeAAL6FmsbdNKJS1IfAhfCtgABiwEAAwIAA3kAAzsE"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 9572,
       "has_media": true,
-      "category": "real_estate"
+      "category": "real_estate",
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIlZGnxykYhTYdq36BDabo5khj6AmaeAAL6FmsbdNKJS1IfAhfCtgABiwEAAwIAA3kAAzsE"
     },
     {
       "id": "nedvig_thailand_213338",
@@ -28676,18 +28913,19 @@
       "source_channel": "tusaparsing_vn",
       "telegram": "https://t.me/tusaparsing_vn",
       "telegram_link": "https://t.me/tusaparsing_vn/404",
-      "image_url": "https://cdn4.telesco.pe/file/hzUwvkWj1aaucbg7sDjXuNBNhRjgP-TOUkaJVz4S1dbF_MGtw2E5A-23pNacBrkHB-iNNfAzwOYpoZuD3xR7casZR8nuRyyR14WMiE2cUKe7oaf6X3ypJsjdoT5L6vyXXeTkqT4VAtfJCFKqn_rm5FSQGh120amZqcZKPUDMXFGDgNOY3fv4T8B7S9vTx0n5mQL3j1CSzY6KWaw3NWuc03Buy6STB2etypr5a5FrHfa42kvMM71aPcjZhsNxL91rFpKgqf_pWOn1ghV_hn3q4pi1YeHhxNx_R3svcwd3P69buboAo5y9qUUdmakPY-u0JfH_3ZGxTbFxIvLmzp3U5g.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlGnx1U_RTg8L49CYHBRPgXkOkDuQAAKRFWsbP8p5S9o-6bBjYY0nAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/hzUwvkWj1aaucbg7sDjXuNBNhRjgP-TOUkaJVz4S1dbF_MGtw2E5A-23pNacBrkHB-iNNfAzwOYpoZuD3xR7casZR8nuRyyR14WMiE2cUKe7oaf6X3ypJsjdoT5L6vyXXeTkqT4VAtfJCFKqn_rm5FSQGh120amZqcZKPUDMXFGDgNOY3fv4T8B7S9vTx0n5mQL3j1CSzY6KWaw3NWuc03Buy6STB2etypr5a5FrHfa42kvMM71aPcjZhsNxL91rFpKgqf_pWOn1ghV_hn3q4pi1YeHhxNx_R3svcwd3P69buboAo5y9qUUdmakPY-u0JfH_3ZGxTbFxIvLmzp3U5g.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlGnx1U_RTg8L49CYHBRPgXkOkDuQAAKRFWsbP8p5S9o-6bBjYY0nAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/hzUwvkWj1aaucbg7sDjXuNBNhRjgP-TOUkaJVz4S1dbF_MGtw2E5A-23pNacBrkHB-iNNfAzwOYpoZuD3xR7casZR8nuRyyR14WMiE2cUKe7oaf6X3ypJsjdoT5L6vyXXeTkqT4VAtfJCFKqn_rm5FSQGh120amZqcZKPUDMXFGDgNOY3fv4T8B7S9vTx0n5mQL3j1CSzY6KWaw3NWuc03Buy6STB2etypr5a5FrHfa42kvMM71aPcjZhsNxL91rFpKgqf_pWOn1ghV_hn3q4pi1YeHhxNx_R3svcwd3P69buboAo5y9qUUdmakPY-u0JfH_3ZGxTbFxIvLmzp3U5g.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlGnx1U_RTg8L49CYHBRPgXkOkDuQAAKRFWsbP8p5S9o-6bBjYY0nAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 404,
       "has_media": true,
-      "category": "entertainment"
+      "category": "entertainment",
+      "file_id": "AgACAgIAAyEFAATWzgS4AAIBlGnx1U_RTg8L49CYHBRPgXkOkDuQAAKRFWsbP8p5S9o-6bBjYY0nAQADAgADeQADOwQ"
     },
     {
       "id": "tusaparsing_vn_406",
@@ -28705,18 +28943,19 @@
       "source_channel": "tusaparsing_vn",
       "telegram": "https://t.me/tusaparsing_vn",
       "telegram_link": "https://t.me/tusaparsing_vn/406",
-      "image_url": "https://cdn4.telesco.pe/file/BwFyMZlravGtzCU4LUvHMAynAzyiB57UenmJSia9pu3BKmpkYy9vtM9uhJXjGhTmVGGFeiBgFUqmP-QrU6qF3QTYl0Zi7yzrSQ9wn_8R8af5Ht6YVtRYgjGBIgKf7438Vg26-3bOGslY6kJXwAr-4Vb-abk95NORP7Ky9kvmDC6mLZ_U1NevsQOSIF1XR5DRsO6hHsRG3iD1ey8wEydP0CHWfFRYCROT-jO-OU8HvpI3N3tCcTjn1VImcjw1MLwnwRvpY6ifVCrYH4DojV55jdPZ-8Mh7i9Cb5AzU-EM7-ZzvcFtcxXwQ5si4OGalrQixvG-PIRruIp7ONXf6dBOYw.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlmnx1W-jNHjtqZc8QZW7rWyo1PiMAAJsFWsbv02QS34vQaTh2VOQAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/BwFyMZlravGtzCU4LUvHMAynAzyiB57UenmJSia9pu3BKmpkYy9vtM9uhJXjGhTmVGGFeiBgFUqmP-QrU6qF3QTYl0Zi7yzrSQ9wn_8R8af5Ht6YVtRYgjGBIgKf7438Vg26-3bOGslY6kJXwAr-4Vb-abk95NORP7Ky9kvmDC6mLZ_U1NevsQOSIF1XR5DRsO6hHsRG3iD1ey8wEydP0CHWfFRYCROT-jO-OU8HvpI3N3tCcTjn1VImcjw1MLwnwRvpY6ifVCrYH4DojV55jdPZ-8Mh7i9Cb5AzU-EM7-ZzvcFtcxXwQ5si4OGalrQixvG-PIRruIp7ONXf6dBOYw.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlmnx1W-jNHjtqZc8QZW7rWyo1PiMAAJsFWsbv02QS34vQaTh2VOQAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/BwFyMZlravGtzCU4LUvHMAynAzyiB57UenmJSia9pu3BKmpkYy9vtM9uhJXjGhTmVGGFeiBgFUqmP-QrU6qF3QTYl0Zi7yzrSQ9wn_8R8af5Ht6YVtRYgjGBIgKf7438Vg26-3bOGslY6kJXwAr-4Vb-abk95NORP7Ky9kvmDC6mLZ_U1NevsQOSIF1XR5DRsO6hHsRG3iD1ey8wEydP0CHWfFRYCROT-jO-OU8HvpI3N3tCcTjn1VImcjw1MLwnwRvpY6ifVCrYH4DojV55jdPZ-8Mh7i9Cb5AzU-EM7-ZzvcFtcxXwQ5si4OGalrQixvG-PIRruIp7ONXf6dBOYw.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlmnx1W-jNHjtqZc8QZW7rWyo1PiMAAJsFWsbv02QS34vQaTh2VOQAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 406,
       "has_media": true,
-      "category": "entertainment"
+      "category": "entertainment",
+      "file_id": "AgACAgIAAyEFAATWzgS4AAIBlmnx1W-jNHjtqZc8QZW7rWyo1PiMAAJsFWsbv02QS34vQaTh2VOQAQADAgADeQADOwQ"
     },
     {
       "id": "svoidanang_129",
@@ -28734,18 +28973,19 @@
       "source_channel": "tusaparsing_vn",
       "telegram": "https://t.me/svoidanang",
       "telegram_link": "https://t.me/svoidanang/129",
-      "image_url": "https://cdn4.telesco.pe/file/l0ATMZ78pOjxuw-Red8gf42dBCbKBUJzc4GUXwN7GtvZHGrgVfdYpl0VydOQOlQc6OXi5jr8LnMTJtxTYXKhdk4uhbDGsYOZWpJbHEk1Auh9qORDgcnAiS1mmnM7RnuRk7GG9oUXnTo0d3lPXQRCGkNavS66mFQWqPlzB6zKg8ew0VZZyRABrFKLoVCE2AseZIBVfzQHe2elvbt-0-43I7zW-cLw72D-vxXqgSn4SoDxcAEK6Gd8TOG6FuYDllswjo2uOtcgjsTHN4OA3D2RVbejmWDbJCmvwFEvlIqLKDfV_UEkOuUh3dghavdX2N6Pg9qkZAoyacwMgytgBI5Y9A.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBl2nx1Ye5wH_RxxFR_DScKFE5AyfjAAJnFmsbVgt5S1fWrsjYNo2VAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/l0ATMZ78pOjxuw-Red8gf42dBCbKBUJzc4GUXwN7GtvZHGrgVfdYpl0VydOQOlQc6OXi5jr8LnMTJtxTYXKhdk4uhbDGsYOZWpJbHEk1Auh9qORDgcnAiS1mmnM7RnuRk7GG9oUXnTo0d3lPXQRCGkNavS66mFQWqPlzB6zKg8ew0VZZyRABrFKLoVCE2AseZIBVfzQHe2elvbt-0-43I7zW-cLw72D-vxXqgSn4SoDxcAEK6Gd8TOG6FuYDllswjo2uOtcgjsTHN4OA3D2RVbejmWDbJCmvwFEvlIqLKDfV_UEkOuUh3dghavdX2N6Pg9qkZAoyacwMgytgBI5Y9A.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBl2nx1Ye5wH_RxxFR_DScKFE5AyfjAAJnFmsbVgt5S1fWrsjYNo2VAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/l0ATMZ78pOjxuw-Red8gf42dBCbKBUJzc4GUXwN7GtvZHGrgVfdYpl0VydOQOlQc6OXi5jr8LnMTJtxTYXKhdk4uhbDGsYOZWpJbHEk1Auh9qORDgcnAiS1mmnM7RnuRk7GG9oUXnTo0d3lPXQRCGkNavS66mFQWqPlzB6zKg8ew0VZZyRABrFKLoVCE2AseZIBVfzQHe2elvbt-0-43I7zW-cLw72D-vxXqgSn4SoDxcAEK6Gd8TOG6FuYDllswjo2uOtcgjsTHN4OA3D2RVbejmWDbJCmvwFEvlIqLKDfV_UEkOuUh3dghavdX2N6Pg9qkZAoyacwMgytgBI5Y9A.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBl2nx1Ye5wH_RxxFR_DScKFE5AyfjAAJnFmsbVgt5S1fWrsjYNo2VAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 407,
       "has_media": true,
-      "category": "entertainment"
+      "category": "entertainment",
+      "file_id": "AgACAgIAAyEFAATWzgS4AAIBl2nx1Ye5wH_RxxFR_DScKFE5AyfjAAJnFmsbVgt5S1fWrsjYNo2VAQADAgADeQADOwQ"
     },
     {
       "id": "svoidanang_128",
@@ -28763,18 +29003,19 @@
       "source_channel": "tusaparsing_vn",
       "telegram": "https://t.me/svoidanang",
       "telegram_link": "https://t.me/svoidanang/128",
-      "image_url": "https://cdn4.telesco.pe/file/OvO95vPNjg1rPviUh7wgF0CsUOITbC7gAkNbVtNOwBQg_R2MeciINv5Ki0zvwkcmDkDhgLwJV1ICRI9ZtrkVUW-aon0QcMVa5oRRQPJvRFH-u0GG4XzDRknuvrbU6ZuSXnRG-d-hY7iZzM-kgfHbLW-QNaUg6Q1cPCxeUqPIoTVRPjOBSpGRrPsA7EgAvFqwSo3OJvtFDL9Dter65J7gs1EDxjQWavYPRvZ3RDIEqXeYiu0N3hEWcXAId5K3cwyiMDOndDpVzbp66pPq45WWHqzaDiEKF3vCTQ2QjJciy9PEquk50vAu-wqsdGNv6RErZOqDjLa8WjYPBKfdGFdBdA.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBmGnx1ZQN6sRi844tHWNTgNUsfVzKAAIfFGsbVgt5S0YC_XVrx3-0AQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/OvO95vPNjg1rPviUh7wgF0CsUOITbC7gAkNbVtNOwBQg_R2MeciINv5Ki0zvwkcmDkDhgLwJV1ICRI9ZtrkVUW-aon0QcMVa5oRRQPJvRFH-u0GG4XzDRknuvrbU6ZuSXnRG-d-hY7iZzM-kgfHbLW-QNaUg6Q1cPCxeUqPIoTVRPjOBSpGRrPsA7EgAvFqwSo3OJvtFDL9Dter65J7gs1EDxjQWavYPRvZ3RDIEqXeYiu0N3hEWcXAId5K3cwyiMDOndDpVzbp66pPq45WWHqzaDiEKF3vCTQ2QjJciy9PEquk50vAu-wqsdGNv6RErZOqDjLa8WjYPBKfdGFdBdA.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBmGnx1ZQN6sRi844tHWNTgNUsfVzKAAIfFGsbVgt5S0YC_XVrx3-0AQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/OvO95vPNjg1rPviUh7wgF0CsUOITbC7gAkNbVtNOwBQg_R2MeciINv5Ki0zvwkcmDkDhgLwJV1ICRI9ZtrkVUW-aon0QcMVa5oRRQPJvRFH-u0GG4XzDRknuvrbU6ZuSXnRG-d-hY7iZzM-kgfHbLW-QNaUg6Q1cPCxeUqPIoTVRPjOBSpGRrPsA7EgAvFqwSo3OJvtFDL9Dter65J7gs1EDxjQWavYPRvZ3RDIEqXeYiu0N3hEWcXAId5K3cwyiMDOndDpVzbp66pPq45WWHqzaDiEKF3vCTQ2QjJciy9PEquk50vAu-wqsdGNv6RErZOqDjLa8WjYPBKfdGFdBdA.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBmGnx1ZQN6sRi844tHWNTgNUsfVzKAAIfFGsbVgt5S0YC_XVrx3-0AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 408,
       "has_media": true,
-      "category": "entertainment"
+      "category": "entertainment",
+      "file_id": "AgACAgIAAyEFAATWzgS4AAIBmGnx1ZQN6sRi844tHWNTgNUsfVzKAAIfFGsbVgt5S0YC_XVrx3-0AQADAgADeQADOwQ"
     },
     {
       "id": "tusaparsing_vn_409",
@@ -29038,18 +29279,19 @@
       "source_channel": "tusaparsing_vn",
       "telegram": "https://t.me/afisha_nhatrang",
       "telegram_link": "https://t.me/afisha_nhatrang/3727",
-      "image_url": "https://cdn4.telesco.pe/file/GjkNM2icdsYfuA1mLLlmaxLMjCcrKb5zOduzjXUjldw0tKfH72jpcIU3lEPsOV1PaordrRZ5HoQyRBHwup3kyDBfmkgX6DyzlJvGyTbEogJ252JpgXJeaGBSI_r75CufiMWR9_RXPSZjTwcE7lzZsHfUoxYzVxDDLnDxgUWagZOKEmUhm8Y2BOunF2nI3SY7RGOosf1pwI-GYicdDnkib42bQ4uoAHa0ZJ2GXO-nRV3KTNVcHEUcFWh1f4oS2s7xt87zN3uosM_OOmQLZK0RsZ9csf_hDYeXbCI9MH-hjeuE_8zRUlsnAUtcxZA2D4drUJdxHnQbmem0mAvO5G3iqw.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBfmnwcbzZsiOoxXkzI60VlfClTJopAAKTFGsbBqCIS2NgjqwlzK2KAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/GjkNM2icdsYfuA1mLLlmaxLMjCcrKb5zOduzjXUjldw0tKfH72jpcIU3lEPsOV1PaordrRZ5HoQyRBHwup3kyDBfmkgX6DyzlJvGyTbEogJ252JpgXJeaGBSI_r75CufiMWR9_RXPSZjTwcE7lzZsHfUoxYzVxDDLnDxgUWagZOKEmUhm8Y2BOunF2nI3SY7RGOosf1pwI-GYicdDnkib42bQ4uoAHa0ZJ2GXO-nRV3KTNVcHEUcFWh1f4oS2s7xt87zN3uosM_OOmQLZK0RsZ9csf_hDYeXbCI9MH-hjeuE_8zRUlsnAUtcxZA2D4drUJdxHnQbmem0mAvO5G3iqw.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBfmnwcbzZsiOoxXkzI60VlfClTJopAAKTFGsbBqCIS2NgjqwlzK2KAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/GjkNM2icdsYfuA1mLLlmaxLMjCcrKb5zOduzjXUjldw0tKfH72jpcIU3lEPsOV1PaordrRZ5HoQyRBHwup3kyDBfmkgX6DyzlJvGyTbEogJ252JpgXJeaGBSI_r75CufiMWR9_RXPSZjTwcE7lzZsHfUoxYzVxDDLnDxgUWagZOKEmUhm8Y2BOunF2nI3SY7RGOosf1pwI-GYicdDnkib42bQ4uoAHa0ZJ2GXO-nRV3KTNVcHEUcFWh1f4oS2s7xt87zN3uosM_OOmQLZK0RsZ9csf_hDYeXbCI9MH-hjeuE_8zRUlsnAUtcxZA2D4drUJdxHnQbmem0mAvO5G3iqw.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBfmnwcbzZsiOoxXkzI60VlfClTJopAAKTFGsbBqCIS2NgjqwlzK2KAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 382,
       "has_media": true,
-      "category": "entertainment"
+      "category": "entertainment",
+      "file_id": "AgACAgIAAyEFAATWzgS4AAIBfmnwcbzZsiOoxXkzI60VlfClTJopAAKTFGsbBqCIS2NgjqwlzK2KAQADAgADeQADOwQ"
     },
     {
       "id": "tusaparsing_vn_386",
@@ -29067,18 +29309,19 @@
       "source_channel": "tusaparsing_vn",
       "telegram": "https://t.me/tusaparsing_vn",
       "telegram_link": "https://t.me/tusaparsing_vn/386",
-      "image_url": "https://cdn4.telesco.pe/file/VGZN28Owato_aA5huJavV6E-mspGnc0PL2w22ImOodCGBOEYYOIadI1IEVb8A06PuCEXsqf4Nzs1eG5kz4haYajfDHo7jl-yghYexxq4Ho3W74GNdLRxkvKeU25Ao78z2Sz32bLOrJ2zngw2L86xcc5gJuGca-taka4M6FablrBPs9SnSybHKdWsy56jpIryyDeteItpQHnUcrbFUEP95TT3qIyJAmag2P7c_K6VO2uwMQ4Ruh_jsJvNiw3HpnY2JkcC4-dNCu0VkE_rYGURWiBcP6jV2yjwiD0tL5EtCdeoqm5y-V0ZTbvZgcQiyzPg6P8Gforc_gdIzV2d9dsCzg.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgmnwdGAC6h9jIOwC6VIUgba-87nbAAKPE2sbdZShSp_uhdjnQZszAQADAgADeQADOwQ",
       "all_images": [
-        "https://cdn4.telesco.pe/file/VGZN28Owato_aA5huJavV6E-mspGnc0PL2w22ImOodCGBOEYYOIadI1IEVb8A06PuCEXsqf4Nzs1eG5kz4haYajfDHo7jl-yghYexxq4Ho3W74GNdLRxkvKeU25Ao78z2Sz32bLOrJ2zngw2L86xcc5gJuGca-taka4M6FablrBPs9SnSybHKdWsy56jpIryyDeteItpQHnUcrbFUEP95TT3qIyJAmag2P7c_K6VO2uwMQ4Ruh_jsJvNiw3HpnY2JkcC4-dNCu0VkE_rYGURWiBcP6jV2yjwiD0tL5EtCdeoqm5y-V0ZTbvZgcQiyzPg6P8Gforc_gdIzV2d9dsCzg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgmnwdGAC6h9jIOwC6VIUgba-87nbAAKPE2sbdZShSp_uhdjnQZszAQADAgADeQADOwQ"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/VGZN28Owato_aA5huJavV6E-mspGnc0PL2w22ImOodCGBOEYYOIadI1IEVb8A06PuCEXsqf4Nzs1eG5kz4haYajfDHo7jl-yghYexxq4Ho3W74GNdLRxkvKeU25Ao78z2Sz32bLOrJ2zngw2L86xcc5gJuGca-taka4M6FablrBPs9SnSybHKdWsy56jpIryyDeteItpQHnUcrbFUEP95TT3qIyJAmag2P7c_K6VO2uwMQ4Ruh_jsJvNiw3HpnY2JkcC4-dNCu0VkE_rYGURWiBcP6jV2yjwiD0tL5EtCdeoqm5y-V0ZTbvZgcQiyzPg6P8Gforc_gdIzV2d9dsCzg.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgmnwdGAC6h9jIOwC6VIUgba-87nbAAKPE2sbdZShSp_uhdjnQZszAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 386,
       "has_media": true,
-      "category": "entertainment"
+      "category": "entertainment",
+      "file_id": "AgACAgIAAyEFAATWzgS4AAIBgmnwdGAC6h9jIOwC6VIUgba-87nbAAKPE2sbdZShSp_uhdjnQZszAQADAgADeQADOwQ"
     },
     {
       "id": "vietnamgamelove_386",
@@ -29122,18 +29365,19 @@
       "source_channel": "tusaparsing_vn",
       "telegram": "https://t.me/tusaparsing_vn",
       "telegram_link": "https://t.me/tusaparsing_vn/384",
-      "image_url": "https://cdn4.telesco.pe/file/dAAjgKugpUhl7hGV81wW5kwrBC69V9s_FfxfXjEH4dI_nd_jUKzeUFgJNDYKrIoHJuxD6ybR8Xm_RLFO8rWsxKoMmG31-95oG1V7rNN7iBYX_emr_uRd61-tNOOd-eB9pHk0qzH2xEvzm9nGnRilKjL0FnQRoEEWk40VhvUPxiJ7yMhyOmHoaqriEBsTq2vKA079732na9Aw2nMi8Mc9sdXKxpswF629Fm1o5LFHxX2TUki5yb40eFW1Utyf3aIqhY-d0l010G2R5jziwA5bWBZBUOPCyjUSNdjjjoA3f56GgqFuTQ7vdU-NXoxAYrcf_GQ4ngI95PgLASINu9_3VQ.jpg",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgGnwcewvCkiPqckNZrCXVqUAAfWwBQAChBNrGyf-gUvpcgtbotoa4AEAAwIAA3kAAzsE",
       "all_images": [
-        "https://cdn4.telesco.pe/file/dAAjgKugpUhl7hGV81wW5kwrBC69V9s_FfxfXjEH4dI_nd_jUKzeUFgJNDYKrIoHJuxD6ybR8Xm_RLFO8rWsxKoMmG31-95oG1V7rNN7iBYX_emr_uRd61-tNOOd-eB9pHk0qzH2xEvzm9nGnRilKjL0FnQRoEEWk40VhvUPxiJ7yMhyOmHoaqriEBsTq2vKA079732na9Aw2nMi8Mc9sdXKxpswF629Fm1o5LFHxX2TUki5yb40eFW1Utyf3aIqhY-d0l010G2R5jziwA5bWBZBUOPCyjUSNdjjjoA3f56GgqFuTQ7vdU-NXoxAYrcf_GQ4ngI95PgLASINu9_3VQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgGnwcewvCkiPqckNZrCXVqUAAfWwBQAChBNrGyf-gUvpcgtbotoa4AEAAwIAA3kAAzsE"
       ],
       "photos": [
-        "https://cdn4.telesco.pe/file/dAAjgKugpUhl7hGV81wW5kwrBC69V9s_FfxfXjEH4dI_nd_jUKzeUFgJNDYKrIoHJuxD6ybR8Xm_RLFO8rWsxKoMmG31-95oG1V7rNN7iBYX_emr_uRd61-tNOOd-eB9pHk0qzH2xEvzm9nGnRilKjL0FnQRoEEWk40VhvUPxiJ7yMhyOmHoaqriEBsTq2vKA079732na9Aw2nMi8Mc9sdXKxpswF629Fm1o5LFHxX2TUki5yb40eFW1Utyf3aIqhY-d0l010G2R5jziwA5bWBZBUOPCyjUSNdjjjoA3f56GgqFuTQ7vdU-NXoxAYrcf_GQ4ngI95PgLASINu9_3VQ.jpg"
+        "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgGnwcewvCkiPqckNZrCXVqUAAfWwBQAChBNrGyf-gUvpcgtbotoa4AEAAwIAA3kAAzsE"
       ],
       "status": "active",
       "country": "vietnam",
       "message_id": 384,
       "has_media": true,
-      "category": "entertainment"
+      "category": "entertainment",
+      "file_id": "AgACAgIAAyEFAATWzgS4AAIBgGnwcewvCkiPqckNZrCXVqUAAfWwBQAChBNrGyf-gUvpcgtbotoa4AEAAwIAA3kAAzsE"
     },
     {
       "id": "tusaparsing_vn_385",

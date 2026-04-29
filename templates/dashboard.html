@@ -9005,7 +9005,7 @@
                                     if (item.image_url_4) images.push(item.image_url_4);
                                     if (images.length === 0 && item.photo_url) images.push(item.photo_url);
                                 }
-                                images = images.filter(url => url && typeof url === 'string' && (url.startsWith('http') || url.startsWith('/tg_img/') || url.startsWith('/static/')));
+                                images = images.filter(url => url && typeof url === 'string' && (url.startsWith('http') || url.startsWith('/')));
                                 images = images.map(url => {
                                     const tmeMatch = url.match(/^https:\/\/t\.me\/([^\/]+)\/(\d+)$/);
                                     if (tmeMatch) return `/tg_img/${tmeMatch[1]}/${tmeMatch[2]}`;
