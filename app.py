@@ -24,6 +24,10 @@ DATA_CACHE_TTL = 300 # Cache data for 5 minutes
 GOOGLE_AI_API_KEY = os.environ.get('GOOGLE_AI_API_KEY', '')
 translation_cache = {}
 
+# Базовый URL Telegram Bot API. Можно переопределить через прокси:
+# TELEGRAM_API_BASE=https://your-cf-worker.workers.dev
+TG_API_BASE = os.environ.get('TELEGRAM_API_BASE', 'https://api.telegram.org').rstrip('/')
+
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.secret_key = os.environ.get("SESSION_SECRET")
 Compress(app)
@@ -47,7 +51,7 @@ def send_telegram_notification(message):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         return False
     try:
-        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+        url = f"{TG_API_BASE}/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
         data = {
             "chat_id": TELEGRAM_CHAT_ID,
             "text": message,
@@ -63,7 +67,7 @@ def send_telegram_message(chat_id, message, reply_markup=None):
     if not TELEGRAM_BOT_TOKEN:
         return False
     try:
-        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+        url = f"{TG_API_BASE}/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
         data = {
             "chat_id": chat_id,
             "text": message,
@@ -581,7 +585,7 @@ def set_telegram_webhook():
         return jsonify({'error': 'Domain not found'})
     
     webhook_url = f"https://{domain}/api/telegram-webhook"
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/setWebhook"
+    url = f"{TG_API_BASE}/bot{TELEGRAM_BOT_TOKEN}/setWebhook"
     
     try:
         response = requests.post(url, data={"url": webhook_url}, timeout=10)
@@ -2441,12 +2445,12 @@ def banner_image_proxy(msg_id):
     if file_id and tg_token:
         try:
             gf = requests.get(
-                f'https://api.telegram.org/bot{tg_token}/getFile',
+                f'{TG_API_BASE}/bot{tg_token}/getFile',
                 params={'file_id': file_id}, timeout=8
             )
             if gf.status_code == 200 and gf.json().get('ok'):
                 fp = gf.json()['result']['file_path']
-                img_url = f'https://api.telegram.org/file/bot{tg_token}/{fp}'
+                img_url = f'{TG_API_BASE}/file/bot{tg_token}/{fp}'
                 _banner_og_cache[msg_id] = (img_url, time.time())
                 return redirect(img_url)
         except Exception as e:
@@ -2663,7 +2667,7 @@ def delivery_order():
     if bot_token:
         try:
             resp = requests.post(
-                f'https://api.telegram.org/bot{bot_token}/sendMessage',
+                f'{TG_API_BASE}/bot{bot_token}/sendMessage',
                 json={'chat_id': admin_chat, 'text': msg_text, 'parse_mode': 'HTML'},
                 timeout=10
             )
@@ -2756,7 +2760,7 @@ def book_tour():
     if bot_token:
         try:
             resp = requests.post(
-                f'https://api.telegram.org/bot{bot_token}/sendMessage',
+                f'{TG_API_BASE}/bot{bot_token}/sendMessage',
                 json={'chat_id': admin_chat, 'text': msg_text, 'parse_mode': 'HTML'},
                 timeout=10
             )
@@ -2832,7 +2836,7 @@ def book_visarun():
     if bot_token:
         try:
             resp = requests.post(
-                f'https://api.telegram.org/bot{bot_token}/sendMessage',
+                f'{TG_API_BASE}/bot{bot_token}/sendMessage',
                 json={'chat_id': admin_chat, 'text': msg_text, 'parse_mode': 'HTML'},
                 timeout=10
             )
@@ -4067,7 +4071,7 @@ def setup_bot_webhook():
     
     if domains:
         webhook_url = f"https://{domains.split(',')[0]}/bot/webhook"
-        url = f'https://api.telegram.org/bot{bot_token}/setWebhook'
+        url = f'{TG_API_BASE}/bot{bot_token}/setWebhook'
         result = requests.post(url, data={'url': webhook_url}).json()
         return jsonify(result)
     
@@ -4271,7 +4275,7 @@ def _prewarm_restaurant_file_paths():
         def _fetch_one(fid):
             try:
                 r = requests.get(
-                    f'https://api.telegram.org/bot{bot_token}/getFile',
+                    f'{TG_API_BASE}/bot{bot_token}/getFile',
                     params={'file_id': fid}, timeout=10
                 )
                 if r.status_code == 200 and r.json().get('ok'):
@@ -4356,7 +4360,7 @@ def tg_photo_redirect(file_id):
             file_path = _file_path_cache.get(file_id)
         if not file_path:
             r = requests.get(
-                f'https://api.telegram.org/bot{bot_token}/getFile',
+                f'{TG_API_BASE}/bot{bot_token}/getFile',
                 params={'file_id': file_id}, timeout=10
             )
             if not (r.status_code == 200 and r.json().get('ok')):
@@ -4366,7 +4370,7 @@ def tg_photo_redirect(file_id):
                 _file_path_cache[file_id] = file_path
                 if len(_file_path_cache) % 20 == 0:
                     _save_file_path_cache(dict(_file_path_cache))
-        direct_url = f'https://api.telegram.org/file/bot{bot_token}/{file_path}'
+        direct_url = f'{TG_API_BASE}/file/bot{bot_token}/{file_path}'
         return redirect(direct_url, code=302)
     except Exception as e:
         logger.warning(f'tg_photo_redirect error for {file_id}: {e}')
@@ -4386,7 +4390,7 @@ def tg_file_proxy(file_id):
 
         if not file_path:
             r = requests.get(
-                f'https://api.telegram.org/bot{bot_token}/getFile',
+                f'{TG_API_BASE}/bot{bot_token}/getFile',
                 params={'file_id': file_id},
                 timeout=10
             )
@@ -4398,7 +4402,7 @@ def tg_file_proxy(file_id):
                 if len(_file_path_cache) % 20 == 0:
                     _save_file_path_cache(dict(_file_path_cache))
 
-        tg_url = f'https://api.telegram.org/file/bot{bot_token}/{file_path}'
+        tg_url = f'{TG_API_BASE}/file/bot{bot_token}/{file_path}'
         return _redirect(tg_url, code=302)
     except Exception as e:
         logger.warning(f'tg_file_proxy error for {file_id}: {e}')
@@ -4501,7 +4505,7 @@ def _auto_set_webhook():
             logger.warning('[bot] Не удалось определить домен — webhook не установлен')
             return
         r = requests.post(
-            f'https://api.telegram.org/bot{bot_token}/setWebhook',
+            f'{TG_API_BASE}/bot{bot_token}/setWebhook',
             json={'url': webhook_url, 'drop_pending_updates': False, 'allowed_updates': ['message', 'callback_query', 'channel_post']},
             timeout=10
         )
@@ -4627,7 +4631,7 @@ def _process_routed_channel_post(cp):
             if not _fp and _bot_tok:
                 try:
                     _gf = requests.get(
-                        f'https://api.telegram.org/bot{_bot_tok}/getFile',
+                        f'{TG_API_BASE}/bot{_bot_tok}/getFile',
                         params={'file_id': fid}, timeout=8
                     )
                     if _gf.status_code == 200 and _gf.json().get('ok'):
@@ -4637,7 +4641,7 @@ def _process_routed_channel_post(cp):
                 except Exception:
                     pass
             if _fp and _bot_tok:
-                photos_r = [f'https://api.telegram.org/file/bot{_bot_tok}/{_fp}']
+                photos_r = [f'{TG_API_BASE}/file/bot{_bot_tok}/{_fp}']
             else:
                 photos_r = [f'/api/tgphoto/{fid}']
             break
@@ -4800,7 +4804,7 @@ def _gavibeshub_poller():
                 params['offset'] = offset
 
             resp = requests.get(
-                f'https://api.telegram.org/bot{bot_token}/getUpdates',
+                f'{TG_API_BASE}/bot{bot_token}/getUpdates',
                 params=params,
                 timeout=15
             )
@@ -5877,7 +5881,7 @@ def _bot_api_download(file_id: str, bot_token: str) -> bytes | None:
     """Скачивает файл через Bot API напрямую с api.telegram.org (без CDN)."""
     try:
         r = requests.get(
-            f'https://api.telegram.org/bot{bot_token}/getFile',
+            f'{TG_API_BASE}/bot{bot_token}/getFile',
             params={'file_id': file_id},
             timeout=10
         )
@@ -5887,7 +5891,7 @@ def _bot_api_download(file_id: str, bot_token: str) -> bytes | None:
             return None
         file_path = j['result']['file_path']
         img = requests.get(
-            f'https://api.telegram.org/file/bot{bot_token}/{file_path}',
+            f'{TG_API_BASE}/file/bot{bot_token}/{file_path}',
             timeout=20
         )
         if img.status_code == 200 and img.content:
@@ -5960,7 +5964,7 @@ def tg_photo_proxy(channel, post_id):
             if not fp:
                 try:
                     r = requests.get(
-                        f'https://api.telegram.org/bot{bot_token}/getFile',
+                        f'{TG_API_BASE}/bot{bot_token}/getFile',
                         params={'file_id': file_id}, timeout=8
                     )
                     if r.status_code == 200 and r.json().get('ok'):
@@ -5970,7 +5974,7 @@ def tg_photo_proxy(channel, post_id):
                 except Exception as e:
                     logger.debug(f'tg_photo_proxy getFile error {channel}/{post_id}: {e}')
             if fp:
-                direct_url = f'https://api.telegram.org/file/bot{bot_token}/{fp}'
+                direct_url = f'{TG_API_BASE}/file/bot{bot_token}/{fp}'
                 logger.debug(f'tg_photo_proxy: Bot API redirect {channel}/{post_id}')
                 return redirect(direct_url, code=302)
 
@@ -6493,7 +6497,7 @@ def send_photo_to_group(image_data, listing, chat_id):
     if not bot_token:
         return None
     try:
-        url = f"https://api.telegram.org/bot{bot_token}/sendPhoto"
+        url = f"{TG_API_BASE}/bot{bot_token}/sendPhoto"
         caption_parts = []
         if listing:
             if listing.get('title'):
@@ -6536,7 +6540,7 @@ def send_photo_to_channel(image_data, caption=''):
         return None
     
     try:
-        url = f"https://api.telegram.org/bot{bot_token}/sendPhoto"
+        url = f"{TG_API_BASE}/bot{bot_token}/sendPhoto"
         
         files = {'photo': ('photo.jpg', image_data, 'image/jpeg')}
         data = {
@@ -6577,11 +6581,11 @@ def get_telegram_photo_url(file_id):
     if cached and time.time() < cached[1]:
         return cached[0]
     try:
-        file_url = f"https://api.telegram.org/bot{bot_token}/getFile?file_id={file_id}"
+        file_url = f"{TG_API_BASE}/bot{bot_token}/getFile?file_id={file_id}"
         file_response = requests.get(file_url, timeout=6).json()
         if file_response.get('ok'):
             file_path = file_response['result'].get('file_path')
-            url = f"https://api.telegram.org/file/bot{bot_token}/{file_path}"
+            url = f"{TG_API_BASE}/file/bot{bot_token}/{file_path}"
             _tg_url_cache[file_id] = (url, time.time() + _TG_URL_TTL)
             return url
     except Exception:
@@ -6598,7 +6602,7 @@ def _retoken_url(url, new_token):
     m = _OLD_BOT_TOKEN_RE.search(url)
     if m:
         file_path = m.group(2)
-        return f"https://api.telegram.org/file/bot{new_token}/{file_path}"
+        return f"{TG_API_BASE}/file/bot{new_token}/{file_path}"
     return url
 
 
@@ -6706,7 +6710,7 @@ def find_chat_id_by_username(username):
         return None
     
     try:
-        url = f"https://api.telegram.org/bot{bot_token}/getUpdates?limit=100"
+        url = f"{TG_API_BASE}/bot{bot_token}/getUpdates?limit=100"
         resp = requests.get(url, timeout=10)
         if resp.status_code == 200:
             updates = resp.json().get('result', [])
@@ -6747,7 +6751,7 @@ def request_chat_code():
     try:
         bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
         if bot_token:
-            url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+            url = f"{TG_API_BASE}/bot{bot_token}/sendMessage"
             resp = requests.post(url, json={'chat_id': chat_id, 'text': message, 'parse_mode': 'HTML'}, timeout=10)
             if resp.status_code == 200 and resp.json().get('ok'):
                 return jsonify({'success': True, 'message': 'Код отправлен в Telegram'})
@@ -7395,7 +7399,7 @@ def _run_fetch_empty():
         try:
             # Отправляем только текст + ссылку на оригинал (фото t.me/s/ недоступны Bot API)
             r = _req.post(
-                f'https://api.telegram.org/bot{bot_token}/sendMessage',
+                f'{TG_API_BASE}/bot{bot_token}/sendMessage',
                 json={'chat_id': chat_id, 'text': caption,
                       'parse_mode': 'HTML', 'disable_web_page_preview': True},
                 timeout=10)
@@ -7408,7 +7412,7 @@ def _run_fetch_empty():
                     _time.sleep(wait + 1)
                     # повтор после паузы
                     r2 = _req.post(
-                        f'https://api.telegram.org/bot{bot_token}/sendMessage',
+                        f'{TG_API_BASE}/bot{bot_token}/sendMessage',
                         json={'chat_id': chat_id, 'text': caption,
                               'parse_mode': 'HTML', 'disable_web_page_preview': True},
                         timeout=10)
@@ -7698,7 +7702,7 @@ def _run_forward_100(only_groups=None):
         """Отправляет фото + подпись. Возвращает True/False."""
         try:
             r = _req.post(
-                f'https://api.telegram.org/bot{bot_token}/sendPhoto',
+                f'{TG_API_BASE}/bot{bot_token}/sendPhoto',
                 data={'chat_id': f'@{dst_ch}', 'caption': caption[:1024]},
                 files={'photo': ('photo.jpg', photo_bytes, 'image/jpeg')},
                 timeout=30)
@@ -7709,7 +7713,7 @@ def _run_forward_100(only_groups=None):
                 app.logger.warning(f'[fwd100] rate limit @{dst_ch}: wait {wait}s')
                 _time.sleep(wait + 1)
                 r2 = _req.post(
-                    f'https://api.telegram.org/bot{bot_token}/sendPhoto',
+                    f'{TG_API_BASE}/bot{bot_token}/sendPhoto',
                     data={'chat_id': f'@{dst_ch}', 'caption': caption[:1024]},
                     files={'photo': ('photo.jpg', photo_bytes, 'image/jpeg')},
                     timeout=30)
@@ -7723,7 +7727,7 @@ def _run_forward_100(only_groups=None):
         """Отправляет текстовое сообщение. Возвращает True/False."""
         try:
             r = _req.post(
-                f'https://api.telegram.org/bot{bot_token}/sendMessage',
+                f'{TG_API_BASE}/bot{bot_token}/sendMessage',
                 json={'chat_id': f'@{dst_ch}', 'text': caption[:4096],
                       'disable_web_page_preview': True},
                 timeout=10)
@@ -7733,7 +7737,7 @@ def _run_forward_100(only_groups=None):
                 wait = r.json().get('parameters', {}).get('retry_after', 30)
                 _time.sleep(wait + 1)
                 r2 = _req.post(
-                    f'https://api.telegram.org/bot{bot_token}/sendMessage',
+                    f'{TG_API_BASE}/bot{bot_token}/sendMessage',
                     json={'chat_id': f'@{dst_ch}', 'text': caption[:4096],
                           'disable_web_page_preview': True},
                     timeout=10)
@@ -7756,7 +7760,7 @@ def _run_forward_100(only_groups=None):
             files[key] = (f'{key}.jpg', pb, 'image/jpeg')
         try:
             r = _req.post(
-                f'https://api.telegram.org/bot{bot_token}/sendMediaGroup',
+                f'{TG_API_BASE}/bot{bot_token}/sendMediaGroup',
                 data={'chat_id': f'@{dst_ch}', 'media': _json.dumps(media)},
                 files=files, timeout=60)
             if r.ok:
@@ -7765,7 +7769,7 @@ def _run_forward_100(only_groups=None):
                 wait = r.json().get('parameters', {}).get('retry_after', 30)
                 _time.sleep(wait + 1)
                 r2 = _req.post(
-                    f'https://api.telegram.org/bot{bot_token}/sendMediaGroup',
+                    f'{TG_API_BASE}/bot{bot_token}/sendMediaGroup',
                     data={'chat_id': f'@{dst_ch}', 'media': _json.dumps(media)},
                     files=files, timeout=60)
                 return r2.ok
@@ -7963,7 +7967,7 @@ def _run_forward_custom(channels, dst_channel, limit_per_channel):
     def send_with_photo(dst_ch, photo_bytes, caption):
         try:
             r = _req.post(
-                f'https://api.telegram.org/bot{bot_token}/sendPhoto',
+                f'{TG_API_BASE}/bot{bot_token}/sendPhoto',
                 data={'chat_id': f'@{dst_ch}', 'caption': caption[:1024]},
                 files={'photo': ('photo.jpg', photo_bytes, 'image/jpeg')},
                 timeout=30)
@@ -7973,7 +7977,7 @@ def _run_forward_custom(channels, dst_channel, limit_per_channel):
                 wait = r.json().get('parameters', {}).get('retry_after', 30)
                 _time.sleep(wait + 1)
                 r2 = _req.post(
-                    f'https://api.telegram.org/bot{bot_token}/sendPhoto',
+                    f'{TG_API_BASE}/bot{bot_token}/sendPhoto',
                     data={'chat_id': f'@{dst_ch}', 'caption': caption[:1024]},
                     files={'photo': ('photo.jpg', photo_bytes, 'image/jpeg')},
                     timeout=30)
@@ -7995,7 +7999,7 @@ def _run_forward_custom(channels, dst_channel, limit_per_channel):
             files[key] = (f'{key}.jpg', pb, 'image/jpeg')
         try:
             r = _req.post(
-                f'https://api.telegram.org/bot{bot_token}/sendMediaGroup',
+                f'{TG_API_BASE}/bot{bot_token}/sendMediaGroup',
                 data={'chat_id': f'@{dst_ch}', 'media': _json.dumps(media)},
                 files=files, timeout=60)
             if r.ok:
@@ -8004,7 +8008,7 @@ def _run_forward_custom(channels, dst_channel, limit_per_channel):
                 wait = r.json().get('parameters', {}).get('retry_after', 30)
                 _time.sleep(wait + 1)
                 r2 = _req.post(
-                    f'https://api.telegram.org/bot{bot_token}/sendMediaGroup',
+                    f'{TG_API_BASE}/bot{bot_token}/sendMediaGroup',
                     data={'chat_id': f'@{dst_ch}', 'media': _json.dumps(media)},
                     files=files, timeout=60)
                 return r2.ok
@@ -9447,7 +9451,7 @@ def _run_restaurant_poster():
         return None
 
     def _send(method, data=None, files=None):
-        url = f'https://api.telegram.org/bot{bot_token}/{method}'
+        url = f'{TG_API_BASE}/bot{bot_token}/{method}'
         for _ in range(3):
             try:
                 if files:

@@ -17,6 +17,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(mess
 logger = logging.getLogger(__name__)
 
 BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+TG_API_BASE = os.environ.get('TELEGRAM_API_BASE', 'https://api.telegram.org').rstrip('/')
 
 # ─── Список каналов ────────────────────────────────────────────────
 CHANNELS = [
@@ -168,7 +169,7 @@ def get_bot_updates_file_ids() -> dict:
         return {}
     try:
         r = requests.get(
-            f'https://api.telegram.org/bot{BOT_TOKEN}/getUpdates',
+            f'{TG_API_BASE}/bot{BOT_TOKEN}/getUpdates',
             params={'limit': 100, 'allowed_updates': json.dumps(['channel_post'])},
             timeout=15
         )
@@ -203,7 +204,7 @@ def get_file_path(file_id: str) -> str:
         return ''
     try:
         r = requests.get(
-            f'https://api.telegram.org/bot{BOT_TOKEN}/getFile',
+            f'{TG_API_BASE}/bot{BOT_TOKEN}/getFile',
             params={'file_id': file_id}, timeout=10
         )
         if r.status_code == 200 and r.json().get('ok'):
