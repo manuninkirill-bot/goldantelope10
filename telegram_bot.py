@@ -3,25 +3,30 @@ import asyncio
 import requests
 import json
 
-BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+def _get_token():
+    return os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
 
 def get_webapp_url():
-    # 1. Explicit override (set this in Railway/production)
+    # 1. Explicit override
     explicit = os.environ.get('WEBAPP_URL', '').strip()
     if explicit:
         return explicit.rstrip('/')
-    # 2. Railway auto-domain
-    railway = os.environ.get('RAILWAY_PUBLIC_DOMAIN', '').strip()
-    if railway:
-        return f"https://{railway}"
-    # 3. Replit dev domain
+    # 2. Replit published domain (production)
     domains = os.environ.get('REPLIT_DOMAINS', '')
     if domains:
         return f"https://{domains.split(',')[0]}"
+    # 3. Replit dev domain
+    dev_domain = os.environ.get('REPLIT_DEV_DOMAIN', '')
+    if dev_domain:
+        return f"https://{dev_domain}"
+    # 4. Railway auto-domain
+    railway = os.environ.get('RAILWAY_PUBLIC_DOMAIN', '').strip()
+    if railway:
+        return f"https://{railway}"
     return "https://goldantelope-asia.replit.app"
 
 def send_message(chat_id, text, reply_markup=None):
-    url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage'
+    url = f'https://api.telegram.org/bot{_get_token()}/sendMessage'
     data = {
         'chat_id': chat_id,
         'text': text,
@@ -32,7 +37,7 @@ def send_message(chat_id, text, reply_markup=None):
     return requests.post(url, data=data).json()
 
 def set_bot_commands():
-    url = f'https://api.telegram.org/bot{BOT_TOKEN}/setMyCommands'
+    url = f'https://api.telegram.org/bot{_get_token()}/setMyCommands'
     commands = [
         {"command": "start", "description": "Запустить бота"},
         {"command": "app", "description": "Открыть мини-приложение"},
@@ -44,7 +49,7 @@ def set_bot_commands():
     return requests.post(url, data=data).json()
 
 def set_menu_button():
-    url = f'https://api.telegram.org/bot{BOT_TOKEN}/setChatMenuButton'
+    url = f'https://api.telegram.org/bot{_get_token()}/setChatMenuButton'
     webapp_url = get_webapp_url()
     menu_button = {
         "type": "web_app",
@@ -105,14 +110,14 @@ Chúng tôi tự động thu thập hàng nghìn tin đăng từ nhiều kênh T
 
     keyboard = {
         "inline_keyboard": [
-            [{"text": "🌏 Open catalog / Открыть каталог", "url": webapp_url}],
+            [{"text": "🌏 Открыть каталог / Open catalog", "web_app": {"url": webapp_url}}],
             [
-                {"text": "🇻🇳 Vietnam", "url": f"{webapp_url}/?country=vietnam&lang=vi"},
-                {"text": "🇹🇭 Thailand", "url": f"{webapp_url}/?country=thailand&lang=ru"}
+                {"text": "🇻🇳 Вьетнам", "web_app": {"url": f"{webapp_url}/?country=vietnam&lang=ru"}},
+                {"text": "🇹🇭 Таиланд", "web_app": {"url": f"{webapp_url}/?country=thailand&lang=ru"}}
             ],
             [
-                {"text": "🇷🇺 Russia", "url": f"{webapp_url}/?lang=ru"},
-                {"text": "🇬🇧 England", "url": f"{webapp_url}/?lang=en"}
+                {"text": "🇮🇳 Индия", "web_app": {"url": f"{webapp_url}/?country=india&lang=ru"}},
+                {"text": "🇮🇩 Индонезия", "web_app": {"url": f"{webapp_url}/?country=indonesia&lang=ru"}}
             ]
         ]
     }
@@ -122,7 +127,7 @@ Chúng tôi tự động thu thập hàng nghìn tin đăng từ nhiều kênh T
     msg_id = result.get('result', {}).get('message_id') if result.get('ok') else None
     if msg_id:
         requests.post(
-            f'https://api.telegram.org/bot{BOT_TOKEN}/pinChatMessage',
+            f'https://api.telegram.org/bot{_get_token()}/pinChatMessage',
             json={'chat_id': chat_id, 'message_id': msg_id, 'disable_notification': True},
             timeout=10
         )
@@ -136,7 +141,7 @@ def handle_app(chat_id):
     
     keyboard = {
         "inline_keyboard": [
-            [{"text": "📱 Открыть Goldantelope ASIA", "url": webapp_url}]
+            [{"text": "📱 Открыть Goldantelope ASIA", "web_app": {"url": webapp_url}}]
         ]
     }
     

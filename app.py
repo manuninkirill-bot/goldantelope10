@@ -4458,29 +4458,37 @@ def _file_id_autosave_loop():
 threading.Thread(target=_file_id_autosave_loop, daemon=True, name='FileIdAutosave').start()
 
 
-def _auto_delete_webhook():
-    """Удаляет webhook бота при запуске, чтобы работал polling через getUpdates."""
+def _auto_set_webhook():
+    """Автоматически устанавливает webhook бота при запуске на актуальный Replit URL."""
     import time as _time
-    _time.sleep(3)
+    _time.sleep(5)
     try:
         bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
         if not bot_token:
+            logger.warning('[bot] TELEGRAM_BOT_TOKEN не задан — webhook не установлен')
             return
+        domains = os.environ.get('REPLIT_DOMAINS', '')
+        dev_domain = os.environ.get('REPLIT_DEV_DOMAIN', '')
+        domain = domains.split(',')[0] if domains else dev_domain
+        if not domain:
+            logger.warning('[bot] Не удалось определить домен — webhook не установлен')
+            return
+        webhook_url = f'https://{domain}/bot/webhook'
         r = requests.post(
-            f'https://api.telegram.org/bot{bot_token}/deleteWebhook',
-            json={'drop_pending_updates': False},
+            f'https://api.telegram.org/bot{bot_token}/setWebhook',
+            json={'url': webhook_url, 'drop_pending_updates': False, 'allowed_updates': ['message', 'callback_query', 'channel_post']},
             timeout=10
         )
         result = r.json()
         if result.get('ok'):
-            logger.info('[bot] Webhook удалён — переключено на polling (getUpdates каждые 30с)')
+            logger.info(f'[bot] Webhook установлен: {webhook_url}')
         else:
-            logger.warning(f'[bot] Ошибка удаления webhook: {result}')
+            logger.warning(f'[bot] Ошибка установки webhook: {result}')
     except Exception as e:
-        logger.warning(f'[bot] Исключение при удалении webhook: {e}')
+        logger.warning(f'[bot] Исключение при установке webhook: {e}')
 
 
-threading.Thread(target=_auto_delete_webhook, daemon=True, name='BotWebhookDelete').start()
+threading.Thread(target=_auto_set_webhook, daemon=True, name='BotWebhookSet').start()
 
 
 # ============ ФОНОВЫЙ ПОЛЛЕР КАНАЛА @banner_vn ============
