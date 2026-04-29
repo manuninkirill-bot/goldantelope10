@@ -3,33 +3,41 @@
     "2026-04-29": {
       "unique_visitors": [
         "user_q5p4f351n_1777456380129",
-        "user_hiqfx2blk_1777453152675"
+        "user_hiqfx2blk_1777453152675",
+        "user_t3ik1le13_1777454107929"
       ],
-      "page_views": 2,
+      "page_views": 57,
       "countries": {
-        "vietnam": 2
+        "vietnam": 57
       },
       "categories": {
-        "real_estate": 1,
-        "transport": 1
+        "real_estate": 41,
+        "transport": 4,
+        "chat": 7,
+        "realestate": 5
       },
       "hours": {
-        "11": 2
+        "11": 57
       },
       "referrers": {},
       "devices": {
-        "mobile": 1,
-        "desktop": 1
+        "mobile": 46,
+        "desktop": 11
       }
     }
   },
   "visitors": {
     "user_q5p4f351n_1777456380129": {
       "first_seen": "2026-04-29",
-      "visits": 1,
+      "visits": 46,
       "last_seen": "2026-04-29"
     },
     "user_hiqfx2blk_1777453152675": {
+      "first_seen": "2026-04-29",
+      "visits": 10,
+      "last_seen": "2026-04-29"
+    },
+    "user_t3ik1le13_1777454107929": {
       "first_seen": "2026-04-29",
       "visits": 1,
       "last_seen": "2026-04-29"
