@@ -1300,19 +1300,49 @@ def atomic_add_listing(category: str, item: dict) -> bool:
     if _is_link_only_item(item):
         logger.info(f"[filter] Отклонено (только ссылка/короткий текст): {item.get('id','')}")
         return False
+    _new_photos = item.get('photos') or item.get('all_images') or []
+    _new_has_photo = bool(_new_photos or item.get('image_url') or item.get('has_media'))
     with _listings_lock:
         try:
             with open(LISTINGS_FILE, 'r', encoding='utf-8') as f:
                 data = json.load(f)
         except Exception:
             data = {}
+        # Проверяем дубль по ID
+        _item_id = item.get('id')
+        if _item_id and category in data and isinstance(data[category], list):
+            for idx, existing in enumerate(data[category]):
+                if isinstance(existing, dict) and existing.get('id') == _item_id:
+                    _ex_photos = existing.get('photos') or existing.get('all_images') or []
+                    _ex_has_photo = bool(_ex_photos or existing.get('image_url') or existing.get('has_media'))
+                    if _new_has_photo and not _ex_has_photo:
+                        # Обновляем фото в существующей записи
+                        existing['photos'] = _new_photos
+                        existing['all_images'] = _new_photos
+                        existing['image_url'] = item.get('image_url', _new_photos[0] if _new_photos else '')
+                        existing['has_media'] = True
+                        data[category][idx] = existing
+                        try:
+                            tmp = LISTINGS_FILE + '.tmp'
+                            with open(tmp, 'w', encoding='utf-8') as f:
+                                json.dump(data, f, ensure_ascii=False, indent=2)
+                            try:
+                                os.replace(tmp, LISTINGS_FILE)
+                            except OSError:
+                                import shutil
+                                shutil.move(tmp, LISTINGS_FILE)
+                            logger.info(f"[dedup] Фото обновлено для: {_item_id}")
+                        except Exception as e:
+                            logger.error(f"atomic_add_listing photo update failed: {e}")
+                    return False
+        # Проверяем дубль по ID во всех категориях (без обновления)
         ids = set()
         for cat_items in data.values():
             if isinstance(cat_items, list):
                 for it in cat_items:
                     if isinstance(it, dict) and 'id' in it:
                         ids.add(it['id'])
-        if item.get('id') in ids:
+        if _item_id in ids:
             return False
         new_text = _get_item_text(item)
         new_price = _get_item_price(item)

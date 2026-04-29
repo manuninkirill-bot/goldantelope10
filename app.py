@@ -4619,31 +4619,14 @@ def _process_routed_channel_post(cp):
     photos_r = []
     photo_list = cp.get('photo', [])
     if photo_list and msg_id:
-        _bot_tok = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
         for _ph in sorted(photo_list, key=lambda p: p.get('file_size', 0), reverse=True):
             fid = _ph.get('file_id', '')
             if not fid:
                 continue
             with _msg_to_file_id_lock:
                 _msg_to_file_id[(chat_username, msg_id)] = fid
-            with _file_path_cache_lock:
-                _fp = _file_path_cache.get(fid)
-            if not _fp and _bot_tok:
-                try:
-                    _gf = requests.get(
-                        f'{TG_API_BASE}/bot{_bot_tok}/getFile',
-                        params={'file_id': fid}, timeout=8
-                    )
-                    if _gf.status_code == 200 and _gf.json().get('ok'):
-                        _fp = _gf.json()['result']['file_path']
-                        with _file_path_cache_lock:
-                            _file_path_cache[fid] = _fp
-                except Exception:
-                    pass
-            if _fp and _bot_tok:
-                photos_r = [f'{TG_API_BASE}/file/bot{_bot_tok}/{_fp}']
-            else:
-                photos_r = [f'/api/tgphoto/{fid}']
+            # Всегда используем /api/tgphoto/{fid} — прямые file-URL истекают
+            photos_r = [f'/api/tgphoto/{fid}']
             break
 
     if not text_r and not photos_r:
@@ -4846,20 +4829,9 @@ logger.info('GAvibeshub background poller started (every %ds)', GAVIBESHUB_POLL_
 
 # ─── Периодический скрейпер всех каналов (t.me/s/) ────────────────────────
 # Опрашиваются каждые ALL_CHANNELS_SCRAPE_INTERVAL секунд (5 мин)
-_PERIODIC_SCRAPE_CHANNELS = [
-    # Недвижимость
-    ('parsing_vn',     'real_estate',   'listings_vietnam.json',   'vietnam'),
-    ('parsing_th',     'real_estate',   'listings_thailand.json',  'thailand'),
-    ('parsing_in',     'real_estate',   'listings_india.json',     'india'),
-    ('parsing_indo',   'real_estate',   'listings_indonesia.json', 'indonesia'),
-    # Транспорт / байки
-    # bikeparsing_vn управляется вручную (GitHub + Telethon), автоскрапер отключён
-    ('bikeparsing_th', 'transport',     'listings_thailand.json',  'thailand'),
-    ('bikeparsing_in', 'transport',     'listings_india.json',     'india'),
-    # Развлечения
-    ('tusaparsing_vn', 'entertainment', 'listings_vietnam.json',   'vietnam'),
-    # banner_vn — пропускаем, баннеры обновляются отдельно
-]
+# Все каналы обрабатываются 100% через Bot API (webhook).
+# Периодический t.me/s/ скрапер отключён — дубли и истекающие CDN-URL.
+_PERIODIC_SCRAPE_CHANNELS = []
 _CHAT_SCRAPE_CHANNELS = []
 ALL_CHANNELS_SCRAPE_INTERVAL = 300  # 5 минут
 CHAT_SCRAPE_INTERVAL = 30           # 30 секунд
