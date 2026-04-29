@@ -121,12 +121,12 @@
   },
   "indonesia": {
     "web": [
-      "/static/images/entertainment/indo_5.jpg",
-      "/static/images/entertainment/indo_3.jpg"
+      "/g/d3/23",
+      "/g/d3/22"
     ],
     "mobile": [
-      "/static/images/entertainment/indo_5.jpg",
-      "/static/images/entertainment/indo_3.jpg"
+      "/g/d3/23",
+      "/g/d3/22"
     ]
   }
 }
