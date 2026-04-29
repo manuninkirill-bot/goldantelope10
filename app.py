@@ -2254,30 +2254,61 @@ def handle_banner_channel_delete(msg_id):
         _update_banner_config_from_data(data)
         logger.info(f'[banner_sync] Баннер удалён: msg_id={msg_id}')
 
+def _get_vietnam_entertainment_images():
+    """Возвращает список image_url из Развлечений Вьетнама."""
+    import ast as _ast
+    try:
+        with open('listings_vietnam.json', 'r', encoding='utf-8') as _f:
+            _data = json.load(_f)
+        ent_items = sorted(_data.get('entertainment', []), key=lambda x: x.get('date', ''), reverse=True)
+        images = []
+        for item in ent_items:
+            img = item.get('image_url', '') or item.get('image', '') or ''
+            if not img:
+                raw_photos = item.get('photos', '')
+                if isinstance(raw_photos, list):
+                    img = raw_photos[0] if raw_photos else ''
+                elif isinstance(raw_photos, str) and raw_photos.startswith('['):
+                    try:
+                        lst = _ast.literal_eval(raw_photos)
+                        img = lst[0] if lst else ''
+                    except Exception:
+                        img = ''
+            if img and img not in images:
+                images.append(img)
+        return images
+    except Exception:
+        return []
+
+
 def _update_banner_config_from_data(data):
     if not data:
+        ent_images = _get_vietnam_entertainment_images()
         config = load_banner_config()
-        config['vietnam']['mobile'] = []
-        config['vietnam']['web'] = []
+        config['vietnam']['mobile'] = ent_images
+        config['vietnam']['web'] = ent_images
         save_banner_config(config)
         return
     sorted_ids = sorted(data.keys(), key=lambda x: int(x))
-    new_banners = []
+    channel_banners = []
     for mid in sorted_ids:
         # Если есть локальный файл высокого качества — используем его напрямую
         local_jpg = f'static/images/banner_vn_{mid}.jpg'
         local_png = f'static/images/banner_vn_{mid}.png'
         if os.path.exists(local_jpg):
-            new_banners.append(f'/static/images/banner_vn_{mid}.jpg')
+            channel_banners.append(f'/static/images/banner_vn_{mid}.jpg')
         elif os.path.exists(local_png):
-            new_banners.append(f'/static/images/banner_vn_{mid}.png')
+            channel_banners.append(f'/static/images/banner_vn_{mid}.png')
         else:
-            new_banners.append(f'/api/banner-img/{mid}')
+            channel_banners.append(f'/api/banner-img/{mid}')
+    # Добавляем фото из Развлечений Вьетнама
+    ent_images = _get_vietnam_entertainment_images()
+    new_banners = channel_banners + [img for img in ent_images if img not in channel_banners]
     config = load_banner_config()
     config['vietnam']['mobile'] = new_banners
     config['vietnam']['web'] = new_banners
     save_banner_config(config)
-    logger.info(f'[banner_sync] Обновлено: {len(new_banners)} ссылок для баннеров')
+    logger.info(f'[banner_sync] Обновлено: {len(channel_banners)} канал + {len(ent_images)} развлечения = {len(new_banners)} баннеров Вьетнам')
 
 def _load_banner_file_ids_to_cache():
     import time as _t
@@ -6057,7 +6088,6 @@ def _sync_entertainment_banners_th_indo():
             cfg = load_banner_config()
             changed = False
             for country, fname in [
-                ('vietnam',   'listings_vietnam.json'),
                 ('thailand',  'listings_thailand.json'),
                 ('indonesia', 'listings_indonesia.json'),
                 ('india',     'listings_india.json'),
