@@ -4916,6 +4916,126 @@ def _scrape_channel_latest(channel, category, target_file, country):
         return 0
 
 
+def _backfill_channels(days=2):
+    """Скрейпит все каналы за последние N дней с пагинацией. Возвращает суммарное кол-во добавленных постов."""
+    from datetime import datetime, timezone, timedelta
+    from bot_channel_parser import scrape_channel_page, make_listing, detect_logo_fingerprints
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    total_added = 0
+    all_channels = list(_PERIODIC_SCRAPE_CHANNELS)
+    logger.info('[backfill] Старт: %d каналов, глубина %d дн. (с %s)', len(all_channels), days, cutoff.strftime('%Y-%m-%d'))
+
+    for channel, category, target_file, country in all_channels:
+        ch_added = 0
+        before = None
+        stop_pagination = False
+        max_pages = 30  # не более 30 страниц (~600 постов) на канал
+
+        for _page in range(max_pages):
+            if stop_pagination:
+                break
+            try:
+                scraped = scrape_channel_page(channel, before=before)
+            except Exception as _e:
+                logger.warning('[backfill] @%s page error: %s', channel, _e)
+                break
+            if not scraped:
+                break
+
+            # Загружаем текущие данные файла
+            try:
+                with open(target_file, 'r', encoding='utf-8') as _ff:
+                    file_data = json.load(_ff)
+            except Exception:
+                file_data = {}
+            existing = file_data.get(category, [])
+            existing_ids = {item['id'] for item in existing}
+            existing_titles = {item.get('title', '').strip()[:80] for item in existing if item.get('title', '')}
+            logo_fps = detect_logo_fingerprints(scraped)
+            _SKIP = {'channel created', 'канал создан', 'channel photo updated', 'telegram'}
+
+            page_ids = sorted(scraped.keys(), reverse=True)
+            oldest_on_page = None
+
+            for msg_id in page_ids:
+                post = scraped[msg_id]
+                # Парсим дату поста
+                post_date_str = post.get('date', '')
+                try:
+                    import re as _re
+                    post_date = datetime.fromisoformat(post_date_str.replace('Z', '+00:00')) if post_date_str else None
+                except Exception:
+                    post_date = None
+
+                if post_date and post_date < cutoff:
+                    stop_pagination = True
+                    continue
+                if oldest_on_page is None or msg_id < oldest_on_page:
+                    oldest_on_page = msg_id
+
+                item_id = f'{channel}_{msg_id}'
+                if item_id in existing_ids:
+                    continue
+                raw_title = (post.get('text', '') or '')[:40].lower().strip()
+                if not raw_title or raw_title in _SKIP:
+                    continue
+                new_item = make_listing(channel, msg_id, post, category, country, logo_fps=logo_fps)
+                item_title = new_item.get('title', '').strip()[:80]
+                if item_title and item_title in existing_titles:
+                    continue
+                existing.insert(0, new_item)
+                existing_ids.add(item_id)
+                if item_title:
+                    existing_titles.add(item_title)
+                ch_added += 1
+
+            if ch_added > 0 or True:  # всегда сохраняем если были изменения
+                if ch_added > 0:
+                    file_data[category] = existing
+                    _tmp = target_file + '.tmp'
+                    with open(_tmp, 'w', encoding='utf-8') as _ff:
+                        json.dump(file_data, _ff, ensure_ascii=False, separators=(',', ':'))
+                    os.replace(_tmp, target_file)
+                    data_cache.pop(country, None)
+
+            before = oldest_on_page
+            if before is None or stop_pagination:
+                break
+
+        logger.info('[backfill] @%s: +%d постов', channel, ch_added)
+        total_added += ch_added
+
+    logger.info('[backfill] Завершён. Итого добавлено: %d постов', total_added)
+    return total_added
+
+
+_backfill_running = False
+_backfill_lock = threading.Lock()
+
+
+@app.route('/api/admin/backfill', methods=['POST'])
+def api_admin_backfill():
+    global _backfill_running
+    with _backfill_lock:
+        if _backfill_running:
+            return jsonify({'ok': False, 'error': 'Бэкфилл уже выполняется'}), 409
+        _backfill_running = True
+
+    days = int(request.json.get('days', 2)) if request.json else 2
+    days = max(1, min(days, 7))
+
+    def _run():
+        global _backfill_running
+        try:
+            _backfill_channels(days=days)
+        finally:
+            with _backfill_lock:
+                _backfill_running = False
+
+    threading.Thread(target=_run, daemon=True, name='BackfillThread').start()
+    return jsonify({'ok': True, 'message': f'Бэкфилл за {days} дн. запущен в фоне', 'days': days})
+
+
 def _all_channels_periodic_scraper():
     """Каждые 5 минут скрейпит последнюю страницу всех каналов."""
     import time as _t2
