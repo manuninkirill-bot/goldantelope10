@@ -1279,6 +1279,7 @@ def _enrich_tg_images(items):
                                 else:
                                     fixed_fb.append(u_fb)
                             item[key] = fixed_fb
+                    pass  # speculative extras removed
                 except (ValueError, TypeError):
                     pass
 

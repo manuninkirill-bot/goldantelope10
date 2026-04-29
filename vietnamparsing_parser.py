@@ -1323,8 +1323,25 @@ def atomic_add_listing(category: str, item: dict) -> bool:
                         or _ex_url0.startswith('/g/') or _ex_url0.startswith('/gg/')
                     ))
                     _new_is_api = bool(_new_url0 and _new_url0.startswith('/api/tgphoto/'))
+                    _ex_is_apitgphoto = bool(_ex_url0 and _ex_url0.startswith('/api/tgphoto/'))
+                    # Медиагруппа: оба из /api/tgphoto/ → добавляем новое фото к альбому
+                    _should_merge_album = (
+                        _new_is_api and _ex_is_apitgphoto
+                        and len(_new_photos) == 1
+                        and _new_url0 not in _ex_photos
+                        and len(_ex_photos) < 10
+                    )
                     _should_upgrade = _new_has_photo and (not _ex_has_photo or (_ex_is_cdn and _new_is_api))
-                    if _should_upgrade:
+                    _changed = False
+                    if _should_merge_album:
+                        merged = _ex_photos + [_new_url0]
+                        existing['photos'] = merged
+                        existing['all_images'] = merged
+                        existing['has_media'] = True
+                        data[category][idx] = existing
+                        _changed = True
+                        logger.info(f"[album] Добавлено фото {len(merged)} к: {_item_id}")
+                    elif _should_upgrade:
                         # Обновляем фото в существующей записи
                         existing['photos'] = _new_photos
                         existing['all_images'] = _new_photos
@@ -1335,6 +1352,9 @@ def atomic_add_listing(category: str, item: dict) -> bool:
                         if item.get('bot_msg_id'):
                             existing['bot_msg_id'] = item['bot_msg_id']
                         data[category][idx] = existing
+                        _changed = True
+                        logger.info(f"[dedup] Фото обновлено для: {_item_id}")
+                    if _changed:
                         try:
                             tmp = LISTINGS_FILE + '.tmp'
                             with open(tmp, 'w', encoding='utf-8') as f:
@@ -1344,7 +1364,6 @@ def atomic_add_listing(category: str, item: dict) -> bool:
                             except OSError:
                                 import shutil
                                 shutil.move(tmp, LISTINGS_FILE)
-                            logger.info(f"[dedup] Фото обновлено для: {_item_id}")
                         except Exception as e:
                             logger.error(f"atomic_add_listing photo update failed: {e}")
                     return False

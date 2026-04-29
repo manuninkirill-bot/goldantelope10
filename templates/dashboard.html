@@ -6128,7 +6128,7 @@
                     ${badgesHtml}
                     ${adminBtnsHtml}
                     <div class="slides" style="display:flex;transition:transform 0.3s;height:100%;">
-                        ${images.map((img, i) => `<img ${i === 0 ? `src="${img}"` : `src="" data-lazy="${img}"`} data-src="${img}" style="min-width:100%;height:${imgH};object-fit:${imgFit};background:${imgBg};" loading="${i === 0 ? 'eager' : 'lazy'}" onerror="this.onerror=null;this.style.display='none'">`).join('')}
+                        ${images.map((img, i) => `<img ${i === 0 ? `src="${img}"` : `data-lazy="${img}"`} data-src="${img}" style="min-width:100%;height:${imgH};object-fit:${imgFit};background:${imgBg};" loading="${i === 0 ? 'eager' : 'lazy'}" onerror="sliderImgError(this)">`).join('')}
                     </div>
                     <button class="slide-btn prev" onclick="event.stopPropagation();slideCard(this,-1)" style="position:absolute;left:5px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;">‹</button>
                     <button class="slide-btn next" onclick="event.stopPropagation();slideCard(this,1)" style="position:absolute;right:5px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;">›</button>
@@ -6241,6 +6241,28 @@
             }
         }
 
+        function sliderImgError(img) {
+            img.onerror = null;
+            const slides = img.parentElement;
+            if (!slides) { img.style.display = 'none'; return; }
+            const slider = slides.parentElement;
+            const isSliderContext = slider && slider.querySelector('.slides');
+            if (!isSliderContext) { img.style.display = 'none'; return; }
+            const allImgs = Array.from(slides.querySelectorAll('img'));
+            const removedIdx = allImgs.indexOf(img);
+            const currentIdx = parseInt(slides.dataset.idx || 0);
+            img.remove();
+            const remaining = slides.querySelectorAll('img');
+            if (remaining.length <= 1) {
+                slider.querySelectorAll('.slide-btn').forEach(b => b.style.display = 'none');
+            }
+            const newIdx = removedIdx <= currentIdx ? Math.max(0, currentIdx - 1) : currentIdx;
+            slides.dataset.idx = newIdx;
+            const w = slider.offsetWidth;
+            slides.style.transition = 'none';
+            slides.style.transform = `translateX(-${newIdx * w}px)`;
+        }
+
         function slideCard(btn, dir) {
             const slider = btn.closest('.card-slider');
             if (!slider) return;
@@ -6251,6 +6273,7 @@
             let idx = parseInt(slides.dataset.idx || 0);
             idx = (idx + dir + imgs.length) % imgs.length;
             slides.dataset.idx = idx;
+            slides.style.transition = 'transform 0.3s';
             slides.style.transform = `translateX(-${idx * w}px)`;
             // Lazy load the target image
             const target = imgs[idx];
@@ -6267,10 +6290,11 @@
             let idx = parseInt(slides.dataset.idx || 0);
             idx = (idx + dir + imgs.length) % imgs.length;
             slides.dataset.idx = idx;
+            slides.style.transition = 'transform 0.3s';
             slides.style.transform = `translateX(-${idx * w}px)`;
             const target = imgs[idx];
-            if (target && !target.src && target.dataset.lazy) {
-                target.src = target.dataset.lazy;
+            if (target && !target.src && (target.dataset.src || target.dataset.lazy)) {
+                target.src = target.dataset.src || target.dataset.lazy;
             }
         }
 
