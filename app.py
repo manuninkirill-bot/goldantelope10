@@ -3988,6 +3988,21 @@ def bot_webhook():
     if not data:
         return jsonify({'ok': True})
 
+    # tg_feed — лента обновлений
+    try:
+        import tg_feed as _tgf
+        _tgf.handle_update(data)
+    except Exception:
+        pass
+
+    # Real-time обработка channel posts через _CH_ROUTE
+    _cp = data.get('channel_post', {})
+    if _cp:
+        try:
+            _process_routed_channel_post(_cp)
+        except Exception as _e_cp:
+            logger.warning('[webhook] channel_post routing error: %s', _e_cp)
+
     message = data.get('message', {}) or data.get('channel_post', {})
     chat_id = message.get('chat', {}).get('id')
     text = (message.get('text', '') or '').split('@')[0].strip()
@@ -4491,19 +4506,262 @@ def _auto_set_webhook():
 threading.Thread(target=_auto_set_webhook, daemon=True, name='BotWebhookSet').start()
 
 
-# ============ ФОНОВЫЙ ПОЛЛЕР КАНАЛА @banner_vn ============
+# ============ ОБРАБОТКА CHANNEL POSTS ЧЕРЕЗ BOT API ============
+
+def _process_routed_channel_post(cp):
+    """Обрабатывает один channel_post: определяет категорию/страну, добавляет листинг."""
+    if not cp:
+        return
+
+    chat_username = cp.get('chat', {}).get('username', '').lower()
+
+    # @banner_vn → только баннеры Вьетнам, без Развлечений
+    if chat_username == _BANNER_TG_GROUP:
+        if cp.get('photo'):
+            msg_id_b = cp.get('message_id', 0)
+            photo_list_b = cp.get('photo', [])
+            if photo_list_b and msg_id_b:
+                largest_b = max(photo_list_b, key=lambda p: p.get('file_size', 0))
+                fid_b = largest_b.get('file_id', '')
+                if fid_b:
+                    handle_banner_channel_photo(msg_id_b, fid_b)
+        return
+
+    # Роутинг всех каналов → категория + страна
+    _CH_ROUTE = {
+        'thailandparsing': ('real_estate',   'thailand'),
+        'visarun_vn':      ('visas',         'vietnam'),
+        'paymens_vn':      ('money_exchange','vietnam'),
+        'gatours_vn':      ('tours',         'vietnam'),
+        'restoranvietnam': ('restaurants',   'vietnam'),
+        'parsing_vn':      ('real_estate',   'vietnam'),
+        'parsing_th':      ('real_estate',   'thailand'),
+        'parsing_in':      ('real_estate',   'india'),
+        'parsing_indo':    ('real_estate',   'indonesia'),
+        'bikeparsing_vn':  ('transport',     'vietnam'),
+        'bikeparsing_th':  ('transport',     'thailand'),
+        'bikeparsing_in':  ('transport',     'india'),
+        'chatparsing_vn':  ('chat',          'vietnam'),
+        'tusaparsing_vn':  ('entertainment', 'vietnam'),
+        'tusaparsing_th':  ('entertainment', 'thailand'),
+        'excursii_th':     ('entertainment', 'thailand'),
+        'tusaparsing_indo':('entertainment', 'indonesia'),
+    }
+    route = _CH_ROUTE.get(chat_username)
+    if not route:
+        return
+
+    category_r, country_r = route
+    _raw_text = cp.get('text', '') or cp.get('caption', '') or ''
+    import re as _re_f
+    text_r = _re_f.sub(
+        r'\n*Источник:\s*@?\S+\s*\n?Ссылка:\s*https?://t\.me/\S+',
+        '', _raw_text, flags=_re_f.IGNORECASE
+    ).strip()
+    msg_id = cp.get('message_id', 0)
+
+    _AGGR = {'parsing_vn', 'parsing_th', 'chatparsing_vn', 'tusaparsing_vn',
+             'baikeparsing_vn', 'baikeparsing_th', 'dom_vn', 'doma_th',
+             'tusaparsing_th', 'excursii_th', 'tusaparsing_indo'}
+    orig_username, orig_msg_id = '', 0
+
+    fwd_chat = cp.get('forward_from_chat', {})
+    fwd_username = (fwd_chat.get('username', '') if fwd_chat else '').lower()
+    if fwd_username and fwd_username not in _AGGR and not fwd_username.startswith('parsing_'):
+        orig_username = fwd_username
+        orig_msg_id = cp.get('forward_from_message_id', 0)
+
+    if not orig_username:
+        import re as _re
+        _full_text = (cp.get('text', '') or cp.get('caption', '') or '')
+        for _ent in (cp.get('entities') or cp.get('caption_entities') or []):
+            _url = _ent.get('url', '')
+            if not _url:
+                _off, _len = _ent.get('offset', 0), _ent.get('length', 0)
+                _url = _full_text[_off:_off+_len]
+            _m = _re.search(r't\.me/([^/"?\s]+)/(\d+)', _url)
+            if _m and _m.group(1).lower() not in _AGGR and not _m.group(1).lower().startswith('parsing_'):
+                orig_username, orig_msg_id = _m.group(1), int(_m.group(2))
+                break
+
+    if not orig_username:
+        import re as _re2
+        _full_text2 = cp.get('text', '') or cp.get('caption', '') or ''
+        for _m2 in _re2.finditer(r'https://t\.me/([^/"?\s]+)/(\d+)', _full_text2):
+            _ch2 = _m2.group(1).lower()
+            if _ch2 not in _AGGR and not _ch2.startswith('parsing_'):
+                orig_username, orig_msg_id = _m2.group(1), int(_m2.group(2))
+                break
+
+    orig_username = orig_username or chat_username
+    orig_msg_id = orig_msg_id or msg_id
+
+    photos_r = []
+    photo_list = cp.get('photo', [])
+    if photo_list and msg_id:
+        _bot_tok = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+        for _ph in sorted(photo_list, key=lambda p: p.get('file_size', 0), reverse=True):
+            fid = _ph.get('file_id', '')
+            if not fid:
+                continue
+            with _msg_to_file_id_lock:
+                _msg_to_file_id[(chat_username, msg_id)] = fid
+            with _file_path_cache_lock:
+                _fp = _file_path_cache.get(fid)
+            if not _fp and _bot_tok:
+                try:
+                    _gf = requests.get(
+                        f'https://api.telegram.org/bot{_bot_tok}/getFile',
+                        params={'file_id': fid}, timeout=8
+                    )
+                    if _gf.status_code == 200 and _gf.json().get('ok'):
+                        _fp = _gf.json()['result']['file_path']
+                        with _file_path_cache_lock:
+                            _file_path_cache[fid] = _fp
+                except Exception:
+                    pass
+            if _fp and _bot_tok:
+                photos_r = [f'https://api.telegram.org/file/bot{_bot_tok}/{_fp}']
+            else:
+                photos_r = [f'/api/tgphoto/{fid}']
+            break
+
+    if not text_r and not photos_r:
+        return
+    if category_r == 'real_estate' and not photos_r:
+        return
+
+    try:
+        from vietnamparsing_parser import atomic_add_listing
+        from datetime import datetime as _dt, timezone as _tz
+        title_r = text_r[:120].replace('\n', ' ').strip() if text_r else f'Пост {orig_msg_id}'
+        _txt_low = (text_r or '').lower()
+        _vn_cities = {
+            'nhatrang':  ['нячанг', 'nha trang', 'nhatrang', 'камрань', 'cam ranh',
+                          'bắc nha trang', 'khanh hoa', 'bai dai', 'hon tre', 'vinh nguyen'],
+            'hochiminh': ['хошимин', 'сайгон', 'saigon', 'ho chi minh', 'hcm',
+                          'binh thanh', 'thu duc', 'tan binh', 'go vap'],
+            'danang':    ['дананг', 'da nang', 'danang', 'da-nang', 'son tra', 'sơn trà',
+                          'lien chieu', 'my khe', 'bac my an', 'hoa khanh',
+                          'hai chau', 'thanh khe', 'ngu hanh son', 'nam o'],
+            'hanoi':     ['ханой', 'hanoi', 'ha noi', 'tay ho', 'hoan kiem', 'ba dinh'],
+            'phuquoc':   ['фукуок', 'phu quoc', 'phuquoc', 'duong dong', 'long beach'],
+            'dalat':     ['далат', 'da lat', 'dalat', 'lam dong'],
+            'muine':     ['муйне', 'mui ne', 'phan thiet', 'фантьет'],
+            'hoian':     ['хойан', 'hoi an', 'hội an'],
+        }
+        _th_cities = {
+            'pattaya':   ['паттайя', 'pattaya', 'wongamat', 'jomtien'],
+            'phuket':    ['пхукет', 'phuket', 'rawai', 'patong', 'karon', 'kata'],
+            'bangkok':   ['бангкок', 'bangkok'],
+            'samui':     ['самуи', 'samui', 'ko samui'],
+            'chiangmai': ['чиангмай', 'chiang mai'],
+        }
+        _in_cities = {
+            'goa':       ['гоа', 'goa', 'arambol', 'арамболь', 'anjuna', 'анджуна', 'calangute', 'morjim', 'морджим', 'baga', 'panjim', 'siolim'],
+            'mumbai':    ['мумбай', 'mumbai', 'bombay'],
+            'delhi':     ['дели', 'delhi', 'new delhi'],
+            'bangalore': ['бангалор', 'bangalore', 'bengaluru'],
+        }
+        _indo_cities = {
+            'bali':    ['бали', 'bali', 'canggu', 'семиньяк', 'seminyak', 'ubud', 'убуд', 'kuta', 'кута', 'sanur', 'nusa dua', 'uluwatu'],
+            'jakarta': ['джакарта', 'jakarta'],
+            'lombok':  ['ломбок', 'lombok'],
+        }
+        _country_city_default = {
+            'vietnam': 'Вьетнам', 'thailand': 'Таиланд',
+            'india': 'Индия', 'indonesia': 'Индонезия',
+        }
+        _city_map_r = {'vietnam': _vn_cities, 'thailand': _th_cities,
+                       'india': _in_cities, 'indonesia': _indo_cities}.get(country_r, {})
+        _re_city = ''
+        for _cs, _kws in _city_map_r.items():
+            if any(_kw in _txt_low for _kw in _kws):
+                _re_city = _cs
+                break
+        try:
+            from bot_channel_parser import city_from_channel as _city_from_ch
+            _city_from_name = _city_from_ch(orig_username) or _city_from_ch(chat_username)
+        except Exception:
+            _city_from_name = ''
+        if _city_from_name:
+            _city_display = _city_from_name
+        elif _re_city:
+            _slug_to_ru = {
+                'nhatrang':'Нячанг','danang':'Дананг','hochiminh':'Хошимин',
+                'hanoi':'Ханой','phuquoc':'Фукуок','dalat':'Далат',
+                'muine':'Муйне','hoian':'Хойан','camranh':'Камрань',
+                'pattaya':'Паттайя','phuket':'Пхукет','bangkok':'Бангкок',
+                'samui':'Самуи','chiangmai':'Чиангмай',
+                'goa':'Гоа','mumbai':'Мумбаи','delhi':'Дели','bangalore':'Бангалор',
+                'bali':'Бали','jakarta':'Джакарта','lombok':'Ломбок',
+            }
+            _city_display = _slug_to_ru.get(_re_city,
+                             _country_city_default.get(country_r, country_r.capitalize()))
+        else:
+            _city_display = _country_city_default.get(country_r, country_r.capitalize())
+        item_r = {
+            'id': f'{orig_username}_{orig_msg_id}',
+            'title': title_r,
+            'description': text_r,
+            'text': text_r,
+            'price': 0,
+            'price_display': '',
+            'city': _city_display,
+            'city_ru': _city_display,
+            'realestate_city': _re_city,
+            'date': _dt.now(_tz.utc).isoformat(),
+            'contact': f'@{orig_username}',
+            'contact_name': orig_username,
+            'source_group': orig_username,
+            'source_channel': chat_username,
+            'telegram': f'https://t.me/{orig_username}',
+            'telegram_link': f'https://t.me/{orig_username}/{orig_msg_id}',
+            'image_url': photos_r[0] if photos_r else '',
+            'all_images': photos_r,
+            'photos': photos_r,
+            'has_media': bool(photos_r),
+            'status': 'active',
+            'country': country_r,
+            'message_id': orig_msg_id,
+            'category': category_r,
+        }
+        if category_r == 'transport':
+            _txt_check = (title_r + ' ' + (text_r or '')).lower()
+            if '🚗' in _txt_check or '🚙' in _txt_check or any(
+                kw in _txt_check for kw in ['mazda','toyota','mercedes','mitsubishi',
+                'hyundai','kia','nissan','lexus','bmw','audi','ford','subaru',
+                'автомобил','машин','sedan','suv','cx-','expander','innova',
+                'camry','corolla','rav4','fortuner','vios','yaris','vinfast']):
+                item_r['transport_type'] = 'cars'
+            elif '🏍' in _txt_check or '🛵' in _txt_check or any(
+                kw in _txt_check for kw in ['мото','байк','скутер','мопед',
+                'yamaha','kawasaki','vespa','piaggio','honda wave','honda sh',
+                'honda vision','honda pcx','honda lead','cbr','cbf',
+                'winner','airblade','exciter','winner','nvx']):
+                item_r['transport_type'] = 'bikes'
+            else:
+                item_r['transport_type'] = 'bikes'
+        added = atomic_add_listing(category_r, item_r)
+        if added:
+            data_cache.pop(country_r, None)
+        logger.info('[webhook_ch] @%s #%d → %s (%s)', chat_username, msg_id, category_r, 'добавлен' if added else 'дубликат')
+    except Exception as e:
+        logger.error('[webhook_ch] Ошибка @%s #%d: %s', chat_username, msg_id, e)
+
 
 _gavibeshub_poll_offset = 0
 _gavibeshub_poll_lock = threading.Lock()
-GAVIBESHUB_POLL_INTERVAL = 30  # секунд
+GAVIBESHUB_POLL_INTERVAL = 30
+
 
 def _gavibeshub_poller():
-    """Фоновый поллер: получает новые посты из @media_vn через Bot API getUpdates
-    и добавляет их в категорию entertainment (Vietnam)."""
+    """Фоновый поллер каналов. При активном webhook (HTTP 409) завершает работу — 
+    все обновления обрабатываются через /bot/webhook."""
     import time as _time
     global _gavibeshub_poll_offset
 
-    _time.sleep(10)  # дать приложению запуститься
+    _time.sleep(10)
 
     bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
     if not bot_token:
@@ -4530,284 +4788,32 @@ def _gavibeshub_poller():
                 params=params,
                 timeout=15
             )
+            if resp.status_code == 409:
+                logger.info('[gavibeshub_poller] Webhook активен (HTTP 409) — поллер остановлен, обновления идут через /bot/webhook')
+                return
             if resp.status_code != 200:
                 logger.warning('[gavibeshub_poller] getUpdates HTTP %d', resp.status_code)
                 _time.sleep(GAVIBESHUB_POLL_INTERVAL)
                 continue
 
             updates = resp.json().get('result', [])
-            logger.debug('[gavibeshub_poller] poll OK, updates=%d, offset=%d', len(updates), offset or 0)
 
             for upd in updates:
                 upd_id = upd.get('update_id', 0)
                 with _gavibeshub_poll_lock:
                     if upd_id >= _gavibeshub_poll_offset:
                         _gavibeshub_poll_offset = upd_id + 1
-
-                # Передаём обновление в tg_feed (единственный getUpdates — этот поллер)
                 try:
                     import tg_feed as _tf_mod
                     _tf_mod.handle_update(upd)
                 except Exception:
                     pass
-
                 cp = upd.get('channel_post', {})
-                if not cp:
-                    continue
-
-                chat_username = cp.get('chat', {}).get('username', '').lower()
-                chat_id_val = cp.get('chat', {}).get('id', 0)
-
-                # @banner_vn → только баннеры Вьетнам, без Развлечений
-                if chat_username == _BANNER_TG_GROUP:
-                    if cp.get('photo'):
-                        msg_id_b = cp.get('message_id', 0)
-                        photo_list_b = cp.get('photo', [])
-                        if photo_list_b and msg_id_b:
-                            largest_b = max(photo_list_b, key=lambda p: p.get('file_size', 0))
-                            fid_b = largest_b.get('file_id', '')
-                            if fid_b:
-                                handle_banner_channel_photo(msg_id_b, fid_b)
-                    continue
-
-                # Роутинг всех каналов → категория + страна
-                _CH_ROUTE = {
-                    'thailandparsing': ('real_estate',   'thailand'),
-                    'visarun_vn':      ('visas',         'vietnam'),
-                    'paymens_vn':      ('money_exchange','vietnam'),
-                    'gatours_vn':      ('tours',         'vietnam'),
-                    'restoranvietnam': ('restaurants',   'vietnam'),
-                    # Агрегаторы-приёмники (HF Space пересылает сюда)
-                    'parsing_vn':      ('real_estate',   'vietnam'),
-                    'parsing_th':      ('real_estate',   'thailand'),
-                    'parsing_in':      ('real_estate',   'india'),
-                    'parsing_indo':    ('real_estate',   'indonesia'),
-                    'bikeparsing_vn':  ('transport',     'vietnam'),
-                    'bikeparsing_th':  ('transport',     'thailand'),
-                    'bikeparsing_in':  ('transport',     'india'),
-                    'chatparsing_vn':  ('chat',          'vietnam'),
-                    'tusaparsing_vn':  ('entertainment', 'vietnam'),
-                    'tusaparsing_th':  ('entertainment', 'thailand'),
-                    'excursii_th':     ('entertainment', 'thailand'),
-                    'tusaparsing_indo':('entertainment', 'indonesia'),
-                }
-                route = _CH_ROUTE.get(chat_username)
-                if not route:
-                    continue
-
-                category_r, country_r = route
-                _raw_text = cp.get('text', '') or cp.get('caption', '') or ''
-                import re as _re_f
-                text_r = _re_f.sub(
-                    r'\n*Источник:\s*@?\S+\s*\n?Ссылка:\s*https?://t\.me/\S+',
-                    '', _raw_text, flags=_re_f.IGNORECASE
-                ).strip()
-                msg_id = cp.get('message_id', 0)
-
-                # Первоисточник: forward_from_chat → ссылки в entities → ссылки в тексте
-                _AGGR = {'parsing_vn', 'parsing_th', 'chatparsing_vn', 'tusaparsing_vn',
-                         'baikeparsing_vn', 'baikeparsing_th', 'dom_vn', 'doma_th',
-                         'tusaparsing_th', 'excursii_th', 'tusaparsing_indo'}
-                orig_username, orig_msg_id = '', 0
-
-                # 1) Telegram forward header
-                fwd_chat = cp.get('forward_from_chat', {})
-                fwd_username = (fwd_chat.get('username', '') if fwd_chat else '').lower()
-                if fwd_username and fwd_username not in _AGGR and not fwd_username.startswith('parsing_'):
-                    orig_username = fwd_username
-                    orig_msg_id = cp.get('forward_from_message_id', 0)
-
-                # 2) URL entities в тексте или подписи
-                if not orig_username:
-                    import re as _re
-                    _full_text = (cp.get('text', '') or cp.get('caption', '') or '')
-                    for _ent in (cp.get('entities') or cp.get('caption_entities') or []):
-                        _url = _ent.get('url', '')
-                        if not _url:
-                            # type=url — извлекаем из текста
-                            _off, _len = _ent.get('offset', 0), _ent.get('length', 0)
-                            _url = _full_text[_off:_off+_len]
-                        _m = _re.search(r't\.me/([^/"?\s]+)/(\d+)', _url)
-                        if _m and _m.group(1).lower() not in _AGGR and not _m.group(1).lower().startswith('parsing_'):
-                            orig_username, orig_msg_id = _m.group(1), int(_m.group(2))
-                            break
-
-                # 3) Прямой поиск t.me-ссылок в тексте
-                if not orig_username:
-                    import re as _re2
-                    _full_text2 = cp.get('text', '') or cp.get('caption', '') or ''
-                    for _m2 in _re2.finditer(r'https://t\.me/([^/"?\s]+)/(\d+)', _full_text2):
-                        _ch2 = _m2.group(1).lower()
-                        if _ch2 not in _AGGR and not _ch2.startswith('parsing_'):
-                            orig_username, orig_msg_id = _m2.group(1), int(_m2.group(2))
-                            break
-
-                # Fallback: сам агрегирующий канал
-                orig_username = orig_username or chat_username
-                orig_msg_id = orig_msg_id or msg_id
-
-                # Получаем прямую ссылку на фото через getFile (браузер грузит напрямую с CDN)
-                photos_r = []
-                photo_list = cp.get('photo', [])
-                if photo_list and msg_id:
-                    _bot_tok = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
-                    for _ph in sorted(photo_list, key=lambda p: p.get('file_size', 0), reverse=True):
-                        fid = _ph.get('file_id', '')
-                        if not fid:
-                            continue
-                        with _msg_to_file_id_lock:
-                            _msg_to_file_id[(chat_username, msg_id)] = fid
-                        # Сначала проверяем кэш file_path
-                        with _file_path_cache_lock:
-                            _fp = _file_path_cache.get(fid)
-                        if not _fp and _bot_tok:
-                            try:
-                                _gf = requests.get(
-                                    f'https://api.telegram.org/bot{_bot_tok}/getFile',
-                                    params={'file_id': fid}, timeout=8
-                                )
-                                if _gf.status_code == 200 and _gf.json().get('ok'):
-                                    _fp = _gf.json()['result']['file_path']
-                                    with _file_path_cache_lock:
-                                        _file_path_cache[fid] = _fp
-                            except Exception:
-                                pass
-                        if _fp and _bot_tok:
-                            # Прямая CDN ссылка — браузер загружает напрямую, без серверного скачивания
-                            photos_r = [f'https://api.telegram.org/file/bot{_bot_tok}/{_fp}']
-                        else:
-                            # Fallback: редирект-прокси (работает пока сервер запущен)
-                            photos_r = [f'/api/tgphoto/{fid}']
-                        break
-
-                if not text_r and not photos_r:
-                    continue
-
-                # Недвижимость — только с фото
-                if category_r == 'real_estate' and not photos_r:
-                    continue
-
-                try:
-                    from vietnamparsing_parser import atomic_add_listing
-                    from datetime import datetime as _dt, timezone as _tz
-                    title_r = text_r[:120].replace('\n', ' ').strip() if text_r else f'Пост {orig_msg_id}'
-                    # Определяем город из текста
-                    _txt_low = (text_r or '').lower()
-                    _vn_cities = {
-                        'nhatrang':  ['нячанг', 'nha trang', 'nhatrang', 'камрань', 'cam ranh',
-                                      'bắc nha trang', 'khanh hoa', 'bai dai', 'hon tre', 'vinh nguyen'],
-                        'hochiminh': ['хошимин', 'сайгон', 'saigon', 'ho chi minh', 'hcm',
-                                      'binh thanh', 'thu duc', 'tan binh', 'go vap'],
-                        'danang':    ['дананг', 'da nang', 'danang', 'da-nang', 'son tra', 'sơn trà',
-                                      'lien chieu', 'my khe', 'bac my an', 'hoa khanh',
-                                      'hai chau', 'thanh khe', 'ngu hanh son', 'nam o'],
-                        'hanoi':     ['ханой', 'hanoi', 'ha noi', 'tay ho', 'hoan kiem', 'ba dinh'],
-                        'phuquoc':   ['фукуок', 'phu quoc', 'phuquoc', 'duong dong', 'long beach'],
-                        'dalat':     ['далат', 'da lat', 'dalat', 'lam dong'],
-                        'muine':     ['муйне', 'mui ne', 'phan thiet', 'фантьет'],
-                        'hoian':     ['хойан', 'hoi an', 'hội an'],
-                    }
-                    _th_cities = {
-                        'pattaya':  ['паттайя', 'pattaya', 'wongamat', 'jomtien'],
-                        'phuket':   ['пхукет', 'phuket', 'rawai', 'patong', 'karon', 'kata'],
-                        'bangkok':  ['бангкок', 'bangkok'],
-                        'samui':    ['самуи', 'samui', 'ko samui'],
-                        'chiangmai':['чиангмай', 'chiang mai'],
-                    }
-                    _in_cities = {
-                        'goa':       ['гоа', 'goa', 'arambol', 'арамболь', 'anjuna', 'анджуна', 'calangute', 'morjim', 'морджим', 'baga', 'panjim', 'siolim'],
-                        'mumbai':    ['мумбай', 'mumbai', 'bombay'],
-                        'delhi':     ['дели', 'delhi', 'new delhi'],
-                        'bangalore': ['бангалор', 'bangalore', 'bengaluru'],
-                    }
-                    _indo_cities = {
-                        'bali':      ['бали', 'bali', 'canggu', 'семиньяк', 'seminyak', 'ubud', 'убуд', 'kuta', 'кута', 'sanur', 'nusa dua', 'uluwatu'],
-                        'jakarta':   ['джакарта', 'jakarta'],
-                        'lombok':    ['ломбок', 'lombok'],
-                    }
-                    _country_city_default = {
-                        'vietnam': 'Вьетнам', 'thailand': 'Таиланд',
-                        'india': 'Индия', 'indonesia': 'Индонезия',
-                    }
-                    _city_map_r = {'vietnam': _vn_cities, 'thailand': _th_cities,
-                                   'india': _in_cities, 'indonesia': _indo_cities}.get(country_r, {})
-                    _re_city = ''
-                    for _cs, _kws in _city_map_r.items():
-                        if any(_kw in _txt_low for _kw in _kws):
-                            _re_city = _cs
-                            break
-                    # Город: сначала из названия канала, затем из текста, затем страна
+                if cp:
                     try:
-                        from bot_channel_parser import city_from_channel as _city_from_ch
-                        _city_from_name = _city_from_ch(orig_username) or _city_from_ch(chat_username)
-                    except Exception:
-                        _city_from_name = ''
-                    if _city_from_name:
-                        _city_display = _city_from_name
-                    elif _re_city:
-                        # Слаг → русское название
-                        _slug_to_ru = {
-                            'nhatrang':'Нячанг','danang':'Дананг','hochiminh':'Хошимин',
-                            'hanoi':'Ханой','phuquoc':'Фукуок','dalat':'Далат',
-                            'muine':'Муйне','hoian':'Хойан','camranh':'Камрань',
-                            'pattaya':'Паттайя','phuket':'Пхукет','bangkok':'Бангкок',
-                            'samui':'Самуи','chiangmai':'Чиангмай',
-                            'goa':'Гоа','mumbai':'Мумбаи','delhi':'Дели','bangalore':'Бангалор',
-                            'bali':'Бали','jakarta':'Джакарта','lombok':'Ломбок',
-                        }
-                        _city_display = _slug_to_ru.get(_re_city,
-                                         _country_city_default.get(country_r, country_r.capitalize()))
-                    else:
-                        _city_display = _country_city_default.get(country_r, country_r.capitalize())
-                    item_r = {
-                        'id': f'{orig_username}_{orig_msg_id}',
-                        'title': title_r,
-                        'description': text_r,
-                        'text': text_r,
-                        'price': 0,
-                        'price_display': '',
-                        'city': _city_display,
-                        'city_ru': _city_display,
-                        'realestate_city': _re_city,
-                        'date': _dt.now(_tz.utc).isoformat(),
-                        'contact': f'@{orig_username}',
-                        'contact_name': orig_username,
-                        'source_group': orig_username,
-                        'source_channel': chat_username,
-                        'telegram': f'https://t.me/{orig_username}',
-                        'telegram_link': f'https://t.me/{orig_username}/{orig_msg_id}',
-                        'image_url': photos_r[0] if photos_r else '',
-                        'all_images': photos_r,
-                        'photos': photos_r,
-                        'has_media': bool(photos_r),
-                        'status': 'active',
-                        'country': country_r,
-                        'message_id': orig_msg_id,
-                        'category': category_r,
-                    }
-                    # Авто-определение transport_type для транспорта
-                    if category_r == 'transport':
-                        _txt_check = (title_r + ' ' + (text_r or '')).lower()
-                        if '🚗' in _txt_check or '🚙' in _txt_check or any(
-                            kw in _txt_check for kw in ['mazda','toyota','mercedes','mitsubishi',
-                            'hyundai','kia','nissan','lexus','bmw','audi','ford','subaru',
-                            'автомобил','машин','sedan','suv','cx-','expander','innova',
-                            'camry','corolla','rav4','fortuner','vios','yaris','vinfast']):
-                            item_r['transport_type'] = 'cars'
-                        elif '🏍' in _txt_check or '🛵' in _txt_check or any(
-                            kw in _txt_check for kw in ['мото','байк','скутер','мопед',
-                            'yamaha','kawasaki','vespa','piaggio','honda wave','honda sh',
-                            'honda vision','honda pcx','honda lead','cbr','cbf',
-                            'winner','airblade','exciter','winner','nvx']):
-                            item_r['transport_type'] = 'bikes'
-                        else:
-                            item_r['transport_type'] = 'bikes'
-                    added = atomic_add_listing(category_r, item_r)
-                    if added:
-                        data_cache.pop(country_r, None)
-                    logger.info('[all_ch_poller] @%s #%d → %s (%s)', chat_username, msg_id, category_r, 'добавлен' if added else 'дубликат')
-                except Exception as e:
-                    logger.error('[all_ch_poller] Ошибка @%s #%d: %s', chat_username, msg_id, e)
+                        _process_routed_channel_post(cp)
+                    except Exception as _e:
+                        logger.warning('[gavibeshub_poller] channel_post error: %s', _e)
 
         except Exception as e:
             logger.warning('[gavibeshub_poller] Ошибка поллинга: %s', e)
