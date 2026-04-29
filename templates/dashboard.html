@@ -6068,7 +6068,7 @@
                     images = images.map(url => {
                         const tmeMatch = url.match(/^https:\/\/t\.me\/([^\/]+)\/(\d+)$/);
                         if (tmeMatch) return `/tg_img/${tmeMatch[1]}/${tmeMatch[2]}`;
-                        if (url.startsWith('/tg_img/') || url.startsWith('/tg_file/')) return url;
+                        if (url.startsWith('/tg_img/') || url.startsWith('/tg_file/') || url.startsWith('/api/tgphoto/') || url.startsWith('/g/') || url.startsWith('/gg/')) return url;
                         if (url.includes('telesco.pe') || url.includes('api.telegram.org')) return url;
                         return url + (url.includes('?') ? '&' : '?') + '_t=' + cacheBuster;
                     });
