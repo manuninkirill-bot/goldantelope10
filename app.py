@@ -4906,13 +4906,18 @@ def _process_routed_channel_post(cp):
             break
 
     _mgid_early = cp.get('media_group_id', '')
-    if not text_r and not photos_r:
-        return
-    if category_r in ('real_estate', 'transport') and not photos_r:
-        return
-    # Разрешаем фото без текста ТОЛЬКО если это продолжение альбома (media_group_id есть)
-    if category_r in ('real_estate', 'transport') and not text_r and not _mgid_early:
-        return
+    # parsing_* и bikeparsing_* — принимаем 100% сообщений без фильтров
+    _NO_FILTER_CHANNELS = {'parsing_vn','parsing_th','parsing_in','parsing_indo',
+                           'bikeparsing_vn','bikeparsing_th','bikeparsing_in'}
+    _is_no_filter = chat_username in _NO_FILTER_CHANNELS
+    if not _is_no_filter:
+        if not text_r and not photos_r:
+            return
+        if category_r in ('real_estate', 'transport') and not photos_r:
+            return
+        # Разрешаем фото без текста ТОЛЬКО если это продолжение альбома (media_group_id есть)
+        if category_r in ('real_estate', 'transport') and not text_r and not _mgid_early:
+            return
 
     try:
         from vietnamparsing_parser import atomic_add_listing
@@ -5112,18 +5117,35 @@ threading.Thread(target=_gavibeshub_poller, daemon=True, name='GAvibeshubPoller'
 logger.info('GAvibeshub background poller started (every %ds)', GAVIBESHUB_POLL_INTERVAL)
 
 # ─── Периодический скрейпер всех каналов (t.me/s/) ────────────────────────
-# Опрашиваются каждые ALL_CHANNELS_SCRAPE_INTERVAL секунд (5 мин)
-# Все каналы обрабатываются 100% через Bot API (webhook).
-# Периодический t.me/s/ скрапер отключён — дубли и истекающие CDN-URL.
-_PERIODIC_SCRAPE_CHANNELS = []
+# Все каналы бота — 100% сообщений без фильтров, каждые 30 секунд
+_PERIODIC_SCRAPE_CHANNELS = [
+    # Недвижимость
+    ('parsing_vn',      'real_estate',    'listings_vietnam.json',   'vietnam'),
+    ('parsing_th',      'real_estate',    'listings_thailand.json',  'thailand'),
+    ('parsing_in',      'real_estate',    'listings_india.json',     'india'),
+    ('parsing_indo',    'real_estate',    'listings_indonesia.json', 'indonesia'),
+    # Байки / транспорт
+    ('bikeparsing_vn',  'transport',      'listings_vietnam.json',   'vietnam'),
+    ('bikeparsing_th',  'transport',      'listings_thailand.json',  'thailand'),
+    ('bikeparsing_in',  'transport',      'listings_india.json',     'india'),
+    # Развлечения / досуг
+    ('tusaparsing_vn',  'entertainment',  'listings_vietnam.json',   'vietnam'),
+    ('tusaparsing_th',  'entertainment',  'listings_thailand.json',  'thailand'),
+    ('tusaparsing_indo','entertainment',  'listings_indonesia.json', 'indonesia'),
+    ('vibeshub_vn',     'entertainment',  'listings_vietnam.json',   'vietnam'),
+    # Визы / деньги / туры / рестораны
+    ('visarun_vn',      'visas',          'listings_vietnam.json',   'vietnam'),
+    ('paymens_vn',      'money_exchange', 'listings_vietnam.json',   'vietnam'),
+    ('GAtours_vn',      'tours',          'listings_vietnam.json',   'vietnam'),
+    ('restoranvietnam', 'restaurants',    'listings_vietnam.json',   'vietnam'),
+]
 _CHAT_SCRAPE_CHANNELS = []
-ALL_CHANNELS_SCRAPE_INTERVAL = 300  # 5 минут
+ALL_CHANNELS_SCRAPE_INTERVAL = 30   # 30 секунд — все основные каналы
 CHAT_SCRAPE_INTERVAL = 30           # 30 секунд
 
 
 def _scrape_channel_latest(channel, category, target_file, country):
-    """Скрейпит последнюю страницу канала через t.me/s/, добавляет новые посты."""
-    import time as _t2
+    """Скрейпит последнюю страницу канала через t.me/s/, добавляет ВСЕ новые посты без фильтров."""
     try:
         from bot_channel_parser import scrape_channel_page, make_listing, detect_logo_fingerprints
         scraped = scrape_channel_page(channel)
@@ -5135,31 +5157,34 @@ def _scrape_channel_latest(channel, category, target_file, country):
         except Exception:
             file_data = {}
         existing = file_data.get(category, [])
+        # Дедуп по двум ключам: channel_msgid и src_ch_srcid (из make_listing)
         existing_ids = {item['id'] for item in existing}
-        existing_titles = {item.get('title','').strip()[:80] for item in existing if item.get('title','')}
+        existing_channel_msg = {f"{item.get('source_channel', item.get('source_group',''))}_{item.get('message_id','')}"
+                                for item in existing if item.get('message_id')}
         logo_fps = detect_logo_fingerprints(scraped)
-        _SKIP = {'channel created', 'канал создан', 'channel photo updated', 'telegram'}
         added = 0
         for msg_id in sorted(scraped.keys(), reverse=True):
-            item_id = f'{channel}_{msg_id}'
-            if item_id in existing_ids:
+            # Пропускаем уже известные по channel+msg_id
+            ch_key = f'{channel}_{msg_id}'
+            if ch_key in existing_channel_msg:
                 continue
             post = scraped[msg_id]
-            raw_title = (post.get('text', '') or '')[:40].lower().strip()
-            if not raw_title or raw_title in _SKIP:
-                continue
             new_item = make_listing(channel, msg_id, post, category, country, logo_fps=logo_fps)
+            # Пропускаем дубли по итоговому ID листинга (src_ch_srcid)
+            if new_item['id'] in existing_ids:
+                # Обновляем CDN-URL фото если они протухли
+                for ex in existing:
+                    if ex['id'] == new_item['id'] and new_item.get('photos'):
+                        ex['image_url'] = new_item['image_url']
+                        ex['photos'] = new_item['photos']
+                        ex['all_images'] = new_item['all_images']
+                continue
             # Для туров Вьетнама — добавляем source_group
             if category == 'tours' and country == 'vietnam':
                 new_item['source_group'] = 'GAtours_vn'
-            # Пропускаем дубли по заголовку
-            item_title = new_item.get('title','').strip()[:80]
-            if item_title and item_title in existing_titles:
-                continue
             existing.insert(0, new_item)
-            existing_ids.add(item_id)
-            if item_title:
-                existing_titles.add(item_title)
+            existing_ids.add(new_item['id'])
+            existing_channel_msg.add(ch_key)
             added += 1
         if added > 0:
             file_data[category] = existing
@@ -5168,24 +5193,7 @@ def _scrape_channel_latest(channel, category, target_file, country):
                 json.dump(file_data, _ff, ensure_ascii=False, separators=(',', ':'))
             os.replace(_tmp, target_file)
             data_cache.pop(country, None)
-            logger.info('[periodic_scraper] @%s +%d → %s', channel, added, category)
-            # Немедленно обновляем баннер если добавлены entertainment-посты с фото
-            if category == 'entertainment' and country in ('thailand', 'indonesia'):
-                try:
-                    _cfg = load_banner_config()
-                    _imgs = [
-                        it.get('image_url', '') or it.get('image', '')
-                        for it in file_data.get('entertainment', [])
-                        if (it.get('image_url', '') or it.get('image', ''))
-                    ]
-                    _imgs = list(dict.fromkeys(_imgs))  # уникальные, порядок сохранён
-                    if _imgs:
-                        _cfg.setdefault(country, {})['web'] = _imgs
-                        _cfg[country]['mobile'] = _imgs
-                        save_banner_config(_cfg)
-                        logger.info('[periodic_scraper] Баннер %s обновлён: %d фото', country, len(_imgs))
-                except Exception as _be:
-                    logger.warning('[periodic_scraper] Banner update error: %s', _be)
+            logger.info('[periodic_scraper] @%s +%d новых → %s/%s', channel, added, country, category)
         return added
     except Exception as _se:
         logger.warning('[periodic_scraper] @%s error: %s', channel, _se)
@@ -5226,9 +5234,9 @@ def _backfill_channels(days=2):
                 file_data = {}
             existing = file_data.get(category, [])
             existing_ids = {item['id'] for item in existing}
-            existing_titles = {item.get('title', '').strip()[:80] for item in existing if item.get('title', '')}
+            existing_channel_msg = {f"{item.get('source_channel', item.get('source_group',''))}_{item.get('message_id','')}"
+                                    for item in existing if item.get('message_id')}
             logo_fps = detect_logo_fingerprints(scraped)
-            _SKIP = {'channel created', 'канал создан', 'channel photo updated', 'telegram'}
 
             page_ids = sorted(scraped.keys(), reverse=True)
             oldest_on_page = None
@@ -5238,7 +5246,6 @@ def _backfill_channels(days=2):
                 # Парсим дату поста
                 post_date_str = post.get('date', '')
                 try:
-                    import re as _re
                     post_date = datetime.fromisoformat(post_date_str.replace('Z', '+00:00')) if post_date_str else None
                 except Exception:
                     post_date = None
@@ -5249,20 +5256,26 @@ def _backfill_channels(days=2):
                 if oldest_on_page is None or msg_id < oldest_on_page:
                     oldest_on_page = msg_id
 
-                item_id = f'{channel}_{msg_id}'
-                if item_id in existing_ids:
+                # Дедуп по channel+msg_id
+                ch_key = f'{channel}_{msg_id}'
+                if ch_key in existing_channel_msg:
                     continue
-                raw_title = (post.get('text', '') or '')[:40].lower().strip()
-                if not raw_title or raw_title in _SKIP:
-                    continue
+
                 new_item = make_listing(channel, msg_id, post, category, country, logo_fps=logo_fps)
-                item_title = new_item.get('title', '').strip()[:80]
-                if item_title and item_title in existing_titles:
+
+                # Дедуп по итоговому ID (src_ch_srcid)
+                if new_item['id'] in existing_ids:
+                    # Обновляем CDN-URL если протухли
+                    for ex in existing:
+                        if ex['id'] == new_item['id'] and new_item.get('photos'):
+                            ex['image_url'] = new_item['image_url']
+                            ex['photos'] = new_item['photos']
+                            ex['all_images'] = new_item['all_images']
                     continue
+
                 existing.insert(0, new_item)
-                existing_ids.add(item_id)
-                if item_title:
-                    existing_titles.add(item_title)
+                existing_ids.add(new_item['id'])
+                existing_channel_msg.add(ch_key)
                 ch_added += 1
 
             if ch_added > 0 or True:  # всегда сохраняем если были изменения
@@ -5313,14 +5326,15 @@ def api_admin_backfill():
 
 
 def _all_channels_periodic_scraper():
-    """Каждые 5 минут скрейпит последнюю страницу всех каналов."""
+    """Каждые 30 секунд скрейпит последнюю страницу всех основных каналов (100% без фильтров)."""
     import time as _t2
-    _t2.sleep(90)  # дать приложению запуститься
-    logger.info('[periodic_scraper] Запущен (все каналы каждые %ds)', ALL_CHANNELS_SCRAPE_INTERVAL)
+    _t2.sleep(30)  # дать приложению запуститься
+    logger.info('[periodic_scraper] Запущен: %d каналов, интервал=%ds',
+                len(_PERIODIC_SCRAPE_CHANNELS), ALL_CHANNELS_SCRAPE_INTERVAL)
     while True:
         for _ch, _cat, _tf, _co in _PERIODIC_SCRAPE_CHANNELS:
             _scrape_channel_latest(_ch, _cat, _tf, _co)
-            _t2.sleep(3)
+            _t2.sleep(1)
         _t2.sleep(ALL_CHANNELS_SCRAPE_INTERVAL)
 
 
@@ -5436,11 +5450,23 @@ def _sync_restoranparsing_all():
             logger.warning('[restoran_sync] Ошибка: %s', e)
         _t.sleep(600)
 
+def _startup_backfill():
+    """При старте: бэкфилл всех 7 основных каналов за последние 3 дня."""
+    import time as _tb
+    _tb.sleep(15)  # дать приложению запуститься
+    logger.info('[startup_backfill] Запуск бэкфилла 7 каналов за 3 дня...')
+    try:
+        total = _backfill_channels(days=3)
+        logger.info('[startup_backfill] Завершён: +%d новых записей', total)
+    except Exception as _be:
+        logger.warning('[startup_backfill] Ошибка: %s', _be)
+
 threading.Thread(target=_all_channels_periodic_scraper, daemon=True, name='AllChannelsScraper').start()
 threading.Thread(target=_chat_periodic_scraper, daemon=True, name='ChatScraper').start()
 threading.Thread(target=_sync_restoranparsing_all, daemon=True, name='RestoranSync').start()
-logger.info('[periodic_scraper] Все каналы — каждые %ds, чаты — каждые %ds',
-            ALL_CHANNELS_SCRAPE_INTERVAL, CHAT_SCRAPE_INTERVAL)
+threading.Thread(target=_startup_backfill, daemon=True, name='StartupBackfill').start()
+logger.info('[periodic_scraper] %d каналов в поллере — каждые %ds',
+            len(_PERIODIC_SCRAPE_CHANNELS), ALL_CHANNELS_SCRAPE_INTERVAL)
 
 
 # ─── GitHub tours_nhatrang → listings_vietnam.json (Экскурсии) ───────────────

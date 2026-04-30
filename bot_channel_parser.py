@@ -22,8 +22,15 @@ TG_API_BASE = os.environ.get('TELEGRAM_API_BASE', 'https://api.telegram.org').rs
 # ─── Список каналов ────────────────────────────────────────────────
 CHANNELS = [
     # (username, channel_id, category, target_file, limit)
-    ('vietnamparsing',  -1003693840816, 'real_estate',    'listings_vietnam.json',  2000),
-    ('thailandparsing', -1003897335333, 'real_estate',    'listings_thailand.json', 2000),
+    # Новые агрегаторы — 100% сообщений без фильтров
+    ('parsing_vn',    -1003987939980, 'real_estate', 'listings_vietnam.json',   None),
+    ('parsing_th',    -1003411602924, 'real_estate', 'listings_thailand.json',  None),
+    ('parsing_in',    -1003948057945, 'real_estate', 'listings_india.json',     None),
+    ('parsing_indo',  -1003872341008, 'real_estate', 'listings_indonesia.json', None),
+    ('bikeparsing_vn',-1003922185577, 'transport',   'listings_vietnam.json',   None),
+    ('bikeparsing_th',-1003894914160, 'transport',   'listings_thailand.json',  None),
+    ('bikeparsing_in',-1003811252596, 'transport',   'listings_india.json',     None),
+    # Прочие каналы
     ('visarun_vn',      -1003660400331, 'visas',          'listings_vietnam.json',  None),
     ('paymens_vn',      -1003774177042, 'money_exchange', 'listings_vietnam.json',  None),
     ('GAtours_vn',      -1003807018167, 'tours',          'listings_vietnam.json',  None),
