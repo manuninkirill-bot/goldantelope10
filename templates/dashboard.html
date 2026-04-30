@@ -6069,7 +6069,7 @@
             let images = [...new Set([..._p, ..._a, ..._img, ..._single])].filter(isRealPhoto);
             if (category === 'real_estate') {
                 images = images.filter(url => url && typeof url === 'string' &&
-                    (/^https:\/\/t\.me\/(vietnamparsing|dom_vn|thailandparsing|doma_th)\/\d+$/.test(url) || url.includes('telesco.pe') || url.startsWith('/tg_img/') || url.startsWith('/g/') || url.startsWith('/gg/') || url.startsWith('/api/tgphoto/')));
+                    (/^https:\/\/t\.me\/(vietnamparsing|dom_vn|thailandparsing|doma_th)\/\d+$/.test(url) || url.includes('telesco.pe') || url.startsWith('/tg_img/') || url.startsWith('/g/') || url.startsWith('/gg/') || url.includes('/g/') || url.includes('/gg/') || url.startsWith('/api/tgphoto/') || url.startsWith('https://')));
                 images = images.map(url => {
                     const tmeMatch = url.match(/^https:\/\/t\.me\/([^\/]+)\/(\d+)$/);
                     if (tmeMatch) return `/tg_img/${tmeMatch[1]}/${tmeMatch[2]}`;
@@ -9059,7 +9059,7 @@
                         let images = [...new Set([..._p2, ..._a2])].filter(u => u && !u.includes('/img/emoji') && !u.includes('telegram.org/img/emoji'));
                         if (category === 'real_estate' || category === 'realestate') {
                             images = images.filter(url => url && typeof url === 'string' &&
-                                (/^https:\/\/t\.me\/(vietnamparsing|dom_vn|thailandparsing|doma_th)\/\d+$/.test(url) || url.includes('telesco.pe') || url.startsWith('/tg_img/') || url.startsWith('/static/') || url.startsWith('/g/') || url.startsWith('/gg/') || url.startsWith('/api/tgphoto/')));
+                                (/^https:\/\/t\.me\/(vietnamparsing|dom_vn|thailandparsing|doma_th)\/\d+$/.test(url) || url.includes('telesco.pe') || url.startsWith('/tg_img/') || url.startsWith('/static/') || url.startsWith('/g/') || url.startsWith('/gg/') || url.includes('/g/') || url.includes('/gg/') || url.startsWith('/api/tgphoto/') || url.startsWith('https://')));
                             images = images.map(url => {
                                 const tmeMatch = url.match(/^https:\/\/t\.me\/([^\/]+)\/(\d+)$/);
                                 if (tmeMatch) return `/tg_img/${tmeMatch[1]}/${tmeMatch[2]}`;
