@@ -4818,23 +4818,31 @@ def _process_routed_channel_post(cp):
 
     # Роутинг всех каналов → категория + страна
     _CH_ROUTE = {
-        'thailandparsing': ('real_estate',   'thailand'),
-        'visarun_vn':      ('visas',         'vietnam'),
-        'paymens_vn':      ('money_exchange','vietnam'),
-        'gatours_vn':      ('tours',         'vietnam'),
-        'restoranvietnam': ('restaurants',   'vietnam'),
-        'parsing_vn':      ('real_estate',   'vietnam'),
-        'parsing_th':      ('real_estate',   'thailand'),
-        'parsing_in':      ('real_estate',   'india'),
-        'parsing_indo':    ('real_estate',   'indonesia'),
-        'bikeparsing_vn':  ('transport',     'vietnam'),
-        'bikeparsing_th':  ('transport',     'thailand'),
-        'bikeparsing_in':  ('transport',     'india'),
-        'chatparsing_vn':  ('chat',          'vietnam'),
-        'tusaparsing_vn':  ('entertainment', 'vietnam'),
-        'tusaparsing_th':  ('entertainment', 'thailand'),
-        'excursii_th':     ('entertainment', 'thailand'),
-        'tusaparsing_indo':('entertainment', 'indonesia'),
+        # Недвижимость
+        'parsing_vn':         ('real_estate',   'vietnam'),
+        'parsing_th':         ('real_estate',   'thailand'),
+        'parsing_in':         ('real_estate',   'india'),
+        'parsing_indo':       ('real_estate',   'indonesia'),
+        # Транспорт / байки
+        'bikeparsing_vn':     ('transport',     'vietnam'),
+        'bikeparsing_th':     ('transport',     'thailand'),
+        'bikeparsing_in':     ('transport',     'india'),
+        # Развлечения
+        'vibeshub_vn':        ('entertainment', 'vietnam'),
+        'tusaparsing_th':     ('entertainment', 'thailand'),
+        'tusaparsing_indo':   ('entertainment', 'indonesia'),
+        'excursii_vn':        ('entertainment', 'vietnam'),
+        'excursii_th':        ('entertainment', 'thailand'),
+        # Рестораны
+        'restoranparsing_all':('restaurants',  'vietnam'),
+        # Прочие (обратная совместимость)
+        'restoranvietnam':    ('restaurants',   'vietnam'),
+        'visarun_vn':         ('visas',         'vietnam'),
+        'paymens_vn':         ('money_exchange','vietnam'),
+        'gatours_vn':         ('tours',         'vietnam'),
+        'tusaparsing_vn':     ('entertainment', 'vietnam'),
+        'chatparsing_vn':     ('chat',          'vietnam'),
+        'thailandparsing':    ('real_estate',   'thailand'),
     }
     route = _CH_ROUTE.get(chat_username)
     if not route:
@@ -4906,9 +4914,13 @@ def _process_routed_channel_post(cp):
             break
 
     _mgid_early = cp.get('media_group_id', '')
-    # parsing_* и bikeparsing_* — принимаем 100% сообщений без фильтров
-    _NO_FILTER_CHANNELS = {'parsing_vn','parsing_th','parsing_in','parsing_indo',
-                           'bikeparsing_vn','bikeparsing_th','bikeparsing_in'}
+    # Все основные каналы — принимаем 100% сообщений без фильтров
+    _NO_FILTER_CHANNELS = {
+        'parsing_vn','parsing_th','parsing_in','parsing_indo',
+        'bikeparsing_vn','bikeparsing_th','bikeparsing_in',
+        'vibeshub_vn','tusaparsing_th','tusaparsing_indo',
+        'excursii_vn','excursii_th','restoranparsing_all',
+    }
     _is_no_filter = chat_username in _NO_FILTER_CHANNELS
     if not _is_no_filter:
         if not text_r and not photos_r:
@@ -5120,24 +5132,21 @@ logger.info('GAvibeshub background poller started (every %ds)', GAVIBESHUB_POLL_
 # Все каналы бота — 100% сообщений без фильтров, каждые 30 секунд
 _PERIODIC_SCRAPE_CHANNELS = [
     # Недвижимость
-    ('parsing_vn',      'real_estate',    'listings_vietnam.json',   'vietnam'),
-    ('parsing_th',      'real_estate',    'listings_thailand.json',  'thailand'),
-    ('parsing_in',      'real_estate',    'listings_india.json',     'india'),
-    ('parsing_indo',    'real_estate',    'listings_indonesia.json', 'indonesia'),
+    ('parsing_vn',        'real_estate',   'listings_vietnam.json',   'vietnam'),
+    ('parsing_th',        'real_estate',   'listings_thailand.json',  'thailand'),
+    ('parsing_in',        'real_estate',   'listings_india.json',     'india'),
+    ('parsing_indo',      'real_estate',   'listings_indonesia.json', 'indonesia'),
     # Байки / транспорт
-    ('bikeparsing_vn',  'transport',      'listings_vietnam.json',   'vietnam'),
-    ('bikeparsing_th',  'transport',      'listings_thailand.json',  'thailand'),
-    ('bikeparsing_in',  'transport',      'listings_india.json',     'india'),
+    ('bikeparsing_vn',    'transport',     'listings_vietnam.json',   'vietnam'),
+    ('bikeparsing_th',    'transport',     'listings_thailand.json',  'thailand'),
+    ('bikeparsing_in',    'transport',     'listings_india.json',     'india'),
     # Развлечения / досуг
-    ('tusaparsing_vn',  'entertainment',  'listings_vietnam.json',   'vietnam'),
-    ('tusaparsing_th',  'entertainment',  'listings_thailand.json',  'thailand'),
-    ('tusaparsing_indo','entertainment',  'listings_indonesia.json', 'indonesia'),
-    ('vibeshub_vn',     'entertainment',  'listings_vietnam.json',   'vietnam'),
-    # Визы / деньги / туры / рестораны
-    ('visarun_vn',      'visas',          'listings_vietnam.json',   'vietnam'),
-    ('paymens_vn',      'money_exchange', 'listings_vietnam.json',   'vietnam'),
-    ('GAtours_vn',      'tours',          'listings_vietnam.json',   'vietnam'),
-    ('restoranvietnam', 'restaurants',    'listings_vietnam.json',   'vietnam'),
+    ('vibeshub_vn',       'entertainment', 'listings_vietnam.json',   'vietnam'),
+    ('tusaparsing_th',    'entertainment', 'listings_thailand.json',  'thailand'),
+    ('tusaparsing_indo',  'entertainment', 'listings_indonesia.json', 'indonesia'),
+    # Экскурсии / рестораны
+    ('excursii_vn',       'entertainment', 'listings_vietnam.json',   'vietnam'),
+    ('restoranparsing_all','restaurants',  'listings_vietnam.json',   'vietnam'),
 ]
 _CHAT_SCRAPE_CHANNELS = []
 ALL_CHANNELS_SCRAPE_INTERVAL = 30   # 30 секунд — все основные каналы

@@ -31,13 +31,11 @@ CHANNELS = [
     ('bikeparsing_th',-1003894914160, 'transport',   'listings_thailand.json',  None),
     ('bikeparsing_in',-1003811252596, 'transport',   'listings_india.json',     None),
     # Прочие каналы
-    ('visarun_vn',      -1003660400331, 'visas',          'listings_vietnam.json',  None),
-    ('paymens_vn',      -1003774177042, 'money_exchange', 'listings_vietnam.json',  None),
-    ('GAtours_vn',      -1003807018167, 'tours',          'listings_vietnam.json',  None),
-    ('vibeshub_vn',     -1003733304010, 'entertainment',  'listings_vietnam.json',  None),
-    ('restoranvietnam', -1003828019481, 'restaurants',    'listings_vietnam.json',  None),
+    ('vibeshub_vn',        -1003733304010, 'entertainment', 'listings_vietnam.json',  None),
+    ('excursii_vn',        -1003603825848, 'entertainment', 'listings_vietnam.json',  None),
+    ('restoranparsing_all',-1003828019481, 'restaurants',   'listings_vietnam.json',  None),
     # media_vn — только баннеры, не трогаем listings
-    ('media_vn',        -1003821326509, 'banners',        None,                     None),
+    ('media_vn',           -1003821326509, 'banners',       None,                     None),
 ]
 
 # ─── Скрапинг t.me/s/{channel} ─────────────────────────────────────
