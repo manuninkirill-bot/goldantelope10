@@ -4828,7 +4828,7 @@ def _process_routed_channel_post(cp):
         'bikeparsing_th':     ('transport',     'thailand'),
         'bikeparsing_in':     ('transport',     'india'),
         # Развлечения
-        'vibeshub_vn':        ('entertainment', 'vietnam'),
+        'tusaparsing_vn':     ('entertainment', 'vietnam'),
         'tusaparsing_th':     ('entertainment', 'thailand'),
         'tusaparsing_indo':   ('entertainment', 'indonesia'),
         'excursii_vn':        ('entertainment', 'vietnam'),
@@ -4918,7 +4918,7 @@ def _process_routed_channel_post(cp):
     _NO_FILTER_CHANNELS = {
         'parsing_vn','parsing_th','parsing_in','parsing_indo',
         'bikeparsing_vn','bikeparsing_th','bikeparsing_in',
-        'vibeshub_vn','tusaparsing_th','tusaparsing_indo',
+        'tusaparsing_vn','tusaparsing_th','tusaparsing_indo',
         'excursii_vn','excursii_th','restoranparsing_all',
     }
     _is_no_filter = chat_username in _NO_FILTER_CHANNELS
@@ -5141,7 +5141,7 @@ _PERIODIC_SCRAPE_CHANNELS = [
     ('bikeparsing_th',    'transport',     'listings_thailand.json',  'thailand'),
     ('bikeparsing_in',    'transport',     'listings_india.json',     'india'),
     # Развлечения / досуг
-    ('vibeshub_vn',       'entertainment', 'listings_vietnam.json',   'vietnam'),
+    ('tusaparsing_vn',    'entertainment', 'listings_vietnam.json',   'vietnam'),
     ('tusaparsing_th',    'entertainment', 'listings_thailand.json',  'thailand'),
     ('tusaparsing_indo',  'entertainment', 'listings_indonesia.json', 'indonesia'),
     # Экскурсии / рестораны
