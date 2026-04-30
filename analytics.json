@@ -54,12 +54,12 @@
         "user_hiqfx2blk_1777453152675",
         "user_l94o48szb_1777534993638"
       ],
-      "page_views": 218,
+      "page_views": 242,
       "countries": {
-        "vietnam": 218
+        "vietnam": 242
       },
       "categories": {
-        "real_estate": 209,
+        "real_estate": 233,
         "entertainment": 1,
         "realestate": 7,
         "transport": 1
@@ -67,12 +67,13 @@
       "hours": {
         "05": 3,
         "06": 120,
-        "07": 95
+        "07": 107,
+        "08": 12
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 218
+        "desktop": 242
       }
     }
   },
@@ -84,7 +85,7 @@
     },
     "user_hiqfx2blk_1777453152675": {
       "first_seen": "2026-04-29",
-      "visits": 1561,
+      "visits": 1585,
       "last_seen": "2026-04-30"
     },
     "user_t3ik1le13_1777454107929": {

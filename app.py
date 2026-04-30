@@ -28,6 +28,10 @@ translation_cache = {}
 # TELEGRAM_API_BASE=https://your-cf-worker.workers.dev
 TG_API_BASE = os.environ.get('TELEGRAM_API_BASE', 'https://api.telegram.org').rstrip('/')
 
+# Абсолютный базовый URL этого сервера — для фото-URL, которые открываются с внешних сайтов (HF Space)
+_replit_dev = os.environ.get('REPLIT_DEV_DOMAIN', '') or os.environ.get('REPLIT_DOMAINS', '').split(',')[0]
+_REPLIT_BASE = f'https://{_replit_dev}' if _replit_dev else ''
+
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.secret_key = os.environ.get("SESSION_SECRET")
 Compress(app)
@@ -1128,15 +1132,19 @@ def _mask_internal_channels(items):
 
 
 def _gurl(ch, pid):
-    """Нейтральный URL фото: /g/<alias>/<msg_id>  (имя канала скрыто)."""
+    """Нейтральный URL фото: /g/<alias>/<msg_id>  (имя канала скрыто).
+    Возвращает абсолютный URL, чтобы фото работали и на HF Space."""
     # _CHANNEL_ALIAS определён ниже по файлу, читается при вызове функции
     alias = globals().get('_CHANNEL_ALIAS', {}).get(ch, ch)
-    return f'/g/{alias}/{pid}'
+    base = _REPLIT_BASE if _REPLIT_BASE else ''
+    return f'{base}/g/{alias}/{pid}'
 
 def _ggurl(ch, pid, idx):
-    """Нейтральный URL группового фото: /gg/<alias>/<msg_id>/<idx>."""
+    """Нейтральный URL группового фото: /gg/<alias>/<msg_id>/<idx>.
+    Возвращает абсолютный URL, чтобы фото работали и на HF Space."""
     alias = globals().get('_CHANNEL_ALIAS', {}).get(ch, ch)
-    return f'/gg/{alias}/{pid}/{idx}'
+    base = _REPLIT_BASE if _REPLIT_BASE else ''
+    return f'{base}/gg/{alias}/{pid}/{idx}'
 
 
 def _enrich_tg_images(items):
@@ -4519,8 +4527,9 @@ def admin_migrate_photos():
                 if not fid:
                     no_fid_total += 1
                     continue
-                # Обновляем запись
-                new_url = f'/api/tgphoto/{fid}'
+                # Обновляем запись — абсолютный URL для совместимости с HF Space
+                _pb = _REPLIT_BASE if _REPLIT_BASE else ''
+                new_url = f'{_pb}/api/tgphoto/{fid}'
                 p['image_url'] = new_url
                 p['photos'] = [new_url]
                 p['all_images'] = [new_url]
@@ -4891,8 +4900,9 @@ def _process_routed_channel_post(cp):
             if orig_username and orig_msg_id:
                 with _msg_to_file_id_lock:
                     _msg_to_file_id[(orig_username, orig_msg_id)] = fid
-            # Всегда используем /api/tgphoto/{fid} — прямые file-URL истекают
-            photos_r = [f'/api/tgphoto/{fid}']
+            # Используем абсолютный URL — чтобы фото работали и на HF Space
+            _photo_base = _REPLIT_BASE if _REPLIT_BASE else ''
+            photos_r = [f'{_photo_base}/api/tgphoto/{fid}']
             break
 
     _mgid_early = cp.get('media_group_id', '')

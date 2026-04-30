@@ -3,60 +3,60 @@
     "web": [
       "/static/images/banner_vn_7.jpg",
       "/api/banner-img/8",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBnmnx8VVJNgp1Iq_TIa0Q41jwI97IAAImGWsbjEuRS7jETiQxuSjhAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBnWnx8SzVRWtkzpFwi1nVcgguF87sAAKiFWsbLamQS3kBRf-3FzC0AQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBnGnx8RwT3WoLNsIYlP0meR-NF3LRAALoEGsb-tuQV0CuAAG4lJsbwAEAAwIAA3kAAzsE",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBnmnx8VVJNgp1Iq_TIa0Q41jwI97IAAImGWsbjEuRS7jETiQxuSjhAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBnWnx8SzVRWtkzpFwi1nVcgguF87sAAKiFWsbLamQS3kBRf-3FzC0AQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBnGnx8RwT3WoLNsIYlP0meR-NF3LRAALoEGsb-tuQV0CuAAG4lJsbwAEAAwIAA3kAAzsE",
       "https://cdn4.telesco.pe/file/ev7r8qVR2LG_thFF874oTCuGIIdAIcoipYNmRrNp9FzEOoHUYE41Xw_-eaiHamTton54cqAhUe0kpIkKzZYRTf2qCDhJ_Vf6C4Os2uo-RQEXQGfW_mveYLpkYDUvE7NJa3Aw3yjUdHV89llKpyb0tw6Y0SJmkFJAm7RpKIh79IM9xEzIvSC1B7is4DjrlA8H-gRW0NyY6kKSp0eHN10JfScH7zP9jFz-rKjoC-afATCCRIhXW0mfvTI4T2mBHtJSzv6qJBlWkgFIlp_9KPabW8aCas670lc9TFG_RMEbks26yLgQkzaEmwtdlaOPJaErIMoZHESNYrcTsM4JVSXyew",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBmGnx1ZQN6sRi844tHWNTgNUsfVzKAAIfFGsbVgt5S0YC_XVrx3-0AQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBl2nx1Ye5wH_RxxFR_DScKFE5AyfjAAJnFmsbVgt5S1fWrsjYNo2VAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlmnx1W-jNHjtqZc8QZW7rWyo1PiMAAJsFWsbv02QS34vQaTh2VOQAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlGnx1U_RTg8L49CYHBRPgXkOkDuQAAKRFWsbP8p5S9o-6bBjYY0nAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBjWnxy7fWmqKO34CC1NHK_Rigu2N9AAIgFmsbYhuJS26f5lNKDey3AQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBhmnxy6gCUba9Qu-4DkZdMrfXwXmXAAI2E2sbVrKQV9-ir6YHebOFAQADAgADdwADOwQ",
-      "/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBhGnxy4gsqMIK3nODBdR_xANU13W-AAKvEGsbw_OAV5d78srLA7tyAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgmnwdGAC6h9jIOwC6VIUgba-87nbAAKPE2sbdZShSp_uhdjnQZszAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBf2nwcdyQIBUUART3Cjz9RuqhVWF2AALhFGsbuvCAS-l7odTM9S-HAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgGnwcewvCkiPqckNZrCXVqUAAfWwBQAChBNrGyf-gUvpcgtbotoa4AEAAwIAA3kAAzsE",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBfmnwcbzZsiOoxXkzI60VlfClTJopAAKTFGsbBqCIS2NgjqwlzK2KAQADAgADeQADOwQ",
-      "/tg_img/tusaparsing_vn/381",
-      "/tg_img/tusaparsing_vn/376",
-      "/tg_img/tusaparsing_vn/374"
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBmGnx1ZQN6sRi844tHWNTgNUsfVzKAAIfFGsbVgt5S0YC_XVrx3-0AQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBl2nx1Ye5wH_RxxFR_DScKFE5AyfjAAJnFmsbVgt5S1fWrsjYNo2VAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlmnx1W-jNHjtqZc8QZW7rWyo1PiMAAJsFWsbv02QS34vQaTh2VOQAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlGnx1U_RTg8L49CYHBRPgXkOkDuQAAKRFWsbP8p5S9o-6bBjYY0nAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBjWnxy7fWmqKO34CC1NHK_Rigu2N9AAIgFmsbYhuJS26f5lNKDey3AQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBhmnxy6gCUba9Qu-4DkZdMrfXwXmXAAI2E2sbVrKQV9-ir6YHebOFAQADAgADdwADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBhGnxy4gsqMIK3nODBdR_xANU13W-AAKvEGsbw_OAV5d78srLA7tyAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgmnwdGAC6h9jIOwC6VIUgba-87nbAAKPE2sbdZShSp_uhdjnQZszAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBf2nwcdyQIBUUART3Cjz9RuqhVWF2AALhFGsbuvCAS-l7odTM9S-HAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgGnwcewvCkiPqckNZrCXVqUAAfWwBQAChBNrGyf-gUvpcgtbotoa4AEAAwIAA3kAAzsE",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBfmnwcbzZsiOoxXkzI60VlfClTJopAAKTFGsbBqCIS2NgjqwlzK2KAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/tg_img/tusaparsing_vn/381",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/tg_img/tusaparsing_vn/376",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/tg_img/tusaparsing_vn/374"
     ],
     "mobile": [
       "/static/images/banner_vn_7.jpg",
       "/api/banner-img/8",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBnmnx8VVJNgp1Iq_TIa0Q41jwI97IAAImGWsbjEuRS7jETiQxuSjhAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBnWnx8SzVRWtkzpFwi1nVcgguF87sAAKiFWsbLamQS3kBRf-3FzC0AQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBnGnx8RwT3WoLNsIYlP0meR-NF3LRAALoEGsb-tuQV0CuAAG4lJsbwAEAAwIAA3kAAzsE",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBnmnx8VVJNgp1Iq_TIa0Q41jwI97IAAImGWsbjEuRS7jETiQxuSjhAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBnWnx8SzVRWtkzpFwi1nVcgguF87sAAKiFWsbLamQS3kBRf-3FzC0AQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBnGnx8RwT3WoLNsIYlP0meR-NF3LRAALoEGsb-tuQV0CuAAG4lJsbwAEAAwIAA3kAAzsE",
       "https://cdn4.telesco.pe/file/ev7r8qVR2LG_thFF874oTCuGIIdAIcoipYNmRrNp9FzEOoHUYE41Xw_-eaiHamTton54cqAhUe0kpIkKzZYRTf2qCDhJ_Vf6C4Os2uo-RQEXQGfW_mveYLpkYDUvE7NJa3Aw3yjUdHV89llKpyb0tw6Y0SJmkFJAm7RpKIh79IM9xEzIvSC1B7is4DjrlA8H-gRW0NyY6kKSp0eHN10JfScH7zP9jFz-rKjoC-afATCCRIhXW0mfvTI4T2mBHtJSzv6qJBlWkgFIlp_9KPabW8aCas670lc9TFG_RMEbks26yLgQkzaEmwtdlaOPJaErIMoZHESNYrcTsM4JVSXyew",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBmGnx1ZQN6sRi844tHWNTgNUsfVzKAAIfFGsbVgt5S0YC_XVrx3-0AQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBl2nx1Ye5wH_RxxFR_DScKFE5AyfjAAJnFmsbVgt5S1fWrsjYNo2VAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlmnx1W-jNHjtqZc8QZW7rWyo1PiMAAJsFWsbv02QS34vQaTh2VOQAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlGnx1U_RTg8L49CYHBRPgXkOkDuQAAKRFWsbP8p5S9o-6bBjYY0nAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBjWnxy7fWmqKO34CC1NHK_Rigu2N9AAIgFmsbYhuJS26f5lNKDey3AQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBhmnxy6gCUba9Qu-4DkZdMrfXwXmXAAI2E2sbVrKQV9-ir6YHebOFAQADAgADdwADOwQ",
-      "/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBhGnxy4gsqMIK3nODBdR_xANU13W-AAKvEGsbw_OAV5d78srLA7tyAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgmnwdGAC6h9jIOwC6VIUgba-87nbAAKPE2sbdZShSp_uhdjnQZszAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBf2nwcdyQIBUUART3Cjz9RuqhVWF2AALhFGsbuvCAS-l7odTM9S-HAQADAgADeQADOwQ",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgGnwcewvCkiPqckNZrCXVqUAAfWwBQAChBNrGyf-gUvpcgtbotoa4AEAAwIAA3kAAzsE",
-      "/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBfmnwcbzZsiOoxXkzI60VlfClTJopAAKTFGsbBqCIS2NgjqwlzK2KAQADAgADeQADOwQ",
-      "/tg_img/tusaparsing_vn/381",
-      "/tg_img/tusaparsing_vn/376",
-      "/tg_img/tusaparsing_vn/374"
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBmGnx1ZQN6sRi844tHWNTgNUsfVzKAAIfFGsbVgt5S0YC_XVrx3-0AQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBl2nx1Ye5wH_RxxFR_DScKFE5AyfjAAJnFmsbVgt5S1fWrsjYNo2VAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlmnx1W-jNHjtqZc8QZW7rWyo1PiMAAJsFWsbv02QS34vQaTh2VOQAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBlGnx1U_RTg8L49CYHBRPgXkOkDuQAAKRFWsbP8p5S9o-6bBjYY0nAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBjWnxy7fWmqKO34CC1NHK_Rigu2N9AAIgFmsbYhuJS26f5lNKDey3AQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBhmnxy6gCUba9Qu-4DkZdMrfXwXmXAAI2E2sbVrKQV9-ir6YHebOFAQADAgADdwADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATWzgS4AAIBhGnxy4gsqMIK3nODBdR_xANU13W-AAKvEGsbw_OAV5d78srLA7tyAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgmnwdGAC6h9jIOwC6VIUgba-87nbAAKPE2sbdZShSp_uhdjnQZszAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBf2nwcdyQIBUUART3Cjz9RuqhVWF2AALhFGsbuvCAS-l7odTM9S-HAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBgGnwcewvCkiPqckNZrCXVqUAAfWwBQAChBNrGyf-gUvpcgtbotoa4AEAAwIAA3kAAzsE",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATWzgS4AAIBfmnwcbzZsiOoxXkzI60VlfClTJopAAKTFGsbBqCIS2NgjqwlzK2KAQADAgADeQADOwQ",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/tg_img/tusaparsing_vn/381",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/tg_img/tusaparsing_vn/376",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/tg_img/tusaparsing_vn/374"
     ]
   },
   "thailand": {
     "web": [
-      "/g/t3/11",
-      "/g/t3/10",
-      "/g/t3/9",
-      "/g/t3/8"
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/11",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/10",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/9",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/8"
     ],
     "mobile": [
-      "/g/t3/11",
-      "/g/t3/10",
-      "/g/t3/9",
-      "/g/t3/8"
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/11",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/10",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/9",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/8"
     ]
   },
   "india": {
@@ -161,12 +161,12 @@
   },
   "indonesia": {
     "web": [
-      "/g/d3/23",
-      "/g/d3/22"
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/d3/23",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/d3/22"
     ],
     "mobile": [
-      "/g/d3/23",
-      "/g/d3/22"
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/d3/23",
+      "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/d3/22"
     ]
   }
 }

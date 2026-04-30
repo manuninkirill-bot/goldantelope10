@@ -1,6 +1,36 @@
 {
   "transport": [
     {
+      "id": "rental_service_thailand_1862",
+      "title": "🔴",
+      "description": "1.\nВЫБРАТЬ АВТО\n1.2\nВЫБРАТЬ АВТО\n2.\nВЫБРАТЬ БАЙК\n3.\nКАК ЗАБРОНИРОВАТЬ?\n4.\nСТРАХОВКА\n5.\nИНФОРМАЦИЯ ГОНЩИКАМ\n6.\nИНФОРМАЦИЯ ПЬЯНИЦАМ\n\n4\n\n@VitaIiyrentmotobaik",
+      "text": "1.\nВЫБРАТЬ АВТО\n1.2\nВЫБРАТЬ АВТО\n2.\nВЫБРАТЬ БАЙК\n3.\nКАК ЗАБРОНИРОВАТЬ?\n4.\nСТРАХОВКА\n5.\nИНФОРМАЦИЯ ГОНЩИКАМ\n6.\nИНФОРМАЦИЯ ПЬЯНИЦАМ\n\n4\n\n@VitaIiyrentmotobaik",
+      "price": 0,
+      "price_display": "",
+      "city": "Вьетнам",
+      "city_ru": "Вьетнам",
+      "date": "2026-04-30T07:51:37+00:00",
+      "contact": "@rental_service_thailand",
+      "contact_name": "rental_service_thailand",
+      "source_group": "rental_service_thailand",
+      "telegram": "https://t.me/rental_service_thailand",
+      "telegram_link": "https://t.me/rental_service_thailand/1862",
+      "image_url": "https://t.me/rental_service_thailand/1862",
+      "all_images": [
+        "https://t.me/rental_service_thailand/1862"
+      ],
+      "photos": [
+        "https://t.me/rental_service_thailand/1862"
+      ],
+      "status": "active",
+      "country": "vietnam",
+      "message_id": 1862,
+      "has_media": true,
+      "category": "transport",
+      "transport_type": "bikes",
+      "listing_type": "transport"
+    },
+    {
       "id": "rental_service_thailand_1857",
       "title": "Lexus RC300h F Sport 2022",
       "description": "двигатель 2.5 Hybrid,\nкоробка E-CVT,\nцвет White Pearl,\nкрасный салон,\nпробег 71 000 км.\nЦена:\nот 1700 бат\nДепозит:\n7000 бат",
@@ -124,12 +154,12 @@
       "source_channel": "bikeparsing_th",
       "telegram": "https://t.me/bikeparsing_th",
       "telegram_link": "https://t.me/bikeparsing_th/220",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPcafHWohnt-FHzQOALr5lFHD1AgDIAAusUaxtXvYlLL6u5MWXrbGYBAAMCAAN5AAM7BA",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPcafHWohnt-FHzQOALr5lFHD1AgDIAAusUaxtXvYlLL6u5MWXrbGYBAAMCAAN5AAM7BA",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPcafHWohnt-FHzQOALr5lFHD1AgDIAAusUaxtXvYlLL6u5MWXrbGYBAAMCAAN5AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPcafHWohnt-FHzQOALr5lFHD1AgDIAAusUaxtXvYlLL6u5MWXrbGYBAAMCAAN5AAM7BA"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPcafHWohnt-FHzQOALr5lFHD1AgDIAAusUaxtXvYlLL6u5MWXrbGYBAAMCAAN5AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPcafHWohnt-FHzQOALr5lFHD1AgDIAAusUaxtXvYlLL6u5MWXrbGYBAAMCAAN5AAM7BA"
       ],
       "status": "active",
       "country": "thailand",
@@ -155,12 +185,12 @@
       "source_channel": "bikeparsing_th",
       "telegram": "https://t.me/bikeparsing_th",
       "telegram_link": "https://t.me/bikeparsing_th/219",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPbafHVOzLKzGQJ9mckz4TjUxUGJmEAAroUaxtXvYlLtkIU5ulIe4MBAAMCAAN5AAM7BA",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPbafHVOzLKzGQJ9mckz4TjUxUGJmEAAroUaxtXvYlLtkIU5ulIe4MBAAMCAAN5AAM7BA",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPbafHVOzLKzGQJ9mckz4TjUxUGJmEAAroUaxtXvYlLtkIU5ulIe4MBAAMCAAN5AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPbafHVOzLKzGQJ9mckz4TjUxUGJmEAAroUaxtXvYlLtkIU5ulIe4MBAAMCAAN5AAM7BA"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPbafHVOzLKzGQJ9mckz4TjUxUGJmEAAroUaxtXvYlLtkIU5ulIe4MBAAMCAAN5AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPbafHVOzLKzGQJ9mckz4TjUxUGJmEAAroUaxtXvYlLtkIU5ulIe4MBAAMCAAN5AAM7BA"
       ],
       "status": "active",
       "country": "thailand",
@@ -186,12 +216,12 @@
       "source_channel": "bikeparsing_th",
       "telegram": "https://t.me/bikeparsing_th",
       "telegram_link": "https://t.me/bikeparsing_th/218",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbY2nxupd09beYTnkugag4s_40iX56AALDF2sb7UuRSxJX_SU5wAzbAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbY2nxupd09beYTnkugag4s_40iX56AALDF2sb7UuRSxJX_SU5wAzbAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbY2nxupd09beYTnkugag4s_40iX56AALDF2sb7UuRSxJX_SU5wAzbAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbY2nxupd09beYTnkugag4s_40iX56AALDF2sb7UuRSxJX_SU5wAzbAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbY2nxupd09beYTnkugag4s_40iX56AALDF2sb7UuRSxJX_SU5wAzbAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbY2nxupd09beYTnkugag4s_40iX56AALDF2sb7UuRSxJX_SU5wAzbAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -217,12 +247,12 @@
       "source_channel": "bikeparsing_th",
       "telegram": "https://t.me/bikeparsing_th",
       "telegram_link": "https://t.me/bikeparsing_th/217",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPZafHScZhnctBcM4p5cesUHegXfwcAAqQUaxtXvYlLqhP9UuZ7-RYBAAMCAAN4AAM7BA",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPZafHScZhnctBcM4p5cesUHegXfwcAAqQUaxtXvYlLqhP9UuZ7-RYBAAMCAAN4AAM7BA",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPZafHScZhnctBcM4p5cesUHegXfwcAAqQUaxtXvYlLqhP9UuZ7-RYBAAMCAAN4AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPZafHScZhnctBcM4p5cesUHegXfwcAAqQUaxtXvYlLqhP9UuZ7-RYBAAMCAAN4AAM7BA"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPZafHScZhnctBcM4p5cesUHegXfwcAAqQUaxtXvYlLqhP9UuZ7-RYBAAMCAAN4AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAPZafHScZhnctBcM4p5cesUHegXfwcAAqQUaxtXvYlLqhP9UuZ7-RYBAAMCAAN4AAM7BA"
       ],
       "status": "active",
       "country": "thailand",
@@ -1310,12 +1340,12 @@
       "source_channel": "bikeparsing_th",
       "telegram": "https://t.me/bikeparsing_th",
       "telegram_link": "https://t.me/bikeparsing_th/133",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOFafCI6O59fixRmI6HzaeDjHIlicIAAjITaxvcNoFLL3vvSliwavwBAAMCAAN5AAM7BA",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOFafCI6O59fixRmI6HzaeDjHIlicIAAjITaxvcNoFLL3vvSliwavwBAAMCAAN5AAM7BA",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOFafCI6O59fixRmI6HzaeDjHIlicIAAjITaxvcNoFLL3vvSliwavwBAAMCAAN5AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOFafCI6O59fixRmI6HzaeDjHIlicIAAjITaxvcNoFLL3vvSliwavwBAAMCAAN5AAM7BA"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOFafCI6O59fixRmI6HzaeDjHIlicIAAjITaxvcNoFLL3vvSliwavwBAAMCAAN5AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOFafCI6O59fixRmI6HzaeDjHIlicIAAjITaxvcNoFLL3vvSliwavwBAAMCAAN5AAM7BA"
       ],
       "status": "active",
       "country": "thailand",
@@ -1341,12 +1371,12 @@
       "source_channel": "bikeparsing_th",
       "telegram": "https://t.me/bikeparsing_th",
       "telegram_link": "https://t.me/bikeparsing_th/132",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOEafCGhSSry2kwxUceV_0MbzXo-HEAAicTaxvcNoFLvMDy0qJpzNUBAAMCAAN5AAM7BA",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOEafCGhSSry2kwxUceV_0MbzXo-HEAAicTaxvcNoFLvMDy0qJpzNUBAAMCAAN5AAM7BA",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOEafCGhSSry2kwxUceV_0MbzXo-HEAAicTaxvcNoFLvMDy0qJpzNUBAAMCAAN5AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOEafCGhSSry2kwxUceV_0MbzXo-HEAAicTaxvcNoFLvMDy0qJpzNUBAAMCAAN5AAM7BA"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOEafCGhSSry2kwxUceV_0MbzXo-HEAAicTaxvcNoFLvMDy0qJpzNUBAAMCAAN5AAM7BA"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOEafCGhSSry2kwxUceV_0MbzXo-HEAAicTaxvcNoFLvMDy0qJpzNUBAAMCAAN5AAM7BA"
       ],
       "status": "active",
       "country": "thailand",
@@ -1372,12 +1402,12 @@
       "source_channel": "bikeparsing_th",
       "telegram": "https://t.me/pattaya_arenda_ru",
       "telegram_link": "https://t.me/pattaya_arenda_ru/129569",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOAafCGT0ahZXu7bn8AAfbHEJlpzVKeAAIjE2sb3DaBS7zPxewIYoosAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOAafCGT0ahZXu7bn8AAfbHEJlpzVKeAAIjE2sb3DaBS7zPxewIYoosAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOAafCGT0ahZXu7bn8AAfbHEJlpzVKeAAIjE2sb3DaBS7zPxewIYoosAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOAafCGT0ahZXu7bn8AAfbHEJlpzVKeAAIjE2sb3DaBS7zPxewIYoosAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOAafCGT0ahZXu7bn8AAfbHEJlpzVKeAAIjE2sb3DaBS7zPxewIYoosAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAAToJ6xwAAOAafCGT0ahZXu7bn8AAfbHEJlpzVKeAAIjE2sb3DaBS7zPxewIYoosAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -3838,12 +3868,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuketsk_arenda",
       "telegram_link": "https://t.me/phuketsk_arenda/811997",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcNmnx1rgGYHmZ3L9rpSLjp0A0ZxggAALFF2sbiCCQS5Yf1qy8QxGuAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcNmnx1rgGYHmZ3L9rpSLjp0A0ZxggAALFF2sbiCCQS5Yf1qy8QxGuAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcNmnx1rgGYHmZ3L9rpSLjp0A0ZxggAALFF2sbiCCQS5Yf1qy8QxGuAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcNmnx1rgGYHmZ3L9rpSLjp0A0ZxggAALFF2sbiCCQS5Yf1qy8QxGuAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcNmnx1rgGYHmZ3L9rpSLjp0A0ZxggAALFF2sbiCCQS5Yf1qy8QxGuAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcNmnx1rgGYHmZ3L9rpSLjp0A0ZxggAALFF2sbiCCQS5Yf1qy8QxGuAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -3868,12 +3898,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/sea_bangkok",
       "telegram_link": "https://t.me/sea_bangkok/402151",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcMmnx1T-bXaYFbDEUtCvhCoHLkIjtAAK1F2sbiCCQS7fseuI2HsQqAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcMmnx1T-bXaYFbDEUtCvhCoHLkIjtAAK1F2sbiCCQS7fseuI2HsQqAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcMmnx1T-bXaYFbDEUtCvhCoHLkIjtAAK1F2sbiCCQS7fseuI2HsQqAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcMmnx1T-bXaYFbDEUtCvhCoHLkIjtAAK1F2sbiCCQS7fseuI2HsQqAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcMmnx1T-bXaYFbDEUtCvhCoHLkIjtAAK1F2sbiCCQS7fseuI2HsQqAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcMmnx1T-bXaYFbDEUtCvhCoHLkIjtAAK1F2sbiCCQS7fseuI2HsQqAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -3898,12 +3928,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_pattaya",
       "telegram_link": "https://t.me/arenda_pattaya/465896",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcM2nx1gkbAxxzTHPewRkmHxbYAdaVAAK6F2sbiCCQS8ZBsEO9gMSTAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcM2nx1gkbAxxzTHPewRkmHxbYAdaVAAK6F2sbiCCQS8ZBsEO9gMSTAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcM2nx1gkbAxxzTHPewRkmHxbYAdaVAAK6F2sbiCCQS8ZBsEO9gMSTAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcM2nx1gkbAxxzTHPewRkmHxbYAdaVAAK6F2sbiCCQS8ZBsEO9gMSTAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcM2nx1gkbAxxzTHPewRkmHxbYAdaVAAK6F2sbiCCQS8ZBsEO9gMSTAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcM2nx1gkbAxxzTHPewRkmHxbYAdaVAAK6F2sbiCCQS8ZBsEO9gMSTAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -3928,12 +3958,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/sea_bangkok",
       "telegram_link": "https://t.me/sea_bangkok/402126",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHmnx0ume_cG86Y8wfMz3g9vZn8YUAAKaF2sbiCCQS-ozVBzQj5loAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHmnx0ume_cG86Y8wfMz3g9vZn8YUAAKaF2sbiCCQS-ozVBzQj5loAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHmnx0ume_cG86Y8wfMz3g9vZn8YUAAKaF2sbiCCQS-ozVBzQj5loAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHmnx0ume_cG86Y8wfMz3g9vZn8YUAAKaF2sbiCCQS-ozVBzQj5loAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHmnx0ume_cG86Y8wfMz3g9vZn8YUAAKaF2sbiCCQS-ozVBzQj5loAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHmnx0ume_cG86Y8wfMz3g9vZn8YUAAKaF2sbiCCQS-ozVBzQj5loAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -4044,12 +4074,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_phukets",
       "telegram_link": "https://t.me/arenda_phukets/319306",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHWnx0ZxzIb1SWEDiP9g-p9LsZsZCAAKVF2sbiCCQS1v0Pe87JYMWAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHWnx0ZxzIb1SWEDiP9g-p9LsZsZCAAKVF2sbiCCQS1v0Pe87JYMWAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHWnx0ZxzIb1SWEDiP9g-p9LsZsZCAAKVF2sbiCCQS1v0Pe87JYMWAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHWnx0ZxzIb1SWEDiP9g-p9LsZsZCAAKVF2sbiCCQS1v0Pe87JYMWAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHWnx0ZxzIb1SWEDiP9g-p9LsZsZCAAKVF2sbiCCQS1v0Pe87JYMWAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcHWnx0ZxzIb1SWEDiP9g-p9LsZsZCAAKVF2sbiCCQS1v0Pe87JYMWAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -4132,12 +4162,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvig_thailand",
       "telegram_link": "https://t.me/nedvig_thailand/213338",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcCWnxz7SJVMkVOQXbgmQtcaIbAj5GAAJ2F2sbiCCQS2NTGTUpfiNdAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcCWnxz7SJVMkVOQXbgmQtcaIbAj5GAAJ2F2sbiCCQS2NTGTUpfiNdAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcCWnxz7SJVMkVOQXbgmQtcaIbAj5GAAJ2F2sbiCCQS2NTGTUpfiNdAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcCWnxz7SJVMkVOQXbgmQtcaIbAj5GAAJ2F2sbiCCQS2NTGTUpfiNdAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcCWnxz7SJVMkVOQXbgmQtcaIbAj5GAAJ2F2sbiCCQS2NTGTUpfiNdAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcCWnxz7SJVMkVOQXbgmQtcaIbAj5GAAJ2F2sbiCCQS2NTGTUpfiNdAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -4205,12 +4235,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuket_thailand05",
       "telegram_link": "https://t.me/phuket_thailand05/5124",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb_GnxzgjEUVTqWnKORD7szCnjBm5UAAJUF2sbiCCQS-zCD1kVTz8XAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb_GnxzgjEUVTqWnKORD7szCnjBm5UAAJUF2sbiCCQS-zCD1kVTz8XAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb_GnxzgjEUVTqWnKORD7szCnjBm5UAAJUF2sbiCCQS-zCD1kVTz8XAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb_GnxzgjEUVTqWnKORD7szCnjBm5UAAJUF2sbiCCQS-zCD1kVTz8XAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb_GnxzgjEUVTqWnKORD7szCnjBm5UAAJUF2sbiCCQS-zCD1kVTz8XAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb_GnxzgjEUVTqWnKORD7szCnjBm5UAAJUF2sbiCCQS-zCD1kVTz8XAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -4235,12 +4265,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuket_thailand05",
       "telegram_link": "https://t.me/phuket_thailand05/5131",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcA2nxzi7hj_vzglzWMFfGBKtZUExCAAJdF2sbiCCQSxcOtNYKxy1AAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcA2nxzi7hj_vzglzWMFfGBKtZUExCAAJdF2sbiCCQSxcOtNYKxy1AAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcA2nxzi7hj_vzglzWMFfGBKtZUExCAAJdF2sbiCCQSxcOtNYKxy1AAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcA2nxzi7hj_vzglzWMFfGBKtZUExCAAJdF2sbiCCQSxcOtNYKxy1AAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcA2nxzi7hj_vzglzWMFfGBKtZUExCAAJdF2sbiCCQSxcOtNYKxy1AAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIcA2nxzi7hj_vzglzWMFfGBKtZUExCAAJdF2sbiCCQSxcOtNYKxy1AAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8098,12 +8128,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvizhimost_pattaya",
       "telegram_link": "https://t.me/nedvizhimost_pattaya/663301",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbvmnxygs-QjEa9FHv5Tb3rORr8d8wAAL1FmsbiCCQS74_xhdVJ43JAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbvmnxygs-QjEa9FHv5Tb3rORr8d8wAAL1FmsbiCCQS74_xhdVJ43JAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbvmnxygs-QjEa9FHv5Tb3rORr8d8wAAL1FmsbiCCQS74_xhdVJ43JAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbvmnxygs-QjEa9FHv5Tb3rORr8d8wAAL1FmsbiCCQS74_xhdVJ43JAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbvmnxygs-QjEa9FHv5Tb3rORr8d8wAAL1FmsbiCCQS74_xhdVJ43JAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbvmnxygs-QjEa9FHv5Tb3rORr8d8wAAL1FmsbiCCQS74_xhdVJ43JAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8128,12 +8158,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvizhimost_pattaya",
       "telegram_link": "https://t.me/nedvizhimost_pattaya/663291",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbv2nxyg_yoQgVA3qTqXW1PiWFdqjjAAL2FmsbiCCQS60iKGv4nrBhAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbv2nxyg_yoQgVA3qTqXW1PiWFdqjjAAL2FmsbiCCQS60iKGv4nrBhAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbv2nxyg_yoQgVA3qTqXW1PiWFdqjjAAL2FmsbiCCQS60iKGv4nrBhAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbv2nxyg_yoQgVA3qTqXW1PiWFdqjjAAL2FmsbiCCQS60iKGv4nrBhAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbv2nxyg_yoQgVA3qTqXW1PiWFdqjjAAL2FmsbiCCQS60iKGv4nrBhAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbv2nxyg_yoQgVA3qTqXW1PiWFdqjjAAL2FmsbiCCQS60iKGv4nrBhAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8158,12 +8188,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvizhimost_pattaya",
       "telegram_link": "https://t.me/nedvizhimost_pattaya/663340",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbyWnxyjrPZIGuvtu5uzbcsTIXXmW-AAIDF2sbiCCQS8hYUYfLLBbZAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbyWnxyjrPZIGuvtu5uzbcsTIXXmW-AAIDF2sbiCCQS8hYUYfLLBbZAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbyWnxyjrPZIGuvtu5uzbcsTIXXmW-AAIDF2sbiCCQS8hYUYfLLBbZAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbyWnxyjrPZIGuvtu5uzbcsTIXXmW-AAIDF2sbiCCQS8hYUYfLLBbZAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbyWnxyjrPZIGuvtu5uzbcsTIXXmW-AAIDF2sbiCCQS8hYUYfLLBbZAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbyWnxyjrPZIGuvtu5uzbcsTIXXmW-AAIDF2sbiCCQS8hYUYfLLBbZAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8318,12 +8348,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/pattaya_realty_estate",
       "telegram_link": "https://t.me/pattaya_realty_estate/783524",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb6mnxy2m6V2fHNVPehL7j1EVcYT7RAAI4F2sbiCCQS3afpcAmvzT6AQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb6mnxy2m6V2fHNVPehL7j1EVcYT7RAAI4F2sbiCCQS3afpcAmvzT6AQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb6mnxy2m6V2fHNVPehL7j1EVcYT7RAAI4F2sbiCCQS3afpcAmvzT6AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb6mnxy2m6V2fHNVPehL7j1EVcYT7RAAI4F2sbiCCQS3afpcAmvzT6AQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb6mnxy2m6V2fHNVPehL7j1EVcYT7RAAI4F2sbiCCQS3afpcAmvzT6AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb6mnxy2m6V2fHNVPehL7j1EVcYT7RAAI4F2sbiCCQS3afpcAmvzT6AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8348,12 +8378,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvizhimost_pattaya",
       "telegram_link": "https://t.me/nedvizhimost_pattaya/663321",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb0WnxyjsJihqDTKa-Qj7wfQABtCr4CgACBBdrG4ggkEs_Fo9__JWEogEAAwIAA3kAAzsE",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb0WnxyjsJihqDTKa-Qj7wfQABtCr4CgACBBdrG4ggkEs_Fo9__JWEogEAAwIAA3kAAzsE",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb0WnxyjsJihqDTKa-Qj7wfQABtCr4CgACBBdrG4ggkEs_Fo9__JWEogEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb0WnxyjsJihqDTKa-Qj7wfQABtCr4CgACBBdrG4ggkEs_Fo9__JWEogEAAwIAA3kAAzsE"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb0WnxyjsJihqDTKa-Qj7wfQABtCr4CgACBBdrG4ggkEs_Fo9__JWEogEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb0WnxyjsJihqDTKa-Qj7wfQABtCr4CgACBBdrG4ggkEs_Fo9__JWEogEAAwIAA3kAAzsE"
       ],
       "status": "active",
       "country": "thailand",
@@ -8378,12 +8408,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvizhimost_pattaya",
       "telegram_link": "https://t.me/nedvizhimost_pattaya/663331",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb02nxyju4seyakeytlJ6Jan6OdIiyAAIFF2sbiCCQSx0n8wABRfrThQEAAwIAA3kAAzsE",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb02nxyju4seyakeytlJ6Jan6OdIiyAAIFF2sbiCCQSx0n8wABRfrThQEAAwIAA3kAAzsE",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb02nxyju4seyakeytlJ6Jan6OdIiyAAIFF2sbiCCQSx0n8wABRfrThQEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb02nxyju4seyakeytlJ6Jan6OdIiyAAIFF2sbiCCQSx0n8wABRfrThQEAAwIAA3kAAzsE"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb02nxyju4seyakeytlJ6Jan6OdIiyAAIFF2sbiCCQSx0n8wABRfrThQEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb02nxyju4seyakeytlJ6Jan6OdIiyAAIFF2sbiCCQSx0n8wABRfrThQEAAwIAA3kAAzsE"
       ],
       "status": "active",
       "country": "thailand",
@@ -8408,12 +8438,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvizhimost_pattaya",
       "telegram_link": "https://t.me/nedvizhimost_pattaya/663311",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb4mnxykLHSUwgPvyW-f-lNfcvPnI8AAILF2sbiCCQS00Tjsl-qYP5AQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb4mnxykLHSUwgPvyW-f-lNfcvPnI8AAILF2sbiCCQS00Tjsl-qYP5AQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb4mnxykLHSUwgPvyW-f-lNfcvPnI8AAILF2sbiCCQS00Tjsl-qYP5AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb4mnxykLHSUwgPvyW-f-lNfcvPnI8AAILF2sbiCCQS00Tjsl-qYP5AQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb4mnxykLHSUwgPvyW-f-lNfcvPnI8AAILF2sbiCCQS00Tjsl-qYP5AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIb4mnxykLHSUwgPvyW-f-lNfcvPnI8AAILF2sbiCCQS00Tjsl-qYP5AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8483,12 +8513,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuket_rentas",
       "telegram_link": "https://t.me/phuket_rentas/214157",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbtGnxyevN96xUOVYm7--eWXX7YdFbAALqFmsbiCCQSxLVgJ2g-cYEAQADAgADeAADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbtGnxyevN96xUOVYm7--eWXX7YdFbAALqFmsbiCCQSxLVgJ2g-cYEAQADAgADeAADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbtGnxyevN96xUOVYm7--eWXX7YdFbAALqFmsbiCCQSxLVgJ2g-cYEAQADAgADeAADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbtGnxyevN96xUOVYm7--eWXX7YdFbAALqFmsbiCCQSxLVgJ2g-cYEAQADAgADeAADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbtGnxyevN96xUOVYm7--eWXX7YdFbAALqFmsbiCCQSxLVgJ2g-cYEAQADAgADeAADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIbtGnxyevN96xUOVYm7--eWXX7YdFbAALqFmsbiCCQSxLVgJ2g-cYEAQADAgADeAADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8727,12 +8757,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_phukets",
       "telegram_link": "https://t.me/arenda_phukets/319005",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX12nwlCvm2ptxmOCY8L3q2tb92U4xAAKuFmsb7UuJS3VAFj84aHkRAQADAgADeAADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX12nwlCvm2ptxmOCY8L3q2tb92U4xAAKuFmsb7UuJS3VAFj84aHkRAQADAgADeAADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX12nwlCvm2ptxmOCY8L3q2tb92U4xAAKuFmsb7UuJS3VAFj84aHkRAQADAgADeAADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX12nwlCvm2ptxmOCY8L3q2tb92U4xAAKuFmsb7UuJS3VAFj84aHkRAQADAgADeAADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX12nwlCvm2ptxmOCY8L3q2tb92U4xAAKuFmsb7UuJS3VAFj84aHkRAQADAgADeAADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX12nwlCvm2ptxmOCY8L3q2tb92U4xAAKuFmsb7UuJS3VAFj84aHkRAQADAgADeAADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8757,12 +8787,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuketsk_arenda",
       "telegram_link": "https://t.me/phuketsk_arenda/811575",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXyGnwk19VHLbGUzhn5jYrF3GWCTXbAAKeFmsb7UuJS57DfDpCSUUpAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXyGnwk19VHLbGUzhn5jYrF3GWCTXbAAKeFmsb7UuJS57DfDpCSUUpAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXyGnwk19VHLbGUzhn5jYrF3GWCTXbAAKeFmsb7UuJS57DfDpCSUUpAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXyGnwk19VHLbGUzhn5jYrF3GWCTXbAAKeFmsb7UuJS57DfDpCSUUpAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXyGnwk19VHLbGUzhn5jYrF3GWCTXbAAKeFmsb7UuJS57DfDpCSUUpAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXyGnwk19VHLbGUzhn5jYrF3GWCTXbAAKeFmsb7UuJS57DfDpCSUUpAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8787,12 +8817,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/sea_bangkok",
       "telegram_link": "https://t.me/sea_bangkok/401703",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX0mnwk3g2nkAOh8_vcWz_TonI_2d0AAKoFmsb7UuJS-R8uGqvdBurAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX0mnwk3g2nkAOh8_vcWz_TonI_2d0AAKoFmsb7UuJS-R8uGqvdBurAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX0mnwk3g2nkAOh8_vcWz_TonI_2d0AAKoFmsb7UuJS-R8uGqvdBurAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX0mnwk3g2nkAOh8_vcWz_TonI_2d0AAKoFmsb7UuJS-R8uGqvdBurAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX0mnwk3g2nkAOh8_vcWz_TonI_2d0AAKoFmsb7UuJS-R8uGqvdBurAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX0mnwk3g2nkAOh8_vcWz_TonI_2d0AAKoFmsb7UuJS-R8uGqvdBurAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8817,12 +8847,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_phukets",
       "telegram_link": "https://t.me/arenda_phukets/319001",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX02nwk5VURnltukCEiuteO8klIJaKAAKqFmsb7UuJS6D4__vP7ohDAQADAgADeAADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX02nwk5VURnltukCEiuteO8klIJaKAAKqFmsb7UuJS6D4__vP7ohDAQADAgADeAADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX02nwk5VURnltukCEiuteO8klIJaKAAKqFmsb7UuJS6D4__vP7ohDAQADAgADeAADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX02nwk5VURnltukCEiuteO8klIJaKAAKqFmsb7UuJS6D4__vP7ohDAQADAgADeAADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX02nwk5VURnltukCEiuteO8klIJaKAAKqFmsb7UuJS6D4__vP7ohDAQADAgADeAADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIX02nwk5VURnltukCEiuteO8klIJaKAAKqFmsb7UuJS6D4__vP7ohDAQADAgADeAADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8847,12 +8877,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_pattaya",
       "telegram_link": "https://t.me/arenda_pattaya/465355",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxWnwkrUVg4viMac9_Y850OUnahhqAAKYFmsb7UuJS_D920iPavBlAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxWnwkrUVg4viMac9_Y850OUnahhqAAKYFmsb7UuJS_D920iPavBlAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxWnwkrUVg4viMac9_Y850OUnahhqAAKYFmsb7UuJS_D920iPavBlAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxWnwkrUVg4viMac9_Y850OUnahhqAAKYFmsb7UuJS_D920iPavBlAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxWnwkrUVg4viMac9_Y850OUnahhqAAKYFmsb7UuJS_D920iPavBlAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxWnwkrUVg4viMac9_Y850OUnahhqAAKYFmsb7UuJS_D920iPavBlAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -8877,12 +8907,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_phukets",
       "telegram_link": "https://t.me/arenda_phukets/318987",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxmnwkrcwHAgHJ5ctLX6iIwABq4OcXAACmRZrG-1LiUvIFGg17aTbNwEAAwIAA3kAAzsE",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxmnwkrcwHAgHJ5ctLX6iIwABq4OcXAACmRZrG-1LiUvIFGg17aTbNwEAAwIAA3kAAzsE",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxmnwkrcwHAgHJ5ctLX6iIwABq4OcXAACmRZrG-1LiUvIFGg17aTbNwEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxmnwkrcwHAgHJ5ctLX6iIwABq4OcXAACmRZrG-1LiUvIFGg17aTbNwEAAwIAA3kAAzsE"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxmnwkrcwHAgHJ5ctLX6iIwABq4OcXAACmRZrG-1LiUvIFGg17aTbNwEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXxmnwkrcwHAgHJ5ctLX6iIwABq4OcXAACmRZrG-1LiUvIFGg17aTbNwEAAwIAA3kAAzsE"
       ],
       "status": "active",
       "country": "thailand",
@@ -9018,12 +9048,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/sea_phuket",
       "telegram_link": "https://t.me/sea_phuket/339442",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqWnwjvdNzDz7edf68epu_1L4ubicAAJXFmsb7UuJS9Qwqp6tmKDvAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqWnwjvdNzDz7edf68epu_1L4ubicAAJXFmsb7UuJS9Qwqp6tmKDvAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqWnwjvdNzDz7edf68epu_1L4ubicAAJXFmsb7UuJS9Qwqp6tmKDvAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqWnwjvdNzDz7edf68epu_1L4ubicAAJXFmsb7UuJS9Qwqp6tmKDvAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqWnwjvdNzDz7edf68epu_1L4ubicAAJXFmsb7UuJS9Qwqp6tmKDvAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqWnwjvdNzDz7edf68epu_1L4ubicAAJXFmsb7UuJS9Qwqp6tmKDvAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9095,12 +9125,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/realty_in_thailand",
       "telegram_link": "https://t.me/realty_in_thailand/1220431",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXp2nwjkEtcnpYOejo5-kFzBWv4cBjAAJTFmsb7UuJS0T3m6tAb-LmAQADAgADeAADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXp2nwjkEtcnpYOejo5-kFzBWv4cBjAAJTFmsb7UuJS0T3m6tAb-LmAQADAgADeAADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXp2nwjkEtcnpYOejo5-kFzBWv4cBjAAJTFmsb7UuJS0T3m6tAb-LmAQADAgADeAADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXp2nwjkEtcnpYOejo5-kFzBWv4cBjAAJTFmsb7UuJS0T3m6tAb-LmAQADAgADeAADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXp2nwjkEtcnpYOejo5-kFzBWv4cBjAAJTFmsb7UuJS0T3m6tAb-LmAQADAgADeAADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXp2nwjkEtcnpYOejo5-kFzBWv4cBjAAJTFmsb7UuJS0T3m6tAb-LmAQADAgADeAADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9125,12 +9155,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvizhimost_pattaya",
       "telegram_link": "https://t.me/nedvizhimost_pattaya/662859",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqGnwjkLCzQLQ8wyLPxsVuDyjdWJBAAJUFmsb7UuJS_e0wm8dDZgaAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqGnwjkLCzQLQ8wyLPxsVuDyjdWJBAAJUFmsb7UuJS_e0wm8dDZgaAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqGnwjkLCzQLQ8wyLPxsVuDyjdWJBAAJUFmsb7UuJS_e0wm8dDZgaAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqGnwjkLCzQLQ8wyLPxsVuDyjdWJBAAJUFmsb7UuJS_e0wm8dDZgaAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqGnwjkLCzQLQ8wyLPxsVuDyjdWJBAAJUFmsb7UuJS_e0wm8dDZgaAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXqGnwjkLCzQLQ8wyLPxsVuDyjdWJBAAJUFmsb7UuJS_e0wm8dDZgaAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9184,12 +9214,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/sea_bangkok",
       "telegram_link": "https://t.me/sea_bangkok/401696",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXn2nwjZBaNRHIR96uSB3g8Avz8igcAAJIFmsb7UuJS7JYFB2XBA3_AQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXn2nwjZBaNRHIR96uSB3g8Avz8igcAAJIFmsb7UuJS7JYFB2XBA3_AQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXn2nwjZBaNRHIR96uSB3g8Avz8igcAAJIFmsb7UuJS7JYFB2XBA3_AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXn2nwjZBaNRHIR96uSB3g8Avz8igcAAJIFmsb7UuJS7JYFB2XBA3_AQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXn2nwjZBaNRHIR96uSB3g8Avz8igcAAJIFmsb7UuJS7JYFB2XBA3_AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXn2nwjZBaNRHIR96uSB3g8Avz8igcAAJIFmsb7UuJS7JYFB2XBA3_AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9214,12 +9244,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_pattaya",
       "telegram_link": "https://t.me/arenda_pattaya/465347",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXomnwjZJi_oZyTZH_do_7azeN0rdHAAJKFmsb7UuJS76cSyfy4jPLAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXomnwjZJi_oZyTZH_do_7azeN0rdHAAJKFmsb7UuJS76cSyfy4jPLAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXomnwjZJi_oZyTZH_do_7azeN0rdHAAJKFmsb7UuJS76cSyfy4jPLAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXomnwjZJi_oZyTZH_do_7azeN0rdHAAJKFmsb7UuJS76cSyfy4jPLAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXomnwjZJi_oZyTZH_do_7azeN0rdHAAJKFmsb7UuJS76cSyfy4jPLAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXomnwjZJi_oZyTZH_do_7azeN0rdHAAJKFmsb7UuJS76cSyfy4jPLAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9244,12 +9274,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvig_thailand",
       "telegram_link": "https://t.me/nedvig_thailand/212981",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXiWnwi7_Di_61S9sWUaWelHkId0jQAAITFmsb7UuJSzmkjf6WL-0DAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXiWnwi7_Di_61S9sWUaWelHkId0jQAAITFmsb7UuJSzmkjf6WL-0DAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXiWnwi7_Di_61S9sWUaWelHkId0jQAAITFmsb7UuJSzmkjf6WL-0DAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXiWnwi7_Di_61S9sWUaWelHkId0jQAAITFmsb7UuJSzmkjf6WL-0DAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXiWnwi7_Di_61S9sWUaWelHkId0jQAAITFmsb7UuJSzmkjf6WL-0DAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXiWnwi7_Di_61S9sWUaWelHkId0jQAAITFmsb7UuJSzmkjf6WL-0DAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9274,12 +9304,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/nedvig_thailand",
       "telegram_link": "https://t.me/nedvig_thailand/212991",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXk2nwjCVpu9O1MYGK5gifgfGmVRNRAAIeFmsb7UuJS5Q2d6D2bsBSAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXk2nwjCVpu9O1MYGK5gifgfGmVRNRAAIeFmsb7UuJS5Q2d6D2bsBSAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXk2nwjCVpu9O1MYGK5gifgfGmVRNRAAIeFmsb7UuJS5Q2d6D2bsBSAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXk2nwjCVpu9O1MYGK5gifgfGmVRNRAAIeFmsb7UuJS5Q2d6D2bsBSAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXk2nwjCVpu9O1MYGK5gifgfGmVRNRAAIeFmsb7UuJS5Q2d6D2bsBSAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXk2nwjCVpu9O1MYGK5gifgfGmVRNRAAIeFmsb7UuJS5Q2d6D2bsBSAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9304,12 +9334,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuketsk_arenda",
       "telegram_link": "https://t.me/phuketsk_arenda/811543",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXlGnwjD3dpv6GRau_ywS2afJHmfUyAAIfFmsb7UuJS_cfXCMOdFy2AQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXlGnwjD3dpv6GRau_ywS2afJHmfUyAAIfFmsb7UuJS_cfXCMOdFy2AQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXlGnwjD3dpv6GRau_ywS2afJHmfUyAAIfFmsb7UuJS_cfXCMOdFy2AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXlGnwjD3dpv6GRau_ywS2afJHmfUyAAIfFmsb7UuJS_cfXCMOdFy2AQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXlGnwjD3dpv6GRau_ywS2afJHmfUyAAIfFmsb7UuJS_cfXCMOdFy2AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXlGnwjD3dpv6GRau_ywS2afJHmfUyAAIfFmsb7UuJS_cfXCMOdFy2AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9334,12 +9364,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/sea_bangkok",
       "telegram_link": "https://t.me/sea_bangkok/401685",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXbWnwik8AAaqKFQMj9AkrgcBy3PqDEQAC8RVrG-1LiUuXARC1lemwgQEAAwIAA3kAAzsE",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXbWnwik8AAaqKFQMj9AkrgcBy3PqDEQAC8RVrG-1LiUuXARC1lemwgQEAAwIAA3kAAzsE",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXbWnwik8AAaqKFQMj9AkrgcBy3PqDEQAC8RVrG-1LiUuXARC1lemwgQEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXbWnwik8AAaqKFQMj9AkrgcBy3PqDEQAC8RVrG-1LiUuXARC1lemwgQEAAwIAA3kAAzsE"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXbWnwik8AAaqKFQMj9AkrgcBy3PqDEQAC8RVrG-1LiUuXARC1lemwgQEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXbWnwik8AAaqKFQMj9AkrgcBy3PqDEQAC8RVrG-1LiUuXARC1lemwgQEAAwIAA3kAAzsE"
       ],
       "status": "active",
       "country": "thailand",
@@ -9364,12 +9394,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_phukets",
       "telegram_link": "https://t.me/arenda_phukets/318960",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXdmnwisbzZ9bjwAIyUGcYFksqvu7IAAL9FWsb7UuJS11Q8oMWfKGwAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXdmnwisbzZ9bjwAIyUGcYFksqvu7IAAL9FWsb7UuJS11Q8oMWfKGwAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXdmnwisbzZ9bjwAIyUGcYFksqvu7IAAL9FWsb7UuJS11Q8oMWfKGwAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXdmnwisbzZ9bjwAIyUGcYFksqvu7IAAL9FWsb7UuJS11Q8oMWfKGwAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXdmnwisbzZ9bjwAIyUGcYFksqvu7IAAL9FWsb7UuJS11Q8oMWfKGwAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXdmnwisbzZ9bjwAIyUGcYFksqvu7IAAL9FWsb7UuJS11Q8oMWfKGwAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9394,12 +9424,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_phukets",
       "telegram_link": "https://t.me/arenda_phukets/318961",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXd2nwiwRdWANmq7pvgTb6E07drAerAAL-FWsb7UuJS98Z8ZebViYuAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXd2nwiwRdWANmq7pvgTb6E07drAerAAL-FWsb7UuJS98Z8ZebViYuAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXd2nwiwRdWANmq7pvgTb6E07drAerAAL-FWsb7UuJS98Z8ZebViYuAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXd2nwiwRdWANmq7pvgTb6E07drAerAAL-FWsb7UuJS98Z8ZebViYuAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXd2nwiwRdWANmq7pvgTb6E07drAerAAL-FWsb7UuJS98Z8ZebViYuAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXd2nwiwRdWANmq7pvgTb6E07drAerAAL-FWsb7UuJS98Z8ZebViYuAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9424,12 +9454,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuketsk_arenda",
       "telegram_link": "https://t.me/phuketsk_arenda/811538",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXgGnwi07RQ0y-8m2Fp42qPtK4GFjbAAIHFmsb7UuJS-xRx7rfmdxUAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXgGnwi07RQ0y-8m2Fp42qPtK4GFjbAAIHFmsb7UuJS-xRx7rfmdxUAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXgGnwi07RQ0y-8m2Fp42qPtK4GFjbAAIHFmsb7UuJS-xRx7rfmdxUAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXgGnwi07RQ0y-8m2Fp42qPtK4GFjbAAIHFmsb7UuJS-xRx7rfmdxUAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXgGnwi07RQ0y-8m2Fp42qPtK4GFjbAAIHFmsb7UuJS-xRx7rfmdxUAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXgGnwi07RQ0y-8m2Fp42qPtK4GFjbAAIHFmsb7UuJS-xRx7rfmdxUAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9454,12 +9484,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/sea_bangkok",
       "telegram_link": "https://t.me/sea_bangkok/401676",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXZGnwie8dtzct2_C7TXp0asGh26MhAALlFWsb7UuJS8Y8eAxTlP8eAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXZGnwie8dtzct2_C7TXp0asGh26MhAALlFWsb7UuJS8Y8eAxTlP8eAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXZGnwie8dtzct2_C7TXp0asGh26MhAALlFWsb7UuJS8Y8eAxTlP8eAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXZGnwie8dtzct2_C7TXp0asGh26MhAALlFWsb7UuJS8Y8eAxTlP8eAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXZGnwie8dtzct2_C7TXp0asGh26MhAALlFWsb7UuJS8Y8eAxTlP8eAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXZGnwie8dtzct2_C7TXp0asGh26MhAALlFWsb7UuJS8Y8eAxTlP8eAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9484,12 +9514,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/rentbuyphuket",
       "telegram_link": "https://t.me/rentbuyphuket/778335",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVGnwh8L-IPDc2uQkox3YOYAnX3CeAALIFWsb7UuJSxjLaz_uInw-AQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVGnwh8L-IPDc2uQkox3YOYAnX3CeAALIFWsb7UuJSxjLaz_uInw-AQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVGnwh8L-IPDc2uQkox3YOYAnX3CeAALIFWsb7UuJSxjLaz_uInw-AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVGnwh8L-IPDc2uQkox3YOYAnX3CeAALIFWsb7UuJSxjLaz_uInw-AQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVGnwh8L-IPDc2uQkox3YOYAnX3CeAALIFWsb7UuJSxjLaz_uInw-AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVGnwh8L-IPDc2uQkox3YOYAnX3CeAALIFWsb7UuJSxjLaz_uInw-AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9514,12 +9544,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_phukets",
       "telegram_link": "https://t.me/arenda_phukets/318955",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9544,12 +9574,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/pattaya_realty_estate",
       "telegram_link": "https://t.me/pattaya_realty_estate/783283",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXWWnwiD0_vNbR48gEmAnJHYpAWezlAALSFWsb7UuJS45GWBtLDbrCAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXWWnwiD0_vNbR48gEmAnJHYpAWezlAALSFWsb7UuJS45GWBtLDbrCAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXWWnwiD0_vNbR48gEmAnJHYpAWezlAALSFWsb7UuJS45GWBtLDbrCAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXWWnwiD0_vNbR48gEmAnJHYpAWezlAALSFWsb7UuJS45GWBtLDbrCAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXWWnwiD0_vNbR48gEmAnJHYpAWezlAALSFWsb7UuJS45GWBtLDbrCAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXWWnwiD0_vNbR48gEmAnJHYpAWezlAALSFWsb7UuJS45GWBtLDbrCAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9574,12 +9604,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/sea_phuket",
       "telegram_link": "https://t.me/sea_phuket/339434",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXVWnwh8ZzHVXCvyzZN8lg2MT6LjVyAALJFWsb7UuJS1jSK6JNDRVXAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9604,12 +9634,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuketsk_arenda",
       "telegram_link": "https://t.me/phuketsk_arenda/811529",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXXmnwiLW4Qr-OlgonP0Shyae7hDVDAALZFWsb7UuJS0KIFkHIWXOMAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXXmnwiLW4Qr-OlgonP0Shyae7hDVDAALZFWsb7UuJS0KIFkHIWXOMAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXXmnwiLW4Qr-OlgonP0Shyae7hDVDAALZFWsb7UuJS0KIFkHIWXOMAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXXmnwiLW4Qr-OlgonP0Shyae7hDVDAALZFWsb7UuJS0KIFkHIWXOMAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXXmnwiLW4Qr-OlgonP0Shyae7hDVDAALZFWsb7UuJS0KIFkHIWXOMAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXXmnwiLW4Qr-OlgonP0Shyae7hDVDAALZFWsb7UuJS0KIFkHIWXOMAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9634,12 +9664,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuketsk_arenda",
       "telegram_link": "https://t.me/phuketsk_arenda/811519",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXR2nwhTqmJ5se9eOdS7kmkbkK_tVvAAKZFWsb7UuJS9afGpKCdoEUAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXR2nwhTqmJ5se9eOdS7kmkbkK_tVvAAKZFWsb7UuJS9afGpKCdoEUAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXR2nwhTqmJ5se9eOdS7kmkbkK_tVvAAKZFWsb7UuJS9afGpKCdoEUAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXR2nwhTqmJ5se9eOdS7kmkbkK_tVvAAKZFWsb7UuJS9afGpKCdoEUAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXR2nwhTqmJ5se9eOdS7kmkbkK_tVvAAKZFWsb7UuJS9afGpKCdoEUAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXR2nwhTqmJ5se9eOdS7kmkbkK_tVvAAKZFWsb7UuJS9afGpKCdoEUAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9664,12 +9694,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuketsk_for_rent",
       "telegram_link": "https://t.me/phuketsk_for_rent/228028",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXT2nwhbV6HK_85UgZ80Vjqcd-ORowAAKyFWsb7UuJSwglrCgJDBZ9AQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXT2nwhbV6HK_85UgZ80Vjqcd-ORowAAKyFWsb7UuJSwglrCgJDBZ9AQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXT2nwhbV6HK_85UgZ80Vjqcd-ORowAAKyFWsb7UuJSwglrCgJDBZ9AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXT2nwhbV6HK_85UgZ80Vjqcd-ORowAAKyFWsb7UuJSwglrCgJDBZ9AQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXT2nwhbV6HK_85UgZ80Vjqcd-ORowAAKyFWsb7UuJSwglrCgJDBZ9AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXT2nwhbV6HK_85UgZ80Vjqcd-ORowAAKyFWsb7UuJSwglrCgJDBZ9AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9694,12 +9724,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuketsk_arenda",
       "telegram_link": "https://t.me/phuketsk_arenda/811518",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRWnwhD58REM4mT70brrNoB8AAePjXwAClhVrG-1LiUsyLmNx5jE30gEAAwIAA3kAAzsE",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRWnwhD58REM4mT70brrNoB8AAePjXwAClhVrG-1LiUsyLmNx5jE30gEAAwIAA3kAAzsE",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRWnwhD58REM4mT70brrNoB8AAePjXwAClhVrG-1LiUsyLmNx5jE30gEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRWnwhD58REM4mT70brrNoB8AAePjXwAClhVrG-1LiUsyLmNx5jE30gEAAwIAA3kAAzsE"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRWnwhD58REM4mT70brrNoB8AAePjXwAClhVrG-1LiUsyLmNx5jE30gEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRWnwhD58REM4mT70brrNoB8AAePjXwAClhVrG-1LiUsyLmNx5jE30gEAAwIAA3kAAzsE"
       ],
       "status": "active",
       "country": "thailand",
@@ -9724,12 +9754,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/sea_phuket",
       "telegram_link": "https://t.me/sea_phuket/339431",
-      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRmnwhHEjrAqoGTzycTnhQr2LCB1RAAKXFWsb7UuJS7pfAePY-D94AQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRmnwhHEjrAqoGTzycTnhQr2LCB1RAAKXFWsb7UuJS7pfAePY-D94AQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRmnwhHEjrAqoGTzycTnhQr2LCB1RAAKXFWsb7UuJS7pfAePY-D94AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRmnwhHEjrAqoGTzycTnhQr2LCB1RAAKXFWsb7UuJS7pfAePY-D94AQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRmnwhHEjrAqoGTzycTnhQr2LCB1RAAKXFWsb7UuJS7pfAePY-D94AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIXRmnwhHEjrAqoGTzycTnhQr2LCB1RAAKXFWsb7UuJS7pfAePY-D94AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9834,12 +9864,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuket_nedvizhimost_rent",
       "telegram_link": "https://t.me/phuket_nedvizhimost_rent/787331",
-      "image_url": "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXQWnwWsIZeVDHzN4c8q99n6wfVDMnAALkD2sb86OBV1nE6AKuuPFpAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXQWnwWsIZeVDHzN4c8q99n6wfVDMnAALkD2sb86OBV1nE6AKuuPFpAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXQWnwWsIZeVDHzN4c8q99n6wfVDMnAALkD2sb86OBV1nE6AKuuPFpAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXQWnwWsIZeVDHzN4c8q99n6wfVDMnAALkD2sb86OBV1nE6AKuuPFpAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXQWnwWsIZeVDHzN4c8q99n6wfVDMnAALkD2sb86OBV1nE6AKuuPFpAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXQWnwWsIZeVDHzN4c8q99n6wfVDMnAALkD2sb86OBV1nE6AKuuPFpAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9864,12 +9894,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuket_rentas",
       "telegram_link": "https://t.me/phuket_rentas/213762",
-      "image_url": "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW-mnwSljDToGhiuyZA4e0gn0wEgABnQACgQ9rG_OjgVf6IMI-os6-igEAAwIAA3kAAzsE",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW-mnwSljDToGhiuyZA4e0gn0wEgABnQACgQ9rG_OjgVf6IMI-os6-igEAAwIAA3kAAzsE",
       "all_images": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW-mnwSljDToGhiuyZA4e0gn0wEgABnQACgQ9rG_OjgVf6IMI-os6-igEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW-mnwSljDToGhiuyZA4e0gn0wEgABnQACgQ9rG_OjgVf6IMI-os6-igEAAwIAA3kAAzsE"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW-mnwSljDToGhiuyZA4e0gn0wEgABnQACgQ9rG_OjgVf6IMI-os6-igEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW-mnwSljDToGhiuyZA4e0gn0wEgABnQACgQ9rG_OjgVf6IMI-os6-igEAAwIAA3kAAzsE"
       ],
       "status": "active",
       "country": "thailand",
@@ -9894,12 +9924,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuket_rentas",
       "telegram_link": "https://t.me/phuket_rentas/213772",
-      "image_url": "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBGnwSp36mWym-XRUw11BvotTsnvBAAKLD2sb86OBV7vds-ha1PneAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBGnwSp36mWym-XRUw11BvotTsnvBAAKLD2sb86OBV7vds-ha1PneAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBGnwSp36mWym-XRUw11BvotTsnvBAAKLD2sb86OBV7vds-ha1PneAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBGnwSp36mWym-XRUw11BvotTsnvBAAKLD2sb86OBV7vds-ha1PneAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBGnwSp36mWym-XRUw11BvotTsnvBAAKLD2sb86OBV7vds-ha1PneAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBGnwSp36mWym-XRUw11BvotTsnvBAAKLD2sb86OBV7vds-ha1PneAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9924,12 +9954,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/realty_in_thailand",
       "telegram_link": "https://t.me/realty_in_thailand/1220230",
-      "image_url": "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBmnwTCwZW6RiRrikYYeFh0Cvfw3tAAKOD2sb86OBV7l3tSj1VXrOAQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBmnwTCwZW6RiRrikYYeFh0Cvfw3tAAKOD2sb86OBV7l3tSj1VXrOAQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBmnwTCwZW6RiRrikYYeFh0Cvfw3tAAKOD2sb86OBV7l3tSj1VXrOAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBmnwTCwZW6RiRrikYYeFh0Cvfw3tAAKOD2sb86OBV7l3tSj1VXrOAQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBmnwTCwZW6RiRrikYYeFh0Cvfw3tAAKOD2sb86OBV7l3tSj1VXrOAQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXBmnwTCwZW6RiRrikYYeFh0Cvfw3tAAKOD2sb86OBV7l3tSj1VXrOAQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9954,12 +9984,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/realty_in_thailand",
       "telegram_link": "https://t.me/realty_in_thailand/1220261",
-      "image_url": "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXCWnwVab7MIsS6r9pZuJQiB8vjdJ_AAKmD2sb86OBV_KXj7iYKJeRAQADAgADdwADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXCWnwVab7MIsS6r9pZuJQiB8vjdJ_AAKmD2sb86OBV_KXj7iYKJeRAQADAgADdwADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXCWnwVab7MIsS6r9pZuJQiB8vjdJ_AAKmD2sb86OBV_KXj7iYKJeRAQADAgADdwADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXCWnwVab7MIsS6r9pZuJQiB8vjdJ_AAKmD2sb86OBV_KXj7iYKJeRAQADAgADdwADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXCWnwVab7MIsS6r9pZuJQiB8vjdJ_AAKmD2sb86OBV_KXj7iYKJeRAQADAgADdwADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXCWnwVab7MIsS6r9pZuJQiB8vjdJ_AAKmD2sb86OBV_KXj7iYKJeRAQADAgADdwADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -9984,12 +10014,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/arenda_phukets",
       "telegram_link": "https://t.me/arenda_phukets/318862",
-      "image_url": "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXC2nwWCG0jrdjScZUyus1EY-aqht2AAKqD2sb86OBVw5HrFGwcXW1AQADAgADeQADOwQ",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXC2nwWCG0jrdjScZUyus1EY-aqht2AAKqD2sb86OBVw5HrFGwcXW1AQADAgADeQADOwQ",
       "all_images": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXC2nwWCG0jrdjScZUyus1EY-aqht2AAKqD2sb86OBVw5HrFGwcXW1AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXC2nwWCG0jrdjScZUyus1EY-aqht2AAKqD2sb86OBVw5HrFGwcXW1AQADAgADeQADOwQ"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXC2nwWCG0jrdjScZUyus1EY-aqht2AAKqD2sb86OBVw5HrFGwcXW1AQADAgADeQADOwQ"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIXC2nwWCG0jrdjScZUyus1EY-aqht2AAKqD2sb86OBVw5HrFGwcXW1AQADAgADeQADOwQ"
       ],
       "status": "active",
       "country": "thailand",
@@ -10014,12 +10044,12 @@
       "source_channel": "parsing_th",
       "telegram": "https://t.me/phuket_rentas",
       "telegram_link": "https://t.me/phuket_rentas/213752",
-      "image_url": "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW8GnwSiVx3iSSmYcAAdTSsp3luWUL_wACdw9rG_OjgVcvdGz23NMrRgEAAwIAA3kAAzsE",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW8GnwSiVx3iSSmYcAAdTSsp3luWUL_wACdw9rG_OjgVcvdGz23NMrRgEAAwIAA3kAAzsE",
       "all_images": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW8GnwSiVx3iSSmYcAAdTSsp3luWUL_wACdw9rG_OjgVcvdGz23NMrRgEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW8GnwSiVx3iSSmYcAAdTSsp3luWUL_wACdw9rG_OjgVcvdGz23NMrRgEAAwIAA3kAAzsE"
       ],
       "photos": [
-        "/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW8GnwSiVx3iSSmYcAAdTSsp3luWUL_wACdw9rG_OjgVcvdGz23NMrRgEAAwIAA3kAAzsE"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/api/tgphoto/AgACAgUAAyEFAATLWO3sAAIW8GnwSiVx3iSSmYcAAdTSsp3luWUL_wACdw9rG_OjgVcvdGz23NMrRgEAAwIAA3kAAzsE"
       ],
       "status": "active",
       "country": "thailand",
@@ -26256,12 +26286,12 @@
       "id": "tusaparsing_th_11",
       "text": "⚡️ 4th PROXIEversary CELEBRATION FAN MEETING: «404 Found You» 🌐\n«404 Found You» — это не просто ошибка, это код, после которого каждый поиск заканчивается самым важным словом: «МЫ».\nПриготовьтесь к самому масштабному и технологичному событию года&#33; Приходите встретиться с PROXIE и USER в Thunder Dome. Это будет вечер, который навсегда останется в памяти.\n### 📅 ИНФОРМАЦИЯ О ШОУ:\n* КОГДА: Суббота, 2 мая 2026 года\n* ГДЕ: Thunder Dome, Muang Thong Thani\n* ДВЕРИ: 16:00\n* НАЧАЛО: 17:00\n### 🎫 БИЛЕТЫ:\nЦены: от 1,500 до 5,500 THB\n*(Дополнительно: 50 THB — сервисный сбор и пластиковая карта)*\n### 🛒 ПРОДАЖА БИЛЕТОВ (Старт 4 апреля 2026):\n📍 С 10:00 — только в кассах Counter Service / AllTicket в 7-Eleven по всему Таиланду.\n🌐 С 11:00 — все каналы: 7-Eleven + онлайн на www.allticket.com.\n📱 КОНТАКТЫ И ИНФО:\nСайт: www.allticket.com\nНе пропустите цифровое перерождение любимой группы&#33; До встречи в будущем&#33; 🚀💜\n#май #нонтхабури #PROXIE #404FoundYou #PROXIEversary #USER",
       "title": "⚡️ 4th PROXIEversary CELEBRATION FAN MEETING: «404 Found You» 🌐",
-      "image_url": "/g/t3/11",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/11",
       "all_images": [
-        "/g/t3/11"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/11"
       ],
       "photos": [
-        "/g/t3/11"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/11"
       ],
       "date": "2026-04-29 12:06:26",
       "category": "entertainment",
@@ -26276,12 +26306,12 @@
       "id": "tusaparsing_th_10",
       "text": "🎬 ОТКРОЙ СЕРДЦЕ... ОТКРОЙ ЭКРАН\nПогрузитесь в магию тайского кинематографа под открытым небом&#33; С 1 по 3 мая приглашаем вас на уникальные кинопоказы в исторической атмосфере Аюттхаи.\nЭто не просто просмотр фильма — это теплый вечер, наполненный уютом и вдохновением. Берите друзей, устраивайтесь поудобнее и наслаждайтесь классикой в хорошей компании.\nЧто вас ждет:\n🎥 Показ классических тайских лент на большом экране.\n🛍 Крафтовый маркет с уникальными товарами и локальными брендами.\n🌕 Потрясающая атмосфера Lan Phra Nakhon под ночным небом.\n🍿 Отдых, прогулки и новые впечатления.\n🎟 ВХОД СВОБОДНЫЙ\n📅 ДАТЫ: 1–3 мая 2026\n⏰ ВРЕМЯ: 17:00 – 23:00\n📍 МЕСТО: Lan Phra Nakhon, Central Ayutthaya\n📱 ПОДРОБНОСТИ:\nСледите за обновлениями на странице организатора: Facebook профиль\nПроведите эти майские вечера красиво. До встречи у экрана&#33; ✨\n#май #аюттхая #киноподнебом #тайланд #centralayutthaya #отдыхвтайланде",
       "title": "🎬 ОТКРОЙ СЕРДЦЕ... ОТКРОЙ ЭКРАН",
-      "image_url": "/g/t3/10",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/10",
       "all_images": [
-        "/g/t3/10"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/10"
       ],
       "photos": [
-        "/g/t3/10"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/10"
       ],
       "date": "2026-04-29 12:04:03",
       "category": "entertainment",
@@ -26296,12 +26326,12 @@
       "id": "tusaparsing_th_9",
       "text": "🐾 LITTLE PAWS @ K-VILLAGE — Большой праздник для всей семьи в Бангкоке&#33;\nДрузья, планируете выходные? С 1 по 3 мая приглашаем вас в удивительный мир животных прямо в сердце Сукхумвита&#33; Это идеальное событие, чтобы прийти всей семьёй, познакомиться с пушистыми (и не очень) друзьями и отлично провести время.\n✨ ЧТО ВАС ЖДЁТ:\n🐱 Кошачье и кроличье кафе — море нежности и милоты.\n🐹 Маленькие друзья: морские свинки, хомяки и даже гигантские крысы&#33;\n🦅 Экзотика: редкие хорьки, величественные ястребы Харриса и неспешные черепахи сулката.\n🎨 Активности: развивающие игры, творческие воркшопы и занятия для детей в течение всего дня.\n🎁 ОСОБОЕ ПРЕДЛОЖЕНИЕ:\nПри покупке в K-Village от 500 THB — участие во всех активностях мероприятия БЕСПЛАТНО&#33;\n🎟 ВХОД СВОБОДНЫЙ\n📅 КОГДА: 1–3 мая 2026\n⏰ ВРЕМЯ: 10:00 – 19:00\n📍 МЕСТО: K-Village, Sukhumvit 26, Бангкок\n📞 Контакты: 02 258 9919\n🌐 Подробности: kvillagebangkok.com\nПриходите знакомиться, играть и заряжаться позитивом&#33; До встречи в K-Village&#33; 🐾✨\n#бангкок #май #kvillage #мероприятиябангкок",
       "title": "🐾 LITTLE PAWS @ K-VILLAGE — Большой праздник для всей семьи в Бангкоке",
-      "image_url": "/g/t3/9",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/9",
       "all_images": [
-        "/g/t3/9"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/9"
       ],
       "photos": [
-        "/g/t3/9"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/9"
       ],
       "date": "2026-04-29 12:01:52",
       "category": "entertainment",
@@ -26316,12 +26346,12 @@
       "id": "tusaparsing_th_8",
       "text": "𝗘𝗟𝗘𝗣𝗛𝗔𝗡𝗧 𝗕𝗘𝗔𝗖𝗛 𝗖𝗟𝗨𝗕 ПРЕДСТАВЛЯЕТ '𝗠𝗬𝗦𝗧𝗜𝗖 𝗩𝗜𝗕𝗘𝗦' В СУББОТУ 2 МАЯ — С 8 ВЕЧЕРА\n\nОткрываем месяц ярко: на сцене — невероятные Alex Fischer и Jules Blons из Mustache, Sing Sing Theater (Бангкок) вместе с местной легендой Rafa Moon. Они зададут тон ночи, полной мелодичных треков.💜🐘🔥\n\n📅 В СУББОТУ 2 МАЯ\n🎧 𝗗𝗝 𝗣𝗔𝗥𝗧𝗬 С 8 ВЕЧЕРА - ДО ПОЗДНЕЙ НОЧИ\n💯 БЕСПЛАТНЫЙ ВХОД\n🎧 𝗘𝗟𝗘𝗖𝗧𝗥𝗢 / 𝗠𝗘𝗟𝗢𝗗𝗜𝗖 / 𝗢𝗥𝗚𝗔𝗡𝗜𝗖\n----------------\n🎧 𝗔𝗟𝗘𝗫 𝗙𝗜𝗦𝗖𝗛𝗘𝗥\n(Mustache - Bangkok)\n🎧 𝗝𝗨𝗟𝗘𝗦 𝗕𝗟𝗢𝗡𝗦\n(Mustache / Sing Sing - Bangkok)\n(🎧 𝗥𝗔𝗙𝗔 𝗠𝗢𝗢𝗡\n( Moon Art Entertainment )\n-------------------------\n🥳 БРОНИРОВАНИЕ VIP СТОЛОВ Tel / Whatsapp +66910345261\n🔥ФАЕР-ШОУ🔥\n🌈𝗣𝗥𝗢𝗝𝗘𝗖𝗧𝗜𝗢𝗡 𝗦𝗛𝗢𝗪𝗦🌈\n-------------------------\n📍ЛОКАЦИЯ📍",
       "title": "𝗘𝗟𝗘𝗣𝗛𝗔𝗡𝗧 𝗕𝗘𝗔𝗖𝗛 𝗖𝗟𝗨𝗕 ПРЕДСТАВЛЯЕТ '𝗠𝗬𝗦𝗧𝗜𝗖 𝗩𝗜𝗕𝗘𝗦' В СУББОТУ 2 МАЯ — С 8 ",
-      "image_url": "/g/t3/8",
+      "image_url": "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/8",
       "all_images": [
-        "/g/t3/8"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/8"
       ],
       "photos": [
-        "/g/t3/8"
+        "https://49df5417-4fd9-42af-8d02-e7ca80bddd13-00-3ebkebjsswxvg.picard.replit.dev/g/t3/8"
       ],
       "date": "2026-04-29 11:57:51",
       "category": "entertainment",
