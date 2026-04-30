@@ -1296,7 +1296,7 @@ def _is_link_only_item(item: dict) -> bool:
         return True
     return False
 
-def atomic_add_listing(category: str, item: dict) -> bool:
+def atomic_add_listing(category: str, item: dict, listings_file: str = None) -> bool:
     if _is_link_only_item(item):
         logger.info(f"[filter] Отклонено (только ссылка/короткий текст): {item.get('id','')}")
         return False
@@ -1312,9 +1312,10 @@ def atomic_add_listing(category: str, item: dict) -> bool:
     if category in ('real_estate', 'transport') and not _txt and not _title and not item.get('media_group_id'):
         logger.info(f"[filter] Отклонено (нет текста) [{category}]: {item.get('id','')}")
         return False
+    _target_file = listings_file or LISTINGS_FILE
     with _listings_lock:
         try:
-            with open(LISTINGS_FILE, 'r', encoding='utf-8') as f:
+            with open(_target_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
         except Exception:
             data = {}
@@ -1366,14 +1367,14 @@ def atomic_add_listing(category: str, item: dict) -> bool:
                         logger.info(f"[dedup] Фото обновлено для: {_item_id}")
                     if _changed:
                         try:
-                            tmp = LISTINGS_FILE + '.tmp'
+                            tmp = _target_file + '.tmp'
                             with open(tmp, 'w', encoding='utf-8') as f:
                                 json.dump(data, f, ensure_ascii=False, indent=2)
                             try:
-                                os.replace(tmp, LISTINGS_FILE)
+                                os.replace(tmp, _target_file)
                             except OSError:
                                 import shutil
-                                shutil.move(tmp, LISTINGS_FILE)
+                                shutil.move(tmp, _target_file)
                         except Exception as e:
                             logger.error(f"atomic_add_listing photo update failed: {e}")
                     return False
@@ -1399,14 +1400,14 @@ def atomic_add_listing(category: str, item: dict) -> bool:
                         existing['title'] = item.get('title', existing.get('title', ''))
                     data[category][idx] = existing
                     try:
-                        tmp = LISTINGS_FILE + '.tmp'
+                        tmp = _target_file + '.tmp'
                         with open(tmp, 'w', encoding='utf-8') as f:
                             json.dump(data, f, ensure_ascii=False, indent=2)
                         try:
-                            os.replace(tmp, LISTINGS_FILE)
+                            os.replace(tmp, _target_file)
                         except OSError:
                             import shutil
-                            shutil.move(tmp, LISTINGS_FILE)
+                            shutil.move(tmp, _target_file)
                     except Exception as e:
                         logger.error(f"atomic_add_listing album merge failed: {e}")
                     logger.info(f"[album_mgid] Фото {len(merged)} добавлено к mgid={_mgid} ({existing.get('id','')})")
@@ -1434,14 +1435,14 @@ def atomic_add_listing(category: str, item: dict) -> bool:
             data[category] = []
         data[category].insert(0, item)
         try:
-            tmp = LISTINGS_FILE + '.tmp'
+            tmp = _target_file + '.tmp'
             with open(tmp, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
             try:
-                os.replace(tmp, LISTINGS_FILE)
+                os.replace(tmp, _target_file)
             except OSError:
                 import shutil
-                shutil.move(tmp, LISTINGS_FILE)
+                shutil.move(tmp, _target_file)
             return True
         except Exception as e:
             logger.error(f"atomic_add_listing failed: {e}")

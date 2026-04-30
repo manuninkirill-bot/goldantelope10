@@ -5046,10 +5046,17 @@ def _process_routed_channel_post(cp):
                 item_r['transport_type'] = 'bikes'
             else:
                 item_r['transport_type'] = 'bikes'
-        added = atomic_add_listing(category_r, item_r)
+        _country_file_map = {
+            'vietnam':   'listings_vietnam.json',
+            'thailand':  'listings_thailand.json',
+            'india':     'listings_india.json',
+            'indonesia': 'listings_indonesia.json',
+        }
+        _target_listings_file = _country_file_map.get(country_r, 'listings_vietnam.json')
+        added = atomic_add_listing(category_r, item_r, listings_file=_target_listings_file)
         if added:
             data_cache.pop(country_r, None)
-        logger.info('[webhook_ch] @%s #%d → %s (%s)', chat_username, msg_id, category_r, 'добавлен' if added else 'дубликат')
+        logger.info('[webhook_ch] @%s #%d → %s/%s (%s)', chat_username, msg_id, country_r, category_r, 'добавлен' if added else 'дубликат')
     except Exception as e:
         logger.error('[webhook_ch] Ошибка @%s #%d: %s', chat_username, msg_id, e)
 
