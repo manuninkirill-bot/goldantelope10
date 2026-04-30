@@ -1,6 +1,34 @@
 {
   "chat": [
     {
+      "id": "obmenvietnam_19",
+      "title": "Производим обмен валюты в Нячанге!",
+      "description": "Быстро • Выгодно • Надежно\nТолько при встрече!!!\nКурс на 30.04\n20.000 RUB\n: 6.480.000(\n324)\nVND\n(Перевод меньше 20 тыс рублей курс 312.)\n1 USDT: 25.800\nVND\nUSD\n\n(новые)\n: 26.100VND\nДоставка бесплатная в городе :\nот 30 тыс\nОт 500 usd\nОт 500 usdt\nДоставка до указанных сумм составляет 50 тыс VND\n\n@NhaTrang_Obmennik\n\nРаботаем ежедневно: с 10:00–21:00",
+      "text": "Производим обмен валюты в Нячанге!\n\nБыстро • Выгодно • Надежно\nТолько при встрече!!!\nКурс на 30.04\n20.000 RUB\n: 6.480.000(\n324)\nVND\n(Перевод меньше 20 тыс рублей курс 312.)\n1 USDT: 25.800\nVND\nUSD\n\n(новые)\n: 26.100VND\nДоставка бесплатная в городе :\nот 30 тыс\nОт 500 usd\nОт 500 usdt\nДоставка до указанных сумм составляет 50 тыс VND\n\n@NhaTrang_Obmennik\n\nРаботаем ежедневно: с 10:00–21:00",
+      "price": 1,
+      "price_display": "1 USD",
+      "city": "Нячанг",
+      "city_ru": "Нячанг",
+      "date": "2026-04-30T03:27:41+00:00",
+      "contact": "@obmenvietnam",
+      "contact_name": "obmenvietnam",
+      "source_group": "obmenvietnam",
+      "telegram": "https://t.me/obmenvietnam",
+      "telegram_link": "https://t.me/obmenvietnam/19",
+      "image_url": "https://t.me/obmenvietnam/19",
+      "all_images": [
+        "https://t.me/obmenvietnam/19"
+      ],
+      "photos": [
+        "https://t.me/obmenvietnam/19"
+      ],
+      "status": "active",
+      "country": "vietnam",
+      "message_id": 19,
+      "has_media": true,
+      "category": "chat"
+    },
+    {
       "id": "obmenvietnam_18",
       "title": "Изменение курса: от 20 тыс Rub- 324 курс",
       "description": "",
@@ -459,6 +487,72 @@
     }
   ],
   "real_estate": [
+    {
+      "id": "arenda_phukets_319413",
+      "title": "Новый Тайтл Легендарный на Банг Тао. Топовая локация, пляж в пешей доступности. Свободны. Апартаменты с 1 спальней. Спал",
+      "description": "Новый Тайтл Легендарный на Банг Тао.\nТоповая локация, пляж в пешей доступности.\nСвободны.\nАпартаменты с 1 спальней.\nСпальня + гостиная с кухней.\nСтоимость 45 тысяч бат/мес, посуточно 2000.\nЕсть студия, стоимость 35 т бат/мес.\nМожно бронировать на высокий сезон. Стоимость по запросу.\nИнфраструктура: бассейны, детская комната, фитнес, йога, сауна, коворкинг, банкетный зал, библиотека.\n700 м до пляжа\nДругие варианты\nСвязь garmashrieltor",
+      "text": "Новый Тайтл Легендарный на Банг Тао.\nТоповая локация, пляж в пешей доступности.\nСвободны.\nАпартаменты с 1 спальней.\nСпальня + гостиная с кухней.\nСтоимость 45 тысяч бат/мес, посуточно 2000.\nЕсть студия, стоимость 35 т бат/мес.\nМожно бронировать на высокий сезон. Стоимость по запросу.\nИнфраструктура: бассейны, детская комната, фитнес, йога, сауна, коворкинг, банкетный зал, библиотека.\n700 м до пляжа\nДругие варианты\nСвязь garmashrieltor",
+      "price": 0,
+      "price_display": "",
+      "city": "Таиланд",
+      "city_ru": "Таиланд",
+      "realestate_city": "",
+      "date": "2026-04-29T15:07:06.015834+00:00",
+      "contact": "@arenda_phukets",
+      "contact_name": "arenda_phukets",
+      "source_group": "arenda_phukets",
+      "source_channel": "parsing_th",
+      "telegram": "https://t.me/arenda_phukets",
+      "telegram_link": "https://t.me/arenda_phukets/319413",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIdGWnyHpnTlIjuZINDCdZ6YW8sYp-EAAIbG2sbiCCQS2_UFmNTyzUCAQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIdGWnyHpnTlIjuZINDCdZ6YW8sYp-EAAIbG2sbiCCQS2_UFmNTyzUCAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIdGWnyHpnTlIjuZINDCdZ6YW8sYp-EAAIbG2sbiCCQS2_UFmNTyzUCAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATLWO3sAAIdGWnyHpnTlIjuZINDCdZ6YW8sYp-EAAIbG2sbiCCQS2_UFmNTyzUCAQADAgADeQADOwQ",
+      "bot_msg_id": 7449,
+      "status": "active",
+      "country": "thailand",
+      "message_id": 319413,
+      "category": "real_estate",
+      "media_group_id": "14219801802773994"
+    },
+    {
+      "id": "danangrentaflat_82770",
+      "title": "Euro Village 4 bedroom house for rent - V0123 0 Type: apartment 1 District: SonTra EuroVillage 2 Rooms: 4bedrooms 3 Squa",
+      "description": "Euro Village 4 bedroom house for rent - V0123\n0 Type: apartment\n1 District: SonTra EuroVillage\n2 Rooms: 4bedrooms\n3 Square meters: 100\n4 Address: EuroVillage\n5 Distance to the sea: less than 3km\n6 Price for 1 month: 1.440 USD/month (38.000.000 VND/month)\n7 Minimum rental period: 12m\n8 Free dates: now\n9 Other conditions\nContact: +84919289420 (Whatsapp, Viber, Zalo, Telegram)\nWebsite: dananglandlord.com\nTELEGRAM: hieunx12",
+      "text": "Euro Village 4 bedroom house for rent - V0123\n0 Type: apartment\n1 District: SonTra EuroVillage\n2 Rooms: 4bedrooms\n3 Square meters: 100\n4 Address: EuroVillage\n5 Distance to the sea: less than 3km\n6 Price for 1 month: 1.440 USD/month (38.000.000 VND/month)\n7 Minimum rental period: 12m\n8 Free dates: now\n9 Other conditions\nContact: +84919289420 (Whatsapp, Viber, Zalo, Telegram)\nWebsite: dananglandlord.com\nTELEGRAM: hieunx12",
+      "price": 0,
+      "price_display": "",
+      "city": "Дананг",
+      "city_ru": "Дананг",
+      "realestate_city": "danang",
+      "date": "2026-04-29T15:06:28.422728+00:00",
+      "contact": "@danangrentaflat",
+      "contact_name": "danangrentaflat",
+      "source_group": "danangrentaflat",
+      "source_channel": "parsing_vn",
+      "telegram": "https://t.me/danangrentaflat",
+      "telegram_link": "https://t.me/danangrentaflat/82770",
+      "image_url": "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIo3WnyHnP64sRgE176vDwejEglfgqGAAK1GGsbdNKRSzN4my3jG-i5AQADAgADeQADOwQ",
+      "all_images": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIo3WnyHnP64sRgE176vDwejEglfgqGAAK1GGsbdNKRSzN4my3jG-i5AQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "/api/tgphoto/AgACAgIAAyEFAATtsyKMAAIo3WnyHnP64sRgE176vDwejEglfgqGAAK1GGsbdNKRSzN4my3jG-i5AQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATtsyKMAAIo3WnyHnP64sRgE176vDwejEglfgqGAAK1GGsbdNKRSzN4my3jG-i5AQADAgADeQADOwQ",
+      "bot_msg_id": 10461,
+      "status": "active",
+      "country": "vietnam",
+      "message_id": 82770,
+      "category": "real_estate",
+      "media_group_id": "14219801501917658"
+    },
     {
       "id": "nhatrang_luxury_13370",
       "title": "FOR RENT  GOLDCOAST LUXURY APARTMENT 70m  2 Bedrooms  2 Bathrooms Spacious balcony with stunning panoramic sea  city vie",

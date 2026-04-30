@@ -11,15 +11,15 @@
         "user_vn74r4rf6_1777471709770",
         "user_vtw1w8nja_1777474708873"
       ],
-      "page_views": 618,
+      "page_views": 1533,
       "countries": {
-        "vietnam": 564,
+        "vietnam": 1479,
         "thailand": 17,
         "india": 24,
         "indonesia": 13
       },
       "categories": {
-        "real_estate": 326,
+        "real_estate": 1241,
         "transport": 76,
         "chat": 9,
         "realestate": 56,
@@ -34,25 +34,54 @@
         "12": 147,
         "13": 194,
         "14": 112,
-        "15": 13
+        "15": 123,
+        "16": 97,
+        "18": 111,
+        "19": 120,
+        "20": 120,
+        "21": 120,
+        "22": 120,
+        "23": 117
       },
       "referrers": {},
       "devices": {
-        "mobile": 171,
-        "desktop": 447
+        "mobile": 173,
+        "desktop": 1360
+      }
+    },
+    "2026-04-30": {
+      "unique_visitors": [
+        "user_hiqfx2blk_1777453152675"
+      ],
+      "page_views": 164,
+      "countries": {
+        "vietnam": 164
+      },
+      "categories": {
+        "real_estate": 164
+      },
+      "hours": {
+        "05": 3,
+        "06": 120,
+        "07": 41
+      },
+      "referrers": {},
+      "devices": {
+        "mobile": 0,
+        "desktop": 164
       }
     }
   },
   "visitors": {
     "user_q5p4f351n_1777456380129": {
       "first_seen": "2026-04-29",
-      "visits": 124,
+      "visits": 126,
       "last_seen": "2026-04-29"
     },
     "user_hiqfx2blk_1777453152675": {
       "first_seen": "2026-04-29",
-      "visits": 431,
-      "last_seen": "2026-04-29"
+      "visits": 1508,
+      "last_seen": "2026-04-30"
     },
     "user_t3ik1le13_1777454107929": {
       "first_seen": "2026-04-29",
