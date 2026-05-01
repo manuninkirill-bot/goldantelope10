@@ -87,20 +87,20 @@
         "user_qqvzm7fmp_1777658471285",
         "user_83l5forj5_1777658477017"
       ],
-      "page_views": 13,
+      "page_views": 17,
       "countries": {
-        "vietnam": 13
+        "vietnam": 17
       },
       "categories": {
-        "real_estate": 13
+        "real_estate": 17
       },
       "hours": {
-        "18": 13
+        "18": 17
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 13
+        "desktop": 17
       }
     }
   },
@@ -162,12 +162,12 @@
     },
     "user_qqvzm7fmp_1777658471285": {
       "first_seen": "2026-05-01",
-      "visits": 12,
+      "visits": 15,
       "last_seen": "2026-05-01"
     },
     "user_83l5forj5_1777658477017": {
       "first_seen": "2026-05-01",
-      "visits": 1,
+      "visits": 2,
       "last_seen": "2026-05-01"
     }
   }
