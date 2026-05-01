@@ -5,7 +5,7 @@ stack = "FLASK_VANILLA_JS"
 
 [nix]
 channel = "stable-25_05"
-packages = ["cacert", "cargo", "freetype", "lcms2", "libev", "libiconv", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "openssl", "postgresql", "rustc", "tcl", "tk", "zlib"]
+packages = ["cacert", "cargo", "ffmpeg-full", "freetype", "lcms2", "libev", "libiconv", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "openssl", "postgresql", "rustc", "tcl", "tk", "zlib"]
 
 [workflows]
 runButton = "Project"
@@ -23,13 +23,13 @@ args = "Start application"
 name = "Start application"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python main.py"
-waitForPort = 5000
-
 [workflows.workflow.metadata]
 outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "gunicorn --bind 0.0.0.0:5000 --timeout 120 --worker-class gevent --workers 1 --worker-connections 100 --reload main:app"
+waitForPort = 5000
 
 [[ports]]
 localPort = 5000
@@ -42,4 +42,3 @@ run = ["gunicorn", "--bind", "0.0.0.0:5000", "main:app"]
 [userenv]
 
 [userenv.shared]
-TELETHON_SESSION = "1ApWapzMBu2y2cExN9TjU-OPd26KAULB8dWi-fazHdtQRAsLiuPoIlQz2VdQNomXNtz9trQEN0Q5iuA6EFL8y_nkI6AjT6ZAgyIu0ENdwlvPlN1MLhlsxtF1K2hqjHcPY8OgWe7iUjslryOS_AYpSQsoskFb-cIDDJNSjt2DD_jMiPOBTC-h8bnnDGQWZYh1yjz8XSHdZRWgLYi8bra5hIZI71H5wj37oDSTcmO3Aeh0fv8BixTzP9b4vwvSTJsMSOv6n7R45tmndrDQXwv5smINkdh7wt0Qj6V6BWImNr-Cr78w4_ZND5hXsq8M34J8lDhlvUm-7QlQOml-IdPVu3yQDRps-JqU="

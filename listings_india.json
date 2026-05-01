@@ -2353,6 +2353,72 @@
   "tours": [],
   "entertainment": [
     {
+      "id": "partyhunt_a1ad06a6-22a0-4245-a867-ae79c4ce2439",
+      "title": "BASELINE  TRAVELLERSS 43.0 Women",
+      "description": "📅 10 May 2026, 21:00\n📍 House of Chapora by the bay\n🗺 Chapora Jetty , H.No 340/2 Village Anjuna-Caisua, Chapora, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/baseline-travellerss-430-women-10-may-2026-house-of-chapora-by-the-bay-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F243c2877-14c4-4711-9e3c-5541c127f754%2Ffull_243c2877-14c4-4711-9e3c-5541c127f754?alt=media&token=5391bc49-1d0f-41c8-80a2-124552e5749b"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-10 21:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/baseline-travellerss-430-women-10-may-2026-house-of-chapora-by-the-bay-buy-tickets"
+    },
+    {
+      "id": "partyhunt_a1ac40ec-f019-41ab-965a-b765d1067533",
+      "title": "Lunar Empire 3.0",
+      "description": "📅 08 May 2026, 20:00\n📍 Orion Beach Restaurant\n🗺 New Wada, Morjim, Goa 403519, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/lunar-empire-30-08-may-2026-orion-beach-restaurant-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/Z3IjGVPY14jUEO7rm5K63KEZ105LNDbT5fLVLgBO.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-08 20:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/lunar-empire-30-08-may-2026-orion-beach-restaurant-buy-tickets",
+      "price": "1000.00",
+      "price_display": "from ₹1000.00"
+    },
+    {
+      "id": "partyhunt_a1ac3fbd-7833-494f-94eb-dfe021d549ca",
+      "title": "Bollywood Night",
+      "description": "📅 02 May 2026, 22:00\n📍 The Pirate Brew\n🗺 Survey No. 301, 1655/5A, 1-0, Deulwaddo, Anjuna, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/bollywood-night-02-may-2026-the-pirate-brew-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/CM6P32Z6HLakjDLstBdVZETYfNdC6HN0P9P8xw56.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-02 22:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/bollywood-night-02-may-2026-the-pirate-brew-buy-tickets",
+      "price": "500.00",
+      "price_display": "from ₹500.00"
+    },
+    {
+      "id": "partyhunt_a1ac4250-8c1b-4f85-9bd8-89d529bf6c28",
+      "title": "Total Techno",
+      "description": "📅 02 May 2026, 20:00\n📍 Kitty Su Mumbai\n🗺 Ground Floor The LaLit Mumbai, Airport Rd, Navpada, Marol, Andheri East, Mumbai, Maharashtra 400059, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/total-techno-02-may-2026-kitty-su-mumbai-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/KKKi7lzZhY1Vnn0bVHq9vx4JWrS8YKwaUNhlRHjc.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-02 20:00:00",
+      "city": "Mumbai",
+      "realestate_city": "mumbai",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/total-techno-02-may-2026-kitty-su-mumbai-buy-tickets",
+      "price": "500.00",
+      "price_display": "from ₹500.00"
+    },
+    {
       "id": "partyhunt_4e3d1183-684c-4bad-aa31-848a78adf8fc",
       "title": "PARTY HUNT - Tix!",
       "description": "📅 01 Apr 2027, 20:00\n📍 Arambol\n🗺 Arambol, Goa 403519, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/party-hunt-tix-4qjgxz",
