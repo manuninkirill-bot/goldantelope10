@@ -6216,7 +6216,7 @@ def _partyhunt_poller():
 
                     india_data['entertainment'].insert(0, item)
                     try:
-                        tmp = india_file + '.tmp'
+                        tmp = india_file + f'.tmp{os.getpid()}'
                         with open(tmp, 'w', encoding='utf-8') as f:
                             json.dump(india_data, f, ensure_ascii=False, indent=2)
                         os.replace(tmp, india_file)
@@ -6225,6 +6225,12 @@ def _partyhunt_poller():
                         logger.info('[partyhunt_poller] Added: %s (₹%s)', name, price_val or '?')
                     except Exception as e:
                         logger.error('[partyhunt_poller] Save error: %s', e)
+                        try:
+                            _t = india_file + f'.tmp{os.getpid()}'
+                            if os.path.exists(_t):
+                                os.remove(_t)
+                        except Exception:
+                            pass
 
             if new_count:
                 logger.info('[partyhunt_poller] Batch done: %d new events added to India entertainment', new_count)

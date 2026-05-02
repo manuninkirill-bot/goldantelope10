@@ -1,0 +1,752 @@
+
+Logs
+
+build
+container
+
+Logs Endpoint
+
+
+
+
+Copy
+===== Application Startup at 2026-05-02 09:22:49 =====
+
+[2026-05-02 09:23:14 +0000] [1] [INFO] Starting gunicorn 23.0.0
+[2026-05-02 09:23:14 +0000] [1] [INFO] Listening at: http://0.0.0.0:7860 (1)
+[2026-05-02 09:23:14 +0000] [1] [INFO] Using worker: sync
+[2026-05-02 09:23:14 +0000] [6] [INFO] Booting worker with pid: 6
+[2026-05-02 09:23:14 +0000] [7] [INFO] Booting worker with pid: 7
+INFO:app:[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)
+INFO:app:[banner_cleanup] Авто-очистка баннеров Вьетнам запущена (каждые 5 мин)
+INFO:app:[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)
+INFO:app:[banner_cleanup] Авто-очистка баннеров Вьетнам запущена (каждые 5 мин)
+INFO:app:GAvibeshub background poller started (every 30s)
+INFO:app:[periodic_scraper] 15 каналов в поллере — каждые 30s
+INFO:app:[file_id_index] Проиндексировано 1977 пар msg_id→file_id
+INFO:app:GAvibeshub background poller started (every 30s)
+INFO:app:[gh_tours] Авто-синхронизация туров из GitHub запущена (каждые 1800s)
+INFO:app:[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)
+INFO:app:[hf_sync] Авто-синхронизация отключена — пуш только по запросу
+INFO:app:PartyHunt Goa poller started (every 600s)
+INFO:app:Entertainment banner sync for Thailand/Indonesia started
+INFO:app:Telethon background forwarder отключён (используйте /api/admin/telethon-forward)
+INFO:app:[ent_banner_sync] india: 22 баннеров из entertainment
+INFO:app:Chatiparsing background poller started (every 5s)
+INFO:app:[india_ent_cleanup] Auto-cleanup started (every 6h, window=14d)
+INFO:app:[vn_ent_cleanup] Авто-очистка развлечений Вьетнам запущена (каждые 4ч)
+INFO:app:[file_id_index] Проиндексировано 1977 пар msg_id→file_id
+INFO:app:[periodic_scraper] 15 каналов в поллере — каждые 30s
+INFO:app:[gh_tours] Авто-синхронизация туров из GitHub запущена (каждые 1800s)
+INFO:app:[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)
+INFO:app:[hf_sync] Авто-синхронизация отключена — пуш только по запросу
+INFO:app:PartyHunt Goa poller started (every 600s)
+INFO:app:Entertainment banner sync for Thailand/Indonesia started
+INFO:app:Telethon background forwarder отключён (используйте /api/admin/telethon-forward)
+INFO:app:Chatiparsing background poller started (every 5s)
+INFO:app:[india_ent_cleanup] Auto-cleanup started (every 6h, window=14d)
+INFO:app:[vn_ent_cleanup] Авто-очистка развлечений Вьетнам запущена (каждые 4ч)
+INFO:telethon.crypto.aes:cryptg detected, it will be used for encryption
+INFO:telethon.crypto.aes:cryptg detected, it will be used for encryption
+INFO:app:TELETHON_SESSION найдена — запускаю парсер...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:tg_parser:Поток парсера запущен
+INFO:app:[RATES] Background rates updater started (every 1800s)
+INFO:app:TELETHON_SESSION найдена — запускаю парсер...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:tg_parser:Поток парсера запущен
+INFO:app:[RATES] Background rates updater started (every 1800s)
+INFO:tg_feed:[tg_feed] Загружено 2944 постов с диска
+INFO:tg_feed:[tg_feed] Запущен. Постов: 2944. Каналов: ['parsing_vn', 'parsing_th', 'parsing_in', 'parsing_indo', 'bikeparsing_vn', 'bikeparsing_th', 'bikeparsing_in', 'bikeparsing_indo', 'banner_vn', 'tusaparsing_vn', 'tusaparsing_th', 'tusaparsing_in', 'tusaparsing_indo', 'excursii_vn', 'excursii_th', 'restoranparsing_all', 'chatparsing_in']
+INFO:tg_feed:[tg_feed] Загружено 2944 постов с диска
+INFO:tg_feed:[tg_feed] Запущен. Постов: 2944. Каналов: ['parsing_vn', 'parsing_th', 'parsing_in', 'parsing_indo', 'bikeparsing_vn', 'bikeparsing_th', 'bikeparsing_in', 'bikeparsing_indo', 'banner_vn', 'tusaparsing_vn', 'tusaparsing_th', 'tusaparsing_in', 'tusaparsing_indo', 'excursii_vn', 'excursii_th', 'restoranparsing_all', 'chatparsing_in']
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:vietnamparsing_parser:Parser started in background thread.
+INFO:vietnamparsing_parser:Parser started in background thread.
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<Connection._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:322> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:341> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<MTProtoSender._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:470> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-6' coro=<MTProtoSender._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:513> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6d32498130>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+INFO:app:[gavibeshub_poller] Запущен (интервал 30s)
+INFO:app:[gavibeshub_poller] Запущен (интервал 30s)
+INFO:app:file_path cache already warm.
+INFO:app:file_path cache already warm.
+WARNING:app:[bot] Исключение при установке webhook: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=10)
+INFO:app:[startup_backfill] Запуск бэкфилла 7 каналов за 3 дня...
+INFO:app:[backfill] Старт: 15 каналов, глубина 3 дн. (с 2026-04-29)
+INFO:app:[partyhunt_poller] Started (interval 600s)
+WARNING:app:[bot] Исключение при установке webhook: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=10)
+INFO:app:[startup_backfill] Запуск бэкфилла 7 каналов за 3 дня...
+INFO:app:[backfill] Старт: 15 каналов, глубина 3 дн. (с 2026-04-29)
+INFO:app:[partyhunt_poller] Started (interval 600s)
+INFO:app:[partyhunt_poller] Added: Kumaon Dance Festival (₹1200.00)
+INFO:app:[partyhunt_poller] Added: Jogini's Jungle! (₹1500.00)
+INFO:app:[partyhunt_poller] Added: Jungle Rumble (₹2000.00)
+INFO:app:[partyhunt_poller] Added: Bir Music Festival (₹8999.00)
+INFO:app:[partyhunt_poller] Added: Maze Of Mystery Vol.1 (₹999.00)
+INFO:app:[partyhunt_poller] Added: Sonic Sands (₹2000.00)
+INFO:app:[partyhunt_poller] Added: Maze Of Mystery Vol.1 (₹1427.00)
+INFO:app:[partyhunt_poller] Added: Ritual Connection (₹?)
+INFO:app:[partyhunt_poller] Added: Ritual Connection (₹?)
+INFO:app:[partyhunt_poller] Added: Ritual Connection (₹4500.00)
+INFO:app:[partyhunt_poller] Added: Magical Himalayas (₹1500.00)
+INFO:app:[partyhunt_poller] Added: Celestial Grooves (₹4284.00)
+INFO:app:[partyhunt_poller] Added: Celestial Grooves (₹4284.00)
+ERROR:app:[partyhunt_poller] Save error: [Errno 2] No such file or directory: 'listings_india.json.tmp' -> 'listings_india.json'
+INFO:app:[partyhunt_poller] Added: Jungle Spirit (₹6000.00)
+INFO:app:[partyhunt_poller] Added: Post Modern Music (₹2499.00)
+INFO:app:[partyhunt_poller] Added: Mountain Calling (₹1500.00)
+INFO:app:[partyhunt_poller] Added: Magical Festival (₹1500.00)
+INFO:app:[partyhunt_poller] Added: Pre Sao Joao Bash (₹700.00)
+INFO:app:[partyhunt_poller] Added: Sonic Swaraj (₹500.00)
+INFO:app:[partyhunt_poller] Added: Way To Heaven Festival-1 (₹899.00)
+INFO:app:[partyhunt_poller] Added: Way To Heaven Festival 1 (₹899.00)
+INFO:app:[partyhunt_poller] Added: Vanaghotra (₹1999.00)
+INFO:app:[partyhunt_poller] Added: PARTY HUNT - Tix! (₹1.00)
+INFO:app:[partyhunt_poller] Batch done: 11 new events added to India entertainment
+INFO:app:[partyhunt_poller] India banners updated: 44 images (only future/active events from PartyHunt)
+ERROR:app:[partyhunt_poller] Save error: [Errno 2] No such file or directory: 'listings_india.json.tmp' -> 'listings_india.json'
+INFO:app:[partyhunt_poller] Added: Mountain Calling (₹1500.00)
+INFO:app:[partyhunt_poller] Added: Magical Festival (₹1500.00)
+INFO:app:[partyhunt_poller] Added: Pre Sao Joao Bash (₹700.00)
+INFO:app:[partyhunt_poller] Added: Sonic Swaraj (₹500.00)
+INFO:app:[partyhunt_poller] Added: Way To Heaven Festival-1 (₹899.00)
+INFO:app:[partyhunt_poller] Added: Way To Heaven Festival 1 (₹899.00)
+INFO:app:[partyhunt_poller] Added: Vanaghotra (₹1999.00)
+INFO:app:[partyhunt_poller] Added: PARTY HUNT - Tix! (₹1.00)
+INFO:app:[partyhunt_poller] Batch done: 20 new events added to India entertainment
+INFO:app:[partyhunt_poller] India banners updated: 44 images (only future/active events from PartyHunt)
+WARNING:app:[banner_sync] Ошибка скрейпинга страницы: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+INFO:app:[banner_sync] Обновлено: 1 баннеров Вьетнам (только @banner_vn)
+INFO:app:[banner_sync] Синк @banner_vn: +0 новых, 0 URL обновлено, всего 1
+WARNING:app:[banner_sync] Ошибка скрейпинга страницы: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+INFO:app:[banner_sync] Обновлено: 1 баннеров Вьетнам (только @banner_vn)
+INFO:app:[banner_sync] Синк @banner_vn: +0 новых, 0 URL обновлено, всего 1
+INFO:app:[disk_prewarm] Bot API: 0 скачано, 0 уже есть, 343 ошибок
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:app:[disk_prewarm] Bot API: 0 скачано, 0 уже есть, 343 ошибок
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:app:[periodic_scraper] Запущен: 15 каналов, интервал=30s
+WARNING:bot_channel_parser:[parsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @parsing_vn: +0 постов
+INFO:app:[periodic_scraper] Запущен: 15 каналов, интервал=30s
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+WARNING:bot_channel_parser:[parsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @parsing_vn: +0 постов
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+WARNING:app:[excursii_telethon] run error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest)))
+WARNING:app:[excursii_telethon] run error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest)))
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-14' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc7009a80>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/threading.py", line 254, in __init__
+    self._release_save = lock._release_save
+                         ^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-16' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-17' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+INFO:app:[chat_scraper] Запущен (чаты каждые 30s)
+WARNING:bot_channel_parser:[parsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[chat_scraper] Запущен (чаты каждые 30s)
+WARNING:bot_channel_parser:[parsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @parsing_th: +0 постов
+ERROR:telethon.network.connection.connection:Unexpected exception in the send loop
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py", line 322, in _send_loop
+    self._send(await self._send_queue.get())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/asyncio/queues.py", line 160, in get
+    getter.cancel()  # Just in case getter is not done yet.
+    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Exception ignored in: <coroutine object Connection._send_loop at 0x7f6cd9cb3ae0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task cancelling name='Task-9' coro=<Connection._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:332> wait_for=<Future cancelled>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<Connection._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:334> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-11' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future finished result=None>>
+ERROR:telethon.network.mtprotosender:Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/asyncio/queues.py", line 158, in get
+    await getter
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py", line 513, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py", line 308, in recv
+    result, err = await self._recv_queue.get()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/asyncio/queues.py", line 160, in get
+    getter.cancel()  # Just in case getter is not done yet.
+    ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Exception ignored in: <coroutine object MTProtoSender._recv_loop at 0x7f6cd9d81040>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py", line 530, in _recv_loop
+    self._start_reconnect(e)
+  File "/usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py", line 436, in _start_reconnect
+    helpers.get_running_loop().create_task(self._reconnect(error))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/telethon/helpers.py", line 432, in get_running_loop
+    return asyncio.get_event_loop_policy().get_event_loop()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/asyncio/events.py", line 681, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+RuntimeError: There is no current event loop in thread 'AllChannelsScraper'.
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-14' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cd84036a0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-16' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-17' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:bot_channel_parser:[parsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @parsing_th: +0 постов
+INFO:app:[banner_cleanup] Авто-очистка баннеров Вьетнам запущена (каждые 5 мин)
+INFO:app:[banner_cleanup] Авто-очистка баннеров Вьетнам запущена (каждые 5 мин)
+WARNING:bot_channel_parser:[parsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @parsing_in: +0 постов
+WARNING:bot_channel_parser:[parsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @parsing_in: +0 постов
+WARNING:bot_channel_parser:[parsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+WARNING:bot_channel_parser:[parsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @parsing_indo: +0 постов
+WARNING:bot_channel_parser:[parsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @parsing_indo: +0 постов
+WARNING:bot_channel_parser:[parsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[restoran_sync] Ошибка: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+WARNING:app:[restoran_sync] Ошибка: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+WARNING:app:[banner_cleanup] Ошибка при скрейпинге страницы: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+WARNING:app:[banner_cleanup] Не удалось получить список постов — пропуск
+WARNING:app:[banner_cleanup] Ошибка при скрейпинге страницы: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=20)
+WARNING:app:[banner_cleanup] Не удалось получить список постов — пропуск
+WARNING:bot_channel_parser:[bikeparsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @bikeparsing_vn: +0 постов
+WARNING:bot_channel_parser:[bikeparsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @bikeparsing_vn: +0 постов
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+WARNING:telethon.network.connection.connection:Server closed the connection: 0 bytes read on a total of 8 expected bytes
+INFO:telethon.network.mtprotosender:Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+INFO:telethon.network.mtprotosender:Closing current connection to begin reconnect...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+WARNING:telethon.client.updates:Error executing high-level request after reconnect: <class 'telethon.errors.rpcerrorlist.AuthKeyDuplicatedError'>: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetUsersRequest)
+WARNING:bot_channel_parser:[parsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-24' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc74dc5e0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/threading.py", line 254, in __init__
+    self._release_save = lock._release_save
+                         ^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-25' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-26' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-27' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-24' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc70ce7a0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/util/timeout.py", line 186, in from_float
+    return Timeout(read=timeout, connect=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-25' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-26' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-27' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:bot_channel_parser:[bikeparsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @bikeparsing_th: +0 постов
+WARNING:bot_channel_parser:[bikeparsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @bikeparsing_th: +0 постов
+WARNING:bot_channel_parser:[bikeparsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[bikeparsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:app:[india_ent_cleanup] Removed 22 events outside 14-day window, kept 22
+WARNING:bot_channel_parser:[bikeparsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @bikeparsing_in: +0 постов
+WARNING:bot_channel_parser:[bikeparsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @bikeparsing_in: +0 постов
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+WARNING:bot_channel_parser:[bikeparsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-29' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc74445e0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-30' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-31' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-32' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:bot_channel_parser:[bikeparsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[bikeparsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @bikeparsing_indo: +0 постов
+WARNING:bot_channel_parser:[bikeparsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @bikeparsing_indo: +0 постов
+WARNING:bot_channel_parser:[bikeparsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[bikeparsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[tusaparsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @tusaparsing_vn: +0 постов
+WARNING:bot_channel_parser:[tusaparsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @tusaparsing_vn: +0 постов
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+WARNING:telethon.network.connection.connection:Server closed the connection: 0 bytes read on a total of 8 expected bytes
+INFO:telethon.network.mtprotosender:Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+WARNING:telethon.network.connection.connection:Server closed the connection: 0 bytes read on a total of 8 expected bytes
+INFO:telethon.network.mtprotosender:Closing current connection to begin reconnect...
+INFO:telethon.network.mtprotosender:Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+INFO:telethon.network.mtprotosender:Closing current connection to begin reconnect...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+WARNING:telethon.client.updates:Error executing high-level request after reconnect: <class 'telethon.errors.rpcerrorlist.AuthKeyDuplicatedError'>: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetUsersRequest)
+WARNING:telethon.client.updates:Error executing high-level request after reconnect: <class 'telethon.errors.rpcerrorlist.AuthKeyDuplicatedError'>: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetUsersRequest)
+WARNING:bot_channel_parser:[bikeparsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[bikeparsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-42' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc74df5b0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-43' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-44' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-45' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:bot_channel_parser:[tusaparsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @tusaparsing_th: +0 постов
+WARNING:bot_channel_parser:[tusaparsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @tusaparsing_th: +0 постов
+WARNING:bot_channel_parser:[tusaparsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[tusaparsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[tusaparsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @tusaparsing_indo: +0 постов
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-37' coro=<Connection._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:322> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-38' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:341> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-39' coro=<MTProtoSender._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:470> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-40' coro=<MTProtoSender._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:513> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc74de200>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/util/retry.py", line 253, in __init__
+    self.remove_headers_on_redirect = frozenset(
+                                               ^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-49' coro=<Connection._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:322> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-50' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:341> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-51' coro=<MTProtoSender._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:470> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-52' coro=<MTProtoSender._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:513> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cd4403100>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/util/retry.py", line 253, in __init__
+    self.remove_headers_on_redirect = frozenset(
+                                               ^
+RuntimeError: coroutine ignored GeneratorExit
+WARNING:bot_channel_parser:[tusaparsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @tusaparsing_indo: +0 постов
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+WARNING:telethon.network.connection.connection:Server closed the connection: 0 bytes read on a total of 8 expected bytes
+INFO:telethon.network.mtprotosender:Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+INFO:telethon.network.mtprotosender:Closing current connection to begin reconnect...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+WARNING:telethon.client.updates:Error executing high-level request after reconnect: <class 'telethon.errors.rpcerrorlist.AuthKeyDuplicatedError'>: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetUsersRequest)
+WARNING:bot_channel_parser:[tusaparsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[tusaparsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-55' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc700bb50>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/util/retry.py", line 490, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-56' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-57' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-58' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:bot_channel_parser:[tusaparsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @tusaparsing_in: +0 постов
+WARNING:bot_channel_parser:[tusaparsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @tusaparsing_in: +0 постов
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-34' coro=<Connection._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:322> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-35' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:341> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-36' coro=<MTProtoSender._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:470> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-37' coro=<MTProtoSender._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:513> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-41' coro=<Connection._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:322> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-42' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:341> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-43' coro=<MTProtoSender._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:470> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-44' coro=<MTProtoSender._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:513> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc70cf2e0>
+Traceback (most recent call last):
+  File "<frozen os>", line 679, in __getitem__
+RuntimeError: coroutine ignored GeneratorExit
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cd9cca980>
+Traceback (most recent call last):
+  File "<frozen os>", line 679, in __getitem__
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-47' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc7444400>
+Traceback (most recent call last):
+  File "<frozen os>", line 679, in __getitem__
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-48' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-49' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-50' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[tusaparsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[tusaparsing_indo] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[excursii_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @excursii_vn: +0 постов
+WARNING:bot_channel_parser:[excursii_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @excursii_vn: +0 постов
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+WARNING:bot_channel_parser:[tusaparsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[tusaparsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-68' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc74ddb70>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/poolmanager.py", line 135, in _default_key_normalizer
+    for key in list(context.keys()):
+               ^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-69' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-70' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-71' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:bot_channel_parser:[excursii_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @excursii_th: +0 постов
+WARNING:bot_channel_parser:[excursii_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @excursii_th: +0 постов
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-52' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc70ce4d0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/util/retry.py", line 490, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-53' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-54' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-55' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:bot_channel_parser:[excursii_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[excursii_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[restoranparsing_all] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @restoranparsing_all: +0 постов
+INFO:app:[backfill] Завершён. Итого добавлено: 0 постов
+INFO:app:[startup_backfill] Завершён: +0 новых записей
+WARNING:bot_channel_parser:[restoranparsing_all] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:app:[backfill] @restoranparsing_all: +0 постов
+INFO:app:[backfill] Завершён. Итого добавлено: 0 постов
+INFO:app:[startup_backfill] Завершён: +0 новых записей
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[excursii_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[excursii_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-73' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc74de890>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/requests/exceptions.py", line 24, in __init__
+    super().__init__(*args, **kwargs)
+    ^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-74' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-75' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-76' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:bot_channel_parser:[restoranparsing_all] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[restoranparsing_all] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-57' coro=<Connection._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:322> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-58' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:341> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-59' coro=<MTProtoSender._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:470> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-60' coro=<MTProtoSender._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:513> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cd9cca020>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+WARNING:telethon.network.connection.connection:Server closed the connection: 0 bytes read on a total of 8 expected bytes
+INFO:telethon.network.mtprotosender:Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+INFO:telethon.network.mtprotosender:Closing current connection to begin reconnect...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+WARNING:telethon.client.updates:Error executing high-level request after reconnect: <class 'telethon.errors.rpcerrorlist.AuthKeyDuplicatedError'>: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetUsersRequest)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-78' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cc74df970>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/connection.py", line 377, in close
+    super().close()
+    ^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-79' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-80' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-81' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:app:[vn_ent_cleanup] Проверяю 3 записей @tusaparsing_vn (min_id=416), без ID: 0...
+INFO:app:[vn_ent_cleanup] Проверяю 3 записей @tusaparsing_vn (min_id=416), без ID: 0...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-62' coro=<Connection._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:322> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-63' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:341> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-64' coro=<MTProtoSender._send_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:470> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-65' coro=<MTProtoSender._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:513> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6cd9ccad40>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-67' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6d31081e40>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-68' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-69' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-70' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:app:[vn_ent_cleanup] scrape error: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[vn_ent_cleanup] Не удалось получить ID из канала — пропускаем
+WARNING:app:[vn_ent_cleanup] scrape error: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:app:[vn_ent_cleanup] Не удалось получить ID из канала — пропускаем
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-91' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6d2b3e4310>
+Traceback (most recent call last):
+  File "<frozen _collections_abc>", line 774, in get
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-92' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-93' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-94' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+WARNING:bot_channel_parser:[parsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_vn] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_th] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connecting to 149.154.167.51:443/TcpFull...
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:telethon.network.mtprotosender:Connection to 149.154.167.51:443/TcpFull complete!
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+INFO:tg_parser:Отключён: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))). Переподключаюсь через 30с...
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+WARNING:app:[gavibeshub_poller] Ошибка поллинга: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=15)
+INFO:vietnamparsing_parser:[repair] Нет объявлений для обогащения (33 пропущено)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-72' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6d310823e0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-73' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-74' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-75' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+INFO:vietnamparsing_parser:[transport_repair] CDN ссылок не найдено.
+INFO:vietnamparsing_parser:Fetching last 200 messages from t.me/s/vietnamparsing...
+INFO:vietnamparsing_parser:[repair] Нет объявлений для обогащения (33 пропущено)
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-96' coro=<Connection._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:316> wait_for=<Future cancelled>>
+Exception ignored in: <coroutine object Connection._recv_loop at 0x7f6d2b3e56c0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: coroutine ignored GeneratorExit
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-97' coro=<Connection._recv_loop() running at /usr/local/lib/python3.11/site-packages/telethon/network/connection/connection.py:361> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-98' coro=<MTProtoSender._send_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:452> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-99' coro=<MTProtoSender._recv_loop() done, defined at /usr/local/lib/python3.11/site-packages/telethon/network/mtprotosender.py:503> wait_for=<Future cancelled>>
+INFO:vietnamparsing_parser:[transport_repair] CDN ссылок не найдено.
+INFO:vietnamparsing_parser:Fetching last 200 messages from t.me/s/vietnamparsing...
+WARNING:bot_channel_parser:[parsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
+WARNING:bot_channel_parser:[parsing_in] Ошибка скрапинга: HTTPSConnectionPool(host='t.me', port=443): Read timed out. (read timeout=15)
