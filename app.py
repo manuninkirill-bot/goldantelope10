@@ -2482,6 +2482,89 @@ threading.Thread(target=_sync_media_vn_banners, daemon=True, name='BannerMediaVn
 threading.Thread(target=_banner_refresh_scheduler, daemon=True, name='BannerRefreshScheduler').start()
 logger.info('[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)')
 
+
+def _banner_vn_cleanup():
+    """Каждые 5 минут проверяет t.me/s/banner_vn и удаляет из banner_data.json
+    записи, которых больше нет в канале (пост удалён)."""
+    import time as _t
+    from bs4 import BeautifulSoup as _BS
+    _t.sleep(60)  # дать приложению запуститься
+    logger.info('[banner_cleanup] Авто-очистка баннеров Вьетнам запущена (каждые 5 мин)')
+    while True:
+        try:
+            channel = _BANNER_TG_GROUP  # 'banner_vn'
+            base_url = f'https://t.me/s/{channel}'
+            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+            # Собираем все msg_id которые сейчас есть в канале
+            live_ids = set()
+            before = None
+            for _page in range(30):
+                params = {}
+                if before:
+                    params['before'] = before
+                try:
+                    resp = requests.get(base_url, params=params, headers=headers, timeout=20)
+                    if resp.status_code != 200:
+                        break
+                    soup = _BS(resp.text, 'html.parser')
+                    msgs = soup.select('.tgme_widget_message')
+                    if not msgs:
+                        break
+                    page_ids = []
+                    for m in msgs:
+                        dp = m.get('data-post', '')
+                        if '/' not in dp:
+                            continue
+                        try:
+                            mid = int(dp.split('/')[-1])
+                            live_ids.add(mid)
+                            page_ids.append(mid)
+                        except ValueError:
+                            pass
+                    if not page_ids:
+                        break
+                    before = min(page_ids)
+                    if before <= 1:
+                        break
+                    _t.sleep(0.5)
+                except Exception as _pe:
+                    logger.warning('[banner_cleanup] Ошибка при скрейпинге страницы: %s', _pe)
+                    break
+            if not live_ids:
+                logger.warning('[banner_cleanup] Не удалось получить список постов — пропуск')
+                _t.sleep(300)
+                continue
+            # Сравниваем с banner_data.json
+            data = _load_banner_data()
+            stored_ids = set(int(k) for k in data.keys())
+            deleted_ids = stored_ids - live_ids - _BANNER_EXCLUDE_IDS
+            if deleted_ids:
+                for mid in deleted_ids:
+                    mid_str = str(mid)
+                    data.pop(mid_str, None)
+                    # Удаляем локальные файлы если есть
+                    for ext in ('jpg', 'png', 'webp', 'jpeg'):
+                        local = f'static/images/banner_vn_{mid}.{ext}'
+                        if os.path.exists(local):
+                            try:
+                                os.remove(local)
+                                logger.info('[banner_cleanup] Удалён файл: %s', local)
+                            except Exception:
+                                pass
+                    logger.info('[banner_cleanup] Удалён баннер msg_id=%d (поста нет в канале)', mid)
+                _save_banner_data(data)
+                _update_banner_config_from_data(data)
+                logger.info('[banner_cleanup] Удалено %d устаревших баннеров, осталось %d', len(deleted_ids), len(data))
+            else:
+                logger.debug('[banner_cleanup] Все %d баннеров актуальны', len(stored_ids))
+        except Exception as _e:
+            logger.error('[banner_cleanup] Ошибка: %s', _e)
+        _t.sleep(300)  # 5 минут
+
+
+threading.Thread(target=_banner_vn_cleanup, daemon=True, name='BannerVnCleanup').start()
+logger.info('[banner_cleanup] Авто-очистка баннеров Вьетнам запущена (каждые 5 мин)')
+
 _banner_og_cache = {}
 
 def _get_banner_file_id(msg_id):
