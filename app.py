@@ -10651,8 +10651,21 @@ else:
     try:
         import telethon_parser as _tp_init
         if _tp_init.get_session():
-            logger.info('TELETHON_SESSION найдена — запускаю парсер...')
-            _tp_init.start()
+            # На HF Space запускаем Telethon только в одном воркере через эксклюзивный файловый лок
+            import fcntl as _fcntl
+            _tl_lock_path = '/tmp/telethon_worker.lock'
+            _tl_lock_fd = open(_tl_lock_path, 'w')
+            _tl_acquired = False
+            try:
+                _fcntl.flock(_tl_lock_fd, _fcntl.LOCK_EX | _fcntl.LOCK_NB)
+                _tl_acquired = True
+            except BlockingIOError:
+                pass
+            if _tl_acquired:
+                logger.info('TELETHON_SESSION найдена — запускаю парсер (PID %d)...', os.getpid())
+                _tp_init.start()
+            else:
+                logger.info('TELETHON_SESSION: парсер уже запущен в другом воркере (PID %d пропускает)', os.getpid())
         else:
             logger.info('TELETHON_SESSION не задана — авторизуйтесь через /tg-auth')
     except Exception as _e:
