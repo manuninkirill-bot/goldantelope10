@@ -9625,6 +9625,110 @@ def _india_entertainment_cleanup():
 threading.Thread(target=_india_entertainment_cleanup, daemon=True, name='IndiaEntCleanup').start()
 logger.info('[india_ent_cleanup] Auto-cleanup started (every 6h, window=14d)')
 
+
+def _vietnam_entertainment_cleanup():
+    """Каждые 4 часа проверяет, существуют ли посты из tusaparsing_vn в Telegram.
+    Скрейпит t.me/s/tusaparsing_vn постранично, собирает актуальные msg_id,
+    удаляет из listings_vietnam.json[entertainment] записи удалённых постов."""
+    import time as _time
+    import re as _re
+    import requests as _req
+    VN_FILE = os.path.join(os.path.dirname(__file__), 'listings_vietnam.json')
+    CHANNEL = 'tusaparsing_vn'
+    INTERVAL = 4 * 3600
+    HEADERS = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Accept-Language': 'ru,en;q=0.9',
+    }
+
+    def _scrape_ids(channel, before=None):
+        """Возвращает set(msg_id) с одной страницы t.me/s/."""
+        url = f'https://t.me/s/{channel}'
+        params = {'before': before} if before else {}
+        try:
+            r = _req.get(url, params=params, headers=HEADERS, timeout=15)
+            ids = set(int(m) for m in _re.findall(r'data-post="[^/"]+/(\d+)"', r.text))
+            return ids
+        except Exception as _e:
+            logger.warning('[vn_ent_cleanup] scrape error: %s', _e)
+            return set()
+
+    def _collect_channel_ids(channel, min_msg_id):
+        """Пагинирует t.me/s/ пока не дойдёт до min_msg_id, собирает все актуальные id."""
+        all_ids = set()
+        before = None
+        max_pages = 50
+        for _ in range(max_pages):
+            page_ids = _scrape_ids(channel, before)
+            if not page_ids:
+                break
+            all_ids |= page_ids
+            oldest = min(page_ids)
+            if oldest <= min_msg_id:
+                break
+            before = oldest
+            _time.sleep(1.5)
+        return all_ids
+
+    _first = True
+    while True:
+        _time.sleep(300 if _first else INTERVAL)  # первый запуск через 5 мин
+        _first = False
+        try:
+            with open(VN_FILE, encoding='utf-8') as _f:
+                _data = json.load(_f)
+
+            _ent = _data.get('entertainment', [])
+            # Берём только записи из tusaparsing_vn
+            _tusa = [x for x in _ent if x.get('source_channel', x.get('channel', '')) == CHANNEL]
+            _other = [x for x in _ent if x.get('source_channel', x.get('channel', '')) != CHANNEL]
+
+            if not _tusa:
+                continue
+
+            # Извлекаем msg_id из telegram_link
+            _id_map = {}  # msg_id → listing
+            for x in _tusa:
+                link = x.get('telegram_link', '')
+                m = _re.search(r'/(\d+)$', link)
+                if m:
+                    _id_map[int(m.group(1))] = x
+
+            if not _id_map:
+                continue
+
+            min_id = min(_id_map.keys())
+            logger.info('[vn_ent_cleanup] Проверяю %d записей @%s (min_id=%d)...', len(_id_map), CHANNEL, min_id)
+
+            # Получаем актуальные ID из канала
+            live_ids = _collect_channel_ids(CHANNEL, min_id)
+            if not live_ids:
+                logger.warning('[vn_ent_cleanup] Не удалось получить ID из канала — пропускаем')
+                continue
+
+            # Определяем удалённые
+            deleted_ids = set(_id_map.keys()) - live_ids
+            if not deleted_ids:
+                logger.info('[vn_ent_cleanup] Удалённых постов не найдено')
+                continue
+
+            # Оставляем только живые tusa-записи + прочие
+            kept_tusa = [x for mid, x in _id_map.items() if mid not in deleted_ids]
+            _data['entertainment'] = _other + kept_tusa
+
+            with open(VN_FILE, 'w', encoding='utf-8') as _f:
+                json.dump(_data, _f, ensure_ascii=False, indent=2)
+
+            logger.info('[vn_ent_cleanup] Удалено %d записей из entertainment (было %d, стало %d)',
+                        len(deleted_ids), len(_tusa), len(kept_tusa))
+        except Exception as _e:
+            logger.warning('[vn_ent_cleanup] Ошибка: %s', _e)
+
+
+threading.Thread(target=_vietnam_entertainment_cleanup, daemon=True, name='VnEntCleanup').start()
+logger.info('[vn_ent_cleanup] Авто-очистка развлечений Вьетнам запущена (каждые 4ч)')
+
+
 @app.route('/api/chatiparsing/feed')
 def chatiparsing_feed():
     """Живая лента из канала chatiparsing (кэш 60 с)"""
