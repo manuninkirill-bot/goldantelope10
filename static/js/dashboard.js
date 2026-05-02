@@ -1401,7 +1401,7 @@
             }
         }
 
-        const _BANNER_INTERVAL = { vietnam: 10000 };
+        const _BANNER_INTERVAL = { vietnam: 15000 };
         const _BANNER_DEFAULT_INTERVAL = 7000;
         let _bannerTimer = null;
         function _scheduleBannerTick() {
