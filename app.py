@@ -5787,8 +5787,12 @@ def _sync_excursii_vn_telethon():
             if not sess_str:
                 _t.sleep(3600)
                 continue
-            api_id   = int(os.environ.get('TELETHON_API_ID', '32881984'))
-            api_hash = os.environ.get('TELETHON_API_HASH', 'd2588f09dfbc5103ef77ef21c07dbf8b')
+            api_id   = int(os.environ.get('TELETHON_API_ID', '0'))
+            api_hash = os.environ.get('TELETHON_API_HASH', '')
+            if not api_id or not api_hash:
+                logger.warning('[excursii_telethon] TELETHON_API_ID / TELETHON_API_HASH не заданы')
+                _t.sleep(3600)
+                continue
 
             async def _run():
                 from telethon import TelegramClient
