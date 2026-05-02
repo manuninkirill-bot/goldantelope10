@@ -8845,7 +8845,7 @@
         const _apiCache = new Map();
         const _API_CACHE_TTL = 90000; // 90 секунд
         const _listingOffset = {}; // category → current offset
-        const PAGE_SIZE = 50;
+        const PAGE_SIZE = 20;
 
         function loadListings(category, city = '', _loadMore = false) {
             if (!category) {
@@ -9300,7 +9300,7 @@
                                     if (img.includes('github.com') && !img.includes('raw.githubusercontent.com')) {
                                         finalImg = img.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
                                     }
-                                    return `<img src="${finalImg}" data-src="${finalImg}" class="${idx === 0 ? 'active' : ''}" data-idx="${idx}" onerror="this.onerror=null;this.style.display='none';this.classList.remove('active');this.dataset.broken='1';(function(el){var p=el.closest('.card-slider');if(!p)return;if(el.classList.contains('was-first')||el.dataset.idx==='0'){var nxt=Array.from(p.querySelectorAll('img')).find(function(i){return !i.dataset.broken&&i!==el});if(nxt){nxt.classList.add('active');}}})(this);" loading="eager">`;
+                                    return `<img src="${finalImg}" data-src="${finalImg}" class="${idx === 0 ? 'active' : ''}" data-idx="${idx}" onerror="this.onerror=null;this.style.display='none';this.classList.remove('active');this.dataset.broken='1';(function(el){var p=el.closest('.card-slider');if(!p)return;if(el.classList.contains('was-first')||el.dataset.idx==='0'){var nxt=Array.from(p.querySelectorAll('img')).find(function(i){return !i.dataset.broken&&i!==el});if(nxt){nxt.classList.add('active');}}})(this);" loading="${idx === 0 ? 'eager' : 'lazy'}">`;
                                 }).join('')}
                                 ${images.length > 1 ? `
                                     <button class="slider-nav prev" onclick="changeListingImage('${item.id}', -1, event)">‹</button>
@@ -9639,6 +9639,21 @@
                                 }
                             }, { rootMargin: '200px' });
                             window._scrollObserver.observe(sentinel);
+
+                            // Prefetch следующей страницы заранее в фоне
+                            setTimeout(() => {
+                                const _nextOffset = (_listingOffset[category] || 0) + PAGE_SIZE;
+                                const _prefetchParams = new URLSearchParams(params);
+                                _prefetchParams.set('offset', _nextOffset);
+                                _prefetchParams.set('limit', PAGE_SIZE);
+                                const _pfKey = `/api/listings/${category}?` + _prefetchParams.toString();
+                                if (!_apiCache.has(_pfKey)) {
+                                    fetch(_pfKey + '&_t=' + Date.now())
+                                        .then(r => r.json())
+                                        .then(d => { if (!adminAuthenticated) _apiCache.set(_pfKey, {data: d, ts: Date.now()}); })
+                                        .catch(() => {});
+                                }
+                            }, 800);
                         }
                         
                         // Переводим карточки (включая авто-перевод английских на русский)

@@ -19,7 +19,11 @@ file_lock = threading.Lock()
 
 # Data cache to prevent heavy disk I/O
 data_cache = {}
-DATA_CACHE_TTL = 300 # Cache data for 5 minutes
+DATA_CACHE_TTL = 600  # Cache raw data for 10 minutes
+
+# Cache filtered API results (key: "category:country:query_string") — TTL 60s
+_filtered_cache = {}
+_FILTERED_CACHE_TTL = 60
 
 GOOGLE_AI_API_KEY = os.environ.get('GOOGLE_AI_API_KEY', '')
 translation_cache = {}
@@ -200,11 +204,15 @@ def save_data(country='vietnam', data=None):
         return
     
     with file_lock:
-        # Инвалидируем кэш
+        # Инвалидируем кэш сырых данных
         if country in data_cache:
             del data_cache[country]
         if 'all' in data_cache:
             del data_cache['all']
+        # Инвалидируем кэш отфильтрованных результатов для этой страны
+        _keys_to_drop = [k for k in _filtered_cache if f':{country}:' in k]
+        for _k in _keys_to_drop:
+            del _filtered_cache[_k]
             
         # Сохраняем в файл страны
         country_file = f"listings_{country}.json"
@@ -1470,6 +1478,17 @@ def get_exchange_rates():
 @app.route('/api/listings/<category>')
 def get_listings(category):
     country = request.args.get('country', 'vietnam')
+
+    # ── Кэш отфильтрованных результатов (60 сек, только для публичных запросов) ──
+    _admin_req = request.args.get('show_hidden') == '1' or category == 'admin'
+    _fk = f"{category}:{country}:{request.query_string.decode()}"
+    if not _admin_req:
+        _fc = _filtered_cache.get(_fk)
+        if _fc and (time.time() - _fc['ts']) < _FILTERED_CACHE_TTL:
+            resp = jsonify(_fc['data'])
+            resp.headers['Cache-Control'] = 'public, max-age=30'
+            return resp
+
     data = load_data(country)
     
     # Handle subcategories for Vietnam marketplace and exchange - return listings by default
@@ -2101,7 +2120,12 @@ def get_listings(category):
             filtered = filtered[offset:offset + limit]
         _enrich_tg_images(filtered)
         _mask_internal_channels(filtered)
-        return jsonify(filtered)
+        if not _admin_req:
+            _filtered_cache[_fk] = {'data': filtered, 'ts': time.time()}
+        resp = jsonify(filtered)
+        if not _admin_req:
+            resp.headers['Cache-Control'] = 'public, max-age=30'
+        return resp
     
     # Для категории chat — подмешиваем живые данные из chatiparsing
     if category == 'chat':
@@ -2168,7 +2192,12 @@ def get_listings(category):
     
     _enrich_tg_images(filtered)
     _mask_internal_channels(filtered)
-    return jsonify(filtered)
+    if not _admin_req:
+        _filtered_cache[_fk] = {'data': filtered, 'ts': time.time()}
+    resp = jsonify(filtered)
+    if not _admin_req:
+        resp.headers['Cache-Control'] = 'public, max-age=30'
+    return resp
 
 @app.route('/api/add-listing', methods=['POST'])
 def add_listing():
