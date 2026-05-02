@@ -4828,8 +4828,8 @@ def _process_routed_channel_post(cp):
         'tusaparsing_vn':     ('entertainment', 'vietnam'),
         'tusaparsing_th':     ('entertainment', 'thailand'),
         'tusaparsing_indo':   ('entertainment', 'indonesia'),
-        'excursii_vn':        ('entertainment', 'vietnam'),
-        'excursii_th':        ('entertainment', 'thailand'),
+        'excursii_vn':        ('tours',         'vietnam'),
+        'excursii_th':        ('tours',         'thailand'),
         # Рестораны
         'restoranparsing_all':('restaurants',  'vietnam'),
         # Прочие (обратная совместимость)
@@ -5149,7 +5149,7 @@ _PERIODIC_SCRAPE_CHANNELS = [
     ('tusaparsing_th',    'entertainment', 'listings_thailand.json',  'thailand'),
     ('tusaparsing_indo',  'entertainment', 'listings_indonesia.json', 'indonesia'),
     # Экскурсии / рестораны
-    ('excursii_vn',       'entertainment', 'listings_vietnam.json',   'vietnam'),
+    ('excursii_vn',       'tours',         'listings_vietnam.json',   'vietnam'),
     ('restoranparsing_all','restaurants',  'listings_vietnam.json',   'vietnam'),
 ]
 _CHAT_SCRAPE_CHANNELS = []
