@@ -1401,15 +1401,23 @@
             }
         }
 
-        setInterval(() => {
-            const banners = getCurrentBanners();
-            if (banners.length > 1) {
-                const currentIdx = countryConfig[currentCountry].currentBanner || 0;
-                const nextIdx = (currentIdx + 1) % banners.length;
-                countryConfig[currentCountry].currentBanner = nextIdx;
-                updateBanner();
-            }
-        }, 7000);
+        const _BANNER_INTERVAL = { vietnam: 10000 };
+        const _BANNER_DEFAULT_INTERVAL = 7000;
+        let _bannerTimer = null;
+        function _scheduleBannerTick() {
+            if (_bannerTimer) clearTimeout(_bannerTimer);
+            const delay = _BANNER_INTERVAL[currentCountry] || _BANNER_DEFAULT_INTERVAL;
+            _bannerTimer = setTimeout(function _tick() {
+                const banners = getCurrentBanners();
+                if (banners.length > 1) {
+                    const currentIdx = countryConfig[currentCountry].currentBanner || 0;
+                    countryConfig[currentCountry].currentBanner = (currentIdx + 1) % banners.length;
+                    updateBanner();
+                }
+                _scheduleBannerTick();
+            }, delay);
+        }
+        _scheduleBannerTick();
 
         function switchCountry(country) {
             // Запоминаем активную вкладку ДО смены страны
