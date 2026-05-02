@@ -1370,6 +1370,7 @@
                     if (bannerVideo) {
                         bannerVideo.style.display = 'block';
                         if (bannerVideo.src !== mediaUrl && !bannerVideo.src.endsWith(mediaUrl)) {
+                            _bannerVideoPlayCount = 0; // сброс счётчика при смене видео
                             bannerVideo.src = mediaUrl;
                             bannerVideo.load();
                         }
@@ -1403,11 +1404,28 @@
             }
         }
 
-        const _BANNER_INTERVAL = { vietnam: 15000 };
+        // Для видео-баннеров (Вьетнам): переключение после 2 воспроизведений через событие ended
+        // Для остальных стран: переключение по таймеру
+        const _BANNER_VIDEO_PLAYS = 2; // сколько раз воспроизвести видео перед сменой
+        let _bannerVideoPlayCount = 0;
+        // Таймер — резервный механизм (на случай если видео не загрузилось)
+        const _BANNER_INTERVAL = { vietnam: 30000 };
         const _BANNER_DEFAULT_INTERVAL = 7000;
         let _bannerTimer = null;
         let _bannerLastTick = Date.now();
         let _bannerTickCount = 0;
+
+        function _advanceBanner() {
+            _bannerVideoPlayCount = 0;
+            const banners = getCurrentBanners();
+            if (banners.length > 1) {
+                const currentIdx = countryConfig[currentCountry].currentBanner || 0;
+                countryConfig[currentCountry].currentBanner = (currentIdx + 1) % banners.length;
+                console.log('[Banner] switching to idx=' + countryConfig[currentCountry].currentBanner);
+                updateBanner();
+            }
+        }
+
         function _scheduleBannerTick(caller) {
             if (_bannerTimer) clearTimeout(_bannerTimer);
             const delay = _BANNER_INTERVAL[currentCountry] || _BANNER_DEFAULT_INTERVAL;
@@ -1416,17 +1434,29 @@
             _bannerTimer = setTimeout(function _tick() {
                 _bannerTickCount++;
                 const elapsed = Date.now() - _bannerLastTick;
-                const banners = getCurrentBanners();
-                console.log('[BannerTimer] TICK #' + _bannerTickCount + ' elapsed=' + elapsed + 'ms target=' + delay + 'ms banners=' + banners.length + ' country=' + currentCountry);
-                if (banners.length > 1) {
-                    const currentIdx = countryConfig[currentCountry].currentBanner || 0;
-                    countryConfig[currentCountry].currentBanner = (currentIdx + 1) % banners.length;
-                    console.log('[BannerTimer] switching to idx=' + countryConfig[currentCountry].currentBanner);
-                    updateBanner();
-                }
+                console.log('[BannerTimer] TICK #' + _bannerTickCount + ' elapsed=' + elapsed + 'ms, country=' + currentCountry);
+                _advanceBanner();
                 _scheduleBannerTick('auto');
             }, delay);
         }
+
+        // Видео-событие ended — считаем воспроизведения, переключаем после _BANNER_VIDEO_PLAYS раз
+        (function() {
+            const _bv = document.getElementById('banner-video');
+            if (_bv) {
+                _bv.addEventListener('ended', function() {
+                    _bannerVideoPlayCount++;
+                    console.log('[Banner] video ended, play#' + _bannerVideoPlayCount + ', country=' + currentCountry);
+                    if (_bannerVideoPlayCount >= _BANNER_VIDEO_PLAYS) {
+                        _advanceBanner();
+                        _scheduleBannerTick('video_ended'); // сбрасываем резервный таймер
+                    } else {
+                        _bv.play().catch(function() {});
+                    }
+                });
+            }
+        })();
+
         _scheduleBannerTick('init');
 
         // Сброс таймера при возврате в приложение (Telegram WebApp паузирует таймеры в фоне)

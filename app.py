@@ -6544,6 +6544,15 @@ def g_video_proxy(code, post_id):
     """Прокси видео: /gv/<alias>/<msg_id> → CDN URL видео из Telegram канала."""
     channel = _ALIAS_CHANNEL.get(code, code)
     now = time.time()
+    # Лог для замера интервала переключения баннеров
+    try:
+        import datetime
+        ts_ms = int(now * 1000)
+        ts_str = datetime.datetime.utcfromtimestamp(now).strftime('%H:%M:%S.%f')[:-3]
+        with open('/tmp/banner_timing.log', 'a') as _f:
+            _f.write(f'[{ts_str}] ms={ts_ms} /gv/{code}/{post_id}\n')
+    except Exception:
+        pass
     # Кэш
     with _cdn_video_cache_lock:
         entry = _cdn_video_cache.get((channel, post_id))
