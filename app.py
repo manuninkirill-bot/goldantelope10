@@ -5952,7 +5952,19 @@ def _sync_excursii_vn_telethon():
 
 
 if not _replit_dev:  # только на HF Space, на Replit не запускаем
-    threading.Thread(target=_sync_excursii_vn_telethon, daemon=True, name='ExcursiiVnSync').start()
+    def _excursii_vn_worker_guard():
+        """Запускает excursii_vn только в одном воркере через flock."""
+        import fcntl as _fcntl2
+        _ex_lock_path = '/tmp/excursii_telethon.lock'
+        _ex_fd = open(_ex_lock_path, 'w')
+        try:
+            _fcntl2.flock(_ex_fd, _fcntl2.LOCK_EX | _fcntl2.LOCK_NB)
+        except BlockingIOError:
+            logger.info('[excursii_telethon] Другой воркер уже держит lock (PID %d пропускает)', os.getpid())
+            return
+        logger.info('[excursii_telethon] Lock получен (PID %d) — запускаю синхронизацию @excursii_vn', os.getpid())
+        _sync_excursii_vn_telethon()  # бесконечный цикл внутри
+    threading.Thread(target=_excursii_vn_worker_guard, daemon=True, name='ExcursiiVnSync').start()
     logger.info('[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)')
 else:
     logger.info('[excursii_telethon] Replit-среда — Telethon @excursii_vn не запущен (только HF Space)')
