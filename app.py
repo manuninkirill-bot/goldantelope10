@@ -9709,25 +9709,46 @@ def _vietnam_entertainment_cleanup():
 
             _ent = _data.get('entertainment', [])
             # Берём только записи из tusaparsing_vn
-            _tusa = [x for x in _ent if x.get('source_channel', x.get('channel', '')) == CHANNEL]
-            _other = [x for x in _ent if x.get('source_channel', x.get('channel', '')) != CHANNEL]
+            # Используем (or) чтобы обрабатывать пустую строку source_channel="" как отсутствующую
+            def _ch(x): return (x.get('source_channel') or x.get('channel') or '').lstrip('@').lower()
+            _tusa = [x for x in _ent if _ch(x) == CHANNEL]
+            _other = [x for x in _ent if _ch(x) != CHANNEL]
 
             if not _tusa:
                 continue
 
-            # Извлекаем msg_id из telegram_link
-            _id_map = {}  # msg_id → listing
+            # Извлекаем msg_id из telegram_link, fallback — из поля id (tusaparsing_vn_381 → 381)
+            _id_map = {}   # msg_id → listing
+            _no_id = []    # записи без определяемого msg_id → удаляем сразу
             for x in _tusa:
-                link = x.get('telegram_link', '')
+                link = x.get('telegram_link', '') or ''
                 m = _re.search(r'/(\d+)$', link)
-                if m:
+                if not m:
+                    # Пробуем извлечь из id: "tusaparsing_vn_381" → 381
+                    item_id = x.get('id', '') or ''
+                    m2 = _re.search(r'_(\d+)$', item_id)
+                    if m2:
+                        _id_map[int(m2.group(1))] = x
+                    else:
+                        _no_id.append(x)  # совсем без ID — нет способа проверить, удаляем
+                else:
                     _id_map[int(m.group(1))] = x
 
+            if not _id_map and not _no_id:
+                continue
+
+            # Если _id_map пуст, min() упадёт — обрабатываем только _no_id
             if not _id_map:
+                if _no_id:
+                    _data['entertainment'] = _other
+                    with open(VN_FILE, 'w', encoding='utf-8') as _f:
+                        json.dump(_data, _f, ensure_ascii=False, indent=2)
+                    logger.info('[vn_ent_cleanup] Удалено %d записей без ID', len(_no_id))
                 continue
 
             min_id = min(_id_map.keys())
-            logger.info('[vn_ent_cleanup] Проверяю %d записей @%s (min_id=%d)...', len(_id_map), CHANNEL, min_id)
+            logger.info('[vn_ent_cleanup] Проверяю %d записей @%s (min_id=%d), без ID: %d...',
+                        len(_id_map), CHANNEL, min_id, len(_no_id))
 
             # Получаем актуальные ID из канала
             live_ids = _collect_channel_ids(CHANNEL, min_id)
@@ -9735,9 +9756,10 @@ def _vietnam_entertainment_cleanup():
                 logger.warning('[vn_ent_cleanup] Не удалось получить ID из канала — пропускаем')
                 continue
 
-            # Определяем удалённые
+            # Определяем удалённые (+ записи без id → тоже удаляем)
             deleted_ids = set(_id_map.keys()) - live_ids
-            if not deleted_ids:
+            total_removed = len(deleted_ids) + len(_no_id)
+            if total_removed == 0:
                 logger.info('[vn_ent_cleanup] Удалённых постов не найдено')
                 continue
 
@@ -9749,7 +9771,7 @@ def _vietnam_entertainment_cleanup():
                 json.dump(_data, _f, ensure_ascii=False, indent=2)
 
             logger.info('[vn_ent_cleanup] Удалено %d записей из entertainment (было %d, стало %d)',
-                        len(deleted_ids), len(_tusa), len(kept_tusa))
+                        total_removed, len(_tusa), len(kept_tusa))
         except Exception as _e:
             logger.warning('[vn_ent_cleanup] Ошибка: %s', _e)
 

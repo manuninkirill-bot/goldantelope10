@@ -333,6 +333,39 @@
   "transport": [],
   "real_estate": [
     {
+      "id": "chat_bali_real_estate_60591",
+      "title": "дизайнерская вилла 3 этажа 3спальни(3двуспальные кровати) центр букита, вся инфраструктура рядом море 5минут большой инс",
+      "description": "дизайнерская вилла 3 этажа 3спальни(3двуспальные кровати)\nцентр букита, вся инфраструктура рядом море 5минут\nбольшой инстаграмный бассейн, очень много зелени вокруг, тихо, поют птицы, большой собственный паркинг\nцена 38млн в месяц, просмотр в любой ден",
+      "text": "дизайнерская вилла 3 этажа 3спальни(3двуспальные кровати)\nцентр букита, вся инфраструктура рядом море 5минут\nбольшой инстаграмный бассейн, очень много зелени вокруг, тихо, поют птицы, большой собственный паркинг\nцена 38млн в месяц, просмотр в любой ден",
+      "price": 0,
+      "price_display": "",
+      "city": "Индонезия",
+      "city_ru": "Индонезия",
+      "realestate_city": "",
+      "date": "2026-05-02T08:45:24.627729+00:00",
+      "contact": "@chat_bali_real_estate",
+      "contact_name": "chat_bali_real_estate",
+      "source_group": "chat_bali_real_estate",
+      "source_channel": "parsing_indo",
+      "telegram": "https://t.me/chat_bali_real_estate",
+      "telegram_link": "https://t.me/chat_bali_real_estate/60591",
+      "image_url": "https://12744985-d670-48fb-a728-a0e493015ffc-00-o4xax0ucan2y.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATmzzwQAAIBEWn1uaOJ_zHhrReivOxDdvTD03DrAALhFGsbY6qwS2gQdp-UYUUBAQADAgADeQADOwQ",
+      "all_images": [
+        "https://12744985-d670-48fb-a728-a0e493015ffc-00-o4xax0ucan2y.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATmzzwQAAIBEWn1uaOJ_zHhrReivOxDdvTD03DrAALhFGsbY6qwS2gQdp-UYUUBAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "https://12744985-d670-48fb-a728-a0e493015ffc-00-o4xax0ucan2y.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATmzzwQAAIBEWn1uaOJ_zHhrReivOxDdvTD03DrAALhFGsbY6qwS2gQdp-UYUUBAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATmzzwQAAIBEWn1uaOJ_zHhrReivOxDdvTD03DrAALhFGsbY6qwS2gQdp-UYUUBAQADAgADeQADOwQ",
+      "bot_msg_id": 273,
+      "status": "active",
+      "country": "indonesia",
+      "message_id": 60591,
+      "category": "real_estate",
+      "media_group_id": "14221692189852442"
+    },
+    {
       "id": "chat_bali_real_estate_60590",
       "title": "Сдаётся 5br вилла в районе Чангу. Просторная,  большая площадь. Свой паркинг, закрытая территория,  бассейн,  сад, домаш",
       "description": "Сдаётся 5br вилла в районе Чангу.\nПросторная,  большая площадь.\nСвой паркинг, закрытая территория,  бассейн,  сад, домашний кинотеатр,  фитнес зал.\nЦена виллы 80.000.000 idr / мес, комнаты 20.000.000 idr / мес. Без посредников.\nВ лс пришлю видео обзор.",
