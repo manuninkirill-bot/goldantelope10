@@ -2366,6 +2366,11 @@ def _update_banner_config_from_data(data):
     sorted_ids = sorted(data.keys(), key=lambda x: int(x))
     channel_banners = []
     for mid in sorted_ids:
+        info = data[mid] if isinstance(data[mid], dict) else {}
+        # Видео-баннер → /gv/v4/<mid> (alias v4 = banner_vn)
+        if info.get('is_video'):
+            channel_banners.append(f'/gv/v4/{mid}')
+            continue
         # Если есть локальный файл высокого качества — используем его напрямую
         local_jpg = f'static/images/banner_vn_{mid}.jpg'
         local_png = f'static/images/banner_vn_{mid}.png'
@@ -2443,6 +2448,13 @@ def _do_sync_media_vn_banners():
                     if mid in _BANNER_EXCLUDE_IDS:
                         continue
                     cdn_url = ''
+                    video_cdn_url = ''
+                    # Проверяем видео-посты (приоритет над фото)
+                    for vid in msg_div.select('video[src]'):
+                        src = vid.get('src', '')
+                        if src and ('telesco.pe' in src or 'cdn' in src or '.mp4' in src or '.mov' in src):
+                            video_cdn_url = src
+                            break
                     # Проверяем фото-посты
                     photo_wraps = msg_div.select('.tgme_widget_message_photo_wrap')
                     if not photo_wraps:
@@ -2454,25 +2466,33 @@ def _do_sync_media_vn_banners():
                             cdn_url = m.group(1)
                             break
                     has_photo = bool(photo_wraps)
+                    has_video = bool(video_cdn_url)
                     # Также обнаруживаем документы-изображения (PNG/JPG/WEBP/GIF загруженные как файл)
-                    if not has_photo:
+                    if not has_photo and not has_video:
                         doc_wraps = msg_div.select('.tgme_widget_message_document_wrap, .tgme_widget_message_document')
                         for dw in doc_wraps:
                             title_el = dw.select_one('.tgme_widget_message_document_title')
                             title = (title_el.get_text(strip=True) if title_el else '').lower()
                             if any(title.endswith(ext) for ext in ('.png', '.jpg', '.jpeg', '.webp', '.gif')):
-                                has_photo = True  # трактуем как изображение
+                                has_photo = True
                                 break
-                    if has_photo:
+                    if has_photo or has_video:
                         mid_str = str(mid)
                         now_ts = int(_t.time())
                         if mid_str not in data:
-                            data[mid_str] = {'file_id': '', 'cdn_url': cdn_url, 'cdn_ts': now_ts, 'ts': mid}
+                            data[mid_str] = {
+                                'file_id': '', 'cdn_url': cdn_url, 'cdn_ts': now_ts, 'ts': mid,
+                                'is_video': has_video, 'video_cdn_url': video_cdn_url
+                            }
                             added += 1
-                        elif cdn_url:
-                            data[mid_str]['cdn_url'] = cdn_url
-                            data[mid_str]['cdn_ts'] = now_ts
-                            updated_urls += 1
+                        else:
+                            if cdn_url:
+                                data[mid_str]['cdn_url'] = cdn_url
+                                data[mid_str]['cdn_ts'] = now_ts
+                                updated_urls += 1
+                            if has_video:
+                                data[mid_str]['is_video'] = True
+                                data[mid_str]['video_cdn_url'] = video_cdn_url
                 if not ids_on_page:
                     break
                 before = min(ids_on_page)
@@ -6482,6 +6502,60 @@ _CHANNEL_ALIAS = {
     'chatparsing_in':               'ci1',
 }
 _ALIAS_CHANNEL = {v: k for k, v in _CHANNEL_ALIAS.items()}
+
+
+_cdn_video_cache = {}      # (channel, post_id) → (cdn_url, expire_ts)
+_cdn_video_cache_lock = threading.Lock()
+_CDN_VIDEO_CACHE_TTL = 3600  # 1 час (CDN видео живёт ~24ч)
+
+def _scrape_cdn_video_for_post(channel, post_id):
+    """Скрапит t.me/s/<channel> и возвращает CDN URL видео для поста."""
+    try:
+        from bs4 import BeautifulSoup as _BS
+        url = f'https://t.me/s/{channel}'
+        hdrs = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        r = requests.get(url, headers=hdrs, timeout=15)
+        if r.status_code != 200:
+            return None
+        soup = _BS(r.text, 'html.parser')
+        for msg in soup.select('.tgme_widget_message'):
+            dp = msg.get('data-post', '')
+            if not dp.endswith(f'/{post_id}'):
+                continue
+            # Видео-тег с src
+            for vid in msg.select('video[src]'):
+                src = vid.get('src', '')
+                if src and ('telesco.pe' in src or 'cdn' in src):
+                    return src
+            # Превью: background-image в video player
+            for vp in msg.select('.tgme_widget_message_video_player, .tgme_widget_message_video_wrap'):
+                style = vp.get('style', '')
+                m = re.search(r"background-image:\s*url\('([^']+)'\)", style)
+                if m:
+                    return m.group(1)
+        return None
+    except Exception as e:
+        logger.warning(f'[gv] scrape video error {channel}/{post_id}: {e}')
+        return None
+
+
+@app.route('/gv/<code>/<int:post_id>')
+def g_video_proxy(code, post_id):
+    """Прокси видео: /gv/<alias>/<msg_id> → CDN URL видео из Telegram канала."""
+    channel = _ALIAS_CHANNEL.get(code, code)
+    now = time.time()
+    # Кэш
+    with _cdn_video_cache_lock:
+        entry = _cdn_video_cache.get((channel, post_id))
+        if entry and entry[1] > now:
+            return redirect(entry[0], code=302)
+    # Скрейпим CDN URL
+    cdn_url = _scrape_cdn_video_for_post(channel, post_id)
+    if cdn_url:
+        with _cdn_video_cache_lock:
+            _cdn_video_cache[(channel, post_id)] = (cdn_url, now + _CDN_VIDEO_CACHE_TTL)
+        return redirect(cdn_url, code=302)
+    return ('Video not found', 404)
 
 
 @app.route('/g/<code>/<int:post_id>')

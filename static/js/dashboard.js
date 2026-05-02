@@ -1353,10 +1353,29 @@
 
                 navs.forEach(nav => nav.style.display = banners.length > 1 ? 'flex' : 'none');
 
-                const imgUrl = banners[currentIdx];
+                const mediaUrl = banners[currentIdx];
                 const bannerImg = document.getElementById('banner-img');
-                if (bannerImg) {
-                    bannerImg.src = imgUrl;
+                const bannerVideo = document.getElementById('banner-video');
+                const isVideo = mediaUrl && (
+                    mediaUrl.startsWith('/gv/') ||
+                    /\.(mp4|mov|webm|avi)(\?|$)/i.test(mediaUrl)
+                );
+                if (isVideo) {
+                    if (bannerImg) bannerImg.style.display = 'none';
+                    if (bannerVideo) {
+                        bannerVideo.style.display = 'block';
+                        if (bannerVideo.src !== mediaUrl && !bannerVideo.src.endsWith(mediaUrl)) {
+                            bannerVideo.src = mediaUrl;
+                            bannerVideo.load();
+                        }
+                        bannerVideo.play().catch(() => {});
+                    }
+                } else {
+                    if (bannerVideo) { bannerVideo.pause(); bannerVideo.style.display = 'none'; }
+                    if (bannerImg) {
+                        bannerImg.style.display = '';
+                        bannerImg.src = mediaUrl;
+                    }
                 }
                 banner.style.display = 'block';
 
