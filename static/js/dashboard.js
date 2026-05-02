@@ -837,7 +837,7 @@
             countryConfig[currentCountry].currentBanner = currentIdx;
             if (typeof updateBanner === 'function') updateBanner();
             // Сбрасываем таймер — отсчёт 15 сек начинается заново после ручного переключения
-            if (typeof _scheduleBannerTick === 'function') _scheduleBannerTick();
+            if (typeof _scheduleBannerTick === 'function') _scheduleBannerTick('manual');
         }
         
         var currentCategory = 'real_estate';
@@ -1407,23 +1407,35 @@
         const _BANNER_DEFAULT_INTERVAL = 7000;
         let _bannerTimer = null;
         let _bannerLastTick = Date.now();
-        function _scheduleBannerTick() {
+        let _bannerTickCount = 0;
+        function _scheduleBannerTick(caller) {
             if (_bannerTimer) clearTimeout(_bannerTimer);
             const delay = _BANNER_INTERVAL[currentCountry] || _BANNER_DEFAULT_INTERVAL;
             _bannerLastTick = Date.now();
+            console.log('[BannerTimer] scheduled delay=' + delay + 'ms, caller=' + (caller || 'unknown') + ', country=' + currentCountry);
             _bannerTimer = setTimeout(function _tick() {
+                _bannerTickCount++;
                 const elapsed = Date.now() - _bannerLastTick;
                 const banners = getCurrentBanners();
+                console.log('[BannerTimer] TICK #' + _bannerTickCount + ' elapsed=' + elapsed + 'ms target=' + delay + 'ms banners=' + banners.length + ' country=' + currentCountry);
                 if (banners.length > 1) {
                     const currentIdx = countryConfig[currentCountry].currentBanner || 0;
                     countryConfig[currentCountry].currentBanner = (currentIdx + 1) % banners.length;
-                    console.log('[Banner] auto-switch after ' + elapsed + 'ms (target: ' + delay + 'ms), country=' + currentCountry + ', idx=' + countryConfig[currentCountry].currentBanner);
+                    console.log('[BannerTimer] switching to idx=' + countryConfig[currentCountry].currentBanner);
                     updateBanner();
                 }
-                _scheduleBannerTick();
+                _scheduleBannerTick('auto');
             }, delay);
         }
-        _scheduleBannerTick();
+        _scheduleBannerTick('init');
+
+        // Сброс таймера при возврате в приложение (Telegram WebApp паузирует таймеры в фоне)
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'visible') {
+                console.log('[BannerTimer] page visible — resetting timer');
+                _scheduleBannerTick('visibilitychange');
+            }
+        });
 
         function switchCountry(country) {
             // Запоминаем активную вкладку ДО смены страны
