@@ -4911,7 +4911,33 @@ def _process_routed_channel_post(cp):
     if not cp:
         return
 
-    chat_username = cp.get('chat', {}).get('username', '').lower()
+    chat = cp.get('chat', {})
+    chat_username = chat.get('username', '').lower()
+    chat_id = chat.get('id', 0)
+
+    # Резервный роутинг по Channel ID (когда username недоступен или не совпадает)
+    _CHANNEL_ID_ROUTE = {
+        -1003987939980: 'parsing_vn',
+        -1003411602924: 'parsing_th',
+        -1003948057945: 'parsing_in',
+        -1003872341008: 'parsing_indo',
+        -1003922185577: 'bikeparsing_vn',
+        -1003894914160: 'bikeparsing_th',
+        -1003811252596: 'bikeparsing_in',
+        -1003970901435: 'bikeparsing_indo',
+        -1003603825848: 'tusaparsing_vn',
+        -1003932432750: 'tusaparsing_th',
+        -1003993270203: 'tusaparsing_in',
+        -1003983228126: 'tusaparsing_indo',
+        -1003928690491: 'excursii_vn',
+        -1003605171202: 'excursii_th',
+        -1003927043313: 'restoranparsing_all',
+        -1003864328793: 'chatparsing_in',
+    }
+    if not chat_username and chat_id and chat_id in _CHANNEL_ID_ROUTE:
+        chat_username = _CHANNEL_ID_ROUTE[chat_id]
+    elif chat_username and chat_id in _CHANNEL_ID_ROUTE:
+        pass  # username уже есть, всё ок
 
     # @banner_vn → только баннеры Вьетнам, без Развлечений
     if chat_username == _BANNER_TG_GROUP:
@@ -4940,10 +4966,14 @@ def _process_routed_channel_post(cp):
         'tusaparsing_vn':     ('entertainment', 'vietnam'),
         'tusaparsing_th':     ('entertainment', 'thailand'),
         'tusaparsing_indo':   ('entertainment', 'indonesia'),
+        'bikeparsing_indo':   ('transport',     'indonesia'),
         'excursii_vn':        ('tours',         'vietnam'),
         'excursii_th':        ('tours',         'thailand'),
+        'tusaparsing_in':     ('entertainment', 'india'),
         # Рестораны
         'restoranparsing_all':('restaurants',  'vietnam'),
+        # Чаты
+        'chatparsing_in':     ('chat',          'india'),
         # Прочие (обратная совместимость)
         'restoranvietnam':    ('restaurants',   'vietnam'),
         'visarun_vn':         ('visas',         'vietnam'),
@@ -5026,9 +5056,9 @@ def _process_routed_channel_post(cp):
     # Все основные каналы — принимаем 100% сообщений без фильтров
     _NO_FILTER_CHANNELS = {
         'parsing_vn','parsing_th','parsing_in','parsing_indo',
-        'bikeparsing_vn','bikeparsing_th','bikeparsing_in',
-        'tusaparsing_vn','tusaparsing_th','tusaparsing_indo',
-        'excursii_vn','excursii_th','restoranparsing_all',
+        'bikeparsing_vn','bikeparsing_th','bikeparsing_in','bikeparsing_indo',
+        'tusaparsing_vn','tusaparsing_th','tusaparsing_indo','tusaparsing_in',
+        'excursii_vn','excursii_th','restoranparsing_all','chatparsing_in',
     }
     _is_no_filter = chat_username in _NO_FILTER_CHANNELS
     if not _is_no_filter:
@@ -5256,12 +5286,15 @@ _PERIODIC_SCRAPE_CHANNELS = [
     ('bikeparsing_vn',    'transport',     'listings_vietnam.json',   'vietnam'),
     ('bikeparsing_th',    'transport',     'listings_thailand.json',  'thailand'),
     ('bikeparsing_in',    'transport',     'listings_india.json',     'india'),
+    ('bikeparsing_indo',  'transport',     'listings_indonesia.json', 'indonesia'),
     # Развлечения / досуг
     ('tusaparsing_vn',    'entertainment', 'listings_vietnam.json',   'vietnam'),
     ('tusaparsing_th',    'entertainment', 'listings_thailand.json',  'thailand'),
     ('tusaparsing_indo',  'entertainment', 'listings_indonesia.json', 'indonesia'),
+    ('tusaparsing_in',    'entertainment', 'listings_india.json',     'india'),
     # Экскурсии / рестораны
     ('excursii_vn',       'tours',         'listings_vietnam.json',   'vietnam'),
+    ('excursii_th',       'tours',         'listings_thailand.json',  'thailand'),
     ('restoranparsing_all','restaurants',  'listings_vietnam.json',   'vietnam'),
 ]
 _CHAT_SCRAPE_CHANNELS = []
