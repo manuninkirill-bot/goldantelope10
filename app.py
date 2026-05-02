@@ -1241,14 +1241,26 @@ def _enrich_tg_images(items):
             if source_channel_raw in _AGGREGATOR_CH:
                 source_grp = source_channel_raw
             source_id_raw = item.get('source_id') or ''
+            _id_suffix = item_id.rsplit('_', 1)[-1] if '_' in item_id else ''
+            _msg_id_from_field = False
             if not source_id_raw and item_id:
                 # For aggregator channels, msg_id is stored directly on item
                 if source_channel_raw in _AGGREGATOR_CH and item.get('message_id'):
                     source_id_raw = str(item['message_id'])
+                    _msg_id_from_field = True
                 else:
-                    parts = item_id.rsplit('_', 1)
-                    source_id_raw = parts[-1] if len(parts) == 2 else ''
-            if source_grp and source_id_raw:
+                    source_id_raw = _id_suffix
+            # SAFEGUARD: if source_channel is an aggregator but message_id == item_id suffix,
+            # the message_id belongs to the ORIGINAL channel (not the aggregator).
+            # Converting CDN URLs to /g/<aggregator>/<wrong_id> would serve a different listing's photo.
+            # In this case, keep CDN URLs as-is (they serve correct content while valid).
+            _msg_is_original_ch_id = (
+                source_channel_raw in _AGGREGATOR_CH
+                and _msg_id_from_field
+                and source_id_raw == _id_suffix
+                and not item.get('source_id')  # no explicit source_id set
+            )
+            if source_grp and source_id_raw and not _msg_is_original_ch_id:
                 try:
                     fb_pid = int(source_id_raw)
                     iu_fb = item.get('image_url', '') or ''
