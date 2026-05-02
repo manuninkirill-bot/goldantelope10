@@ -5806,7 +5806,7 @@ logger.info('[excursii_telethon] Авто-синхронизация @excursii_v
 
 
 # ─── Авто-синхронизация данных с HF Space ───────────────────────────────────
-HF_SYNC_REPO = 'poweramanita/goldantelopeasia.com'
+HF_SYNC_REPO = 'poweramanita/GA'
 HF_SYNC_INTERVAL = 600  # каждые 10 минут
 
 _hf_sync_files = [
