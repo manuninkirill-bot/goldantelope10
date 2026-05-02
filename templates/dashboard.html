@@ -11,6 +11,7 @@
     <link rel="dns-prefetch" href="https://cdn4.telesco.pe">
     <link rel="dns-prefetch" href="https://api.telegram.org">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -541,6 +542,104 @@
             box-shadow: 0 1px 4px rgba(0,0,0,0.6);
         }
         
+        /* SoundCloud compact player */
+        #sc-player-wrap {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 10px auto;
+            background: #1a1a2e;
+            border-radius: 10px;
+            padding: 8px 12px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            user-select: none;
+        }
+        #sc-play-btn {
+            background: #ff5500;
+            border: none;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s;
+        }
+        #sc-play-btn:hover { background: #e04400; }
+        .sc-track-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        #sc-track-name {
+            font-size: 11px;
+            color: #bbb;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .sc-seek-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sc-time {
+            font-size: 10px;
+            color: #888;
+            white-space: nowrap;
+            min-width: 30px;
+        }
+        #sc-seek {
+            flex: 1;
+            height: 3px;
+            accent-color: #ff5500;
+            cursor: pointer;
+        }
+        .sc-vol-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        #sc-mute-btn {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 2px;
+            line-height: 1;
+        }
+        .sc-vol-btn {
+            background: #2a2a4a;
+            border: none;
+            color: #ccc;
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sc-vol-btn:hover { background: #3a3a6a; }
+        #sc-vol-label {
+            font-size: 10px;
+            color: #888;
+            min-width: 26px;
+            text-align: center;
+        }
+        #sc-iframe { display: none; }
+
         .banner img, #banner-video {
             width: 100%;
             height: auto;
@@ -2007,6 +2106,27 @@
                 <div class="status-item">
                     <span>Обновлено: <strong id="last-update">--:--</strong></span>
                 </div>
+            </div>
+        </div>
+
+        <!-- SoundCloud Player -->
+        <iframe id="sc-iframe" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bassmaticrecords/deflee-bassmaticbox-showcase-x-fantomas-rooftop-live-210921&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false"></iframe>
+        <div id="sc-player-wrap">
+            <button id="sc-play-btn" title="Play/Pause">▶</button>
+            <div class="sc-track-info">
+                <div id="sc-track-name">SoundCloud</div>
+                <div class="sc-seek-row">
+                    <span class="sc-time" id="sc-current">0:00</span>
+                    <input type="range" id="sc-seek" min="0" max="1000" value="0" step="1">
+                    <span class="sc-time" id="sc-total">0:00</span>
+                </div>
+            </div>
+            <div class="sc-vol-wrap">
+                <button id="sc-mute-btn" title="Mute/Unmute">🔊</button>
+                <button class="sc-vol-btn" id="sc-vol-down" title="Volume -">−</button>
+                <span id="sc-vol-label">70%</span>
+                <button class="sc-vol-btn" id="sc-vol-up" title="Volume +">+</button>
             </div>
         </div>
 
@@ -5136,6 +5256,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=f2c00b80" defer></script>
+<script src="/static/js/dashboard.js?v=d14fd049" defer></script>
 </body>
 </html>

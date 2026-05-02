@@ -8136,3 +8136,92 @@
         });
     }
 
+
+    // === SoundCloud Player ===
+    (function() {
+        var scIframe = document.getElementById('sc-iframe');
+        if (!scIframe || typeof SC === 'undefined') return;
+
+        var widget = SC.Widget(scIframe);
+        var scVolume = 70;
+        var scMuted = false;
+        var scPlaying = false;
+        var scDuration = 0;
+        var seeking = false;
+
+        function fmtTime(ms) {
+            var s = Math.floor(ms / 1000);
+            return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
+        }
+
+        function setVol(v) {
+            scVolume = Math.max(0, Math.min(100, v));
+            if (!scMuted) widget.setVolume(scVolume);
+            document.getElementById('sc-vol-label').textContent = scVolume + '%';
+        }
+
+        widget.bind(SC.Widget.Events.READY, function() {
+            widget.setVolume(scVolume);
+            widget.getCurrentSound(function(s) {
+                if (s && s.title) document.getElementById('sc-track-name').textContent = s.title;
+            });
+            widget.getDuration(function(d) {
+                scDuration = d;
+                document.getElementById('sc-total').textContent = fmtTime(d);
+            });
+        });
+
+        widget.bind(SC.Widget.Events.PLAY, function() {
+            scPlaying = true;
+            document.getElementById('sc-play-btn').textContent = '⏸';
+        });
+
+        widget.bind(SC.Widget.Events.PAUSE, function() {
+            scPlaying = false;
+            document.getElementById('sc-play-btn').textContent = '▶';
+        });
+
+        widget.bind(SC.Widget.Events.FINISH, function() {
+            scPlaying = false;
+            document.getElementById('sc-play-btn').textContent = '▶';
+        });
+
+        widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
+            if (seeking) return;
+            document.getElementById('sc-current').textContent = fmtTime(e.currentPosition);
+            if (scDuration > 0)
+                document.getElementById('sc-seek').value = Math.round(e.relativePosition * 1000);
+        });
+
+        // Play/Pause
+        document.getElementById('sc-play-btn').addEventListener('click', function() {
+            if (scPlaying) widget.pause(); else widget.play();
+        });
+
+        // Seek
+        var seekEl = document.getElementById('sc-seek');
+        seekEl.addEventListener('mousedown', function() { seeking = true; });
+        seekEl.addEventListener('touchstart', function() { seeking = true; }, {passive:true});
+        seekEl.addEventListener('input', function() {
+            if (scDuration > 0) {
+                var pos = (seekEl.value / 1000) * scDuration;
+                document.getElementById('sc-current').textContent = fmtTime(pos);
+            }
+        });
+        seekEl.addEventListener('change', function() {
+            if (scDuration > 0) {
+                var pos = (seekEl.value / 1000) * scDuration;
+                widget.seekTo(pos);
+            }
+            seeking = false;
+        });
+
+        // Volume
+        document.getElementById('sc-vol-up').addEventListener('click', function() { setVol(scVolume + 10); });
+        document.getElementById('sc-vol-down').addEventListener('click', function() { setVol(scVolume - 10); });
+        document.getElementById('sc-mute-btn').addEventListener('click', function() {
+            scMuted = !scMuted;
+            widget.setVolume(scMuted ? 0 : scVolume);
+            document.getElementById('sc-mute-btn').textContent = scMuted ? '🔇' : '🔊';
+        });
+    })();
