@@ -1,6 +1,39 @@
 {
   "real_estate": [
     {
+      "id": "arenda_pattaya_466902",
+      "title": "Компания  HotDealSiam Предлагает в Аренду! SIAM ORIENTAL DREAM - Studio - 25 кв м, 4 этаж - Апартаменты полностью укомпл",
+      "description": "Компания  HotDealSiam Предлагает в Аренду!\nSIAM ORIENTAL DREAM\n- Studio\n- 25 кв м, 4 этаж\n- Апартаменты полностью укомплектованы!\nИнфраструктура комплекса:\n2 бассейна\nподземная парковка\nфитнес-центр\nфинская сауна\nтерраса на крыше\nЦентр Пратамнака\nУдобная локация, магазины.\nАренда 15 000 бат/ месяц\nСвяжитесь с нами, чтобы узнать больше и организовать просмотр\nWhatsApp +66623717211\nHotDealSiam\nДругие варианты квартир и\nФото можно посмотреть у нас в группе:",
+      "text": "Компания  HotDealSiam Предлагает в Аренду!\nSIAM ORIENTAL DREAM\n- Studio\n- 25 кв м, 4 этаж\n- Апартаменты полностью укомплектованы!\nИнфраструктура комплекса:\n2 бассейна\nподземная парковка\nфитнес-центр\nфинская сауна\nтерраса на крыше\nЦентр Пратамнака\nУдобная локация, магазины.\nАренда 15 000 бат/ месяц\nСвяжитесь с нами, чтобы узнать больше и организовать просмотр\nWhatsApp +66623717211\nHotDealSiam\nДругие варианты квартир и\nФото можно посмотреть у нас в группе:",
+      "price": 0,
+      "price_display": "",
+      "city": "Таиланд",
+      "city_ru": "Таиланд",
+      "realestate_city": "",
+      "date": "2026-05-02T08:55:42.893588+00:00",
+      "contact": "@arenda_pattaya",
+      "contact_name": "arenda_pattaya",
+      "source_group": "arenda_pattaya",
+      "source_channel": "parsing_th",
+      "telegram": "https://t.me/arenda_pattaya",
+      "telegram_link": "https://t.me/arenda_pattaya/466902",
+      "image_url": "https://12744985-d670-48fb-a728-a0e493015ffc-00-o4xax0ucan2y.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIgb2n1vA2DD8ysKSC6CJZ_Lw4eF8iVAAIHF2sbWWCoS7PxrBejxDWBAQADAgADeQADOwQ",
+      "all_images": [
+        "https://12744985-d670-48fb-a728-a0e493015ffc-00-o4xax0ucan2y.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIgb2n1vA2DD8ysKSC6CJZ_Lw4eF8iVAAIHF2sbWWCoS7PxrBejxDWBAQADAgADeQADOwQ"
+      ],
+      "photos": [
+        "https://12744985-d670-48fb-a728-a0e493015ffc-00-o4xax0ucan2y.picard.replit.dev/api/tgphoto/AgACAgIAAyEFAATLWO3sAAIgb2n1vA2DD8ysKSC6CJZ_Lw4eF8iVAAIHF2sbWWCoS7PxrBejxDWBAQADAgADeQADOwQ"
+      ],
+      "has_media": true,
+      "file_id": "AgACAgIAAyEFAATLWO3sAAIgb2n1vA2DD8ysKSC6CJZ_Lw4eF8iVAAIHF2sbWWCoS7PxrBejxDWBAQADAgADeQADOwQ",
+      "bot_msg_id": 8303,
+      "status": "active",
+      "country": "thailand",
+      "message_id": 466902,
+      "category": "real_estate",
+      "media_group_id": "14221697135466626"
+    },
+    {
       "id": "sea_phuket_341067",
       "title": "Проверенный обмен валют в Таиланде  лучшие курсы от проверенных сервисов обмена.",
       "description": "Проверенный обмен валют в Таиланде  лучшие курсы от проверенных сервисов обмена.",
