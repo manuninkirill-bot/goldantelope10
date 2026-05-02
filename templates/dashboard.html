@@ -547,44 +547,52 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto 10px auto;
-            background: #1a1a2e;
-            border-radius: 10px;
-            padding: 8px 12px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+            border-radius: 12px;
+            border: 2px solid #d4af37;
+            padding: 10px 14px;
             box-sizing: border-box;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             user-select: none;
+            box-shadow: 0 2px 12px rgba(212,175,55,0.15);
         }
         #sc-play-btn {
-            background: #ff5500;
+            background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%);
             border: none;
             border-radius: 50%;
-            width: 34px;
-            height: 34px;
-            color: #fff;
+            width: 36px;
+            height: 36px;
+            color: #0f0f1a;
             font-size: 14px;
             cursor: pointer;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.15s;
+            transition: all 0.15s;
+            box-shadow: 0 2px 8px rgba(212,175,55,0.4);
         }
-        #sc-play-btn:hover { background: #e04400; }
+        #sc-play-btn:hover {
+            background: linear-gradient(135deg, #e8c547 0%, #d4af37 100%);
+            box-shadow: 0 3px 12px rgba(212,175,55,0.6);
+        }
         .sc-track-info {
             flex: 1;
             min-width: 0;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 4px;
         }
         #sc-track-name {
             font-size: 11px;
-            color: #bbb;
+            color: #d4af37;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            font-weight: 600;
+            letter-spacing: 0.3px;
         }
         .sc-seek-row {
             display: flex;
@@ -593,48 +601,54 @@
         }
         .sc-time {
             font-size: 10px;
-            color: #888;
+            color: rgba(212,175,55,0.7);
             white-space: nowrap;
             min-width: 30px;
         }
         #sc-seek {
             flex: 1;
             height: 3px;
-            accent-color: #ff5500;
+            accent-color: #d4af37;
             cursor: pointer;
         }
         .sc-vol-wrap {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             flex-shrink: 0;
         }
         #sc-mute-btn {
             background: none;
             border: none;
-            color: #aaa;
+            color: #d4af37;
             font-size: 16px;
             cursor: pointer;
             padding: 2px;
             line-height: 1;
+            opacity: 0.85;
         }
+        #sc-mute-btn:hover { opacity: 1; }
         .sc-vol-btn {
-            background: #2a2a4a;
-            border: none;
-            color: #ccc;
+            background: rgba(212,175,55,0.12);
+            border: 1px solid rgba(212,175,55,0.3);
+            color: #d4af37;
             width: 22px;
             height: 22px;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.15s;
         }
-        .sc-vol-btn:hover { background: #3a3a6a; }
+        .sc-vol-btn:hover {
+            background: rgba(212,175,55,0.25);
+            border-color: #d4af37;
+        }
         #sc-vol-label {
             font-size: 10px;
-            color: #888;
+            color: rgba(212,175,55,0.8);
             min-width: 26px;
             text-align: center;
         }
@@ -2111,7 +2125,7 @@
 
         <!-- SoundCloud Player -->
         <iframe id="sc-iframe" allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bassmaticrecords/deflee-bassmaticbox-showcase-x-fantomas-rooftop-live-210921&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false"></iframe>
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bassmaticrecords/deflee-bassmaticbox-showcase-x-fantomas-rooftop-live-210921&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false"></iframe>
         <div id="sc-player-wrap">
             <button id="sc-play-btn" title="Play/Pause">▶</button>
             <div class="sc-track-info">
@@ -5256,6 +5270,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=d14fd049" defer></script>
+<script src="/static/js/dashboard.js?v=f90e30b7" defer></script>
 </body>
 </html>

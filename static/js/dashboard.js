@@ -8162,6 +8162,7 @@
 
         widget.bind(SC.Widget.Events.READY, function() {
             widget.setVolume(scVolume);
+            widget.play();
             widget.getCurrentSound(function(s) {
                 if (s && s.title) document.getElementById('sc-track-name').textContent = s.title;
             });
