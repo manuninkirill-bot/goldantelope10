@@ -2,11 +2,13 @@
   "vietnam": {
     "web": [
       "/gv/v4/12",
-      "/gv/v4/13"
+      "/gv/v4/13",
+      "/gv/v4/14"
     ],
     "mobile": [
       "/gv/v4/12",
-      "/gv/v4/13"
+      "/gv/v4/13",
+      "/gv/v4/14"
     ]
   },
   "thailand": {
