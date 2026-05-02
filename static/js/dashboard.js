@@ -1279,6 +1279,50 @@
         async function loadMedicineTypeCounts() {
         }
         
+        // ── Предзагрузка видео-баннеров ──────────────────────────────────────
+        // Пул: url → { cdnUrl, video, ready }
+        const _bannerPreloadPool = {};
+
+        function _preloadBannerVideo(url) {
+            if (!url || _bannerPreloadPool[url]) return;
+            _bannerPreloadPool[url] = { cdnUrl: null, video: null, ready: false };
+            // Шаг 1: получаем финальный CDN URL через HEAD (следуем редиректу)
+            fetch(url, { method: 'HEAD', redirect: 'follow' })
+                .then(function(r) {
+                    const cdnUrl = r.url;
+                    if (!cdnUrl || cdnUrl === url) return;
+                    _bannerPreloadPool[url].cdnUrl = cdnUrl;
+                    console.log('[BannerPreload] CDN resolved for ' + url + ' → ' + cdnUrl.slice(0, 60));
+                    // Шаг 2: создаём скрытый video-элемент и начинаем буферизацию
+                    const v = document.createElement('video');
+                    v.muted = true;
+                    v.playsInline = true;
+                    v.preload = 'auto';
+                    v.style.cssText = 'position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;opacity:0;pointer-events:none;';
+                    document.body.appendChild(v);
+                    v.src = cdnUrl;
+                    v.load();
+                    v.addEventListener('canplay', function() {
+                        _bannerPreloadPool[url].ready = true;
+                        console.log('[BannerPreload] buffered: ' + url);
+                    }, { once: true });
+                    _bannerPreloadPool[url].video = v;
+                })
+                .catch(function() {});
+        }
+
+        function _preloadNextBanner() {
+            const banners = getCurrentBanners();
+            if (banners.length <= 1) return;
+            const currentIdx = countryConfig[currentCountry] ? (countryConfig[currentCountry].currentBanner || 0) : 0;
+            // Предзагружаем следующий и послеследующий
+            for (let i = 1; i <= 2; i++) {
+                const nextUrl = banners[(currentIdx + i) % banners.length];
+                if (nextUrl && nextUrl.startsWith('/gv/')) _preloadBannerVideo(nextUrl);
+            }
+        }
+        // ─────────────────────────────────────────────────────────────────────
+
         async function loadBanners() {
             try {
                 console.log('Loading banners...');
@@ -1294,7 +1338,7 @@
                         if (Array.isArray(countryData)) {
                             bannerConfig[country] = { web: countryData, mobile: [] };
                         }
-                        // Preload web and mobile banners (only images, skip video URLs)
+                        // Preload web and mobile banners (images only — videos handled separately)
                         const webBanners = bannerConfig[country].web || [];
                         const mobileBanners = bannerConfig[country].mobile || [];
                         [...webBanners, ...mobileBanners].forEach(src => {
@@ -1302,12 +1346,16 @@
                             if (!isVid) {
                                 const img = new Image();
                                 img.src = src;
+                            } else {
+                                // Для видео — предзагружаем через пул
+                                _preloadBannerVideo(src);
                             }
                         });
                     }
                 }
                 
                 updateBanner();
+                _preloadNextBanner();
                 if (adminAuthenticated) {
                     renderAdminBanners();
                     switchBannerTab(currentBannerTab);
@@ -1369,13 +1417,21 @@
                     if (bannerImg) bannerImg.style.display = 'none';
                     if (bannerVideo) {
                         bannerVideo.style.display = 'block';
-                        if (bannerVideo.src !== mediaUrl && !bannerVideo.src.endsWith(mediaUrl)) {
-                            _bannerVideoPlayCount = 0; // сброс счётчика при смене видео
-                            bannerVideo.src = mediaUrl;
+                        // Используем предзагруженный CDN URL если есть — пропускаем редирект
+                        const _pool = typeof _bannerPreloadPool !== 'undefined' ? _bannerPreloadPool[mediaUrl] : null;
+                        const _targetSrc = (_pool && _pool.cdnUrl) ? _pool.cdnUrl : mediaUrl;
+                        const _alreadySet = bannerVideo.src === _targetSrc ||
+                            bannerVideo.src.endsWith(mediaUrl) ||
+                            (_pool && _pool.cdnUrl && bannerVideo.src === _pool.cdnUrl);
+                        if (!_alreadySet) {
+                            _bannerVideoPlayCount = 0;
+                            bannerVideo.src = _targetSrc;
                             bannerVideo.load();
                         }
                         bannerVideo.play().catch(() => {});
                     }
+                    // Запускаем предзагрузку следующего баннера в фоне
+                    if (typeof _preloadNextBanner === 'function') _preloadNextBanner();
                 } else {
                     if (bannerVideo) { bannerVideo.pause(); bannerVideo.style.display = 'none'; }
                     if (bannerImg) {
