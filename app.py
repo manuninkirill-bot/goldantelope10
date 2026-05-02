@@ -5776,9 +5776,24 @@ def _upload_excursii_post_to_github(msg_id: int, text: str, photo_bytes_list: li
     return raw_urls
 
 
+def _get_tg_cdn_url(channel: str, msg_id: int) -> str:
+    """Получает CDN URL фото поста через t.me embed (og:image). Фото остаётся в Telegram."""
+    try:
+        og_headers = {'User-Agent': 'TelegramBot (like TwitterBot)'}
+        r = requests.get(f'https://t.me/{channel}/{msg_id}', headers=og_headers, timeout=10)
+        if r.status_code == 200:
+            m = re.search(r'<meta property="og:image" content="([^"]+)"', r.text)
+            if m:
+                return m.group(1)
+    except Exception:
+        pass
+    return ''
+
+
 def _sync_excursii_vn_telethon():
-    """Фоновый поток: @excursii_vn → GitHub → listings.
-    Использует Telethon для получения постов с фото."""
+    """Фоновый поток: @excursii_vn → listings_vietnam.json (tours).
+    Telethon читает сообщения, CDN URL фото берётся из t.me embed.
+    Ничего не скачивается, GitHub не используется."""
     import time as _t, asyncio as _asyncio
     _t.sleep(30)
     while True:
@@ -5797,7 +5812,7 @@ def _sync_excursii_vn_telethon():
             async def _run():
                 from telethon import TelegramClient
                 from telethon.sessions import StringSession
-                from telethon.tl.types import MessageMediaPhoto
+                from telethon.tl.types import MessageMediaPhoto, MessageMediaDocument
                 client = TelegramClient(StringSession(sess_str), api_id, api_hash)
                 await client.start()
                 try:
@@ -5807,10 +5822,14 @@ def _sync_excursii_vn_telethon():
                     await client.disconnect()
                     return
 
-                # Загружаем существующие IDs и заголовки из JSON
+                # Загружаем существующие IDs и заголовки
                 with open('listings_vietnam.json', 'r', encoding='utf-8') as _f:
                     vn = json.load(_f)
-                existing_ids = {t.get('id','') for t in vn.get('tours', [])}
+                existing_ids = {t.get('id', '') for t in vn.get('tours', [])}
+                existing_msg_ids = {
+                    t.get('message_id') for t in vn.get('tours', [])
+                    if t.get('source_channel') == 'excursii_vn' and t.get('message_id')
+                }
                 existing_titles = set()
                 for t in vn.get('tours', []):
                     raw = t.get('title') or (t.get('text') or t.get('description') or '')[:100]
@@ -5819,57 +5838,59 @@ def _sync_excursii_vn_telethon():
                         existing_titles.add(key)
 
                 added = 0
-                async for msg in client.iter_messages(entity, limit=200):
-                    if not msg.media or not isinstance(msg.media, MessageMediaPhoto):
+                async for msg in client.iter_messages(entity, limit=300):
+                    # Только посты с фото
+                    has_photo = isinstance(msg.media, (MessageMediaPhoto, MessageMediaDocument))
+                    if not has_photo:
                         continue
-                    item_id = f'excursii_vn_msg_{msg.id}'
+                    # Пропускаем уже известные
+                    if msg.id in existing_msg_ids:
+                        continue
+                    item_id = f'excursii_vn_{msg.id}'
                     if item_id in existing_ids:
                         continue
+                    text = (msg.text or msg.message or '').strip()
+                    if not text:
+                        continue
                     # Дедуп по нормализованному заголовку
-                    _text_tmp = msg.text or msg.message or ''
-                    _title_tmp = _text_tmp.split('\n')[0].strip()[:120]
+                    _title_tmp = text.split('\n')[0].strip()[:120]
                     _title_key = re.sub(r'[^\w]', '', _title_tmp.lower())[:60]
                     if _title_key and _title_key in existing_titles:
                         continue
-                    text = msg.text or msg.message or ''
-                    if not text.strip():
-                        continue
-                    # Download photos
-                    photo_bytes_list = []
-                    try:
-                        buf = await client.download_media(msg, file=bytes)
-                        if buf:
-                            photo_bytes_list.append(buf)
-                    except Exception as e:
-                        logger.warning('[excursii_telethon] download: %s', e)
-                    folder_name = f'msg_{msg.id}'
-                    raw_urls = _upload_excursii_post_to_github(
-                        msg.id, text, photo_bytes_list, folder_name)
-                    title = text.split('\n')[0].strip()[:120]
+                    # CDN URL фото из t.me embed — без скачивания
+                    cdn_url = _get_tg_cdn_url('excursii_vn', msg.id)
+                    title = _title_tmp
+                    date_str = msg.date.isoformat() if msg.date else ''
                     vn['tours'].insert(0, {
                         'id': item_id,
                         'title': title,
                         'text': text,
                         'description': text,
-                        'price': 0, 'price_display': '',
-                        'city': 'Нячанг', 'city_ru': 'Нячанг',
-                        'country': 'vietnam', 'category': 'tours',
+                        'price': 0,
+                        'price_display': '',
+                        'city': 'Нячанг',
+                        'city_ru': 'Нячанг',
+                        'country': 'vietnam',
+                        'category': 'tours',
                         'source_group': 'GAtours_vn',
                         'source_channel': 'excursii_vn',
+                        'message_id': msg.id,
                         'contact': '@excursii_vn',
                         'telegram': 'https://t.me/excursii_vn',
                         'telegram_link': f'https://t.me/excursii_vn/{msg.id}',
-                        'image_url': raw_urls[0] if raw_urls else '',
-                        'all_images': raw_urls,
-                        'photos': raw_urls,
-                        'has_media': bool(raw_urls),
+                        'image_url': cdn_url,
+                        'all_images': [cdn_url] if cdn_url else [],
+                        'photos': [cdn_url] if cdn_url else [],
+                        'has_media': bool(cdn_url),
                         'status': 'active',
-                        'date': msg.date.isoformat() if msg.date else '',
+                        'date': date_str,
                     })
                     existing_ids.add(item_id)
+                    existing_msg_ids.add(msg.id)
                     if _title_key:
                         existing_titles.add(_title_key)
                     added += 1
+                    _t.sleep(0.3)  # не спамить t.me embed
 
                 await client.disconnect()
                 if added > 0:
@@ -5879,6 +5900,8 @@ def _sync_excursii_vn_telethon():
                     os.replace(_tmp, 'listings_vietnam.json')
                     data_cache.pop('vietnam', None)
                     logger.info('[excursii_telethon] +%d новых туров из @excursii_vn', added)
+                else:
+                    logger.debug('[excursii_telethon] нет новых туров')
 
             try:
                 _loop = _asyncio.new_event_loop()
@@ -5895,8 +5918,11 @@ def _sync_excursii_vn_telethon():
         _t.sleep(3600)  # раз в час
 
 
-threading.Thread(target=_sync_excursii_vn_telethon, daemon=True, name='ExcursiiVnSync').start()
-logger.info('[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)')
+if not _replit_dev:  # только на HF Space, на Replit не запускаем
+    threading.Thread(target=_sync_excursii_vn_telethon, daemon=True, name='ExcursiiVnSync').start()
+    logger.info('[excursii_telethon] Авто-синхронизация @excursii_vn запущена (каждые 3600s)')
+else:
+    logger.info('[excursii_telethon] Replit-среда — Telethon @excursii_vn не запущен (только HF Space)')
 
 
 # ─── Авто-синхронизация данных с HF Space ───────────────────────────────────
