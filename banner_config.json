@@ -1,7 +1,13 @@
 {
   "vietnam": {
-    "web": [],
-    "mobile": []
+    "web": [
+      "/api/banner-img/9",
+      "/api/banner-img/10"
+    ],
+    "mobile": [
+      "/api/banner-img/9",
+      "/api/banner-img/10"
+    ]
   },
   "thailand": {
     "web": [
