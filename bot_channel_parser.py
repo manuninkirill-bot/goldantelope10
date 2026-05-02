@@ -440,6 +440,7 @@ def run():
         # Добавляем новые посты (которых нет в существующих)
         n_added = 0
         SKIP_TITLES = {'channel created', 'канал создан', 'channel photo updated', 'telegram'}
+        SKIP_PREFIXES = ('channel name was changed', 'название канала изменено')
         SPAM_KEYWORDS = [
             'high-roller', 'likesyou', 'high roller', 'casino', 'казино',
             'поднял', 'рекорд', 'впн', 'vpn', '18+', 'работа для молодых',
@@ -451,10 +452,10 @@ def run():
             if item_id in existing_ids:
                 continue
             post = scraped[msg_id]
-            # Пропускаем системные сообщения (Channel created, etc.)
-            raw_title = (post.get('text', '') or '')[:40].lower().strip()
-            if not raw_title or raw_title in SKIP_TITLES:
-                logger.info(f'[{channel}] Пропуск системного поста {msg_id}: «{raw_title}»')
+            # Пропускаем системные сообщения (Channel created, Channel name changed, etc.)
+            raw_title = (post.get('text', '') or '')[:80].lower().strip()
+            if not raw_title or raw_title in SKIP_TITLES or raw_title.startswith(SKIP_PREFIXES):
+                logger.info(f'[{channel}] Пропуск системного поста {msg_id}: «{raw_title[:40]}»')
                 continue
             # Спам-фильтр для всех категорий
             post_text_lower = (post.get('text', '') or '').lower()

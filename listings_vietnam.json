@@ -48908,31 +48908,6 @@
       "message_id": 416,
       "has_media": true,
       "category": "entertainment"
-    },
-    {
-      "id": "tusaparsing_vn_1",
-      "title": "Channel created",
-      "description": "",
-      "text": "Channel created",
-      "price": 0,
-      "price_display": "",
-      "city": "Вьетнам",
-      "city_ru": "Вьетнам",
-      "date": "2026-04-14T08:34:51+00:00",
-      "contact": "@tusaparsing_vn",
-      "contact_name": "tusaparsing_vn",
-      "source_group": "tusaparsing_vn",
-      "source_channel": "tusaparsing_vn",
-      "telegram": "https://t.me/tusaparsing_vn",
-      "telegram_link": "https://t.me/tusaparsing_vn/1",
-      "image_url": "",
-      "all_images": [],
-      "photos": [],
-      "status": "active",
-      "country": "vietnam",
-      "message_id": 1,
-      "has_media": false,
-      "category": "entertainment"
     }
   ],
   "restaurants": [

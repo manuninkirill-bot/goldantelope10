@@ -5288,12 +5288,19 @@ def _scrape_channel_latest(channel, category, target_file, country):
                                 for item in existing if item.get('message_id')}
         logo_fps = detect_logo_fingerprints(scraped)
         added = 0
+        _SYSTEM_MSG_SKIP = {'channel created', 'канал создан', 'channel photo updated', 'telegram'}
+        _SYSTEM_MSG_PREFIXES = ('channel name was changed', 'название канала изменено')
         for msg_id in sorted(scraped.keys(), reverse=True):
             # Пропускаем уже известные по channel+msg_id
             ch_key = f'{channel}_{msg_id}'
             if ch_key in existing_channel_msg:
                 continue
             post = scraped[msg_id]
+            # Пропускаем системные Telegram-сообщения (Channel created, Channel name changed…)
+            _raw_txt = (post.get('text', '') or '').strip().lower()[:80]
+            if _raw_txt in _SYSTEM_MSG_SKIP or _raw_txt.startswith(_SYSTEM_MSG_PREFIXES) or not _raw_txt:
+                logger.debug('[periodic_scraper] @%s пропуск системного поста msg_id=%s', channel, msg_id)
+                continue
             new_item = make_listing(channel, msg_id, post, category, country, logo_fps=logo_fps)
             # Пропускаем дубли по итоговому ID листинга (src_ch_srcid)
             if new_item['id'] in existing_ids:
