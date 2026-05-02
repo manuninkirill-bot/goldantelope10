@@ -1292,12 +1292,15 @@
                         if (Array.isArray(countryData)) {
                             bannerConfig[country] = { web: countryData, mobile: [] };
                         }
-                        // Preload web and mobile banners
+                        // Preload web and mobile banners (only images, skip video URLs)
                         const webBanners = bannerConfig[country].web || [];
                         const mobileBanners = bannerConfig[country].mobile || [];
                         [...webBanners, ...mobileBanners].forEach(src => {
-                            const img = new Image();
-                            img.src = src;
+                            const isVid = src && (src.startsWith('/gv/') || /\.(mp4|mov|webm|avi)(\?|$)/i.test(src));
+                            if (!isVid) {
+                                const img = new Image();
+                                img.src = src;
+                            }
                         });
                     }
                 }
