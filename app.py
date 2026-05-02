@@ -5886,8 +5886,9 @@ def _hf_auto_sync():
         _t3.sleep(HF_SYNC_INTERVAL)
 
 
-threading.Thread(target=_hf_auto_sync, daemon=True, name='HfAutoSync').start()
-logger.info('[hf_sync] Авто-синхронизация с HF Space запущена (каждые %ds)', HF_SYNC_INTERVAL)
+# Авто-синхронизация с HF отключена — пуш только вручную через push_to_hf.py
+# threading.Thread(target=_hf_auto_sync, daemon=True, name='HfAutoSync').start()
+logger.info('[hf_sync] Авто-синхронизация отключена — пуш только по запросу')
 
 
 PARTYHUNT_API_BASE = 'https://api.anbocas.com'
