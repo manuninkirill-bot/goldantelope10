@@ -2292,10 +2292,9 @@ def _get_vietnam_entertainment_images():
 
 def _update_banner_config_from_data(data):
     if not data:
-        ent_images = _get_vietnam_entertainment_images()
         config = load_banner_config()
-        config['vietnam']['mobile'] = ent_images
-        config['vietnam']['web'] = ent_images
+        config['vietnam']['mobile'] = []
+        config['vietnam']['web'] = []
         save_banner_config(config)
         return
     sorted_ids = sorted(data.keys(), key=lambda x: int(x))
@@ -2310,14 +2309,12 @@ def _update_banner_config_from_data(data):
             channel_banners.append(f'/static/images/banner_vn_{mid}.png')
         else:
             channel_banners.append(f'/api/banner-img/{mid}')
-    # Добавляем фото из Развлечений Вьетнама
-    ent_images = _get_vietnam_entertainment_images()
-    new_banners = channel_banners + [img for img in ent_images if img not in channel_banners]
+    # Только баннеры из @banner_vn — без примешивания развлечений
     config = load_banner_config()
-    config['vietnam']['mobile'] = new_banners
-    config['vietnam']['web'] = new_banners
+    config['vietnam']['mobile'] = channel_banners
+    config['vietnam']['web'] = channel_banners
     save_banner_config(config)
-    logger.info(f'[banner_sync] Обновлено: {len(channel_banners)} канал + {len(ent_images)} развлечения = {len(new_banners)} баннеров Вьетнам')
+    logger.info(f'[banner_sync] Обновлено: {len(channel_banners)} баннеров Вьетнам (только @banner_vn)')
 
 def _load_banner_file_ids_to_cache():
     import time as _t
