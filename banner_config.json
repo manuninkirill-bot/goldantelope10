@@ -1,50 +1,7 @@
 {
   "vietnam": {
-    "web": [
-      "/static/images/banners/vietnam_1766993488_ChatGPT_Image_29_._2025_._14_30_31.png",
-      "/static/images/banners/vietnam_1766993907_ChatGPT_Image_29_._2025_._14_37_59.png",
-      "/static/images/banners/vietnam_1766994249_ChatGPT_Image_29_._2025_._14_43_50.png",
-      "/static/images/banners/vietnam_1766994800_ChatGPT_Image_29_._2025_._14_52_51.png",
-      "/static/images/banners/vietnam_1767252790_ChatGPT_Image_1_._2026_._14_32_13.png",
-      "/static/images/banners/vietnam_1767253425_ChatGPT_Image_1_._2026_._14_43_20.png",
-      "/static/images/banners/vietnam_1767253874_ChatGPT_Image_1_._2026_._14_50_33.png",
-      "/static/images/banners/vietnam_1767254118_ChatGPT_Image_1_._2026_._14_54_53.png",
-      "/static/images/banners/vietnam_1767254417_ChatGPT_Image_1_._2026_._14_59_56.png",
-      "/static/images/banners/vietnam_1767255067_ChatGPT_Image_1_._2026_._15_10_38.png",
-      "/static/images/banners/vietnam_1767529709_ChatGPT_Image_4_._2026_._19_24_05.png",
-      "/static/images/banners/vietnam_1767529746_ChatGPT_Image_4_._2026_._19_26_49.png",
-      "/static/images/banners/vietnam_1767530370_ChatGPT_Image_4_._2026_._19_36_25.png",
-      "/static/images/banners/vietnam_1767530673_ChatGPT_Image_4_._2026_._19_43_58.png",
-      "/static/images/banners/vietnam_1768537408_ChatGPT_Image_16_._2026_._11_22_59.png",
-      "/static/images/banners/vietnam_1769232199_ChatGPT_Image_24_._2026_._12_10_37.png",
-      "/static/images/banners/vietnam_1769233578_ChatGPT_Image_24_._2026_._12_44_48.png",
-      "/static/images/banners/vietnam_1769233736_ChatGPT_Image_24_._2026_._12_48_36.png",
-      "/static/images/banners/vietnam_1769235134_ChatGPT_Image_24_._2026_._13_11_49.png",
-      "/static/images/banners/vietnam_1769236832_Gemini_Generated_Image_aur1fbaur1fbaur1_1.png"
-    ],
-    "mobile": [
-      "/static/images/banners/vietnam_mobile_1774611124_IMG_2600.png",
-      "/static/images/banners/vietnam_mobile_1774611269_IMG_2601.png",
-      "/static/images/banners/vietnam_mobile_1774773620_IMG_2636.png",
-      "/static/images/banners/vietnam_mobile_1774773629_IMG_2635.png",
-      "/static/images/banners/vietnam_mobile_1774773642_IMG_2634.jpeg",
-      "/static/images/banners/vietnam_mobile_1774774003_IMG_2638.png",
-      "/static/images/banners/vietnam_mobile_1774774191_IMG_2639.png",
-      "/static/images/banners/vietnam_mobile_1774774519_IMG_2643.png",
-      "/static/images/banners/vietnam_mobile_1774774929_IMG_2647.png",
-      "/static/images/banners/vietnam_mobile_1774775038_IMG_2649.png",
-      "/static/images/banners/vietnam_mobile_1774775549_IMG_2652.png",
-      "/static/images/banners/vietnam_mobile_1774782606_IMG_2656.png",
-      "/static/images/banners/vietnam_mobile_1774783601_IMG_2659.png",
-      "/static/images/banners/vietnam_mobile_1774784583_IMG_2662.png",
-      "/static/images/banners/vietnam_mobile_1774784590_IMG_2662.png",
-      "/static/images/banners/vietnam_mobile_1774784602_IMG_2663.png",
-      "/static/images/banners/vietnam_mobile_1774852367_IMG_2668.png",
-      "/static/images/banners/vietnam_mobile_1774852380_IMG_2667.png",
-      "/static/images/banners/vietnam_mobile_1774852435_IMG_2669.png",
-      "/static/images/banners/vietnam_mobile_1775142767_IMG_2693.png",
-      "/static/images/banners/vietnam_mobile_1775142782_IMG_2691.png"
-    ]
+    "web": [],
+    "mobile": []
   },
   "thailand": {
     "web": [
