@@ -836,6 +836,8 @@
             currentIdx = (currentIdx + direction + banners.length) % banners.length;
             countryConfig[currentCountry].currentBanner = currentIdx;
             if (typeof updateBanner === 'function') updateBanner();
+            // Сбрасываем таймер — отсчёт 15 сек начинается заново после ручного переключения
+            if (typeof _scheduleBannerTick === 'function') _scheduleBannerTick();
         }
         
         var currentCategory = 'real_estate';
@@ -1404,14 +1406,18 @@
         const _BANNER_INTERVAL = { vietnam: 15000 };
         const _BANNER_DEFAULT_INTERVAL = 7000;
         let _bannerTimer = null;
+        let _bannerLastTick = Date.now();
         function _scheduleBannerTick() {
             if (_bannerTimer) clearTimeout(_bannerTimer);
             const delay = _BANNER_INTERVAL[currentCountry] || _BANNER_DEFAULT_INTERVAL;
+            _bannerLastTick = Date.now();
             _bannerTimer = setTimeout(function _tick() {
+                const elapsed = Date.now() - _bannerLastTick;
                 const banners = getCurrentBanners();
                 if (banners.length > 1) {
                     const currentIdx = countryConfig[currentCountry].currentBanner || 0;
                     countryConfig[currentCountry].currentBanner = (currentIdx + 1) % banners.length;
+                    console.log('[Banner] auto-switch after ' + elapsed + 'ms (target: ' + delay + 'ms), country=' + currentCountry + ', idx=' + countryConfig[currentCountry].currentBanner);
                     updateBanner();
                 }
                 _scheduleBannerTick();
