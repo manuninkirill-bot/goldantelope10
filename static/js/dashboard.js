@@ -1409,7 +1409,7 @@
                 countryConfig[currentCountry].currentBanner = nextIdx;
                 updateBanner();
             }
-        }, 10000);
+        }, 7000);
 
         function switchCountry(country) {
             // Запоминаем активную вкладку ДО смены страны
