@@ -8476,10 +8476,12 @@
         function _renderScTracks(list, tracks) {
             list.innerHTML = tracks.map(function(t) {
                 var url = t.permalink_url || '';
-                var title = t.title || '';
                 var isPlaying = url && url === _muCurrentUrl && _muSource === 'sc';
-                return '<div class="sc-nt-item' + (isPlaying ? ' playing' : '') + '" data-url="' + _esc(url) + '" data-src="sc" onclick="playMusicTrack(\'sc\',' + JSON.stringify(url) + ',null,null,' + JSON.stringify(title) + ')">' +
-                    (t.artwork ? '<img class="sc-nt-art" src="' + _esc(t.artwork) + '" onerror="this.removeAttribute(\'src\')">' : '<div class="sc-nt-art"></div>') +
+                return '<div class="sc-nt-item' + (isPlaying ? ' playing' : '') +
+                    '" data-url="' + _esc(url) +
+                    '" data-title="' + _esc(t.title || '') +
+                    '" data-src="sc" onclick="var _el=this.closest(\'[data-url]\');playMusicTrack(\'sc\',_el.dataset.url,null,null,_el.dataset.title)">' +
+                    (t.artwork ? '<img class="sc-nt-art" src="' + _esc(t.artwork) + '" onerror="this.parentNode.querySelector(\'.sc-nt-art\').removeAttribute(\'src\')">' : '<div class="sc-nt-art"></div>') +
                     '<div class="sc-nt-info">' +
                         '<div class="sc-nt-name">' + (isPlaying ? '▶ ' : '') + _esc(t.title || '—') + '</div>' +
                         '<div class="sc-nt-artist">' + _esc(t.user || '') + '</div>' +
@@ -8495,9 +8497,16 @@
                 var sid = t.id || '';
                 var isPlaying = sid && sid === _spPlayingId;
                 var hasPreview = !!t.preview_url;
-                return '<div class="sc-nt-item' + (isPlaying ? ' playing' : '') + '" data-id="' + _esc(sid) + '" data-src="sp"' +
-                    (hasPreview ? ' onclick="playMusicTrack(\'sp\','+JSON.stringify(t.spotify_url)+','+JSON.stringify(t.preview_url)+','+JSON.stringify(sid)+')"' :
-                                  ' onclick="window.open('+JSON.stringify(t.spotify_url)+',\'_blank\')"') + '>' +
+                var spUrl = t.spotify_url || '';
+                var prevUrl = t.preview_url || '';
+                return '<div class="sc-nt-item' + (isPlaying ? ' playing' : '') +
+                    '" data-id="' + _esc(sid) +
+                    '" data-sp-url="' + _esc(spUrl) +
+                    '" data-preview="' + _esc(prevUrl) +
+                    '" data-src="sp"' +
+                    (hasPreview
+                        ? ' onclick="var _el=this.closest(\'[data-id]\');playMusicTrack(\'sp\',_el.dataset.spUrl,_el.dataset.preview,_el.dataset.id)"'
+                        : ' onclick="var _el=this.closest(\'[data-id]\');window.open(_el.dataset.spUrl,\'_blank\')"') + '>' +
                     (t.artwork ? '<img class="sc-nt-art" src="' + _esc(t.artwork) + '" onerror="this.removeAttribute(\'src\')">' : '<div class="sc-nt-art"></div>') +
                     '<div class="sc-nt-info">' +
                         '<div class="sc-nt-name">' + (isPlaying ? '▶ ' : '') + _esc(t.title || '—') + '</div>' +
