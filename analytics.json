@@ -178,12 +178,12 @@
         "user_kvla9tmvs_1777716822396",
         "user_byrwss6nb_1777797740186"
       ],
-      "page_views": 1039,
+      "page_views": 1081,
       "countries": {
-        "vietnam": 1039
+        "vietnam": 1081
       },
       "categories": {
-        "real_estate": 1039
+        "real_estate": 1081
       },
       "hours": {
         "00": 120,
@@ -194,12 +194,13 @@
         "05": 120,
         "06": 120,
         "07": 51,
-        "08": 149
+        "08": 178,
+        "09": 13
       },
       "referrers": {},
       "devices": {
-        "mobile": 49,
-        "desktop": 990
+        "mobile": 69,
+        "desktop": 1012
       }
     }
   },
@@ -261,7 +262,7 @@
     },
     "user_qqvzm7fmp_1777658471285": {
       "first_seen": "2026-05-01",
-      "visits": 3474,
+      "visits": 3494,
       "last_seen": "2026-05-03"
     },
     "user_83l5forj5_1777658477017": {
@@ -306,7 +307,7 @@
     },
     "user_kvla9tmvs_1777716822396": {
       "first_seen": "2026-05-02",
-      "visits": 391,
+      "visits": 411,
       "last_seen": "2026-05-03"
     },
     "user_e34rqa8g0_1777716881401": {
@@ -351,7 +352,7 @@
     },
     "user_byrwss6nb_1777797740186": {
       "first_seen": "2026-05-03",
-      "visits": 4,
+      "visits": 6,
       "last_seen": "2026-05-03"
     }
   }

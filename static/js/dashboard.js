@@ -8336,9 +8336,7 @@
         // _bindWidget вызываем ПОСЛЕ того, как neo добавлен в DOM, чтобы SC.Widget
         // мог корректно опрашивать iframe через postMessage (READY придёт когда iframe готов).
         window._scWidgetLoad = function(url) {
-            if (typeof SC === 'undefined') return;
-            var old = document.getElementById('sc-iframe');
-            if (!old) return;
+            console.log('[SC] _scWidgetLoad url:', url.slice(0, 60));
 
             // Сбросить UI
             scDuration = 0; seeking = false;
@@ -8347,20 +8345,80 @@
             document.getElementById('sc-total').textContent = '0:00';
             document.getElementById('sc-track-name').textContent = '…';
 
-            // Создаём новый элемент — SC.Widget(neo) будет свежим экземпляром
-            var neo = document.createElement('iframe');
-            neo.id    = 'sc-iframe';
-            neo.allow = 'autoplay';
-            neo.setAttribute('style', 'display:none;width:0;height:0;border:none');
+            if (widget) {
+                // Используем widget.load() на существующем виджете.
+                // Это работает в контексте пользовательского жеста (autoplay разрешён).
+                // load() сбрасывает все события — перебиндим их сразу.
+                widget.load(url, {
+                    auto_play: true,
+                    buying: false, sharing: false, download: false,
+                    show_artwork: false, show_comments: false,
+                    show_playcount: false, show_user: false, hide_related: true
+                });
+                console.log('[SC] widget.load() called');
 
-            // Сначала вставляем в DOM, потом задаём src (браузер начнёт загрузку)
-            old.parentNode.replaceChild(neo, old);
-            neo.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
-                '&auto_play=true&hide_related=true&show_comments=false&show_user=false' +
-                '&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
+                var w = widget;
+                var _gotInfo = false;
 
-            // SC.Widget будет слать connect-сообщения пока iframe не ответит READY
-            _bindWidget(SC.Widget(neo));
+                function _rebindAfterLoad() {
+                    w.bind(SC.Widget.Events.PLAY, function() {
+                        scPlaying = true;
+                        document.getElementById('sc-play-btn').textContent = '⏸';
+                        if (!_gotInfo) {
+                            _gotInfo = true;
+                            w.getCurrentSound(function(s) {
+                                if (s && s.title) document.getElementById('sc-track-name').textContent = s.title;
+                            });
+                            w.getDuration(function(d) {
+                                scDuration = d;
+                                document.getElementById('sc-total').textContent = fmtTime(d);
+                            });
+                            w.setVolume(scMuted ? 0 : scVolume);
+                        }
+                        console.log('[SC] PLAY after load()');
+                    });
+                    w.bind(SC.Widget.Events.PAUSE, function() {
+                        scPlaying = false;
+                        document.getElementById('sc-play-btn').textContent = '▶';
+                    });
+                    w.bind(SC.Widget.Events.FINISH, function() {
+                        scPlaying = false;
+                        document.getElementById('sc-play-btn').textContent = '▶';
+                    });
+                    w.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
+                        if (seeking) return;
+                        document.getElementById('sc-current').textContent = fmtTime(e.currentPosition);
+                        if (scDuration > 0)
+                            document.getElementById('sc-seek').value = Math.round(e.relativePosition * 1000);
+                    });
+                }
+                _rebindAfterLoad();
+
+            } else {
+                // Виджет ещё не создан — заменяем iframe и ждём его загрузки
+                console.log('[SC] no widget yet, replacing iframe...');
+                if (typeof SC === 'undefined') return;
+                var old = document.getElementById('sc-iframe');
+                if (!old) return;
+
+                var neo = document.createElement('iframe');
+                neo.id    = 'sc-iframe';
+                neo.allow = 'autoplay; encrypted-media';
+                neo.setAttribute('style', 'visibility:hidden;position:absolute;width:1px;height:1px;top:-1px;left:-1px;border:none;');
+
+                neo.addEventListener('load', function onLoad() {
+                    neo.removeEventListener('load', onLoad);
+                    setTimeout(function() {
+                        console.log('[SC] iframe loaded → _bindWidget');
+                        _bindWidget(SC.Widget(neo));
+                    }, 600);
+                });
+
+                old.parentNode.replaceChild(neo, old);
+                neo.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
+                    '&auto_play=true&hide_related=true&show_comments=false&show_user=false' +
+                    '&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
+            }
         };
     })();
 
