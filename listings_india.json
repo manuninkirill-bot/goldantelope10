@@ -2353,6 +2353,21 @@
   "tours": [],
   "entertainment": [
     {
+      "id": "partyhunt_a1b058e5-d138-45b0-af7c-251fbe95a9aa",
+      "title": "Ecstatic Dance",
+      "description": "📅 05 May 2026, 19:00\n📍 Arambolians\n🗺 116/3 Deulwada, Next to Pirata Pizzeria, Wildeflower Road Pernem, Road, Arambol, Goa 403524, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/ecstatic-dance-05-may-2026-arambolians-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/VutjKZUPyXy6zySnBmpYUE1pf0S94QvvBJL7ROzp.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-05 19:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/ecstatic-dance-05-may-2026-arambolians-buy-tickets"
+    },
+    {
       "id": "partyhunt_a1ae6e94-b4eb-4338-968e-2713d915bb4c",
       "title": "Mysterious Underworld Festival",
       "description": "📅 13 May 2026, 10:00\n📍 Kasol\n🗺 Kasol, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/mysterious-underworld-festival-13-may-2026-kasol-buy-tickets",
@@ -2434,40 +2449,6 @@
       "telegram_link": "https://tickets.partyhunt.com/events/lunar-empire-30-08-may-2026-orion-beach-restaurant-buy-tickets",
       "price": "1000.00",
       "price_display": "from ₹1000.00"
-    },
-    {
-      "id": "partyhunt_a1ac3fbd-7833-494f-94eb-dfe021d549ca",
-      "title": "Bollywood Night",
-      "description": "📅 02 May 2026, 22:00\n📍 The Pirate Brew\n🗺 Survey No. 301, 1655/5A, 1-0, Deulwaddo, Anjuna, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/bollywood-night-02-may-2026-the-pirate-brew-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/CM6P32Z6HLakjDLstBdVZETYfNdC6HN0P9P8xw56.jpg"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-02 22:00:00",
-      "city": "Goa",
-      "realestate_city": "goa",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/bollywood-night-02-may-2026-the-pirate-brew-buy-tickets",
-      "price": "500.00",
-      "price_display": "from ₹500.00"
-    },
-    {
-      "id": "partyhunt_a1ac4250-8c1b-4f85-9bd8-89d529bf6c28",
-      "title": "Total Techno",
-      "description": "📅 02 May 2026, 20:00\n📍 Kitty Su Mumbai\n🗺 Ground Floor The LaLit Mumbai, Airport Rd, Navpada, Marol, Andheri East, Mumbai, Maharashtra 400059, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/total-techno-02-may-2026-kitty-su-mumbai-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/KKKi7lzZhY1Vnn0bVHq9vx4JWrS8YKwaUNhlRHjc.jpg"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-02 20:00:00",
-      "city": "Mumbai",
-      "realestate_city": "mumbai",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/total-techno-02-may-2026-kitty-su-mumbai-buy-tickets",
-      "price": "500.00",
-      "price_display": "from ₹500.00"
     },
     {
       "id": "partyhunt_a1aa2108-4274-4baa-8b1e-5f1cd7159cfe",
@@ -2570,23 +2551,6 @@
       "price_display": "from ₹1000.00"
     },
     {
-      "id": "partyhunt_a1a6261d-bd78-462d-9ee0-38ef18da0f56",
-      "title": "Harmonic Decibels 2.0",
-      "description": "📅 02 May 2026, 20:00\n📍 House of Chapora by the bay\n🗺 Chapora Jetty , H.No 340/2 Village Anjuna-Caisua, Chapora, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/harmonic-decibels-20-02-may-2026-house-of-chapora-by-the-bay-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/XCRwMK6IgiC8q268Xfld0PBKG3GfavdqD1y5zZfX.jpg"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-02 20:00:00",
-      "city": "Goa",
-      "realestate_city": "goa",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/harmonic-decibels-20-02-may-2026-house-of-chapora-by-the-bay-buy-tickets",
-      "price": "1000.00",
-      "price_display": "from ₹1000.00"
-    },
-    {
       "id": "partyhunt_a19ea81e-32bf-4cdf-8d5a-864132a28492",
       "title": "High Volt",
       "description": "📅 09 May 2026, 19:00\n📍 Goxsphere\n🗺 Goxsphere, near Anjuna, Flea Market, Monteiro Vaddo, Anjuna, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/high-volt-09-may-2026-goxsphere-buy-tickets",
@@ -2619,40 +2583,6 @@
       "telegram_link": "https://tickets.partyhunt.com/events/break-the-pattern-09-may-2026-flipsyde-retreat-buy-tickets",
       "price": "1899.00",
       "price_display": "from ₹1899.00"
-    },
-    {
-      "id": "partyhunt_a1a42b25-9247-4c93-8799-855f796a824a",
-      "title": "Fake Tattoos",
-      "description": "📅 02 May 2026, 20:00\n📍 Dynamo\n🗺 Survey number 213, 6, part, Vagator, Anjuna, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/fake-tattoos-02-may-2026-dynamo-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/Vgx6k4oCblc7jhC2rj9USlG6wt28vAvxRhXqyEen.jpg"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-02 20:00:00",
-      "city": "Goa",
-      "realestate_city": "goa",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/fake-tattoos-02-may-2026-dynamo-buy-tickets",
-      "price": "1499.00",
-      "price_display": "from ₹1499.00"
-    },
-    {
-      "id": "partyhunt_a0fd9895-8ebd-4086-aef1-4f5ac3eb2d7f",
-      "title": "Grooving & Moving",
-      "description": "📅 02 May 2026, 20:00\n📍 Dharamshala\n🗺 Dharamshala, Himachal Pradesh, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/grooving-moving-02-may-2026-dharamshala-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/lzJywbqa2yw8KB7MZeMThTvfw75McK99lpOerU76.png"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-02 20:00:00",
-      "city": "Dharamshala",
-      "realestate_city": "dharamshala",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/grooving-moving-02-may-2026-dharamshala-buy-tickets",
-      "price": "500.00",
-      "price_display": "from ₹500.00"
     }
   ],
   "transport": [
