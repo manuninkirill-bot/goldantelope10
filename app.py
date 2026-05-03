@@ -11137,6 +11137,188 @@ def api_sc_new_tracks():
     })
 
 
+# ── Spotify Новинки ───────────────────────────────────────────────────────────
+_SP_TOKEN_CACHE = {'token': None, 'expires': 0}
+_SP_TRACKS_CACHE_FILES = {'24h': 'sp_tracks_24h.json', '7d': 'sp_tracks_7d.json'}
+_SP_TRACKS_LOCK = threading.Lock()
+
+
+def _get_spotify_token():
+    """Client Credentials flow. Требует SPOTIFY_CLIENT_ID + SPOTIFY_CLIENT_SECRET."""
+    import base64 as _b64
+    now = time.time()
+    if _SP_TOKEN_CACHE['token'] and now < _SP_TOKEN_CACHE['expires'] - 60:
+        return _SP_TOKEN_CACHE['token']
+    cid = os.environ.get('SPOTIFY_CLIENT_ID', '')
+    csecret = os.environ.get('SPOTIFY_CLIENT_SECRET', '')
+    if not cid or not csecret:
+        return None
+    try:
+        creds = _b64.b64encode(f'{cid}:{csecret}'.encode()).decode()
+        r = requests.post(
+            'https://accounts.spotify.com/api/token',
+            headers={'Authorization': f'Basic {creds}',
+                     'Content-Type': 'application/x-www-form-urlencoded'},
+            data='grant_type=client_credentials',
+            timeout=10,
+        )
+        if r.status_code == 200:
+            d = r.json()
+            _SP_TOKEN_CACHE['token'] = d['access_token']
+            _SP_TOKEN_CACHE['expires'] = now + d.get('expires_in', 3600)
+            logger.info('[Spotify] Token obtained OK')
+            return _SP_TOKEN_CACHE['token']
+        logger.warning(f'[Spotify] Token error: {r.status_code} {r.text[:200]}')
+    except Exception as e:
+        logger.warning(f'[Spotify] Token exception: {e}')
+    return None
+
+
+def _fetch_spotify_new_tracks(period='24h'):
+    """Загружает новые альбомы Spotify и извлекает треки с preview_url."""
+    import datetime as _dt
+    try:
+        token = _get_spotify_token()
+        if not token:
+            logger.warning('[Spotify] No token — fetch skipped (check SPOTIFY_CLIENT_ID/SECRET)')
+            return []
+
+        hdrs = {'Authorization': f'Bearer {token}'}
+        now_utc = _dt.datetime.utcnow().date()
+        if period == '24h':
+            cutoff = now_utc - _dt.timedelta(days=1)
+        else:
+            cutoff = now_utc - _dt.timedelta(days=7)
+
+        # Шаг 1: Получаем новые релизы
+        r = requests.get(
+            'https://api.spotify.com/v1/browse/new-releases',
+            headers=hdrs,
+            params={'limit': 50, 'country': 'US'},
+            timeout=15,
+        )
+        if r.status_code != 200:
+            logger.warning(f'[Spotify] new-releases error: {r.status_code}')
+            return []
+
+        albums = r.json().get('albums', {}).get('items', [])
+        # Фильтруем по дате
+        filtered = []
+        for alb in albums:
+            rd = alb.get('release_date', '')
+            try:
+                # release_date может быть YYYY, YYYY-MM, YYYY-MM-DD
+                parts = rd.split('-')
+                if len(parts) == 3:
+                    rel_date = _dt.date(int(parts[0]), int(parts[1]), int(parts[2]))
+                elif len(parts) == 2:
+                    rel_date = _dt.date(int(parts[0]), int(parts[1]), 1)
+                else:
+                    rel_date = _dt.date(int(parts[0]), 1, 1)
+                if rel_date >= cutoff:
+                    filtered.append(alb)
+            except Exception:
+                continue
+
+        if not filtered:
+            # Нет релизов за период — берём последние 20
+            filtered = albums[:20]
+
+        # Шаг 2: Получаем треки для этих альбомов пакетно (до 20 за раз)
+        album_ids = [alb['id'] for alb in filtered[:20]]
+        tracks = []
+        r2 = requests.get(
+            'https://api.spotify.com/v1/albums',
+            headers=hdrs,
+            params={'ids': ','.join(album_ids), 'market': 'US'},
+            timeout=15,
+        )
+        if r2.status_code == 200:
+            for alb_full in r2.json().get('albums', []):
+                if not alb_full:
+                    continue
+                alb_items = alb_full.get('tracks', {}).get('items', [])
+                # Берём первый трек альбома
+                for trk in alb_items[:1]:
+                    imgs = alb_full.get('images', [])
+                    artwork = imgs[0]['url'] if imgs else ''
+                    tracks.append({
+                        'id': trk.get('id', ''),
+                        'title': trk.get('name', ''),
+                        'user': ', '.join(a['name'] for a in trk.get('artists', [])),
+                        'album': alb_full.get('name', ''),
+                        'duration': trk.get('duration_ms', 0),
+                        'artwork': artwork,
+                        'preview_url': trk.get('preview_url') or '',
+                        'spotify_url': trk.get('external_urls', {}).get('spotify', ''),
+                        'release_date': alb_full.get('release_date', ''),
+                    })
+
+        if tracks:
+            cache_file = _SP_TRACKS_CACHE_FILES.get(period, 'sp_tracks.json')
+            with _SP_TRACKS_LOCK:
+                with open(cache_file, 'w', encoding='utf-8') as f:
+                    import datetime as _dt2
+                    json.dump({
+                        'updated': _dt2.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+                        'tracks': tracks,
+                    }, f, ensure_ascii=False)
+            logger.info(f'[Spotify] Cached {len(tracks)} tracks for period={period}')
+        return tracks
+    except Exception as e:
+        logger.warning(f'[Spotify] fetch error ({period}): {e}')
+        return []
+
+
+def _load_sp_tracks_cache(period):
+    cache_file = _SP_TRACKS_CACHE_FILES.get(period)
+    if not cache_file or not os.path.exists(cache_file):
+        return None
+    try:
+        with _SP_TRACKS_LOCK:
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+    except Exception:
+        return None
+
+
+def _sp_daily_refresh_loop():
+    """Ежедневное фоновое обновление Spotify-треков."""
+    time.sleep(10)  # немного позже SC
+    while True:
+        try:
+            logger.info('[Spotify] Daily refresh: 24h...')
+            _fetch_spotify_new_tracks('24h')
+            logger.info('[Spotify] Daily refresh: 7d...')
+            _fetch_spotify_new_tracks('7d')
+            logger.info('[Spotify] Daily refresh complete')
+        except Exception as e:
+            logger.warning(f'[Spotify] Daily refresh error: {e}')
+        time.sleep(86400)
+
+
+threading.Thread(target=_sp_daily_refresh_loop, daemon=True, name='SpDailyRefresh').start()
+
+
+@app.route('/api/sp-new-tracks')
+def api_sp_new_tracks():
+    period = request.args.get('period', '24h')
+    if period not in ('24h', '7d'):
+        period = '24h'
+    if not os.environ.get('SPOTIFY_CLIENT_ID'):
+        return jsonify({'tracks': [], 'error': 'no_credentials',
+                        'updated': '', 'message': 'Добавьте SPOTIFY_CLIENT_ID и SPOTIFY_CLIENT_SECRET'})
+    cached = _load_sp_tracks_cache(period)
+    if cached and cached.get('tracks'):
+        return jsonify(cached)
+    tracks = _fetch_spotify_new_tracks(period)
+    import datetime as _dt
+    return jsonify({
+        'tracks': tracks,
+        'updated': _dt.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+    })
+
+
 if __name__ == '__main__':
     import threading
     t = threading.Thread(target=run_bot, daemon=True)

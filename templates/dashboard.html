@@ -673,6 +673,21 @@
             flex: 1;
             letter-spacing: 0.3px;
         }
+        .sc-nt-sources { display: flex; gap: 4px; }
+        .sc-nt-src {
+            background: transparent;
+            border: 1px solid rgba(212,175,55,0.4);
+            border-radius: 20px;
+            color: #888;
+            font-size: 11px;
+            padding: 3px 10px;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+            font-weight: 500;
+        }
+        .sc-nt-src.active { background: rgba(212,175,55,0.25); color: #d4af37; border-color: #d4af37; }
+        .sc-nt-src:hover:not(.active) { border-color: rgba(212,175,55,0.7); color: #ccc; }
         .sc-nt-tabs { display: flex; gap: 5px; }
         .sc-nt-tab {
             background: transparent;
@@ -2251,13 +2266,17 @@
             </div>
         </div>
 
-        <!-- SC Новинки -->
+        <!-- Музыкальные Новинки (SoundCloud + Spotify) -->
         <div id="sc-newtrack-panel">
             <div class="sc-nt-header" onclick="toggleScPanel()">
-                <span class="sc-nt-title">🎵 Новинки SoundCloud</span>
+                <span class="sc-nt-title">🎵 Новинки</span>
+                <div class="sc-nt-sources" onclick="event.stopPropagation()">
+                    <button class="sc-nt-src active" id="sc-nt-src-sc" onclick="switchMusicSource('sc')">SoundCloud</button>
+                    <button class="sc-nt-src" id="sc-nt-src-sp" onclick="switchMusicSource('sp')">Spotify</button>
+                </div>
                 <div class="sc-nt-tabs" onclick="event.stopPropagation()">
-                    <button class="sc-nt-tab active" id="sc-nt-tab-24h" onclick="loadScTracks('24h')">24 часа</button>
-                    <button class="sc-nt-tab" id="sc-nt-tab-7d" onclick="loadScTracks('7d')">7 дней</button>
+                    <button class="sc-nt-tab active" id="sc-nt-tab-24h" onclick="loadMusicTracks(null,'24h')">24ч</button>
+                    <button class="sc-nt-tab" id="sc-nt-tab-7d" onclick="loadMusicTracks(null,'7d')">7 дней</button>
                 </div>
                 <button class="sc-nt-toggle" id="sc-nt-toggle">▼</button>
             </div>
@@ -2266,6 +2285,8 @@
             </div>
             <div class="sc-nt-updated" id="sc-nt-updated"></div>
         </div>
+        <!-- Spotify 30s preview player -->
+        <audio id="sp-preview-audio" preload="none"></audio>
 
         <div id="banner" class="banner">
             <img id="banner-img" src="" alt="Banner">
@@ -5393,6 +5414,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=9f3b4edd" defer></script>
+<script src="/static/js/dashboard.js?v=f56e6d4e" defer></script>
 </body>
 </html>

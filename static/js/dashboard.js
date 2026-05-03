@@ -8331,97 +8331,184 @@
         });
     })();
 
-    // === SoundCloud Новинки ===
+    // === Музыкальные Новинки (SoundCloud + Spotify) ===
     (function() {
-        var _scNtPeriod = '24h';
-        var _scNtOpen = true;
-        var _scNtCurrentUrl = null;
+        var _muSource = 'sc';   // 'sc' | 'sp'
+        var _muPeriod = '24h';  // '24h' | '7d'
+        var _muOpen   = true;
+        var _muCurrentUrl = null;  // SC: permalink_url; SP: spotify_url
+        var _spPlayingId  = null;  // ID трека Spotify для подсветки
 
-        function _fmtScDur(ms) {
+        function _esc(str) {
+            return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+        function _fmtDur(ms) {
             var s = Math.floor((ms || 0) / 1000);
             return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
         }
 
-        function _scNtEscape(str) {
-            return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-        }
-
+        // ── Панель: toggle/open ──────────────────────────────────────────────
         window.toggleScPanel = function() {
-            _scNtOpen = !_scNtOpen;
-            var list = document.getElementById('sc-nt-list');
+            _muOpen = !_muOpen;
+            var list   = document.getElementById('sc-nt-list');
             var toggle = document.getElementById('sc-nt-toggle');
-            var upd = document.getElementById('sc-nt-updated');
-            if (list) list.classList.toggle('hidden', !_scNtOpen);
-            if (toggle) toggle.classList.toggle('collapsed', !_scNtOpen);
-            if (upd) upd.style.display = _scNtOpen ? '' : 'none';
+            var upd    = document.getElementById('sc-nt-updated');
+            if (list)   list.classList.toggle('hidden', !_muOpen);
+            if (toggle) toggle.classList.toggle('collapsed', !_muOpen);
+            if (upd)    upd.style.display = _muOpen ? '' : 'none';
         };
 
-        window.loadScTracks = function(period) {
-            _scNtPeriod = period || '24h';
-            document.querySelectorAll('.sc-nt-tab').forEach(function(t) {
-                t.classList.toggle('active', t.id === 'sc-nt-tab-' + _scNtPeriod);
+        // ── Переключение источника SC / Spotify ──────────────────────────────
+        window.switchMusicSource = function(src) {
+            if (src === _muSource) return;
+            _muSource = src;
+            document.querySelectorAll('.sc-nt-src').forEach(function(b) {
+                b.classList.toggle('active', b.id === 'sc-nt-src-' + src);
+            });
+            loadMusicTracks(src, _muPeriod);
+        };
+
+        // ── Загрузка треков ──────────────────────────────────────────────────
+        window.loadMusicTracks = function(src, period) {
+            if (src)    _muSource = src;
+            if (period) _muPeriod = period;
+            document.querySelectorAll('.sc-nt-tab').forEach(function(b) {
+                b.classList.toggle('active', b.id === 'sc-nt-tab-' + _muPeriod);
             });
             var list = document.getElementById('sc-nt-list');
             if (!list) return;
             list.innerHTML = '<div class="sc-nt-loading">Загрузка...</div>';
+            var endpoint = _muSource === 'sp'
+                ? '/api/sp-new-tracks?period=' + _muPeriod
+                : '/api/sc-new-tracks?period=' + _muPeriod;
 
-            fetch('/api/sc-new-tracks?period=' + _scNtPeriod)
+            fetch(endpoint)
                 .then(function(r) { return r.json(); })
                 .then(function(data) {
                     var tracks = data.tracks || [];
                     var upd = document.getElementById('sc-nt-updated');
-                    if (upd && data.updated) {
-                        var d = new Date(data.updated);
-                        upd.textContent = 'Обновлено: ' + d.toLocaleString('ru-RU', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+                    if (upd) {
+                        if (data.error === 'no_credentials') {
+                            upd.textContent = '⚠ Требуются SPOTIFY_CLIENT_ID / SECRET';
+                        } else if (data.updated) {
+                            var d = new Date(data.updated);
+                            upd.textContent = 'Обновлено: ' + d.toLocaleString('ru-RU', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+                        }
                     }
                     if (!tracks.length) {
-                        list.innerHTML = '<div class="sc-nt-loading">Нет треков для этого периода</div>';
+                        var hint = _muSource === 'sp' && data.error === 'no_credentials'
+                            ? 'Добавьте SPOTIFY_CLIENT_ID и SPOTIFY_CLIENT_SECRET в секреты проекта'
+                            : 'Нет треков для этого периода';
+                        list.innerHTML = '<div class="sc-nt-loading">' + hint + '</div>';
                         return;
                     }
-                    list.innerHTML = tracks.map(function(t) {
-                        var url = t.permalink_url || '';
-                        var artSrc = t.artwork || '';
-                        var isPlaying = url && url === _scNtCurrentUrl;
-                        return '<div class="sc-nt-item' + (isPlaying ? ' playing' : '') + '" data-url="' + _scNtEscape(url) + '" onclick="playScTrack(' + JSON.stringify(url) + ')">' +
-                            (artSrc ? '<img class="sc-nt-art" src="' + _scNtEscape(artSrc) + '" onerror="this.style.background=\'#1a1a2e\';this.src=\'\'">' : '<div class="sc-nt-art"></div>') +
-                            '<div class="sc-nt-info">' +
-                                '<div class="sc-nt-name">' + (isPlaying ? '▶ ' : '') + _scNtEscape(t.title || '—') + '</div>' +
-                                '<div class="sc-nt-artist">' + _scNtEscape(t.user || '') + '</div>' +
-                            '</div>' +
-                            '<div class="sc-nt-dur">' + _fmtScDur(t.duration) + '</div>' +
-                        '</div>';
-                    }).join('');
+                    if (_muSource === 'sc') {
+                        _renderScTracks(list, tracks);
+                    } else {
+                        _renderSpTracks(list, tracks);
+                    }
                 })
-                .catch(function() {
-                    list.innerHTML = '<div class="sc-nt-loading">Ошибка загрузки — нет связи с SoundCloud</div>';
+                .catch(function(e) {
+                    list.innerHTML = '<div class="sc-nt-loading">Ошибка загрузки</div>';
                 });
         };
 
-        window.playScTrack = function(url) {
-            if (!url) return;
-            _scNtCurrentUrl = url;
-            var iframe = document.getElementById('sc-iframe');
-            if (iframe) {
-                iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
-                    '&auto_play=true&hide_related=true&show_comments=false&show_user=false' +
-                    '&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
+        // ── SoundCloud: рендер и воспроизведение ─────────────────────────────
+        function _renderScTracks(list, tracks) {
+            list.innerHTML = tracks.map(function(t) {
+                var url = t.permalink_url || '';
+                var isPlaying = url && url === _muCurrentUrl && _muSource === 'sc';
+                return '<div class="sc-nt-item' + (isPlaying ? ' playing' : '') + '" data-url="' + _esc(url) + '" data-src="sc" onclick="playMusicTrack(\'sc\',' + JSON.stringify(url) + ',null)">' +
+                    (t.artwork ? '<img class="sc-nt-art" src="' + _esc(t.artwork) + '" onerror="this.removeAttribute(\'src\')">' : '<div class="sc-nt-art"></div>') +
+                    '<div class="sc-nt-info">' +
+                        '<div class="sc-nt-name">' + (isPlaying ? '▶ ' : '') + _esc(t.title || '—') + '</div>' +
+                        '<div class="sc-nt-artist">' + _esc(t.user || '') + '</div>' +
+                    '</div>' +
+                    '<div class="sc-nt-dur">' + _fmtDur(t.duration) + '</div>' +
+                '</div>';
+            }).join('');
+        }
+
+        // ── Spotify: рендер и воспроизведение ────────────────────────────────
+        function _renderSpTracks(list, tracks) {
+            list.innerHTML = tracks.map(function(t) {
+                var sid = t.id || '';
+                var isPlaying = sid && sid === _spPlayingId;
+                var hasPreview = !!t.preview_url;
+                return '<div class="sc-nt-item' + (isPlaying ? ' playing' : '') + '" data-id="' + _esc(sid) + '" data-src="sp"' +
+                    (hasPreview ? ' onclick="playMusicTrack(\'sp\','+JSON.stringify(t.spotify_url)+','+JSON.stringify(t.preview_url)+','+JSON.stringify(sid)+')"' :
+                                  ' onclick="window.open('+JSON.stringify(t.spotify_url)+',\'_blank\')"') + '>' +
+                    (t.artwork ? '<img class="sc-nt-art" src="' + _esc(t.artwork) + '" onerror="this.removeAttribute(\'src\')">' : '<div class="sc-nt-art"></div>') +
+                    '<div class="sc-nt-info">' +
+                        '<div class="sc-nt-name">' + (isPlaying ? '▶ ' : '') + _esc(t.title || '—') + '</div>' +
+                        '<div class="sc-nt-artist">' + _esc(t.user || '') + (t.album ? ' · ' + _esc(t.album) : '') + '</div>' +
+                    '</div>' +
+                    '<div class="sc-nt-dur">' +
+                        (hasPreview ? _fmtDur(t.duration) : '<span style="font-size:13px;color:#1DB954" title="Открыть в Spotify">↗</span>') +
+                    '</div>' +
+                '</div>';
+            }).join('');
+        }
+
+        // ── Unified play ─────────────────────────────────────────────────────
+        window.playMusicTrack = function(src, url, previewUrl, spId) {
+            if (src === 'sc') {
+                // Загружаем в SC iframe
+                _muCurrentUrl = url;
+                var iframe = document.getElementById('sc-iframe');
+                if (iframe) {
+                    iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
+                        '&auto_play=true&hide_related=true&show_comments=false&show_user=false' +
+                        '&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
+                }
+                var scWrap = document.getElementById('sc-player-wrap');
+                if (scWrap) scWrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+                _highlightItems('sc', url, null);
+            } else {
+                // Spotify: 30-секундный preview в <audio>
+                _spPlayingId = spId || null;
+                var audio = document.getElementById('sp-preview-audio');
+                if (audio && previewUrl) {
+                    if (!audio.paused && audio.getAttribute('data-sp-url') === previewUrl) {
+                        audio.pause();
+                        _spPlayingId = null;
+                        _highlightItems('sp', null, null);
+                        return;
+                    }
+                    audio.setAttribute('data-sp-url', previewUrl);
+                    audio.src = previewUrl;
+                    audio.volume = 0.7;
+                    audio.play().catch(function(){});
+                    audio.onended = function() {
+                        _spPlayingId = null;
+                        _highlightItems('sp', null, null);
+                    };
+                } else if (url) {
+                    window.open(url, '_blank');
+                    return;
+                }
+                _highlightItems('sp', null, spId);
             }
-            // Подсветить активный трек
+        };
+
+        function _highlightItems(src, url, spId) {
             document.querySelectorAll('.sc-nt-item').forEach(function(el) {
-                var elUrl = el.getAttribute('data-url');
-                var active = elUrl === url;
+                var active = false;
+                if (src === 'sc') active = el.getAttribute('data-url') === url;
+                else active = spId && el.getAttribute('data-id') === spId;
                 el.classList.toggle('playing', active);
                 var nameEl = el.querySelector('.sc-nt-name');
                 if (nameEl) {
-                    var text = nameEl.textContent.replace(/^▶ /, '');
-                    nameEl.textContent = active ? '▶ ' + text : text;
+                    var txt = nameEl.textContent.replace(/^▶ /, '');
+                    nameEl.textContent = active ? '▶ ' + txt : txt;
                 }
             });
-            // Прокрутить к плееру
-            var scWrap = document.getElementById('sc-player-wrap');
-            if (scWrap) scWrap.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-        };
+        }
 
-        // Загружаем при старте
-        loadScTracks('24h');
+        // Обратная совместимость (старые вызовы из inline HTML если были)
+        window.loadScTracks  = function(p) { loadMusicTracks('sc', p); };
+        window.playScTrack   = function(u) { playMusicTrack('sc', u, null, null); };
+
+        // Загружаем SC при старте
+        loadMusicTracks('sc', '24h');
     })();
