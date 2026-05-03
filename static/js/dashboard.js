@@ -8406,11 +8406,22 @@
                     document.getElementById('sc-play-btn').textContent = '⏸';
                 }
             } catch(e) {}
-            // После загрузки iframe — подписываемся на события
+
+            // Подписываемся сразу (iframe мог загрузиться ещё до навешивания listener)
+            setTimeout(_scSubscribe, 800);
+
+            // И на load event — на случай если iframe ещё не загружен
             scIframe.addEventListener('load', function() {
                 _scSubDone = false;
                 setTimeout(_scSubscribe, 300);
             });
+
+            // Повтор через 3 сек — защита от гонки на медленном соединении
+            setTimeout(function() {
+                _scSubDone = false;
+                _scSubscribe();
+                _applyVol();
+            }, 3000);
         }
 
         // Play/Pause
@@ -8447,7 +8458,9 @@
             _applyVol();
         });
 
-        // ── Загрузка нового трека через raw postMessage ───────────────────────
+        // ── Загрузка нового трека: меняем iframe.src ─────────────────────────
+        // SC player's raw postMessage 'load' expects a full player URL string —
+        // использование объекта не работает. Самый надёжный способ: iframe.src.
         window._scWidgetLoad = function(url, title) {
             _scActiveUrl = url;
             _cancelAutoNext();
@@ -8458,20 +8471,11 @@
             document.getElementById('sc-total').textContent = '0:00';
             document.getElementById('sc-play-btn').textContent = '⏸';
 
-            // Пробуем load через postMessage (не меняем src — не нарушаем autoplay)
+            var iframe = document.getElementById('sc-iframe');
+            if (!iframe) return;
+            // Меняем src — iframe.load event вызовет _scSubscribe автоматически
             _scSubDone = false;
-            _scCmd('load', {
-                url: url,
-                auto_play: true,
-                buying: false, sharing: false, download: false,
-                show_comments: false, show_user: false, hide_related: true,
-                show_teaser: false
-            });
-            // Переподписываемся после load
-            setTimeout(function() {
-                _scSubDone = false;
-                _scSubscribe();
-            }, 400);
+            iframe.src = SC_BASE + encodeURIComponent(url) + '&auto_play=true' + SC_OPTS;
         };
     })();
 
