@@ -11020,59 +11020,78 @@ def _fetch_sc_new_tracks(period='24h'):
         hdrs = {'User-Agent': 'Mozilla/5.0'}
         tracks = []
 
-        # Попытка 1: поиск с фильтром даты
-        try:
-            url = (
-                f'https://api-v2.soundcloud.com/search/tracks'
-                f'?q=&limit=25&linked_partitioning=1'
-                f'&filter.duration.from=60000'
-                f'&created_at%5Bfrom%5D={from_ts}'
-                f'&client_id={cid}'
-            )
-            r = requests.get(url, headers=hdrs, timeout=15)
-            if r.status_code == 200:
-                for t in r.json().get('collection', []):
-                    art = t.get('artwork_url') or t.get('user', {}).get('avatar_url', '')
-                    if art:
-                        art = art.replace('-large', '-t300x300')
-                    tracks.append({
-                        'id': t.get('id'),
-                        'title': t.get('title', ''),
-                        'user': t.get('user', {}).get('username', ''),
-                        'duration': t.get('duration', 0),
-                        'artwork': art,
-                        'permalink_url': t.get('permalink_url', ''),
-                        'created_at': t.get('created_at', ''),
-                    })
-        except Exception as e:
-            logger.warning(f'[SC] search error: {e}')
+        def _extract_chart_tracks(collection):
+            result = []
+            for item in collection:
+                t = item.get('track', {})
+                if not t:
+                    continue
+                art = t.get('artwork_url') or t.get('user', {}).get('avatar_url', '')
+                if art:
+                    art = art.replace('-large', '-t300x300')
+                result.append({
+                    'id': t.get('id'),
+                    'title': t.get('title', ''),
+                    'user': t.get('user', {}).get('username', ''),
+                    'duration': t.get('duration', 0),
+                    'artwork': art,
+                    'permalink_url': t.get('permalink_url', ''),
+                    'created_at': t.get('created_at', ''),
+                })
+            return result
 
-        # Попытка 2: trending charts (fallback)
-        if not tracks:
+        if period == '24h':
+            # Топ-чарт прямо сейчас (страница 1)
             try:
-                url2 = (
-                    f'https://api-v2.soundcloud.com/charts'
-                    f'?kind=trending&genre=soundcloud%3Agenres%3Aall-music'
-                    f'&limit=20&client_id={cid}'
+                r = requests.get(
+                    'https://api-v2.soundcloud.com/charts',
+                    headers=hdrs,
+                    params={'kind': 'trending', 'genre': 'soundcloud:genres:all-music',
+                            'limit': 25, 'client_id': cid},
+                    timeout=15,
                 )
-                r2 = requests.get(url2, headers=hdrs, timeout=15)
-                if r2.status_code == 200:
-                    for item in r2.json().get('collection', []):
-                        t = item.get('track', {})
-                        art = t.get('artwork_url') or t.get('user', {}).get('avatar_url', '')
-                        if art:
-                            art = art.replace('-large', '-t300x300')
-                        tracks.append({
-                            'id': t.get('id'),
-                            'title': t.get('title', ''),
-                            'user': t.get('user', {}).get('username', ''),
-                            'duration': t.get('duration', 0),
-                            'artwork': art,
-                            'permalink_url': t.get('permalink_url', ''),
-                            'created_at': t.get('created_at', ''),
-                        })
+                if r.status_code == 200:
+                    tracks = _extract_chart_tracks(r.json().get('collection', []))
+                else:
+                    logger.warning(f'[SC] trending/24h error: {r.status_code}')
             except Exception as e:
-                logger.warning(f'[SC] charts error: {e}')
+                logger.warning(f'[SC] trending/24h exception: {e}')
+        else:
+            # 7d: страница 2 трендов (совсем другие позиции 26–50) через next_href
+            try:
+                r1 = requests.get(
+                    'https://api-v2.soundcloud.com/charts',
+                    headers=hdrs,
+                    params={'kind': 'trending', 'genre': 'soundcloud:genres:all-music',
+                            'limit': 25, 'client_id': cid},
+                    timeout=15,
+                )
+                next_href = ''
+                if r1.status_code == 200:
+                    next_href = r1.json().get('next_href', '')
+                if next_href:
+                    sep = '&' if '?' in next_href else '?'
+                    r2 = requests.get(
+                        next_href + sep + 'client_id=' + cid,
+                        headers=hdrs, timeout=15,
+                    )
+                    if r2.status_code == 200:
+                        tracks = _extract_chart_tracks(r2.json().get('collection', []))
+                if not tracks:
+                    # fallback: чарт другого жанра — hip-hop
+                    r3 = requests.get(
+                        'https://api-v2.soundcloud.com/charts',
+                        headers=hdrs,
+                        params={'kind': 'trending', 'genre': 'soundcloud:genres:hiphoprap',
+                                'limit': 25, 'client_id': cid},
+                        timeout=15,
+                    )
+                    if r3.status_code == 200:
+                        tracks = _extract_chart_tracks(r3.json().get('collection', []))
+                    else:
+                        logger.warning(f'[SC] 7d fallback error: {r3.status_code}')
+            except Exception as e:
+                logger.warning(f'[SC] 7d exception: {e}')
 
         if tracks:
             cache_file = _SC_TRACKS_CACHE_FILES.get(period, 'sc_tracks.json')

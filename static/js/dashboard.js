@@ -8330,14 +8330,15 @@
             document.getElementById('sc-mute-btn').textContent = scMuted ? '🔇' : '🔊';
         });
 
-        // Загрузить новый трек:
-        // 1. Регистрируем 'load' РАНЬШЕ смены src, чтобы не пропустить событие
-        // 2. Меняем iframe.src — трек переключается (оригинальный рабочий метод)
-        // 3. По 'load' ждём 300 мс и перепривязываем Widget — volume/mute снова работают
+        // Загрузить новый трек.
+        // SC.Widget кэшируется по DOM-элементу, поэтому заменяем сам элемент целиком —
+        // новый элемент гарантированно получает свежий Widget без конфликтов.
+        // _bindWidget вызываем ПОСЛЕ того, как neo добавлен в DOM, чтобы SC.Widget
+        // мог корректно опрашивать iframe через postMessage (READY придёт когда iframe готов).
         window._scWidgetLoad = function(url) {
             if (typeof SC === 'undefined') return;
-            var iframe = document.getElementById('sc-iframe');
-            if (!iframe) return;
+            var old = document.getElementById('sc-iframe');
+            if (!old) return;
 
             // Сбросить UI
             scDuration = 0; seeking = false;
@@ -8346,20 +8347,20 @@
             document.getElementById('sc-total').textContent = '0:00';
             document.getElementById('sc-track-name').textContent = '…';
 
-            // Однократный обработчик load
-            function _onLoad() {
-                iframe.removeEventListener('load', _onLoad);
-                // Небольшая задержка: SC Widget внутри iframe инициализируется асинхронно
-                setTimeout(function() {
-                    _bindWidget(SC.Widget(iframe));
-                }, 300);
-            }
-            iframe.addEventListener('load', _onLoad);
+            // Создаём новый элемент — SC.Widget(neo) будет свежим экземпляром
+            var neo = document.createElement('iframe');
+            neo.id    = 'sc-iframe';
+            neo.allow = 'autoplay';
+            neo.setAttribute('style', 'display:none;width:0;height:0;border:none');
 
-            // Переключаем трек — iframe перезагружается
-            iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
+            // Сначала вставляем в DOM, потом задаём src (браузер начнёт загрузку)
+            old.parentNode.replaceChild(neo, old);
+            neo.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
                 '&auto_play=true&hide_related=true&show_comments=false&show_user=false' +
                 '&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
+
+            // SC.Widget будет слать connect-сообщения пока iframe не ответит READY
+            _bindWidget(SC.Widget(neo));
         };
     })();
 
