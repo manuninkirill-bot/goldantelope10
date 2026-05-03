@@ -646,6 +646,113 @@
             background: rgba(212,175,55,0.25);
             border-color: #d4af37;
         }
+        /* SC Новинки panel */
+        #sc-newtrack-panel {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 10px auto;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+            border-radius: 12px;
+            border: 2px solid rgba(212,175,55,0.4);
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(212,175,55,0.1);
+        }
+        .sc-nt-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+            cursor: pointer;
+            user-select: none;
+        }
+        .sc-nt-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #d4af37;
+            flex: 1;
+            letter-spacing: 0.3px;
+        }
+        .sc-nt-tabs { display: flex; gap: 5px; }
+        .sc-nt-tab {
+            background: transparent;
+            border: 1px solid rgba(212,175,55,0.5);
+            border-radius: 20px;
+            color: #aaa;
+            font-size: 11px;
+            padding: 3px 11px;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+        .sc-nt-tab.active {
+            background: #d4af37;
+            color: #0f0f1a;
+            border-color: #d4af37;
+            font-weight: 700;
+        }
+        .sc-nt-tab:hover:not(.active) { border-color: #d4af37; color: #d4af37; }
+        .sc-nt-toggle {
+            background: transparent;
+            border: none;
+            color: #d4af37;
+            font-size: 13px;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.2s;
+            line-height: 1;
+        }
+        .sc-nt-toggle.collapsed { transform: rotate(-90deg); }
+        .sc-nt-list {
+            max-height: 260px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(212,175,55,0.3) transparent;
+        }
+        .sc-nt-list::-webkit-scrollbar { width: 4px; }
+        .sc-nt-list::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); border-radius: 4px; }
+        .sc-nt-list.hidden { display: none; }
+        .sc-nt-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: background 0.15s;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .sc-nt-item:hover { background: rgba(212,175,55,0.1); }
+        .sc-nt-item:last-child { border-bottom: none; }
+        .sc-nt-item.playing { background: rgba(212,175,55,0.15); }
+        .sc-nt-art {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #1a1a2e;
+        }
+        .sc-nt-info { flex: 1; min-width: 0; }
+        .sc-nt-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: #eee;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .sc-nt-artist {
+            font-size: 11px;
+            color: #777;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+        }
+        .sc-nt-dur { font-size: 11px; color: #555; flex-shrink: 0; }
+        .sc-nt-play-icon { font-size: 10px; color: #d4af37; flex-shrink: 0; margin-right: 2px; }
+        .sc-nt-loading { text-align: center; color: #555; font-size: 12px; padding: 22px; }
+        .sc-nt-updated { font-size: 10px; color: #444; padding: 4px 14px; text-align: right; }
         #sc-vol-label {
             font-size: 10px;
             color: rgba(212,175,55,0.8);
@@ -2142,6 +2249,22 @@
                 <span id="sc-vol-label">70%</span>
                 <button class="sc-vol-btn" id="sc-vol-up" title="Volume +">+</button>
             </div>
+        </div>
+
+        <!-- SC Новинки -->
+        <div id="sc-newtrack-panel">
+            <div class="sc-nt-header" onclick="toggleScPanel()">
+                <span class="sc-nt-title">🎵 Новинки SoundCloud</span>
+                <div class="sc-nt-tabs" onclick="event.stopPropagation()">
+                    <button class="sc-nt-tab active" id="sc-nt-tab-24h" onclick="loadScTracks('24h')">24 часа</button>
+                    <button class="sc-nt-tab" id="sc-nt-tab-7d" onclick="loadScTracks('7d')">7 дней</button>
+                </div>
+                <button class="sc-nt-toggle" id="sc-nt-toggle">▼</button>
+            </div>
+            <div id="sc-nt-list" class="sc-nt-list">
+                <div class="sc-nt-loading">Загрузка...</div>
+            </div>
+            <div class="sc-nt-updated" id="sc-nt-updated"></div>
         </div>
 
         <div id="banner" class="banner">
@@ -5270,6 +5393,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=08395626" defer></script>
+<script src="/static/js/dashboard.js?v=9f3b4edd" defer></script>
 </body>
 </html>

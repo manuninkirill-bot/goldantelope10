@@ -10970,6 +10970,173 @@ def api_tg_feed_import():
     return jsonify({'ok': True, 'import_status': status, 'feed_stats': stats})
 
 
+# ── SoundCloud Новинки ────────────────────────────────────────────────────────
+_SC_CLIENT_ID_CACHE = {'id': None, 'ts': 0}
+_SC_TRACKS_CACHE_FILES = {'24h': 'sc_tracks_24h.json', '7d': 'sc_tracks_7d.json'}
+_SC_TRACKS_LOCK = threading.Lock()
+
+
+def _get_sc_client_id():
+    """Извлекает client_id из JS-файлов soundcloud.com. Кэш 24ч."""
+    now = time.time()
+    if _SC_CLIENT_ID_CACHE['id'] and now - _SC_CLIENT_ID_CACHE['ts'] < 86400:
+        return _SC_CLIENT_ID_CACHE['id']
+    try:
+        hdrs = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        r = requests.get('https://soundcloud.com', headers=hdrs, timeout=15)
+        scripts = re.findall(r'<script[^>]+src="(https://a-v2\.sndcdn\.com/assets/[^"]+\.js)"', r.text)
+        for su in scripts[-6:]:
+            try:
+                jr = requests.get(su, headers=hdrs, timeout=10)
+                m = re.search(r'client_id:"([a-zA-Z0-9_]{20,})"', jr.text)
+                if m:
+                    cid = m.group(1)
+                    _SC_CLIENT_ID_CACHE['id'] = cid
+                    _SC_CLIENT_ID_CACHE['ts'] = now
+                    logger.info(f'[SC] client_id found: {cid[:8]}...')
+                    return cid
+            except Exception:
+                continue
+    except Exception as e:
+        logger.warning(f'[SC] client_id fetch error: {e}')
+    return _SC_CLIENT_ID_CACHE.get('id')
+
+
+def _fetch_sc_new_tracks(period='24h'):
+    """Загружает новинки SoundCloud за период (24h|7d) и кэширует в JSON."""
+    import datetime as _dt
+    try:
+        cid = _get_sc_client_id()
+        if not cid:
+            logger.warning('[SC] No client_id — fetch skipped')
+            return []
+
+        now_utc = _dt.datetime.utcnow()
+        if period == '24h':
+            from_ts = (now_utc - _dt.timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
+        else:
+            from_ts = (now_utc - _dt.timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+        hdrs = {'User-Agent': 'Mozilla/5.0'}
+        tracks = []
+
+        # Попытка 1: поиск с фильтром даты
+        try:
+            url = (
+                f'https://api-v2.soundcloud.com/search/tracks'
+                f'?q=&limit=25&linked_partitioning=1'
+                f'&filter.duration.from=60000'
+                f'&created_at%5Bfrom%5D={from_ts}'
+                f'&client_id={cid}'
+            )
+            r = requests.get(url, headers=hdrs, timeout=15)
+            if r.status_code == 200:
+                for t in r.json().get('collection', []):
+                    art = t.get('artwork_url') or t.get('user', {}).get('avatar_url', '')
+                    if art:
+                        art = art.replace('-large', '-t300x300')
+                    tracks.append({
+                        'id': t.get('id'),
+                        'title': t.get('title', ''),
+                        'user': t.get('user', {}).get('username', ''),
+                        'duration': t.get('duration', 0),
+                        'artwork': art,
+                        'permalink_url': t.get('permalink_url', ''),
+                        'created_at': t.get('created_at', ''),
+                    })
+        except Exception as e:
+            logger.warning(f'[SC] search error: {e}')
+
+        # Попытка 2: trending charts (fallback)
+        if not tracks:
+            try:
+                url2 = (
+                    f'https://api-v2.soundcloud.com/charts'
+                    f'?kind=trending&genre=soundcloud%3Agenres%3Aall-music'
+                    f'&limit=20&client_id={cid}'
+                )
+                r2 = requests.get(url2, headers=hdrs, timeout=15)
+                if r2.status_code == 200:
+                    for item in r2.json().get('collection', []):
+                        t = item.get('track', {})
+                        art = t.get('artwork_url') or t.get('user', {}).get('avatar_url', '')
+                        if art:
+                            art = art.replace('-large', '-t300x300')
+                        tracks.append({
+                            'id': t.get('id'),
+                            'title': t.get('title', ''),
+                            'user': t.get('user', {}).get('username', ''),
+                            'duration': t.get('duration', 0),
+                            'artwork': art,
+                            'permalink_url': t.get('permalink_url', ''),
+                            'created_at': t.get('created_at', ''),
+                        })
+            except Exception as e:
+                logger.warning(f'[SC] charts error: {e}')
+
+        if tracks:
+            cache_file = _SC_TRACKS_CACHE_FILES.get(period, 'sc_tracks.json')
+            with _SC_TRACKS_LOCK:
+                with open(cache_file, 'w', encoding='utf-8') as f:
+                    json.dump({
+                        'updated': now_utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                        'tracks': tracks,
+                    }, f, ensure_ascii=False)
+            logger.info(f'[SC] Cached {len(tracks)} tracks for period={period}')
+        return tracks
+    except Exception as e:
+        logger.warning(f'[SC] fetch error ({period}): {e}')
+        return []
+
+
+def _load_sc_tracks_cache(period):
+    cache_file = _SC_TRACKS_CACHE_FILES.get(period)
+    if not cache_file or not os.path.exists(cache_file):
+        return None
+    try:
+        with _SC_TRACKS_LOCK:
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+    except Exception:
+        return None
+
+
+def _sc_daily_refresh_loop():
+    """Ежедневное фоновое обновление SC-треков."""
+    # Первый запуск через 5 сек после старта
+    time.sleep(5)
+    while True:
+        try:
+            logger.info('[SC] Daily refresh: 24h...')
+            _fetch_sc_new_tracks('24h')
+            logger.info('[SC] Daily refresh: 7d...')
+            _fetch_sc_new_tracks('7d')
+            logger.info('[SC] Daily refresh complete')
+        except Exception as e:
+            logger.warning(f'[SC] Daily refresh error: {e}')
+        time.sleep(86400)
+
+
+threading.Thread(target=_sc_daily_refresh_loop, daemon=True, name='SCDailyRefresh').start()
+
+
+@app.route('/api/sc-new-tracks')
+def api_sc_new_tracks():
+    period = request.args.get('period', '24h')
+    if period not in ('24h', '7d'):
+        period = '24h'
+    cached = _load_sc_tracks_cache(period)
+    if cached and cached.get('tracks'):
+        return jsonify(cached)
+    # Нет кэша — пробуем получить сейчас (может занять несколько секунд)
+    tracks = _fetch_sc_new_tracks(period)
+    import datetime as _dt
+    return jsonify({
+        'tracks': tracks,
+        'updated': _dt.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+    })
+
+
 if __name__ == '__main__':
     import threading
     t = threading.Thread(target=run_bot, daemon=True)

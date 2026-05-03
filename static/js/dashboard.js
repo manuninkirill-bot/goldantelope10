@@ -8330,3 +8330,98 @@
             document.getElementById('sc-mute-btn').textContent = scMuted ? '🔇' : '🔊';
         });
     })();
+
+    // === SoundCloud Новинки ===
+    (function() {
+        var _scNtPeriod = '24h';
+        var _scNtOpen = true;
+        var _scNtCurrentUrl = null;
+
+        function _fmtScDur(ms) {
+            var s = Math.floor((ms || 0) / 1000);
+            return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
+        }
+
+        function _scNtEscape(str) {
+            return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        window.toggleScPanel = function() {
+            _scNtOpen = !_scNtOpen;
+            var list = document.getElementById('sc-nt-list');
+            var toggle = document.getElementById('sc-nt-toggle');
+            var upd = document.getElementById('sc-nt-updated');
+            if (list) list.classList.toggle('hidden', !_scNtOpen);
+            if (toggle) toggle.classList.toggle('collapsed', !_scNtOpen);
+            if (upd) upd.style.display = _scNtOpen ? '' : 'none';
+        };
+
+        window.loadScTracks = function(period) {
+            _scNtPeriod = period || '24h';
+            document.querySelectorAll('.sc-nt-tab').forEach(function(t) {
+                t.classList.toggle('active', t.id === 'sc-nt-tab-' + _scNtPeriod);
+            });
+            var list = document.getElementById('sc-nt-list');
+            if (!list) return;
+            list.innerHTML = '<div class="sc-nt-loading">Загрузка...</div>';
+
+            fetch('/api/sc-new-tracks?period=' + _scNtPeriod)
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    var tracks = data.tracks || [];
+                    var upd = document.getElementById('sc-nt-updated');
+                    if (upd && data.updated) {
+                        var d = new Date(data.updated);
+                        upd.textContent = 'Обновлено: ' + d.toLocaleString('ru-RU', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+                    }
+                    if (!tracks.length) {
+                        list.innerHTML = '<div class="sc-nt-loading">Нет треков для этого периода</div>';
+                        return;
+                    }
+                    list.innerHTML = tracks.map(function(t) {
+                        var url = t.permalink_url || '';
+                        var artSrc = t.artwork || '';
+                        var isPlaying = url && url === _scNtCurrentUrl;
+                        return '<div class="sc-nt-item' + (isPlaying ? ' playing' : '') + '" data-url="' + _scNtEscape(url) + '" onclick="playScTrack(' + JSON.stringify(url) + ')">' +
+                            (artSrc ? '<img class="sc-nt-art" src="' + _scNtEscape(artSrc) + '" onerror="this.style.background=\'#1a1a2e\';this.src=\'\'">' : '<div class="sc-nt-art"></div>') +
+                            '<div class="sc-nt-info">' +
+                                '<div class="sc-nt-name">' + (isPlaying ? '▶ ' : '') + _scNtEscape(t.title || '—') + '</div>' +
+                                '<div class="sc-nt-artist">' + _scNtEscape(t.user || '') + '</div>' +
+                            '</div>' +
+                            '<div class="sc-nt-dur">' + _fmtScDur(t.duration) + '</div>' +
+                        '</div>';
+                    }).join('');
+                })
+                .catch(function() {
+                    list.innerHTML = '<div class="sc-nt-loading">Ошибка загрузки — нет связи с SoundCloud</div>';
+                });
+        };
+
+        window.playScTrack = function(url) {
+            if (!url) return;
+            _scNtCurrentUrl = url;
+            var iframe = document.getElementById('sc-iframe');
+            if (iframe) {
+                iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
+                    '&auto_play=true&hide_related=true&show_comments=false&show_user=false' +
+                    '&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
+            }
+            // Подсветить активный трек
+            document.querySelectorAll('.sc-nt-item').forEach(function(el) {
+                var elUrl = el.getAttribute('data-url');
+                var active = elUrl === url;
+                el.classList.toggle('playing', active);
+                var nameEl = el.querySelector('.sc-nt-name');
+                if (nameEl) {
+                    var text = nameEl.textContent.replace(/^▶ /, '');
+                    nameEl.textContent = active ? '▶ ' + text : text;
+                }
+            });
+            // Прокрутить к плееру
+            var scWrap = document.getElementById('sc-player-wrap');
+            if (scWrap) scWrap.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+        };
+
+        // Загружаем при старте
+        loadScTracks('24h');
+    })();
