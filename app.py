@@ -19,11 +19,14 @@ file_lock = threading.Lock()
 
 # Data cache to prevent heavy disk I/O
 data_cache = {}
-DATA_CACHE_TTL = 600  # Cache raw data for 10 minutes
+DATA_CACHE_TTL = 1800  # Cache raw data for 30 minutes
 
-# Cache filtered API results (key: "category:country:query_string") — TTL 60s
+# Cache filtered API results (key: "category:country:query_string") — TTL 300s
 _filtered_cache = {}
-_FILTERED_CACHE_TTL = 60
+_FILTERED_CACHE_TTL = 300
+
+# Cache logo detection per (country) to avoid recomputing on every request
+_logo_fps_cache = {}  # country -> {'fps': set, 'ts': float}
 
 GOOGLE_AI_API_KEY = os.environ.get('GOOGLE_AI_API_KEY', '')
 translation_cache = {}
@@ -1603,19 +1606,26 @@ def get_listings(category):
         filtered = [x for x in filtered if x.get('contact', '').lower() not in {c.lower() for c in _OWN_PARSE_CH}]
 
     # Недвижимость — определяем логотип канала (фото встречающееся в 30+ объявлениях) и удаляем его
+    # Logo set кэшируется на 30 минут — вычисляется по всем объявлениям страны, не по отфильтрованным
     if category == 'real_estate':
-        from collections import Counter as _Counter
-        _fp_counter = _Counter()
-        for _x in filtered:
-            _seen = set()
-            for _p in ([_x.get('image_url')] if _x.get('image_url') else []) + list(_x.get('photos', [])):
-                if not _p:
-                    continue
-                _fp = _p.split('/file/')[-1][:40] if '/file/' in str(_p) else str(_p)[:40]
-                if _fp not in _seen:
-                    _fp_counter[_fp] += 1
-                    _seen.add(_fp)
-        _logo_fps = {fp for fp, cnt in _fp_counter.items() if cnt >= 30}
+        _logo_cached = _logo_fps_cache.get(country)
+        if _logo_cached and (time.time() - _logo_cached['ts']) < 1800:
+            _logo_fps = _logo_cached['fps']
+        else:
+            from collections import Counter as _Counter
+            _all_re = data.get('real_estate', [])
+            _fp_counter = _Counter()
+            for _x in _all_re:
+                _seen = set()
+                for _p in ([_x.get('image_url')] if _x.get('image_url') else []) + list(_x.get('photos', [])):
+                    if not _p:
+                        continue
+                    _fp = _p.split('/file/')[-1][:40] if '/file/' in str(_p) else str(_p)[:40]
+                    if _fp not in _seen:
+                        _fp_counter[_fp] += 1
+                        _seen.add(_fp)
+            _logo_fps = {fp for fp, cnt in _fp_counter.items() if cnt >= 30}
+            _logo_fps_cache[country] = {'fps': _logo_fps, 'ts': time.time()}
 
         def _strip_logos(item):
             if not _logo_fps:
@@ -1798,7 +1808,7 @@ def get_listings(category):
                 return False
             
             filtered = [x for x in filtered if matches_city(x)]
-            print(f"DEBUG: Category {category}, City Filter {city_filter}, Targets {targets}, Found {len(filtered)} items")
+            logger.debug("City filter: cat=%s city=%s found=%d", category, city_filter, len(filtered))
     
     if category == 'visas':
         # Фильтр по направлению (Камбоджа/Лаос) - используем параметр destination
@@ -5670,6 +5680,17 @@ def _sync_restoranparsing_all():
             logger.warning('[restoran_sync] Ошибка: %s', e)
         _t.sleep(600)
 
+def _warmup_cache():
+    """Прогрев кэша данных при старте — исключает задержку первого запроса."""
+    import time as _tw
+    _tw.sleep(2)  # дать приложению полностью запуститься
+    for _c in ('vietnam', 'thailand', 'india', 'indonesia'):
+        try:
+            load_data(_c)
+            logger.info('[warmup] Кэш %s загружен', _c)
+        except Exception as _we:
+            logger.warning('[warmup] Ошибка %s: %s', _c, _we)
+
 def _startup_backfill():
     """При старте: бэкфилл всех 7 основных каналов за последние 3 дня."""
     import time as _tb
@@ -5681,6 +5702,7 @@ def _startup_backfill():
     except Exception as _be:
         logger.warning('[startup_backfill] Ошибка: %s', _be)
 
+threading.Thread(target=_warmup_cache, daemon=True, name='CacheWarmup').start()
 threading.Thread(target=_all_channels_periodic_scraper, daemon=True, name='AllChannelsScraper').start()
 threading.Thread(target=_chat_periodic_scraper, daemon=True, name='ChatScraper').start()
 threading.Thread(target=_sync_restoranparsing_all, daemon=True, name='RestoranSync').start()
