@@ -11137,122 +11137,78 @@ def api_sc_new_tracks():
     })
 
 
-# ── Spotify Новинки ───────────────────────────────────────────────────────────
-_SP_TOKEN_CACHE = {'token': None, 'expires': 0}
+# ── Deezer Новинки (публичный API, без ключей) ────────────────────────────────
 _SP_TRACKS_CACHE_FILES = {'24h': 'sp_tracks_24h.json', '7d': 'sp_tracks_7d.json'}
 _SP_TRACKS_LOCK = threading.Lock()
 
 
-def _get_spotify_token():
-    """Client Credentials flow. Требует SPOTIFY_CLIENT_ID + SPOTIFY_CLIENT_SECRET."""
-    import base64 as _b64
-    now = time.time()
-    if _SP_TOKEN_CACHE['token'] and now < _SP_TOKEN_CACHE['expires'] - 60:
-        return _SP_TOKEN_CACHE['token']
-    cid = os.environ.get('SPOTIFY_CLIENT_ID', '')
-    csecret = os.environ.get('SPOTIFY_CLIENT_SECRET', '')
-    if not cid or not csecret:
-        return None
+def _fetch_deezer_tracks(period='24h'):
+    """
+    Загружает треки из Deezer публичного API.
+    24h → чарт (ежедневно обновляемый топ)
+    7d  → новые релизы editorial
+    """
     try:
-        creds = _b64.b64encode(f'{cid}:{csecret}'.encode()).decode()
-        r = requests.post(
-            'https://accounts.spotify.com/api/token',
-            headers={'Authorization': f'Basic {creds}',
-                     'Content-Type': 'application/x-www-form-urlencoded'},
-            data='grant_type=client_credentials',
-            timeout=10,
-        )
-        if r.status_code == 200:
-            d = r.json()
-            _SP_TOKEN_CACHE['token'] = d['access_token']
-            _SP_TOKEN_CACHE['expires'] = now + d.get('expires_in', 3600)
-            logger.info('[Spotify] Token obtained OK')
-            return _SP_TOKEN_CACHE['token']
-        logger.warning(f'[Spotify] Token error: {r.status_code} {r.text[:200]}')
-    except Exception as e:
-        logger.warning(f'[Spotify] Token exception: {e}')
-    return None
-
-
-def _fetch_spotify_new_tracks(period='24h'):
-    """Загружает новые альбомы Spotify и извлекает треки с preview_url."""
-    import datetime as _dt
-    try:
-        token = _get_spotify_token()
-        if not token:
-            logger.warning('[Spotify] No token — fetch skipped (check SPOTIFY_CLIENT_ID/SECRET)')
-            return []
-
-        hdrs = {'Authorization': f'Bearer {token}'}
-        now_utc = _dt.datetime.utcnow().date()
-        if period == '24h':
-            cutoff = now_utc - _dt.timedelta(days=1)
-        else:
-            cutoff = now_utc - _dt.timedelta(days=7)
-
-        # Шаг 1: Получаем новые релизы
-        r = requests.get(
-            'https://api.spotify.com/v1/browse/new-releases',
-            headers=hdrs,
-            params={'limit': 50, 'country': 'US'},
-            timeout=15,
-        )
-        if r.status_code != 200:
-            logger.warning(f'[Spotify] new-releases error: {r.status_code}')
-            return []
-
-        albums = r.json().get('albums', {}).get('items', [])
-        # Фильтруем по дате
-        filtered = []
-        for alb in albums:
-            rd = alb.get('release_date', '')
-            try:
-                # release_date может быть YYYY, YYYY-MM, YYYY-MM-DD
-                parts = rd.split('-')
-                if len(parts) == 3:
-                    rel_date = _dt.date(int(parts[0]), int(parts[1]), int(parts[2]))
-                elif len(parts) == 2:
-                    rel_date = _dt.date(int(parts[0]), int(parts[1]), 1)
-                else:
-                    rel_date = _dt.date(int(parts[0]), 1, 1)
-                if rel_date >= cutoff:
-                    filtered.append(alb)
-            except Exception:
-                continue
-
-        if not filtered:
-            # Нет релизов за период — берём последние 20
-            filtered = albums[:20]
-
-        # Шаг 2: Получаем треки для этих альбомов пакетно (до 20 за раз)
-        album_ids = [alb['id'] for alb in filtered[:20]]
-        tracks = []
-        r2 = requests.get(
-            'https://api.spotify.com/v1/albums',
-            headers=hdrs,
-            params={'ids': ','.join(album_ids), 'market': 'US'},
-            timeout=15,
-        )
-        if r2.status_code == 200:
-            for alb_full in r2.json().get('albums', []):
-                if not alb_full:
+        if period == '7d':
+            # Новые релизы: editorial releases (альбомы недели)
+            r = requests.get(
+                'https://api.deezer.com/editorial/0/releases',
+                params={'limit': 25},
+                timeout=15,
+            )
+            if r.status_code != 200:
+                logger.warning(f'[Deezer] releases error: {r.status_code}')
+                return []
+            albums = r.json().get('data', [])
+            tracks = []
+            for alb in albums[:25]:
+                alb_id = alb.get('id')
+                if not alb_id:
                     continue
-                alb_items = alb_full.get('tracks', {}).get('items', [])
-                # Берём первый трек альбома
-                for trk in alb_items[:1]:
-                    imgs = alb_full.get('images', [])
-                    artwork = imgs[0]['url'] if imgs else ''
-                    tracks.append({
-                        'id': trk.get('id', ''),
-                        'title': trk.get('name', ''),
-                        'user': ', '.join(a['name'] for a in trk.get('artists', [])),
-                        'album': alb_full.get('name', ''),
-                        'duration': trk.get('duration_ms', 0),
-                        'artwork': artwork,
-                        'preview_url': trk.get('preview_url') or '',
-                        'spotify_url': trk.get('external_urls', {}).get('spotify', ''),
-                        'release_date': alb_full.get('release_date', ''),
-                    })
+                r2 = requests.get(
+                    f'https://api.deezer.com/album/{alb_id}/tracks',
+                    params={'limit': 1},
+                    timeout=10,
+                )
+                if r2.status_code != 200:
+                    continue
+                items = r2.json().get('data', [])
+                if not items:
+                    continue
+                trk = items[0]
+                tracks.append({
+                    'id': str(trk.get('id', '')),
+                    'title': trk.get('title', ''),
+                    'user': trk.get('artist', {}).get('name', ''),
+                    'album': alb.get('title', ''),
+                    'duration': trk.get('duration', 0) * 1000,
+                    'artwork': alb.get('cover_medium', '') or alb.get('cover', ''),
+                    'preview_url': trk.get('preview', ''),
+                    'spotify_url': trk.get('link', '') or f'https://www.deezer.com/track/{trk.get("id", "")}',
+                })
+        else:
+            # Чарт (24h): глобальный топ Deezer
+            r = requests.get(
+                'https://api.deezer.com/chart/0/tracks',
+                params={'limit': 25},
+                timeout=15,
+            )
+            if r.status_code != 200:
+                logger.warning(f'[Deezer] chart error: {r.status_code}')
+                return []
+            items = r.json().get('data', [])
+            tracks = []
+            for trk in items:
+                tracks.append({
+                    'id': str(trk.get('id', '')),
+                    'title': trk.get('title', ''),
+                    'user': trk.get('artist', {}).get('name', ''),
+                    'album': trk.get('album', {}).get('title', ''),
+                    'duration': trk.get('duration', 0) * 1000,
+                    'artwork': trk.get('album', {}).get('cover_medium', '') or trk.get('album', {}).get('cover', ''),
+                    'preview_url': trk.get('preview', ''),
+                    'spotify_url': trk.get('link', '') or f'https://www.deezer.com/track/{trk.get("id", "")}',
+                })
 
         if tracks:
             cache_file = _SP_TRACKS_CACHE_FILES.get(period, 'sp_tracks.json')
@@ -11263,10 +11219,10 @@ def _fetch_spotify_new_tracks(period='24h'):
                         'updated': _dt2.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
                         'tracks': tracks,
                     }, f, ensure_ascii=False)
-            logger.info(f'[Spotify] Cached {len(tracks)} tracks for period={period}')
+            logger.info(f'[Deezer] Cached {len(tracks)} tracks for period={period}')
         return tracks
     except Exception as e:
-        logger.warning(f'[Spotify] fetch error ({period}): {e}')
+        logger.warning(f'[Deezer] fetch error ({period}): {e}')
         return []
 
 
@@ -11282,22 +11238,22 @@ def _load_sp_tracks_cache(period):
         return None
 
 
-def _sp_daily_refresh_loop():
-    """Ежедневное фоновое обновление Spotify-треков."""
-    time.sleep(10)  # немного позже SC
+def _dz_daily_refresh_loop():
+    """Ежедневное фоновое обновление Deezer-треков."""
+    time.sleep(10)
     while True:
         try:
-            logger.info('[Spotify] Daily refresh: 24h...')
-            _fetch_spotify_new_tracks('24h')
-            logger.info('[Spotify] Daily refresh: 7d...')
-            _fetch_spotify_new_tracks('7d')
-            logger.info('[Spotify] Daily refresh complete')
+            logger.info('[Deezer] Daily refresh: 24h...')
+            _fetch_deezer_tracks('24h')
+            logger.info('[Deezer] Daily refresh: 7d...')
+            _fetch_deezer_tracks('7d')
+            logger.info('[Deezer] Daily refresh complete')
         except Exception as e:
-            logger.warning(f'[Spotify] Daily refresh error: {e}')
+            logger.warning(f'[Deezer] Daily refresh error: {e}')
         time.sleep(86400)
 
 
-threading.Thread(target=_sp_daily_refresh_loop, daemon=True, name='SpDailyRefresh').start()
+threading.Thread(target=_dz_daily_refresh_loop, daemon=True, name='DzDailyRefresh').start()
 
 
 @app.route('/api/sp-new-tracks')
@@ -11305,13 +11261,10 @@ def api_sp_new_tracks():
     period = request.args.get('period', '24h')
     if period not in ('24h', '7d'):
         period = '24h'
-    if not os.environ.get('SPOTIFY_CLIENT_ID'):
-        return jsonify({'tracks': [], 'error': 'no_credentials',
-                        'updated': '', 'message': 'Добавьте SPOTIFY_CLIENT_ID и SPOTIFY_CLIENT_SECRET'})
     cached = _load_sp_tracks_cache(period)
     if cached and cached.get('tracks'):
         return jsonify(cached)
-    tracks = _fetch_spotify_new_tracks(period)
+    tracks = _fetch_deezer_tracks(period)
     import datetime as _dt
     return jsonify({
         'tracks': tracks,

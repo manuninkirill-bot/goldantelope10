@@ -8363,13 +8363,13 @@
         };
     })();
 
-    // === Музыкальные Новинки (SoundCloud + Spotify) ===
+    // === Музыкальные Новинки (SoundCloud + Deezer) ===
     (function() {
         var _muSource = 'sc';   // 'sc' | 'sp'
         var _muPeriod = '24h';  // '24h' | '7d'
         var _muOpen   = true;
-        var _muCurrentUrl = null;  // SC: permalink_url; SP: spotify_url
-        var _spPlayingId  = null;  // ID трека Spotify для подсветки
+        var _muCurrentUrl = null;  // SC: permalink_url; DZ: deezer link
+        var _spPlayingId  = null;  // ID трека Deezer для подсветки
 
         function _esc(str) {
             return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -8461,7 +8461,7 @@
             }).join('');
         }
 
-        // ── Spotify: рендер и воспроизведение ────────────────────────────────
+        // ── Deezer: рендер и воспроизведение ─────────────────────────────────
         function _renderSpTracks(list, tracks) {
             list.innerHTML = tracks.map(function(t) {
                 var sid = t.id || '';
@@ -8476,7 +8476,7 @@
                         '<div class="sc-nt-artist">' + _esc(t.user || '') + (t.album ? ' · ' + _esc(t.album) : '') + '</div>' +
                     '</div>' +
                     '<div class="sc-nt-dur">' +
-                        (hasPreview ? _fmtDur(t.duration) : '<span style="font-size:13px;color:#1DB954" title="Открыть в Spotify">↗</span>') +
+                        (hasPreview ? _fmtDur(t.duration) : '<span style="font-size:13px;color:#1DB954" title="Открыть в Deezer">↗</span>') +
                     '</div>' +
                 '</div>';
             }).join('');
@@ -8503,7 +8503,7 @@
                 if (scWrap) scWrap.scrollIntoView({behavior:'smooth',block:'nearest'});
                 _highlightItems('sc', url, null);
             } else {
-                // Spotify: 30-секундный preview в <audio>
+                // Deezer: 30-секундный preview в <audio>
                 _spPlayingId = spId || null;
                 var audio = document.getElementById('sp-preview-audio');
                 if (audio && previewUrl) {
