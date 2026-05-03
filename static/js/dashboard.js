@@ -8251,6 +8251,24 @@
         var widget = null;
         var _scActiveUrl = null;
 
+        // Shared track list — заполняется из Music Panel IIFE
+        window._scTrackList = window._scTrackList || [];
+
+        // Воспроизвести следующий трек по списку
+        window._scPlayNext = function() {
+            var list = window._scTrackList;
+            if (!list || !list.length || !_scActiveUrl) return;
+            var idx = -1;
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].url === _scActiveUrl) { idx = i; break; }
+            }
+            var next = list[(idx + 1) % list.length];
+            if (next && next.url) {
+                if (typeof window._scWidgetLoad === 'function') window._scWidgetLoad(next.url, next.title);
+                if (typeof window._highlightScTrack === 'function') window._highlightScTrack(next.url);
+            }
+        };
+
         var SC_BASE = 'https://w.soundcloud.com/player/?url=';
         var SC_OPTS = '&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
 
@@ -8288,6 +8306,7 @@
                 w.bind(SC.Widget.Events.FINISH, function() {
                     scPlaying = false;
                     document.getElementById('sc-play-btn').textContent = '▶';
+                    try { window._scPlayNext(); } catch(e) {}
                 });
                 w.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
                     if (seeking) return;
@@ -8397,6 +8416,7 @@
                         widget.bind(SC.Widget.Events.FINISH, function() {
                             scPlaying = false;
                             document.getElementById('sc-play-btn').textContent = '▶';
+                            try { window._scPlayNext(); } catch(e) {}
                         });
                         widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
                             if (seeking) return;
@@ -8512,6 +8532,11 @@
 
         // ── SoundCloud: рендер и воспроизведение ─────────────────────────────
         function _renderScTracks(list, tracks) {
+            // Обновляем shared список для авто-перехода к следующему треку
+            window._scTrackList = tracks.map(function(t) {
+                return { url: t.permalink_url || '', title: t.title || '' };
+            }).filter(function(t) { return !!t.url; });
+
             list.innerHTML = tracks.map(function(t) {
                 var url = t.permalink_url || '';
                 var isPlaying = url && url === _muCurrentUrl && _muSource === 'sc';
@@ -8607,6 +8632,12 @@
                 }
             });
         }
+
+        // Подсветить трек в списке по URL (вызывается из _scPlayNext)
+        window._highlightScTrack = function(url) {
+            _muCurrentUrl = url;
+            _highlightItems('sc', url, null);
+        };
 
         // Обратная совместимость (старые вызовы из inline HTML если были)
         window.loadScTracks  = function(p) { loadMusicTracks('sc', p); };
