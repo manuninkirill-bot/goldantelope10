@@ -8241,18 +8241,49 @@
     }
 
 
-    // === SoundCloud Player ===
+    // === SoundCloud Player (raw postMessage — без внешней библиотеки) ===
     (function() {
         var scVolume = 70;
         var scMuted  = false;
         var scPlaying = false;
         var scDuration = 0;
         var seeking = false;
-        var widget = null;
         var _scActiveUrl = null;
-        var _scAutoNextTimer = null;   // таймер авто-перехода к следующему треку
-        var _scNextScheduled = false;  // флаг: уже запланирован переход
+        var _scAutoNextTimer = null;
+        var _scNextScheduled = false;
+        var _scSubDone = false;   // подписка на события SC iframe
 
+        var SC_ORIGIN = 'https://w.soundcloud.com';
+
+        // ── Отправить команду SC iframe ──────────────────────────────────────
+        function _scCmd(method, value) {
+            var iframe = document.getElementById('sc-iframe');
+            if (!iframe || !iframe.contentWindow) return;
+            try {
+                var msg = (value !== undefined)
+                    ? JSON.stringify({method: method, value: value})
+                    : JSON.stringify({method: method});
+                iframe.contentWindow.postMessage(msg, SC_ORIGIN);
+            } catch(e) {}
+        }
+
+        // ── Подписаться на события SC плеера ────────────────────────────────
+        function _scSubscribe() {
+            if (_scSubDone) return;
+            _scSubDone = true;
+            ['ready','play','pause','finish','play_progress','error'].forEach(function(ev) {
+                _scCmd('addEventListener', ev);
+            });
+            setTimeout(function() { _scCmd('getCurrentSound'); }, 200);
+            setTimeout(function() { _scCmd('getDuration'); }, 400);
+        }
+
+        // ── Громкость ────────────────────────────────────────────────────────
+        function _applyVol() {
+            _scCmd('setVolume', scMuted ? 0 : scVolume);
+        }
+
+        // ── Авто-переход к следующему треку ─────────────────────────────────
         function _cancelAutoNext() {
             if (_scAutoNextTimer) { clearTimeout(_scAutoNextTimer); _scAutoNextTimer = null; }
             _scNextScheduled = false;
@@ -8267,6 +8298,75 @@
                 try { window._scPlayNext(); } catch(e) {}
             }, Math.max(200, remainingMs));
         }
+
+        // ── Слушатель сообщений от SC iframe ────────────────────────────────
+        window.addEventListener('message', function(evt) {
+            if (evt.origin !== SC_ORIGIN) return;
+            try {
+                var msg = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
+                var method = msg.method || '';
+                var value  = msg.value;
+
+                if (method === 'ready') {
+                    scPlaying = true;
+                    document.getElementById('sc-play-btn').textContent = '⏸';
+                    _applyVol();
+                    _scCmd('getCurrentSound');
+                    _scCmd('getDuration');
+
+                } else if (method === 'getCurrentSound') {
+                    if (value && value.title) {
+                        document.getElementById('sc-track-name').textContent = value.title;
+                    }
+                    if (value && value.permalink_url && !_scActiveUrl) {
+                        _scActiveUrl = value.permalink_url;
+                    }
+                    if (value && value.duration && value.duration > 0 && scDuration === 0) {
+                        scDuration = value.duration;
+                        document.getElementById('sc-total').textContent = fmtTime(value.duration);
+                    }
+
+                } else if (method === 'getDuration') {
+                    if (value > 0 && scDuration === 0) {
+                        scDuration = value;
+                        document.getElementById('sc-total').textContent = fmtTime(value);
+                    }
+
+                } else if (method === 'play') {
+                    scPlaying = true;
+                    _cancelAutoNext();
+                    document.getElementById('sc-play-btn').textContent = '⏸';
+                    _applyVol();
+                    if (scDuration === 0) _scCmd('getDuration');
+
+                } else if (method === 'pause') {
+                    scPlaying = false;
+                    document.getElementById('sc-play-btn').textContent = '▶';
+
+                } else if (method === 'finish') {
+                    _cancelAutoNext();
+                    scPlaying = false;
+                    document.getElementById('sc-play-btn').textContent = '▶';
+                    try { window._scPlayNext(); } catch(e) {}
+
+                } else if (method === 'play_progress') {
+                    var pos = (value && value.currentPosition) || 0;
+                    var rel = (value && value.relativePosition) || 0;
+                    if (!seeking) {
+                        document.getElementById('sc-current').textContent = fmtTime(pos);
+                    }
+                    // Вычисляем длительность из соотношения позиции если getDuration не ответил
+                    if (scDuration === 0 && pos > 500 && rel > 0.005) {
+                        scDuration = Math.round(pos / rel);
+                        document.getElementById('sc-total').textContent = fmtTime(scDuration);
+                    }
+                    if (scDuration > 0 && !seeking) {
+                        document.getElementById('sc-seek').value = Math.round(rel * 1000);
+                        if (rel >= 0.98) { _scheduleAutoNext(scDuration - pos); }
+                    }
+                }
+            } catch(e2) {}
+        }, false);
 
         // Shared track list — заполняется из Music Panel IIFE
         window._scTrackList = window._scTrackList || [];
@@ -8294,115 +8394,28 @@
             return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
         }
 
-        // Применить громкость через Widget API (если подключён)
-        function _applyVol() {
-            try { if (widget) widget.setVolume(scMuted ? 0 : scVolume); } catch(e) {}
-        }
-
-        // Widget API: подключаем события (opportunistic — не критично если не работает)
-        function _bindWidget(w) {
-            widget = w;
-            try {
-                w.bind(SC.Widget.Events.READY, function() {
-                    try { w.setVolume(scMuted ? 0 : scVolume); } catch(e) {}
-                    // Получаем данные начального трека (название + длительность)
-                    try {
-                        w.getCurrentSound(function(sound) {
-                            if (!sound) return;
-                            // Реальное название из Widget API — перезаписываем slug/SoundCloud
-                            if (sound.title) {
-                                document.getElementById('sc-track-name').textContent = sound.title;
-                            }
-                            // URL — если ещё не установлен
-                            if (sound.permalink_url && !_scActiveUrl) {
-                                _scActiveUrl = sound.permalink_url;
-                            }
-                        });
-                    } catch(e) {}
-                    try {
-                        w.getDuration(function(d) {
-                            if (d > 0) { scDuration = d; document.getElementById('sc-total').textContent = fmtTime(d); }
-                        });
-                    } catch(e) {}
-                    // Кнопка play: трек уже играет (auto_play=true)
-                    scPlaying = true;
-                    document.getElementById('sc-play-btn').textContent = '⏸';
-                });
-                w.bind(SC.Widget.Events.PLAY, function() {
-                    scPlaying = true;
-                    _cancelAutoNext();
-                    document.getElementById('sc-play-btn').textContent = '⏸';
-                    try {
-                        w.getDuration(function(d) {
-                            if (d > 0) { scDuration = d; document.getElementById('sc-total').textContent = fmtTime(d); }
-                        });
-                    } catch(e) {}
-                    _applyVol();
-                });
-                w.bind(SC.Widget.Events.PAUSE, function() {
-                    scPlaying = false;
-                    document.getElementById('sc-play-btn').textContent = '▶';
-                });
-                w.bind(SC.Widget.Events.FINISH, function() {
-                    _cancelAutoNext();
-                    scPlaying = false;
-                    document.getElementById('sc-play-btn').textContent = '▶';
-                    try { window._scPlayNext(); } catch(e) {}
-                });
-                w.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-                    if (seeking) return;
-                    document.getElementById('sc-current').textContent = fmtTime(e.currentPosition);
-                    if (scDuration > 0) {
-                        document.getElementById('sc-seek').value = Math.round(e.relativePosition * 1000);
-                        // Авто-следующий по позиции — надёжный fallback если FINISH не стреляет
-                        if (e.relativePosition >= 0.98) {
-                            var remaining = scDuration - e.currentPosition;
-                            _scheduleAutoNext(remaining);
-                        }
-                    }
-                });
-            } catch(e) {}
-        }
-
-        // Ждём загрузки iframe, затем пробуем подключить Widget API
+        // ── Инициализация: парсим URL из iframe src ──────────────────────────
         var scIframe = document.getElementById('sc-iframe');
         if (scIframe) {
-            // Парсим начальный URL из src атрибута iframe — устанавливаем до Widget READY
             try {
-                var srcParams = new URLSearchParams(scIframe.src.split('?')[1] || '');
-                var initialUrl = srcParams.get('url');
-                if (initialUrl) {
-                    _scActiveUrl = initialUrl;
-                    // Показываем slug как временное название (до получения от Widget API)
-                    var slug = initialUrl.split('/').pop() || '';
-                    slug = slug.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
-                    if (document.getElementById('sc-track-name').textContent === 'SoundCloud' && slug) {
-                        document.getElementById('sc-track-name').textContent = slug;
-                    }
+                var _srcP = new URLSearchParams(scIframe.src.split('?')[1] || '');
+                var _initUrl = _srcP.get('url');
+                if (_initUrl) {
+                    _scActiveUrl = _initUrl;
                     scPlaying = true;
                     document.getElementById('sc-play-btn').textContent = '⏸';
                 }
             } catch(e) {}
+            // После загрузки iframe — подписываемся на события
             scIframe.addEventListener('load', function() {
-                setTimeout(function() {
-                    try {
-                        if (typeof SC !== 'undefined') _bindWidget(SC.Widget(scIframe));
-                    } catch(e) {}
-                }, 500);
+                _scSubDone = false;
+                setTimeout(_scSubscribe, 300);
             });
         }
 
         // Play/Pause
         document.getElementById('sc-play-btn').addEventListener('click', function() {
-            if (!_scActiveUrl) return;
-            try {
-                if (widget) { if (scPlaying) widget.pause(); else widget.play(); return; }
-            } catch(e) {}
-            // fallback без Widget API — перезагружаем iframe
-            scPlaying = !scPlaying;
-            var iframe = document.getElementById('sc-iframe');
-            if (iframe) iframe.src = SC_BASE + encodeURIComponent(_scActiveUrl) + '&auto_play=' + (scPlaying ? 'true' : 'false') + SC_OPTS;
-            document.getElementById('sc-play-btn').textContent = scPlaying ? '⏸' : '▶';
+            if (scPlaying) { _scCmd('pause'); } else { _scCmd('play'); }
         });
 
         // Seek
@@ -8413,7 +8426,7 @@
             if (scDuration > 0) document.getElementById('sc-current').textContent = fmtTime((seekEl.value / 1000) * scDuration);
         });
         seekEl.addEventListener('change', function() {
-            try { if (scDuration > 0 && widget) widget.seekTo((seekEl.value / 1000) * scDuration); } catch(e) {}
+            if (scDuration > 0) _scCmd('seekTo', (seekEl.value / 1000) * scDuration);
             seeking = false;
         });
 
@@ -8434,89 +8447,31 @@
             _applyVol();
         });
 
-        // ── Загрузка нового трека ─────────────────────────────────────────────
-        // Приоритет: widget.load() — работает на уже загруженном iframe,
-        // не нарушает autoplay policy (жест пользователя передаётся через postMessage).
-        // Fallback: iframe.src — только если widget недоступен.
+        // ── Загрузка нового трека через raw postMessage ───────────────────────
         window._scWidgetLoad = function(url, title) {
             _scActiveUrl = url;
-            _cancelAutoNext(); // сброс таймера при переключении трека
-
-            // Название из наших данных — мгновенно, без Widget API
+            _cancelAutoNext();
+            scDuration = 0; seeking = false; scPlaying = true;
             document.getElementById('sc-track-name').textContent = title || url.split('/').pop() || 'SoundCloud';
-
-            // Сбросить прогресс UI
-            scDuration = 0; seeking = false;
             document.getElementById('sc-seek').value = 0;
             document.getElementById('sc-current').textContent = '0:00';
             document.getElementById('sc-total').textContent = '0:00';
-            scPlaying = true;
             document.getElementById('sc-play-btn').textContent = '⏸';
 
-            if (widget) {
-                // Widget.load() работает на уже загруженном iframe — autoplay разрешён
-                try {
-                    widget.load(url, {
-                        auto_play: true,
-                        buying: false, sharing: false, download: false,
-                        show_comments: false, show_user: false, hide_related: true
-                    });
-                    // Rebind событий после load()
-                    try {
-                        widget.bind(SC.Widget.Events.PLAY, function() {
-                            scPlaying = true;
-                            _cancelAutoNext();
-                            document.getElementById('sc-play-btn').textContent = '⏸';
-                            try {
-                                widget.getDuration(function(d) {
-                                    if (d > 0) { scDuration = d; document.getElementById('sc-total').textContent = fmtTime(d); }
-                                });
-                            } catch(e) {}
-                            _applyVol();
-                        });
-                        widget.bind(SC.Widget.Events.PAUSE, function() {
-                            scPlaying = false;
-                            document.getElementById('sc-play-btn').textContent = '▶';
-                        });
-                        widget.bind(SC.Widget.Events.FINISH, function() {
-                            _cancelAutoNext();
-                            scPlaying = false;
-                            document.getElementById('sc-play-btn').textContent = '▶';
-                            try { window._scPlayNext(); } catch(e) {}
-                        });
-                        widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-                            if (seeking) return;
-                            document.getElementById('sc-current').textContent = fmtTime(e.currentPosition);
-                            if (scDuration > 0) {
-                                document.getElementById('sc-seek').value = Math.round(e.relativePosition * 1000);
-                                // Авто-следующий по позиции — надёжный fallback если FINISH не стреляет
-                                if (e.relativePosition >= 0.98) {
-                                    var remaining = scDuration - e.currentPosition;
-                                    _scheduleAutoNext(remaining);
-                                }
-                            }
-                        });
-                    } catch(e) {}
-                    return; // Widget.load() отправлен — выходим
-                } catch(e) { widget = null; }
-            }
-
-            // Fallback: меняем iframe.src (Widget ещё не готов)
-            var iframe = document.getElementById('sc-iframe');
-            if (iframe) {
-                iframe.src = SC_BASE + encodeURIComponent(url) + '&auto_play=true' + SC_OPTS;
-                iframe.onload = function() {
-                    iframe.onload = null;
-                    setTimeout(function() {
-                        try {
-                            if (typeof SC !== 'undefined') {
-                                widget = null;
-                                _bindWidget(SC.Widget(iframe));
-                            }
-                        } catch(e) {}
-                    }, 500);
-                };
-            }
+            // Пробуем load через postMessage (не меняем src — не нарушаем autoplay)
+            _scSubDone = false;
+            _scCmd('load', {
+                url: url,
+                auto_play: true,
+                buying: false, sharing: false, download: false,
+                show_comments: false, show_user: false, hide_related: true,
+                show_teaser: false
+            });
+            // Переподписываемся после load
+            setTimeout(function() {
+                _scSubDone = false;
+                _scSubscribe();
+            }, 400);
         };
     })();
 
