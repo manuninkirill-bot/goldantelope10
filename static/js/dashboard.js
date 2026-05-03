@@ -8305,6 +8305,28 @@
             try {
                 w.bind(SC.Widget.Events.READY, function() {
                     try { w.setVolume(scMuted ? 0 : scVolume); } catch(e) {}
+                    // Получаем данные начального трека (название + длительность)
+                    try {
+                        w.getCurrentSound(function(sound) {
+                            if (!sound) return;
+                            // Реальное название из Widget API — перезаписываем slug/SoundCloud
+                            if (sound.title) {
+                                document.getElementById('sc-track-name').textContent = sound.title;
+                            }
+                            // URL — если ещё не установлен
+                            if (sound.permalink_url && !_scActiveUrl) {
+                                _scActiveUrl = sound.permalink_url;
+                            }
+                        });
+                    } catch(e) {}
+                    try {
+                        w.getDuration(function(d) {
+                            if (d > 0) { scDuration = d; document.getElementById('sc-total').textContent = fmtTime(d); }
+                        });
+                    } catch(e) {}
+                    // Кнопка play: трек уже играет (auto_play=true)
+                    scPlaying = true;
+                    document.getElementById('sc-play-btn').textContent = '⏸';
                 });
                 w.bind(SC.Widget.Events.PLAY, function() {
                     scPlaying = true;
@@ -8345,6 +8367,22 @@
         // Ждём загрузки iframe, затем пробуем подключить Widget API
         var scIframe = document.getElementById('sc-iframe');
         if (scIframe) {
+            // Парсим начальный URL из src атрибута iframe — устанавливаем до Widget READY
+            try {
+                var srcParams = new URLSearchParams(scIframe.src.split('?')[1] || '');
+                var initialUrl = srcParams.get('url');
+                if (initialUrl) {
+                    _scActiveUrl = initialUrl;
+                    // Показываем slug как временное название (до получения от Widget API)
+                    var slug = initialUrl.split('/').pop() || '';
+                    slug = slug.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+                    if (document.getElementById('sc-track-name').textContent === 'SoundCloud' && slug) {
+                        document.getElementById('sc-track-name').textContent = slug;
+                    }
+                    scPlaying = true;
+                    document.getElementById('sc-play-btn').textContent = '⏸';
+                }
+            } catch(e) {}
             scIframe.addEventListener('load', function() {
                 setTimeout(function() {
                     try {
