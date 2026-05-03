@@ -8329,6 +8329,29 @@
             widget.setVolume(scMuted ? 0 : scVolume);
             document.getElementById('sc-mute-btn').textContent = scMuted ? '🔇' : '🔊';
         });
+
+        // Экспортируем load-функцию: меняем трек через widget.load() чтобы не рвать связь
+        window._scWidgetLoad = function(url) {
+            scDuration = 0;
+            document.getElementById('sc-seek').value = 0;
+            document.getElementById('sc-current').textContent = '0:00';
+            document.getElementById('sc-total').textContent = '0:00';
+            document.getElementById('sc-track-name').textContent = '…';
+            widget.load(url, {
+                auto_play: true,
+                hide_related: true,
+                show_comments: false,
+                show_user: false,
+                show_reposts: false,
+                show_teaser: false,
+                buying: false,
+                sharing: false,
+                download: false
+            });
+        };
+
+        window._scSetVolume = function(v) { setVol(v); };
+        window._scGetVolume = function() { return scVolume; };
     })();
 
     // === Музыкальные Новинки (SoundCloud + Spotify) ===
@@ -8453,13 +8476,19 @@
         // ── Unified play ─────────────────────────────────────────────────────
         window.playMusicTrack = function(src, url, previewUrl, spId) {
             if (src === 'sc') {
-                // Загружаем в SC iframe
+                // Загружаем трек через widget.load() — НЕ меняем iframe.src напрямую
+                // чтобы не рвать связь виджета (иначе volume/mute перестают работать)
                 _muCurrentUrl = url;
-                var iframe = document.getElementById('sc-iframe');
-                if (iframe) {
-                    iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
-                        '&auto_play=true&hide_related=true&show_comments=false&show_user=false' +
-                        '&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
+                if (typeof window._scWidgetLoad === 'function') {
+                    window._scWidgetLoad(url);
+                } else {
+                    // fallback: только если widget ещё не готов
+                    var iframe = document.getElementById('sc-iframe');
+                    if (iframe) {
+                        iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
+                            '&auto_play=true&hide_related=true&show_comments=false&show_user=false' +
+                            '&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
+                    }
                 }
                 var scWrap = document.getElementById('sc-player-wrap');
                 if (scWrap) scWrap.scrollIntoView({behavior:'smooth',block:'nearest'});
