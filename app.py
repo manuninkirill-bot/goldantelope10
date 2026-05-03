@@ -9,6 +9,14 @@ import re
 import hashlib
 import logging
 from pathlib import Path
+try:
+    import orjson as _orjson
+    def fast_json(obj, status=200):
+        return Response(_orjson.dumps(obj), status=status, mimetype='application/json')
+except ImportError:
+    _orjson = None
+    def fast_json(obj, status=200):
+        return jsonify(obj), status
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -633,9 +641,59 @@ def api_counts():
             'visas':       len(data.get('visas', [])),
             'marketplace': len(data.get('marketplace', [])),
         }
-        return jsonify(counts)
+        resp = fast_json(counts)
+        resp.headers['Cache-Control'] = 'public, max-age=120'
+        return resp
     except Exception as e:
-        return jsonify({})
+        return fast_json({})
+
+_init_cache = {}  # country -> {'data': bytes, 'ts': float}
+_INIT_CACHE_TTL = 120  # 2 minutes
+
+@app.route('/api/init')
+def api_init():
+    """Combined init endpoint: status + counts + banners in a single request."""
+    country = request.args.get('country', 'vietnam')
+    now = time.time()
+    cached = _init_cache.get(country)
+    if cached and (now - cached['ts']) < _INIT_CACHE_TTL:
+        return Response(cached['data'], mimetype='application/json',
+                        headers={'Cache-Control': 'public, max-age=120'})
+    data = load_data(country)
+    total_listings = sum(len(v) for k, v in data.items() if k != 'chat')
+    counts = {
+        'real_estate':   len(data.get('real_estate', [])),
+        'transport':     len(data.get('transport', [])),
+        'restaurants':   len(data.get('restaurants', [])),
+        'tours':         len(data.get('tours', [])),
+        'entertainment': len(data.get('entertainment', [])),
+        'money_exchange':len(data.get('money_exchange', [])),
+        'visas':         len(data.get('visas', [])),
+        'marketplace':   len(data.get('marketplace', [])),
+    }
+    online_counts = {'vietnam': 342, 'thailand': 287, 'india': 156, 'indonesia': 419}
+    try:
+        banners = load_banner_config()
+    except Exception:
+        banners = {}
+    result = {
+        'status': {
+            'parser_status': 'connected',
+            'total_listings': total_listings,
+            'country': country,
+            'online_count': online_counts.get(country, 100),
+            'last_update': datetime.now().isoformat(),
+        },
+        'counts': counts,
+        'banners': banners,
+    }
+    if _orjson:
+        raw = _orjson.dumps(result)
+    else:
+        raw = json.dumps(result, ensure_ascii=False).encode()
+    _init_cache[country] = {'data': raw, 'ts': now}
+    return Response(raw, mimetype='application/json',
+                    headers={'Cache-Control': 'public, max-age=120'})
 
 @app.route('/api/groups-stats')
 def groups_stats():
@@ -894,7 +952,6 @@ def status():
     total_items = sum(len(v) for v in data.values())
     total_listings = sum(len(v) for k, v in data.items() if k != 'chat')
     
-    # Количество людей на портале по странам
     online_counts = {
         'vietnam': 342,
         'thailand': 287,
@@ -902,7 +959,7 @@ def status():
         'indonesia': 419
     }
     
-    return jsonify({
+    resp = fast_json({
         'parser_status': 'connected',
         'total_items': total_items,
         'total_listings': total_listings,
@@ -912,6 +969,8 @@ def status():
         'country': country,
         'online_count': online_counts.get(country, 100)
     })
+    resp.headers['Cache-Control'] = 'public, max-age=120'
+    return resp
 
 @app.route('/api/city-counts/<category>')
 def get_city_counts(category):
@@ -2168,7 +2227,7 @@ def get_listings(category):
         _strip_api_payload(filtered)
         if not _admin_req:
             _filtered_cache[_fk] = {'data': filtered, 'ts': time.time()}
-        resp = jsonify(filtered)
+        resp = fast_json(filtered)
         if not _admin_req:
             resp.headers['Cache-Control'] = 'public, max-age=300'
         return resp
@@ -2241,7 +2300,7 @@ def get_listings(category):
     _strip_api_payload(filtered)
     if not _admin_req:
         _filtered_cache[_fk] = {'data': filtered, 'ts': time.time()}
-    resp = jsonify(filtered)
+    resp = fast_json(filtered)
     if not _admin_req:
         resp.headers['Cache-Control'] = 'public, max-age=300'
     return resp

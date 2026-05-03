@@ -1652,7 +1652,7 @@
             
             updateRates();
             updateAllCityCounts();
-            updateTabCounts();
+            _loadInitData(country);
             if (document.getElementById('chat').classList.contains('active')) { loadChatFeed(); loadVnChatFeed(''); loadChatiparsing(); }
             // Сбрасываем фильтр даты развлечений и перестраиваем бар при смене страны
             currentEntertainmentDate = '';
@@ -3854,8 +3854,28 @@
             loadListings(displayCategory);
         }
 
-        const _apiCache = new Map();
-        const _API_CACHE_TTL = 90000; // 90 секунд
+        // ─── Persistent API cache (localStorage + in-memory fallback) ────────────
+        const _API_CACHE_TTL = 300000; // 5 минут
+        const _LS_PREFIX = 'ga2_cache:';
+        const _apiCache = {
+            _mem: new Map(),
+            get(k) {
+                const m = this._mem.get(k);
+                if (m) return m;
+                try {
+                    const raw = localStorage.getItem(_LS_PREFIX + k);
+                    if (!raw) return null;
+                    const v = JSON.parse(raw);
+                    this._mem.set(k, v);
+                    return v;
+                } catch(e) { return null; }
+            },
+            set(k, v) {
+                this._mem.set(k, v);
+                try { localStorage.setItem(_LS_PREFIX + k, JSON.stringify(v)); } catch(e) {}
+            },
+            has(k) { return !!this.get(k); }
+        };
         const _listingOffset = {}; // category → current offset
         const PAGE_SIZE = 20;
 
@@ -4692,10 +4712,60 @@
             .then(data => alert(data.success ? 'Сохранено!' : 'Ошибка'));
         }
 
+        // ─── Одиночный init-запрос вместо 3 параллельных ─────────────────────────
+        async function _loadInitData(country) {
+            const ck = `init:${country}`;
+            const now = Date.now();
+            const cached = _apiCache.get(ck);
+            if (cached && (now - cached.ts) < _API_CACHE_TTL) {
+                _applyInitData(cached.data);
+                return;
+            }
+            try {
+                const r = await fetch(`/api/init?country=${country}`);
+                const d = await r.json();
+                _apiCache.set(ck, {data: d, ts: now});
+                _applyInitData(d);
+            } catch(e) { loadBanners(); updateTabCounts(); }
+        }
+        function _applyInitData(d) {
+            // banners
+            if (d.banners) {
+                bannerConfig = d.banners;
+                for (const c in bannerConfig) {
+                    if (bannerConfig[c] && Array.isArray(bannerConfig[c]))
+                        bannerConfig[c] = {web: bannerConfig[c], mobile: []};
+                }
+                updateBanner();
+                _preloadNextBanner && _preloadNextBanner();
+                if (adminAuthenticated) { renderAdminBanners && renderAdminBanners(); switchBannerTab && switchBannerTab(currentBannerTab); }
+            }
+            // counts
+            if (d.counts) {
+                const counts = d.counts;
+                _setTabBadge('realestate',    counts.real_estate);
+                _setTabBadge('transport',     counts.transport);
+                _setTabBadge('restaurants',   counts.restaurants);
+                _setTabBadge('tours',         counts.tours);
+                _setTabBadge('entertainment', counts.entertainment);
+                _setTabBadge('exchange',      counts.money_exchange);
+                _setTabBadge('visas',         counts.visas);
+            }
+            // status
+            if (d.status) {
+                const s = d.status;
+                const totalEl = document.getElementById('total-items');
+                const statusEl = document.getElementById('parser-status-badge');
+                const updateEl = document.getElementById('last-update');
+                if (totalEl) totalEl.innerText = s.total_listings;
+                if (statusEl) statusEl.innerText = s.parser_status === 'connected' ? 'Подключен' : 'Отключен';
+                if (updateEl) updateEl.innerText = new Date(s.last_update).toLocaleTimeString('ru-RU');
+            }
+        }
         // Инициализируем баннер, статистику и курсы при открытии
-        loadBanners();
+        _loadInitData(currentCountry);
         updateAllCityCounts();
-        updateTabCounts();
+        // updateTabCounts and loadBanners now handled by _loadInitData
         renderKidsCityFilter();
         updateKidsCitySelect();
         updateFormCurrency();
