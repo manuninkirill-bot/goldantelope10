@@ -2353,6 +2353,21 @@
   "tours": [],
   "entertainment": [
     {
+      "id": "partyhunt_a1b08a36-bd45-48d8-8166-c06f558c3f8d",
+      "title": "Midnight Plunge in Morjim",
+      "description": "📅 03 May 2026, 22:00\n📍 Morjim\n🗺 Morjim, Goa 403519, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/midnight-plunge-in-morjim-03-may-2026-morjim-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Ffd0f8e5e-ff23-4269-abd5-7fcdaa03a9e7%2Ffull_fd0f8e5e-ff23-4269-abd5-7fcdaa03a9e7?alt=media&token=9380ae4f-bfd2-4635-8317-041ac7232d48"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-03 22:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/midnight-plunge-in-morjim-03-may-2026-morjim-buy-tickets"
+    },
+    {
       "id": "partyhunt_a1b058e5-d138-45b0-af7c-251fbe95a9aa",
       "title": "Ecstatic Dance",
       "description": "📅 05 May 2026, 19:00\n📍 Arambolians\n🗺 116/3 Deulwada, Next to Pirata Pizzeria, Wildeflower Road Pernem, Road, Arambol, Goa 403524, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/ecstatic-dance-05-may-2026-arambolians-buy-tickets",

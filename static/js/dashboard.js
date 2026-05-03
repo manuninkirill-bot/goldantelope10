@@ -8243,15 +8243,14 @@
 
     // === SoundCloud Player ===
     (function() {
-        var scIframe = document.getElementById('sc-iframe');
-        if (!scIframe || typeof SC === 'undefined') return;
+        if (typeof SC === 'undefined') return;
 
-        var widget = SC.Widget(scIframe);
         var scVolume = 70;
-        var scMuted = false;
+        var scMuted  = false;
         var scPlaying = false;
         var scDuration = 0;
         var seeking = false;
+        var widget = null;
 
         function fmtTime(ms) {
             var s = Math.floor(ms / 1000);
@@ -8260,46 +8259,51 @@
 
         function setVol(v) {
             scVolume = Math.max(0, Math.min(100, v));
-            if (!scMuted) widget.setVolume(scVolume);
+            if (!scMuted && widget) widget.setVolume(scVolume);
             document.getElementById('sc-vol-label').textContent = scVolume + '%';
         }
 
-        widget.bind(SC.Widget.Events.READY, function() {
-            widget.setVolume(scVolume);
-            widget.play();
-            widget.getCurrentSound(function(s) {
-                if (s && s.title) document.getElementById('sc-track-name').textContent = s.title;
+        // Привязываем события к конкретному экземпляру виджета
+        function _bindWidget(w) {
+            widget = w;
+            w.bind(SC.Widget.Events.READY, function() {
+                w.setVolume(scMuted ? 0 : scVolume);
+                w.play();
+                w.getCurrentSound(function(s) {
+                    if (s && s.title) document.getElementById('sc-track-name').textContent = s.title;
+                });
+                w.getDuration(function(d) {
+                    scDuration = d;
+                    document.getElementById('sc-total').textContent = fmtTime(d);
+                });
             });
-            widget.getDuration(function(d) {
-                scDuration = d;
-                document.getElementById('sc-total').textContent = fmtTime(d);
+            w.bind(SC.Widget.Events.PLAY, function() {
+                scPlaying = true;
+                document.getElementById('sc-play-btn').textContent = '⏸';
             });
-        });
+            w.bind(SC.Widget.Events.PAUSE, function() {
+                scPlaying = false;
+                document.getElementById('sc-play-btn').textContent = '▶';
+            });
+            w.bind(SC.Widget.Events.FINISH, function() {
+                scPlaying = false;
+                document.getElementById('sc-play-btn').textContent = '▶';
+            });
+            w.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
+                if (seeking) return;
+                document.getElementById('sc-current').textContent = fmtTime(e.currentPosition);
+                if (scDuration > 0)
+                    document.getElementById('sc-seek').value = Math.round(e.relativePosition * 1000);
+            });
+        }
 
-        widget.bind(SC.Widget.Events.PLAY, function() {
-            scPlaying = true;
-            document.getElementById('sc-play-btn').textContent = '⏸';
-        });
-
-        widget.bind(SC.Widget.Events.PAUSE, function() {
-            scPlaying = false;
-            document.getElementById('sc-play-btn').textContent = '▶';
-        });
-
-        widget.bind(SC.Widget.Events.FINISH, function() {
-            scPlaying = false;
-            document.getElementById('sc-play-btn').textContent = '▶';
-        });
-
-        widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-            if (seeking) return;
-            document.getElementById('sc-current').textContent = fmtTime(e.currentPosition);
-            if (scDuration > 0)
-                document.getElementById('sc-seek').value = Math.round(e.relativePosition * 1000);
-        });
+        // Начальная инициализация
+        var scIframe = document.getElementById('sc-iframe');
+        if (scIframe) _bindWidget(SC.Widget(scIframe));
 
         // Play/Pause
         document.getElementById('sc-play-btn').addEventListener('click', function() {
+            if (!widget) return;
             if (scPlaying) widget.pause(); else widget.play();
         });
 
@@ -8309,49 +8313,54 @@
         seekEl.addEventListener('touchstart', function() { seeking = true; }, {passive:true});
         seekEl.addEventListener('input', function() {
             if (scDuration > 0) {
-                var pos = (seekEl.value / 1000) * scDuration;
-                document.getElementById('sc-current').textContent = fmtTime(pos);
+                document.getElementById('sc-current').textContent = fmtTime((seekEl.value / 1000) * scDuration);
             }
         });
         seekEl.addEventListener('change', function() {
-            if (scDuration > 0) {
-                var pos = (seekEl.value / 1000) * scDuration;
-                widget.seekTo(pos);
-            }
+            if (scDuration > 0 && widget) widget.seekTo((seekEl.value / 1000) * scDuration);
             seeking = false;
         });
 
-        // Volume
+        // Volume / Mute
         document.getElementById('sc-vol-up').addEventListener('click', function() { setVol(scVolume + 10); });
         document.getElementById('sc-vol-down').addEventListener('click', function() { setVol(scVolume - 10); });
         document.getElementById('sc-mute-btn').addEventListener('click', function() {
             scMuted = !scMuted;
-            widget.setVolume(scMuted ? 0 : scVolume);
+            if (widget) widget.setVolume(scMuted ? 0 : scVolume);
             document.getElementById('sc-mute-btn').textContent = scMuted ? '🔇' : '🔊';
         });
 
-        // Экспортируем load-функцию: меняем трек через widget.load() чтобы не рвать связь
+        // Загрузить новый трек:
+        // 1. Регистрируем 'load' РАНЬШЕ смены src, чтобы не пропустить событие
+        // 2. Меняем iframe.src — трек переключается (оригинальный рабочий метод)
+        // 3. По 'load' ждём 300 мс и перепривязываем Widget — volume/mute снова работают
         window._scWidgetLoad = function(url) {
-            scDuration = 0;
+            if (typeof SC === 'undefined') return;
+            var iframe = document.getElementById('sc-iframe');
+            if (!iframe) return;
+
+            // Сбросить UI
+            scDuration = 0; seeking = false;
             document.getElementById('sc-seek').value = 0;
             document.getElementById('sc-current').textContent = '0:00';
             document.getElementById('sc-total').textContent = '0:00';
             document.getElementById('sc-track-name').textContent = '…';
-            widget.load(url, {
-                auto_play: true,
-                hide_related: true,
-                show_comments: false,
-                show_user: false,
-                show_reposts: false,
-                show_teaser: false,
-                buying: false,
-                sharing: false,
-                download: false
-            });
-        };
 
-        window._scSetVolume = function(v) { setVol(v); };
-        window._scGetVolume = function() { return scVolume; };
+            // Однократный обработчик load
+            function _onLoad() {
+                iframe.removeEventListener('load', _onLoad);
+                // Небольшая задержка: SC Widget внутри iframe инициализируется асинхронно
+                setTimeout(function() {
+                    _bindWidget(SC.Widget(iframe));
+                }, 300);
+            }
+            iframe.addEventListener('load', _onLoad);
+
+            // Переключаем трек — iframe перезагружается
+            iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
+                '&auto_play=true&hide_related=true&show_comments=false&show_user=false' +
+                '&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false';
+        };
     })();
 
     // === Музыкальные Новинки (SoundCloud + Spotify) ===
