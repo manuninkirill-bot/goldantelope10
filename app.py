@@ -11012,36 +11012,86 @@ def _fetch_sc_new_tracks(period='24h'):
             return []
 
         now_utc = _dt.datetime.utcnow()
-        if period == '24h':
-            from_ts = (now_utc - _dt.timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
-        else:
-            from_ts = (now_utc - _dt.timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%SZ')
-
         hdrs = {'User-Agent': 'Mozilla/5.0'}
         tracks = []
+
+        def _extract_track(t):
+            """Нормализует трек из search или chart-item."""
+            if not t or not t.get('permalink_url'):
+                return None
+            art = t.get('artwork_url') or t.get('user', {}).get('avatar_url', '')
+            if art:
+                art = art.replace('-large', '-t300x300')
+            return {
+                'id': t.get('id'),
+                'title': t.get('title', ''),
+                'user': t.get('user', {}).get('username', ''),
+                'duration': t.get('duration', 0),
+                'artwork': art,
+                'permalink_url': t.get('permalink_url', ''),
+                'created_at': t.get('created_at', ''),
+            }
 
         def _extract_chart_tracks(collection):
             result = []
             for item in collection:
-                t = item.get('track', {})
-                if not t:
-                    continue
-                art = t.get('artwork_url') or t.get('user', {}).get('avatar_url', '')
-                if art:
-                    art = art.replace('-large', '-t300x300')
-                result.append({
-                    'id': t.get('id'),
-                    'title': t.get('title', ''),
-                    'user': t.get('user', {}).get('username', ''),
-                    'duration': t.get('duration', 0),
-                    'artwork': art,
-                    'permalink_url': t.get('permalink_url', ''),
-                    'created_at': t.get('created_at', ''),
-                })
+                t = _extract_track(item.get('track', {}))
+                if t:
+                    result.append(t)
+            return result
+
+        def _extract_search_tracks(collection):
+            result = []
+            for item in collection:
+                t = _extract_track(item)
+                if t:
+                    result.append(t)
             return result
 
         if period == '24h':
-            # Топ-чарт прямо сейчас (страница 1)
+            # Реальные новинки — треки загруженные за последние 24 часа
+            from_ts = (now_utc - _dt.timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
+            try:
+                r = requests.get(
+                    'https://api-v2.soundcloud.com/search/tracks',
+                    headers=hdrs,
+                    params={
+                        'q': '',
+                        'sort': 'created_at',
+                        'created_at[from]': from_ts,
+                        'limit': 50,
+                        'client_id': cid,
+                    },
+                    timeout=15,
+                )
+                if r.status_code == 200:
+                    raw = _extract_search_tracks(r.json().get('collection', []))
+                    # Фильтр: только стримируемые треки с обложкой, убираем совсем короткие (<60s)
+                    raw = [t for t in raw if t['artwork'] and t['duration'] >= 60000]
+                    tracks = raw[:25]
+                    logger.info(f'[SC] search/24h: {len(tracks)} tracks (from {len(raw)} raw)')
+                else:
+                    logger.warning(f'[SC] search/24h error: {r.status_code}')
+            except Exception as e:
+                logger.warning(f'[SC] search/24h exception: {e}')
+
+            # Fallback: если поиск не дал результатов — trending top-25
+            if not tracks:
+                logger.info('[SC] 24h search empty — fallback to trending')
+                try:
+                    r = requests.get(
+                        'https://api-v2.soundcloud.com/charts',
+                        headers=hdrs,
+                        params={'kind': 'trending', 'genre': 'soundcloud:genres:all-music',
+                                'limit': 25, 'client_id': cid},
+                        timeout=15,
+                    )
+                    if r.status_code == 200:
+                        tracks = _extract_chart_tracks(r.json().get('collection', []))
+                except Exception as e:
+                    logger.warning(f'[SC] trending fallback exception: {e}')
+        else:
+            # 7d: топ трендов (страница 1 — позиции 1–25)
             try:
                 r = requests.get(
                     'https://api-v2.soundcloud.com/charts',
@@ -11053,45 +11103,19 @@ def _fetch_sc_new_tracks(period='24h'):
                 if r.status_code == 200:
                     tracks = _extract_chart_tracks(r.json().get('collection', []))
                 else:
-                    logger.warning(f'[SC] trending/24h error: {r.status_code}')
-            except Exception as e:
-                logger.warning(f'[SC] trending/24h exception: {e}')
-        else:
-            # 7d: страница 2 трендов (совсем другие позиции 26–50) через next_href
-            try:
-                r1 = requests.get(
-                    'https://api-v2.soundcloud.com/charts',
-                    headers=hdrs,
-                    params={'kind': 'trending', 'genre': 'soundcloud:genres:all-music',
-                            'limit': 25, 'client_id': cid},
-                    timeout=15,
-                )
-                next_href = ''
-                if r1.status_code == 200:
-                    next_href = r1.json().get('next_href', '')
-                if next_href:
-                    sep = '&' if '?' in next_href else '?'
-                    r2 = requests.get(
-                        next_href + sep + 'client_id=' + cid,
-                        headers=hdrs, timeout=15,
-                    )
-                    if r2.status_code == 200:
-                        tracks = _extract_chart_tracks(r2.json().get('collection', []))
-                if not tracks:
-                    # fallback: чарт другого жанра — hip-hop
-                    r3 = requests.get(
-                        'https://api-v2.soundcloud.com/charts',
-                        headers=hdrs,
-                        params={'kind': 'trending', 'genre': 'soundcloud:genres:hiphoprap',
-                                'limit': 25, 'client_id': cid},
-                        timeout=15,
-                    )
-                    if r3.status_code == 200:
-                        tracks = _extract_chart_tracks(r3.json().get('collection', []))
-                    else:
-                        logger.warning(f'[SC] 7d fallback error: {r3.status_code}')
+                    logger.warning(f'[SC] trending/7d error: {r.status_code}')
             except Exception as e:
                 logger.warning(f'[SC] 7d exception: {e}')
+
+        # Дедупликация по permalink_url
+        seen_urls = set()
+        unique_tracks = []
+        for t in tracks:
+            u = t.get('permalink_url', '')
+            if u and u not in seen_urls:
+                seen_urls.add(u)
+                unique_tracks.append(t)
+        tracks = unique_tracks
 
         if tracks:
             cache_file = _SC_TRACKS_CACHE_FILES.get(period, 'sc_tracks.json')

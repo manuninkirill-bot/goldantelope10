@@ -8250,6 +8250,23 @@
         var seeking = false;
         var widget = null;
         var _scActiveUrl = null;
+        var _scAutoNextTimer = null;   // таймер авто-перехода к следующему треку
+        var _scNextScheduled = false;  // флаг: уже запланирован переход
+
+        function _cancelAutoNext() {
+            if (_scAutoNextTimer) { clearTimeout(_scAutoNextTimer); _scAutoNextTimer = null; }
+            _scNextScheduled = false;
+        }
+
+        function _scheduleAutoNext(remainingMs) {
+            if (_scNextScheduled) return;
+            _scNextScheduled = true;
+            _scAutoNextTimer = setTimeout(function() {
+                _scAutoNextTimer = null;
+                _scNextScheduled = false;
+                try { window._scPlayNext(); } catch(e) {}
+            }, Math.max(200, remainingMs));
+        }
 
         // Shared track list — заполняется из Music Panel IIFE
         window._scTrackList = window._scTrackList || [];
@@ -8291,6 +8308,7 @@
                 });
                 w.bind(SC.Widget.Events.PLAY, function() {
                     scPlaying = true;
+                    _cancelAutoNext();
                     document.getElementById('sc-play-btn').textContent = '⏸';
                     try {
                         w.getDuration(function(d) {
@@ -8304,6 +8322,7 @@
                     document.getElementById('sc-play-btn').textContent = '▶';
                 });
                 w.bind(SC.Widget.Events.FINISH, function() {
+                    _cancelAutoNext();
                     scPlaying = false;
                     document.getElementById('sc-play-btn').textContent = '▶';
                     try { window._scPlayNext(); } catch(e) {}
@@ -8311,8 +8330,14 @@
                 w.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
                     if (seeking) return;
                     document.getElementById('sc-current').textContent = fmtTime(e.currentPosition);
-                    if (scDuration > 0)
+                    if (scDuration > 0) {
                         document.getElementById('sc-seek').value = Math.round(e.relativePosition * 1000);
+                        // Авто-следующий по позиции — надёжный fallback если FINISH не стреляет
+                        if (e.relativePosition >= 0.98) {
+                            var remaining = scDuration - e.currentPosition;
+                            _scheduleAutoNext(remaining);
+                        }
+                    }
                 });
             } catch(e) {}
         }
@@ -8377,6 +8402,7 @@
         // Fallback: iframe.src — только если widget недоступен.
         window._scWidgetLoad = function(url, title) {
             _scActiveUrl = url;
+            _cancelAutoNext(); // сброс таймера при переключении трека
 
             // Название из наших данных — мгновенно, без Widget API
             document.getElementById('sc-track-name').textContent = title || url.split('/').pop() || 'SoundCloud';
@@ -8401,6 +8427,7 @@
                     try {
                         widget.bind(SC.Widget.Events.PLAY, function() {
                             scPlaying = true;
+                            _cancelAutoNext();
                             document.getElementById('sc-play-btn').textContent = '⏸';
                             try {
                                 widget.getDuration(function(d) {
@@ -8414,6 +8441,7 @@
                             document.getElementById('sc-play-btn').textContent = '▶';
                         });
                         widget.bind(SC.Widget.Events.FINISH, function() {
+                            _cancelAutoNext();
                             scPlaying = false;
                             document.getElementById('sc-play-btn').textContent = '▶';
                             try { window._scPlayNext(); } catch(e) {}
@@ -8421,8 +8449,14 @@
                         widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
                             if (seeking) return;
                             document.getElementById('sc-current').textContent = fmtTime(e.currentPosition);
-                            if (scDuration > 0)
+                            if (scDuration > 0) {
                                 document.getElementById('sc-seek').value = Math.round(e.relativePosition * 1000);
+                                // Авто-следующий по позиции — надёжный fallback если FINISH не стреляет
+                                if (e.relativePosition >= 0.98) {
+                                    var remaining = scDuration - e.currentPosition;
+                                    _scheduleAutoNext(remaining);
+                                }
+                            }
                         });
                     } catch(e) {}
                     return; // Widget.load() отправлен — выходим
