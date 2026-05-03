@@ -57,6 +57,27 @@ Goldantelope ASIA is an automated content parser for Telegram channels and group
 - **Flask**: Python web framework for the frontend dashboard and API.
 - **JSON Files**: Used as the primary data storage mechanism for listings.
 
+### Deployment / Push Runbook
+
+#### GitHub
+```
+git push "https://manuninkirill-bot:${GITHUB_TOKEN}@github.com/manuninkirill-bot/goldantelope10.git" main
+```
+
+#### HuggingFace Space (poweramanita/GA)
+Git push is blocked by a shallow-clone constraint — HF rejects shallow updates.
+Use the Python API fallback instead:
+```python
+from huggingface_hub import HfApi, CommitOperationAdd
+api = HfApi(token=os.environ["HF_TOKEN"])
+ops = [CommitOperationAdd(path_in_repo=f, path_or_fileobj=f) for f in changed_files]
+result = api.create_commit(repo_id="poweramanita/GA", repo_type="space",
+                           commit_message="...", operations=ops)
+print(result)  # logs resulting HF commit SHA
+```
+Record the resulting HF commit SHA for traceability.
+Last known HF commits: `fbf1d49e` (SC player + HTML), `65770225` (runtime data).
+
 ### Replit Environment Setup
 - **Workflow**: "Start application" runs gunicorn on port 5000 (webview output type): `gunicorn --bind 0.0.0.0:5000 --timeout 120 --worker-class gevent --workers 1 --worker-connections 100 main:app`.
 - **Package Manager**: pip (Python 3.11). Key packages: flask, flask-compress, flask-sqlalchemy, gunicorn, gevent, requests, pillow, python-dotenv, telethon, python-telegram-bot, aiohttp, beautifulsoup4, cryptg, qrcode, gradio, huggingface-hub.
