@@ -8671,9 +8671,10 @@
                     '" data-id="' + _esc(sid) +
                     '" data-sp-url="' + _esc(spUrl) +
                     '" data-preview="' + _esc(prevUrl) +
+                    '" data-title="' + _esc(t.title || '') +
                     '" data-src="sp"' +
                     (hasPreview
-                        ? ' onclick="var _el=this.closest(\'[data-id]\');playMusicTrack(\'sp\',_el.dataset.spUrl,_el.dataset.preview,_el.dataset.id)"'
+                        ? ' onclick="var _el=this.closest(\'[data-id]\');playMusicTrack(\'sp\',_el.dataset.spUrl,_el.dataset.preview,_el.dataset.id,_el.dataset.title)"'
                         : ' onclick="var _el=this.closest(\'[data-id]\');window.open(_el.dataset.spUrl,\'_blank\')"') + '>' +
                     (t.artwork ? '<img class="sc-nt-art" src="' + _esc(t.artwork) + '" onerror="this.removeAttribute(\'src\')">' : '<div class="sc-nt-art"></div>') +
                     '<div class="sc-nt-info">' +
@@ -8700,6 +8701,9 @@
             } else {
                 // Deezer: 30-секундный preview в <audio>
                 _spPlayingId = spId || null;
+                // Показываем название трека в плеере
+                var _nameEl = document.getElementById('sc-track-name');
+                if (_nameEl && trackTitle) _nameEl.textContent = '🎵 ' + trackTitle;
                 var audio = document.getElementById('sp-preview-audio');
                 if (audio && previewUrl) {
                     if (!audio.paused && audio.getAttribute('data-sp-url') === previewUrl) {
