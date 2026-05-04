@@ -42,3 +42,5 @@ run = ["gunicorn", "--bind", "0.0.0.0:5000", "main:app"]
 [userenv]
 
 [userenv.shared]
+TELETHON_API_ID = "32726981"
+TELETHON_API_HASH = "a532b3999366ded30608c2fe66a7621d"

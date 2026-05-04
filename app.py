@@ -11398,19 +11398,31 @@ def api_sp_new_tracks():
 
 @app.route('/api/deezer-preview/<track_id>')
 def deezer_preview(track_id):
-    """Возвращает свежую preview-ссылку Deezer (токен в URL протухает, нужен re-fetch)."""
+    """Проксирует аудио Deezer через наш сервер — избегает CORS и протухших токенов."""
     try:
-        r = requests.get(
+        # Получаем свежую preview-ссылку
+        meta = requests.get(
             f'https://api.deezer.com/track/{track_id}',
             timeout=8,
         )
-        if r.status_code != 200:
+        if meta.status_code != 200:
             return ('', 404)
-        preview = r.json().get('preview', '')
-        if not preview:
+        preview_url = meta.json().get('preview', '')
+        if not preview_url:
             return ('', 404)
-        from flask import redirect as _redir
-        return _redir(preview, 302)
+        # Скачиваем аудио-байты (30 сек ≈ 300 КБ) и отдаём с нашего домена
+        audio = requests.get(preview_url, timeout=15)
+        if audio.status_code not in (200, 206):
+            return ('', audio.status_code)
+        content_type = audio.headers.get('Content-Type', 'audio/mpeg')
+        resp = Response(
+            audio.content,
+            status=200,
+            mimetype=content_type,
+        )
+        resp.headers['Cache-Control'] = 'no-store'
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
     except Exception as e:
         logger.warning(f'[Deezer proxy] {e}')
         return ('', 502)

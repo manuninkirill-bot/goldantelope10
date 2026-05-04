@@ -8708,16 +8708,31 @@
                         _highlightItems('sp', null, null);
                         return;
                     }
+                    audio.pause();
+                    audio.removeAttribute('src');
+                    audio.load(); // сбрасываем состояние элемента
                     audio.setAttribute('data-sp-url', previewUrl);
                     audio.src = previewUrl;
                     audio.volume = 0.7;
-                    audio.play().catch(function(e) { console.warn('[Deezer] play failed:', e); });
+                    audio.muted = false;
+                    var _playPromise = audio.play();
+                    if (_playPromise !== undefined) {
+                        _playPromise.catch(function(e) {
+                            console.warn('[Deezer] play failed:', e && (e.name + ': ' + e.message));
+                            // Попытка через user-gesture unlock: создаём краткую тишину
+                            audio.muted = true;
+                            audio.play().then(function() {
+                                audio.muted = false;
+                            }).catch(function() {});
+                        });
+                    }
                     audio.onended = function() {
                         // Авто-переход к следующему треку
-                        var idx = _spTrackList.findIndex(function(t) { return t.id === _spPlayingId; });
+                        var _curId = _spPlayingId;
+                        var idx = _spTrackList.findIndex(function(t) { return t.id === _curId; });
                         var next = _spTrackList[idx + 1];
                         if (next) {
-                            playMusicTrack('sp', next.spotify_url || '', next.preview_url, next.id);
+                            playMusicTrack('sp', next.spotify_url || '', '/api/deezer-preview/' + next.id, next.id);
                         } else {
                             _spPlayingId = null;
                             _highlightItems('sp', null, null);
