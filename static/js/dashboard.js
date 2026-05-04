@@ -8658,14 +8658,15 @@
         // ── Deezer: рендер и воспроизведение ─────────────────────────────────
         var _spTrackList = []; // список для авто-перехода
         function _renderSpTracks(list, tracks) {
-            // Сохраняем треки с preview для авто-перехода
-            _spTrackList = tracks.filter(function(t) { return !!t.preview_url; });
+            // Сохраняем треки с id для авто-перехода (preview через прокси, не протухает)
+            _spTrackList = tracks.filter(function(t) { return !!t.id; });
             list.innerHTML = tracks.map(function(t) {
                 var sid = t.id || '';
                 var isPlaying = sid && sid === _spPlayingId;
-                var hasPreview = !!t.preview_url;
+                var hasPreview = !!sid; // всегда есть через /api/deezer-preview/<id>
                 var spUrl = t.spotify_url || '';
-                var prevUrl = t.preview_url || '';
+                // Всегда используем прокси — он отдаёт свежий токен Deezer
+                var prevUrl = sid ? '/api/deezer-preview/' + sid : '';
                 return '<div class="sc-nt-item' + (isPlaying ? ' playing' : '') +
                     '" data-id="' + _esc(sid) +
                     '" data-sp-url="' + _esc(spUrl) +

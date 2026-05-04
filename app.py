@@ -11396,6 +11396,26 @@ def api_sp_new_tracks():
     })
 
 
+@app.route('/api/deezer-preview/<track_id>')
+def deezer_preview(track_id):
+    """Возвращает свежую preview-ссылку Deezer (токен в URL протухает, нужен re-fetch)."""
+    try:
+        r = requests.get(
+            f'https://api.deezer.com/track/{track_id}',
+            timeout=8,
+        )
+        if r.status_code != 200:
+            return ('', 404)
+        preview = r.json().get('preview', '')
+        if not preview:
+            return ('', 404)
+        from flask import redirect as _redir
+        return _redir(preview, 302)
+    except Exception as e:
+        logger.warning(f'[Deezer proxy] {e}')
+        return ('', 502)
+
+
 if __name__ == '__main__':
     import threading
     t = threading.Thread(target=run_bot, daemon=True)
