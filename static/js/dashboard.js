@@ -8656,7 +8656,10 @@
         }
 
         // ── Deezer: рендер и воспроизведение ─────────────────────────────────
+        var _spTrackList = []; // список для авто-перехода
         function _renderSpTracks(list, tracks) {
+            // Сохраняем треки с preview для авто-перехода
+            _spTrackList = tracks.filter(function(t) { return !!t.preview_url; });
             list.innerHTML = tracks.map(function(t) {
                 var sid = t.id || '';
                 var isPlaying = sid && sid === _spPlayingId;
@@ -8707,10 +8710,17 @@
                     audio.setAttribute('data-sp-url', previewUrl);
                     audio.src = previewUrl;
                     audio.volume = 0.7;
-                    audio.play().catch(function(){});
+                    audio.play().catch(function(e) { console.warn('[Deezer] play failed:', e); });
                     audio.onended = function() {
-                        _spPlayingId = null;
-                        _highlightItems('sp', null, null);
+                        // Авто-переход к следующему треку
+                        var idx = _spTrackList.findIndex(function(t) { return t.id === _spPlayingId; });
+                        var next = _spTrackList[idx + 1];
+                        if (next) {
+                            playMusicTrack('sp', next.spotify_url || '', next.preview_url, next.id);
+                        } else {
+                            _spPlayingId = null;
+                            _highlightItems('sp', null, null);
+                        }
                     };
                 } else if (url) {
                     window.open(url, '_blank');
