@@ -1956,7 +1956,7 @@ def _handle_user_commands(updates: list) -> None:
             handle_start(chat_id, user_name)
             logger.info(f"[bot] /start from {user_name} ({chat_id})")
         elif text == '/help':
-            send_message(chat_id, '🦌 <b>Goldantelope ASIA</b>\n\n/start — Главное меню\n/help — Помощь\n\n📍 <a href="https://t.me/goldantelopeasia_bot">@goldantelopeasia_bot</a>')
+            send_message(chat_id, '🎭 <b>Развлекательный портал Юго-Восточной Азии</b>\n\nАфиша · События · Рестораны · Туры · Жильё\n\n/start — Главное меню\n/help — Помощь')
 
 
 def run_monitoring_loop():

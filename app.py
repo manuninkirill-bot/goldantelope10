@@ -51,6 +51,10 @@ app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.secret_key = os.environ.get("SESSION_SECRET")
 # Долгий кэш для версионированных статических файлов (JS/CSS с ?v=hash)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000  # 1 год
+app.config['COMPRESS_MIMETYPES'] = [
+    'text/html', 'text/css', 'text/plain', 'text/xml',
+    'application/json', 'application/javascript', 'text/javascript'
+]
 Compress(app)
 
 @app.after_request
@@ -109,27 +113,13 @@ def send_telegram_message(chat_id, message, reply_markup=None):
         print(f"Telegram message error: {e}")
         return False
 
-WELCOME_MESSAGE = """🌏 Крупнейший русскоязычный гид, он же сервис-хаб, телеграмм объявлений в Юго-Восточной Азии.
+WELCOME_MESSAGE = """🎭 <b>Развлекательный портал Юго-Восточной Азии</b>
 
-<b>Наши страны:</b>
-🇻🇳 Вьетнам (5,800+ объявлений)
-🇹🇭 Таиланд (2,400+ объявлений)
-🇮🇳 Индия (1,200+ объявлений)
-🇮🇩 Индонезия (800+ объявлений)
+Афиша · События · Рестораны · Туры · Жильё
 
-<b>Категории:</b>
-🏠 Недвижимость - аренда и продажа
-🍽️ Рестораны и кафе
-🧳 Экскурсии и туры
-🏍️ Транспорт - байки, авто, яхты
-🎮 Развлечения
-💱 Обмен валют
-🛍️ Барахолка
-🏥 Медицина
-📰 Новости
-💬 Чат сообщества
+🇻🇳 Вьетнам  🇹🇭 Таиланд  🇮🇳 Индия  🇮🇩 Индонезия
 
-В нашем мини приложении вы можете добавить объявление или услугу!
+Тысячи актуальных объявлений из проверенных Telegram-каналов — в одном месте, с фото и контактами.
 """
 
 # Данные хранятся в JSON файле по странам
@@ -2363,6 +2353,12 @@ def load_banner_config():
 def save_banner_config(config):
     with open(BANNER_CONFIG_FILE, 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=2)
+    # Инвалидируем init_cache чтобы следующий запрос получил свежие URL баннеров
+    global _init_cache
+    try:
+        _init_cache.clear()
+    except Exception:
+        pass
 
 _BANNER_TG_GROUP = 'banner_vn'
 _BANNER_TG_CHAT_ID = -1003825420004
@@ -2436,9 +2432,9 @@ def _update_banner_config_from_data(data):
     channel_banners = []
     for mid in sorted_ids:
         info = data[mid] if isinstance(data[mid], dict) else {}
-        # Видео-баннер → /gv/v4/<mid> (alias v4 = banner_vn)
+        # Видео-баннер → всегда через прокси (proxy сам отдаёт локальный файл или CDN-фолбек)
         if info.get('is_video'):
-            channel_banners.append(f'/gv/v4/{mid}')
+            channel_banners.append(f'/api/banner-video/{mid}')
             continue
         # Если есть локальный файл высокого качества — используем его напрямую
         local_jpg = f'static/images/banner_vn_{mid}.jpg'
@@ -2562,6 +2558,7 @@ def _do_sync_media_vn_banners():
                             if has_video:
                                 data[mid_str]['is_video'] = True
                                 data[mid_str]['video_cdn_url'] = video_cdn_url
+                                data[mid_str]['video_cdn_ts'] = now_ts
                 if not ids_on_page:
                     break
                 before = min(ids_on_page)
@@ -2607,6 +2604,54 @@ def _banner_refresh_scheduler():
 threading.Thread(target=_sync_media_vn_banners, daemon=True, name='BannerMediaVnSync').start()
 threading.Thread(target=_banner_refresh_scheduler, daemon=True, name='BannerRefreshScheduler').start()
 logger.info('[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)')
+
+
+def _prewarm_banner_video_cache():
+    """При старте прогревает кэш CDN-ссылок для всех видео-баннеров.
+    Нужно для HF Space: после пересборки кэш пустой, первый запрос иначе зависает."""
+    import time as _tw
+    _tw.sleep(15)  # ждём инициализации
+    try:
+        bd = _load_banner_data()
+        video_ids = [int(mid) for mid, e in bd.items() if isinstance(e, dict) and e.get('is_video')]
+        if not video_ids:
+            # Пробуем из banner_config
+            cfg = load_banner_config()
+            for country_data in cfg.values():
+                if isinstance(country_data, dict):
+                    for urls in country_data.values():
+                        for u in (urls if isinstance(urls, list) else []):
+                            if '/api/banner-video/' in u:
+                                try:
+                                    video_ids.append(int(u.split('/')[-1]))
+                                except Exception:
+                                    pass
+        video_ids = list(set(video_ids))
+        logger.info('[banner_prewarm] Прогрев кэша для %d видео-баннеров: %s', len(video_ids), video_ids)
+        for mid in video_ids:
+            # Сначала пробуем cdn_url из banner_data.json
+            entry = bd.get(str(mid), {})
+            cdn_url = entry.get('cdn_url', '')
+            cdn_ts = entry.get('cdn_ts', 0)
+            if cdn_url and (_tw.time() - cdn_ts) < 82800:
+                _banner_og_cache[mid] = (cdn_url, _tw.time())
+                logger.info('[banner_prewarm] mid=%d: из banner_data (%s)', mid, cdn_url[:50])
+                continue
+            # Иначе скрейпим t.me/s/
+            cdn_v = _scrape_cdn_video_for_post(_BANNER_TG_GROUP, mid)
+            if cdn_v:
+                _banner_og_cache[mid] = (cdn_v, _tw.time())
+                bd[str(mid)] = bd.get(str(mid), {})
+                bd[str(mid)]['cdn_url'] = cdn_v
+                bd[str(mid)]['cdn_ts'] = int(_tw.time())
+                _save_banner_data(bd)
+                logger.info('[banner_prewarm] mid=%d: scraped OK (%s)', mid, cdn_v[:50])
+            else:
+                logger.warning('[banner_prewarm] mid=%d: не удалось получить CDN URL', mid)
+    except Exception as _pe:
+        logger.warning('[banner_prewarm] ошибка: %s', _pe)
+
+threading.Thread(target=_prewarm_banner_video_cache, daemon=True, name='BannerPrewarm').start()
 
 
 def _banner_vn_cleanup():
@@ -2702,6 +2747,92 @@ def _get_banner_file_id(msg_id):
     except Exception:
         return ''
 
+@app.route('/api/banner-video/<int:msg_id>')
+def banner_video_proxy(msg_id):
+    """Прокси/редирект для видео-баннеров. CDN URL — 302 редирект; Bot API — стриминг."""
+    from flask import Response, stream_with_context
+    tg_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+    file_id = _get_banner_file_id(msg_id)
+
+    # 0) Локальный файл — используем встроенный Flask static handler (поддерживает Range/206)
+    local_static = f'videos/banner_vn_{msg_id}.mp4'
+    local_path = f'static/{local_static}'
+    if os.path.exists(local_path):
+        from flask import current_app as _ca
+        return _ca.send_static_file(local_static)
+
+    # 1) CDN URL из banner_data.json — редирект напрямую (browser сам стримит без прокси)
+    #    Используем video_cdn_ts для видео и cdn_ts как fallback (для обратной совместимости)
+    _bdata = _load_banner_data()
+    _entry = _bdata.get(str(msg_id), {})
+    _vcdn = _entry.get('video_cdn_url', '')
+    _vcdn_ts = _entry.get('video_cdn_ts') or _entry.get('cdn_ts', 0)
+    if _vcdn and (time.time() - _vcdn_ts) < 82800:
+        logger.debug(f'[banner-video] CDN redirect для {msg_id}: {_vcdn[:60]}')
+        return redirect(_vcdn, code=302)
+
+    # 2) Scrape свежий CDN URL → обновляем кеш и редиректим
+    try:
+        cdn_fresh = _scrape_cdn_video_for_post(_BANNER_TG_GROUP, msg_id)
+        if cdn_fresh:
+            _bdata[str(msg_id)]['video_cdn_url'] = cdn_fresh
+            _bdata[str(msg_id)]['video_cdn_ts'] = int(time.time())
+            _save_banner_data(_bdata)
+            logger.debug(f'[banner-video] CDN scrape+redirect для {msg_id}: {cdn_fresh[:60]}')
+            return redirect(cdn_fresh, code=302)
+    except Exception:
+        pass
+
+    # 3) Bot API file_id → стриминг через сервер (token не светим в URL)
+    video_url = None
+    if file_id and tg_token:
+        try:
+            gf = requests.get(
+                f'{TG_API_BASE}/bot{tg_token}/getFile',
+                params={'file_id': file_id}, timeout=8
+            )
+            if gf.status_code == 200 and gf.json().get('ok'):
+                fp = gf.json()['result']['file_path']
+                video_url = f'{TG_API_BASE}/file/bot{tg_token}/{fp}'
+                logger.debug(f'[banner-video] Bot API stream для {msg_id}: {fp}')
+        except Exception as e:
+            logger.warning(f'[banner-video] getFile error {msg_id}: {e}')
+
+    if not video_url:
+        return '', 404
+
+    # Стримим через прокси (Range поддержка)
+    range_header = request.headers.get('Range', None)
+    req_headers = {'User-Agent': 'Mozilla/5.0'}
+    if range_header:
+        req_headers['Range'] = range_header
+
+    try:
+        upstream = requests.get(video_url, headers=req_headers,
+                                stream=True, timeout=30)
+        resp_headers = {
+            'Content-Type': 'video/mp4',
+            'Accept-Ranges': 'bytes',
+            'Cache-Control': 'public, max-age=300',
+        }
+        if 'Content-Length' in upstream.headers:
+            resp_headers['Content-Length'] = upstream.headers['Content-Length']
+        if 'Content-Range' in upstream.headers:
+            resp_headers['Content-Range'] = upstream.headers['Content-Range']
+
+        status = upstream.status_code if upstream.status_code in (200, 206) else 200
+
+        def generate():
+            for chunk in upstream.iter_content(chunk_size=65536):
+                if chunk:
+                    yield chunk
+
+        return Response(stream_with_context(generate()),
+                        status=status, headers=resp_headers)
+    except Exception as e:
+        logger.warning(f'[banner-video] stream error {msg_id}: {e}')
+        return '', 502
+
 @app.route('/api/banner-img/<int:msg_id>')
 def banner_image_proxy(msg_id):
     banner_data_cache = _load_banner_data()
@@ -2731,40 +2862,58 @@ def banner_image_proxy(msg_id):
         except Exception as e:
             logger.warning(f'[banner-img] Bot API error for {msg_id}: {e}')
 
-    # 2) Кэш (свежее CDN URL, < 1 часа)
+    is_video_entry = entry.get('is_video', False)
+
+    # 2) Кэш (для видео — только 60 сек, токены CDN быстро истекают; для фото — 1 час)
     cached = _banner_og_cache.get(msg_id)
-    if cached:
+    if cached and not is_video_entry:
         url, ts = cached if isinstance(cached, tuple) else (cached, 0)
         if time.time() - ts < 3600:
             return redirect(url)
 
-    # 3) CDN URL из banner_data.json (свежий, хорошее качество)
-    cdn_url = entry.get('cdn_url', '')
-    cdn_ts  = entry.get('cdn_ts', 0)
-    if cdn_url and (time.time() - cdn_ts) < 82800:   # моложе 23 часов
-        _banner_og_cache[msg_id] = (cdn_url, time.time())
-        return redirect(cdn_url)
+    # 3) CDN URL из banner_data.json (только для фото — у видео токены истекают)
+    if not is_video_entry:
+        cdn_url = entry.get('cdn_url', '')
+        cdn_ts  = entry.get('cdn_ts', 0)
+        if cdn_url and (time.time() - cdn_ts) < 82800:
+            _banner_og_cache[msg_id] = (cdn_url, time.time())
+            return redirect(cdn_url)
 
-    # 4) t.me/s/ скрейпинг — полный CDN URL (лучше og:image)
-    try:
-        from vietnamparsing_parser import _scrape_cdn_photos_for_post
-        cdn_urls = _scrape_cdn_photos_for_post(_BANNER_TG_GROUP, msg_id)
-        if cdn_urls:
-            _banner_og_cache[msg_id] = (cdn_urls[0], time.time())
-            # Обновляем banner_data.json
-            banner_data_cache[str(msg_id)] = banner_data_cache.get(str(msg_id), {})
-            banner_data_cache[str(msg_id)]['cdn_url'] = cdn_urls[0]
-            banner_data_cache[str(msg_id)]['cdn_ts'] = int(time.time())
-            _save_banner_data(banner_data_cache)
-            return redirect(cdn_urls[0])
-    except Exception as e:
-        logger.debug(f'[banner-img] t.me/s scrape error for {msg_id}: {e}')
+    # 4a) Для видео-баннеров — всегда скрейпим свежий video CDN URL через t.me/s/
+    if is_video_entry:
+        try:
+            cdn_url_v = _scrape_cdn_video_for_post(_BANNER_TG_GROUP, msg_id)
+            if cdn_url_v:
+                _banner_og_cache[msg_id] = (cdn_url_v, time.time())
+                banner_data_cache[str(msg_id)] = banner_data_cache.get(str(msg_id), {})
+                banner_data_cache[str(msg_id)]['cdn_url'] = cdn_url_v
+                banner_data_cache[str(msg_id)]['cdn_ts'] = int(time.time())
+                _save_banner_data(banner_data_cache)
+                logger.info(f'[banner-video] scrape OK msg={msg_id}: {cdn_url_v[:60]}')
+                return redirect(cdn_url_v)
+        except Exception as e:
+            logger.debug(f'[banner-video] video scrape error {msg_id}: {e}')
 
-    # 5) og:image fallback (ниже качество, но работает для документов)
+    # 4b) Для фото-баннеров — скрейпим photo CDN URL
+    if not is_video_entry:
+        try:
+            from vietnamparsing_parser import _scrape_cdn_photos_for_post
+            cdn_urls = _scrape_cdn_photos_for_post(_BANNER_TG_GROUP, msg_id)
+            if cdn_urls:
+                _banner_og_cache[msg_id] = (cdn_urls[0], time.time())
+                banner_data_cache[str(msg_id)] = banner_data_cache.get(str(msg_id), {})
+                banner_data_cache[str(msg_id)]['cdn_url'] = cdn_urls[0]
+                banner_data_cache[str(msg_id)]['cdn_ts'] = int(time.time())
+                _save_banner_data(banner_data_cache)
+                return redirect(cdn_urls[0])
+        except Exception as e:
+            logger.debug(f'[banner-img] t.me/s photo scrape error {msg_id}: {e}')
+
+    # 5) og:image fallback (превью/thumbnail — работает всегда)
     try:
         og_resp = requests.get(
             f'https://t.me/{_BANNER_TG_GROUP}/{msg_id}',
-            headers={'User-Agent': 'TelegramBot (like TwitterBot)'}, timeout=10
+            headers={'User-Agent': 'TelegramBot (like TwitterBot)'}, timeout=8
         )
         if og_resp.status_code == 200:
             img_m = re.search(r'<meta property="og:image" content="([^"]+)"', og_resp.text)
@@ -2777,7 +2926,7 @@ def banner_image_proxy(msg_id):
                 _save_banner_data(banner_data_cache)
                 return redirect(img_url)
     except Exception as e:
-        logger.warning(f'[banner-img] og:image error for {msg_id}: {e}')
+        logger.warning(f'[banner-img] og:image error {msg_id}: {e}')
     return '', 404
 
 @app.route('/api/banners')
@@ -3466,23 +3615,30 @@ def admin_update_listing_with_photo():
                 photo_file = request.files.get(f'photo_{i}')
                 if photo_file and photo_file.filename:
                     try:
-                        image_data = photo_file.read()
-                        print(f"DEBUG: Processing photo_{i}, size={len(image_data)} bytes")
-                        caption = f"📷 {item.get('title', 'Объявление')} - фото {i+1}"
-                        file_id = send_photo_to_channel(image_data, caption)
-                        print(f"DEBUG: photo_{i} uploaded, file_id={file_id[:50] if file_id else 'None'}...")
-                        if file_id:
-                            fresh_url = get_telegram_photo_url(file_id)
-                            print(f"DEBUG: photo_{i} fresh_url={fresh_url}")
-                            if fresh_url:
-                                old_url = item.get(photo_fields[i])
-                                item[photo_fields[i]] = fresh_url
-                                print(f"DEBUG: Updated {photo_fields[i]}: {old_url} -> {fresh_url}")
-                                if i == 0:
-                                    item['telegram_file_id'] = file_id
-                                    item['telegram_photo'] = True
-                            else:
-                                print(f"DEBUG: fresh_url is empty/None for photo_{i}")
+                        media_data = photo_file.read()
+                        _mime = photo_file.mimetype or ''
+                        _ext = photo_file.filename.rsplit('.', 1)[-1].lower() if '.' in photo_file.filename else ''
+                        _is_vid = _mime.startswith('video/') or _ext in ('mp4', 'mov', 'avi', 'webm', '3gp')
+                        if _is_vid:
+                            caption = f"🎬 {item.get('title', 'Объявление')} - видео {i+1}"
+                            file_id = send_video_to_channel(media_data, caption)
+                            if file_id:
+                                fresh_url = get_telegram_photo_url(file_id)
+                                if fresh_url:
+                                    item[photo_fields[i]] = fresh_url
+                                    if i == 0:
+                                        item['telegram_file_id'] = file_id
+                                        item['telegram_photo'] = True
+                        else:
+                            caption = f"📷 {item.get('title', 'Объявление')} - фото {i+1}"
+                            file_id = send_photo_to_channel(media_data, caption)
+                            if file_id:
+                                fresh_url = get_telegram_photo_url(file_id)
+                                if fresh_url:
+                                    item[photo_fields[i]] = fresh_url
+                                    if i == 0:
+                                        item['telegram_file_id'] = file_id
+                                        item['telegram_photo'] = True
                     except Exception as e:
                         print(f"Error uploading photo_{i}: {e}")
             
@@ -3758,15 +3914,17 @@ def submit_entertainment():
             if file and file.filename:
                 import base64
                 file_data = file.read()
-                if len(file_data) > 20 * 1024 * 1024:
-                    return jsonify({'error': f'Фото {i+1} превышает 20 МБ'}), 400
-                
-                ext = file.filename.rsplit('.', 1)[-1].lower() if '.' in file.filename else 'jpg'
-                data_url = f"data:image/{ext};base64,{base64.b64encode(file_data).decode()}"
+                is_vid = (file.mimetype or '').startswith('video/') or file.filename.rsplit('.', 1)[-1].lower() in ('mp4', 'mov', 'avi', 'webm', '3gp')
+                max_sz = 50 * 1024 * 1024 if is_vid else 20 * 1024 * 1024
+                if len(file_data) > max_sz:
+                    return jsonify({'error': f'{"Видео" if is_vid else "Фото"} {i+1} превышает {"50" if is_vid else "20"} МБ'}), 400
+                ext = file.filename.rsplit('.', 1)[-1].lower() if '.' in file.filename else ('mp4' if is_vid else 'jpg')
+                media_type = 'video' if is_vid else 'image'
+                data_url = f"data:{media_type}/{ext};base64,{base64.b64encode(file_data).decode()}"
                 images.append(data_url)
         
         listing_id = f"pending_entertainment_{country}_{int(time.time())}_{len(load_pending_listings(country))}"
-        
+
         new_listing = {
             'id': listing_id,
             'title': title,
@@ -6108,39 +6266,96 @@ else:
 
 # ─── Авто-синхронизация данных с HF Space ───────────────────────────────────
 HF_SYNC_REPO = 'poweramanita/GA'
-HF_SYNC_INTERVAL = 600  # каждые 10 минут
+HF_SYNC_INTERVAL = 1800  # каждые 30 минут
 
 _hf_sync_files = [
     'listings_vietnam.json',
     'listings_thailand.json',
     'listings_india.json',
     'listings_indonesia.json',
-    'listings_data.json',
     'tg_feed_posts.json',
-    'banner_config.json',
-    'banner_data.json',
     'analytics.json',
     'file_id_index.json',
-    'tg_file_paths_cache.json',
-    'groups_stats_vietnam.json',
-    'groups_stats_thailand.json',
-    'bot_sources.json',
+    'sc_tracks_24h.json',
+    'sc_tracks_7d.json',
+    # banner_data.json НЕ синкаем — каждый пуш триггерит пересборку HF Space
+    # tg_photo_cache.json — слишком часто меняется, пересборка не нужна
 ]
+
+# Лимит на размер файла при regular-push (без LFS) — 9.5 MB
+_HF_REGULAR_SIZE_LIMIT = int(9.5 * 1024 * 1024)
 
 _hf_sync_last_mtime = {}
 
 
+def _hf_prepare_payload(fname):
+    """Готовит содержимое файла для пуша: обрезает listings если > лимита.
+    Использует пропорциональный обрез — все категории уменьшаются равномерно."""
+    import io as _io2
+    try:
+        with open(fname, 'rb') as _ff:
+            raw = _ff.read()
+        if len(raw) <= _HF_REGULAR_SIZE_LIMIT:
+            return _io2.BytesIO(raw), len(raw)
+        # Файл слишком большой — для listings_*.json пропорционально обрезаем все категории
+        if fname.startswith('listings_') and fname.endswith('.json'):
+            data = json.loads(raw)
+            _CAT_ORDER = ('real_estate', 'transport', 'restaurants', 'tours',
+                          'entertainment', 'chat', 'money_exchange', 'visas')
+            # Первый проход: пропорционально по отношению raw/limit
+            ratio = _HF_REGULAR_SIZE_LIMIT / len(raw)
+            for cat_key in _CAT_ORDER:
+                if cat_key not in data or not isinstance(data[cat_key], list):
+                    continue
+                items = data[cat_key]
+                keep = max(1, int(len(items) * ratio))
+                data[cat_key] = items[:keep]
+            trimmed = json.dumps(data, ensure_ascii=False, separators=(',', ':')).encode()
+            # Второй проход (подстраховка): если всё ещё больше — trim ещё раз
+            if len(trimmed) > _HF_REGULAR_SIZE_LIMIT:
+                ratio2 = _HF_REGULAR_SIZE_LIMIT / len(trimmed) * 0.97
+                for cat_key in _CAT_ORDER:
+                    if cat_key not in data or not isinstance(data[cat_key], list):
+                        continue
+                    items = data[cat_key]
+                    keep = max(1, int(len(items) * ratio2))
+                    data[cat_key] = items[:keep]
+                trimmed = json.dumps(data, ensure_ascii=False, separators=(',', ':')).encode()
+            counts = {k: len(v) for k, v in data.items() if isinstance(v, list) and v}
+            logger.info('[hf_sync] %s обрезан до %.1fMB %s',
+                        fname, len(trimmed) / 1024 / 1024, counts)
+            return _io2.BytesIO(trimmed), len(trimmed)
+        # Не listings — отдаём как есть (может не влезть)
+        return _io2.BytesIO(raw), len(raw)
+    except Exception as _pe:
+        logger.warning('[hf_sync] prepare_payload %s error: %s', fname, _pe)
+        return None, 0
+
+
 def _hf_auto_sync():
-    """Фоновый поток: каждые 10 минут пушит изменённые JSON-файлы в HF Space."""
+    """Фоновый поток: каждые 30 минут пушит изменённые JSON-файлы в HF Space.
+    Работает и на Replit (исходник), и на HF Space (самосинк данных парсера).
+    LFS обходится monkey-patch: все файлы грузятся как regular commits."""
     import time as _t3
-    _t3.sleep(60)  # дать приложению запуститься
+    import io as _io3
+    _t3.sleep(90)  # дать приложению запуститься
     hf_token = os.environ.get('HF_TOKEN', '').strip()
     if not hf_token:
         logger.warning('[hf_sync] HF_TOKEN не задан — синхронизация отключена')
         return
     try:
-        from huggingface_hub import HfApi as _HfApi
-        _hf_api = _HfApi(token=hf_token)
+        from huggingface_hub import HfApi as _HfApi2, CommitOperationAdd as _COA
+        _hf_api2 = _HfApi2(token=hf_token)
+
+        # ── LFS bypass: принудительно regular для всех операций ──────────────
+        _orig_preupload = _HfApi2.preupload_lfs_files
+        def _no_lfs_preupload(self, repo_id, additions, **kwargs):
+            additions = list(additions)
+            for _op in additions:
+                _op._upload_mode = 'regular'
+            return additions
+        _HfApi2.preupload_lfs_files = _no_lfs_preupload
+
         logger.info('[hf_sync] Запущен (репо: %s, интервал: %ds)', HF_SYNC_REPO, HF_SYNC_INTERVAL)
     except Exception as _e:
         logger.warning('[hf_sync] Ошибка инициализации HfApi: %s', _e)
@@ -6159,37 +6374,50 @@ def _hf_auto_sync():
                 pass
 
         if changed:
-            logger.info('[hf_sync] Изменено %d файлов, пушим в HF...', len(changed))
-            pushed = 0
+            logger.info('[hf_sync] Изменено %d файлов, пушим в HF одним коммитом...', len(changed))
+            ops = []
+            valid = []
             for fname in changed:
                 try:
-                    _hf_api.upload_file(
-                        path_or_fileobj=fname,
-                        path_in_repo=fname,
+                    payload, sz = _hf_prepare_payload(fname)
+                    if payload is None:
+                        continue
+                    ops.append(_COA(path_in_repo=fname, path_or_fileobj=payload))
+                    valid.append((fname, sz))
+                except Exception as _pe:
+                    logger.warning('[hf_sync] ✗ prepare %s: %s', fname, _pe)
+            if ops:
+                try:
+                    names_str = ', '.join(f[0] for f in valid)
+                    _hf_api2.create_commit(
                         repo_id=HF_SYNC_REPO,
                         repo_type='space',
-                        commit_message=f'auto-sync: {fname}',
+                        commit_message=f'auto-sync: {names_str}',
+                        operations=ops,
                     )
-                    _hf_sync_last_mtime[fname] = os.path.getmtime(fname)
-                    pushed += 1
-                    logger.info('[hf_sync] ✓ %s', fname)
+                    for fname, sz in valid:
+                        _hf_sync_last_mtime[fname] = os.path.getmtime(fname)
+                        logger.info('[hf_sync] ✓ %s (%.1fMB)', fname, sz/1024/1024)
+                    logger.info('[hf_sync] Синхронизация завершена: %d файлов одним коммитом', len(ops))
                 except Exception as _ue:
                     _ue_str = str(_ue)
-                    if 'storage limit' in _ue_str or '403' in _ue_str:
-                        logger.error('[hf_sync] ✗ %s: HF хранилище переполнено (1GB LFS лимит). '
-                                     'Очистите LFS в настройках репозитория HF Space.', fname)
+                    if '413' in _ue_str or 'Payload Too Large' in _ue_str:
+                        logger.error('[hf_sync] ✗ коммит: файл слишком большой (>7MB)')
+                    elif 'storage limit' in _ue_str or '403' in _ue_str:
+                        logger.error('[hf_sync] ✗ коммит: HF лимит хранилища')
+                    elif '429' in _ue_str:
+                        logger.warning('[hf_sync] ✗ коммит: rate limit HF — пропускаем цикл')
                     else:
-                        logger.warning('[hf_sync] ✗ %s: %s', fname, _ue)
-            logger.info('[hf_sync] Синхронизация завершена: %d/%d файлов', pushed, len(changed))
+                        logger.warning('[hf_sync] ✗ коммит: %s', _ue)
         else:
             logger.debug('[hf_sync] Нет изменений')
 
         _t3.sleep(HF_SYNC_INTERVAL)
 
 
-# Авто-синхронизация с HF отключена — пуш только вручную через push_to_hf.py
-# threading.Thread(target=_hf_auto_sync, daemon=True, name='HfAutoSync').start()
-logger.info('[hf_sync] Авто-синхронизация отключена — пуш только по запросу')
+# Авто-синхронизация: работает если задан HF_TOKEN (и на Replit, и на HF Space)
+threading.Thread(target=_hf_auto_sync, daemon=True, name='HfAutoSync').start()
+logger.info('[hf_sync] Авто-синхронизация запущена (интервал %ds)', HF_SYNC_INTERVAL)
 
 
 PARTYHUNT_API_BASE = 'https://api.anbocas.com'
@@ -7246,6 +7474,29 @@ def send_photo_to_group(image_data, listing, chat_id):
             return None
     except Exception as e:
         print(f"TELEGRAM: Error sending to group {chat_id}: {e}")
+        return None
+
+def send_video_to_channel(video_data, caption=''):
+    """Отправить видео в Telegram канал и получить file_id"""
+    bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+    if not bot_token:
+        return None
+    try:
+        url = f"{TG_API_BASE}/bot{bot_token}/sendVideo"
+        files = {'video': ('video.mp4', video_data, 'video/mp4')}
+        data = {'chat_id': TELEGRAM_PHOTO_CHANNEL, 'caption': caption[:1024] if caption else '', 'supports_streaming': True}
+        response = requests.post(url, files=files, data=data, timeout=60)
+        result = response.json()
+        if result.get('ok'):
+            vid = result['result'].get('video', {})
+            file_id = vid.get('file_id')
+            if file_id:
+                return file_id
+        else:
+            print(f"TELEGRAM send_video failed: {result.get('description', '')}")
+        return None
+    except Exception as e:
+        print(f"TELEGRAM: Error sending video to channel: {e}")
         return None
 
 def send_photo_to_channel(image_data, caption=''):

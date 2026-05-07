@@ -63,50 +63,17 @@ def handle_start(chat_id, user_name):
     webapp_url = get_webapp_url()
     name = user_name or "друг"
 
-    text = f'''🦌 <b>Goldantelope ASIA</b>
+    text = f'''🎭 <b>Развлекательный портал Юго-Восточной Азии</b>
 
-👋 Добрый день, {name}! / Xin chào buổi sáng, {name}!
+Привет, {name}!
 
-━━━━━━━━━━━━━━━━━━━━
-🇷🇺 <b>Крупнейший русскоязычный агрегатор объявлений по Вьетнаму и Таиланду.</b>
+Афиша · События · Рестораны · Туры · Жильё · Транспорт
 
-Мы автоматически собираем тысячи актуальных предложений из десятков Telegram-каналов — всё в одном удобном месте, с фото, ценами и контактами.
+🇻🇳 Вьетнам  🇹🇭 Таиланд  🇮🇳 Индия  🇮🇩 Индонезия
 
-🏠 <b>Недвижимость</b> — 5 000+ объектов аренды и покупки
-   📍 Нячанг · Дананг · Хошимин · Ханой · Фукуок
-   📍 Пхукет · Бангкок · Паттайя · Самуи
+Тысячи актуальных объявлений из проверенных Telegram-каналов — в одном месте, с фото и контактами.
 
-🍽 <b>Рестораны</b> — 650+ заведений с описанием и адресами
-
-🛵 <b>Транспорт</b> — байки, авто, трансферы
-
-🎯 <b>Экскурсии</b> — туры и активности
-
-💱 <b>Обмен валют</b> — курсы VND и THB
-
-🏥 <b>Сервисы</b> — медицина, визы, детям, барахолка
-
-━━━━━━━━━━━━━━━━━━━━
-🇻🇳 <b>Nền tảng tổng hợp tin đăng lớn nhất bằng tiếng Nga về Việt Nam và Thái Lan.</b>
-
-Chúng tôi tự động thu thập hàng nghìn tin đăng từ nhiều kênh Telegram — tất cả ở một nơi, đầy đủ ảnh, giá và liên hệ.
-
-🏠 <b>Bất động sản</b> — 5 000+ tin cho thuê và mua bán
-   📍 Nha Trang · Đà Nẵng · TP.HCM · Hà Nội · Phú Quốc
-   📍 Phuket · Bangkok · Pattaya · Koh Samui
-
-🍽 <b>Nhà hàng</b> — 650+ địa điểm ẩm thực
-
-🛵 <b>Phương tiện</b> — xe máy, ô tô, đưa đón
-
-🎯 <b>Tour</b> — các tour và hoạt động giải trí
-
-💱 <b>Đổi tiền</b> — tỷ giá VND và THB cập nhật
-
-🏥 <b>Dịch vụ</b> — y tế, visa, trẻ em, chợ đồ cũ
-
-━━━━━━━━━━━━━━━━━━━━
-👇 Выберите страну / Choose your country / Chọn quốc gia:'''
+👇 Выберите страну:'''
 
     keyboard = {
         "inline_keyboard": [
