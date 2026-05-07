@@ -1528,18 +1528,25 @@
             const btn = document.getElementById('banner-pause-btn');
             const bv = document.getElementById('banner-video');
             if (_bannerPaused) {
-                // Ставим на паузу
                 if (_bannerTimer) { clearTimeout(_bannerTimer); _bannerTimer = null; }
                 if (bv && !bv.paused) bv.pause();
                 if (btn) { btn.innerHTML = '&#9654;'; btn.classList.add('paused'); btn.title = 'Возобновить'; }
             } else {
-                // Снимаем с паузы
                 if (bv && bv.paused) bv.play().catch(function() {});
                 if (btn) { btn.innerHTML = '&#9646;&#9646;'; btn.classList.remove('paused'); btn.title = 'Пауза'; }
                 _scheduleBannerTick('resume');
             }
         }
-        window.toggleBannerPause = toggleBannerPause;
+        // Привязываем обработчик напрямую — надёжнее чем onclick в HTML
+        (function() {
+            var pauseBtn = document.getElementById('banner-pause-btn');
+            if (pauseBtn) {
+                pauseBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleBannerPause();
+                });
+            }
+        })();
 
         function _advanceBanner() {
             if (_bannerPaused) return;
