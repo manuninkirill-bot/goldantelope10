@@ -262,7 +262,12 @@ def handle_404(e):
 
 @app.route('/')
 def index():
-    return render_template('dashboard.html')
+    from flask import make_response
+    resp = make_response(render_template('dashboard.html'))
+    resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    resp.headers['Pragma'] = 'no-cache'
+    resp.headers['Expires'] = '0'
+    return resp
 
 def _translate_via_mymemory(text: str, target_lang: str) -> str:
     """Translate a single text using MyMemory API (free, no key needed)."""
@@ -5605,10 +5610,23 @@ def _scrape_channel_latest(channel, category, target_file, country):
         added = 0
         _SYSTEM_MSG_SKIP = {'channel created', 'канал создан', 'channel photo updated', 'telegram'}
         _SYSTEM_MSG_PREFIXES = ('channel name was changed', 'название канала изменено')
+        # excursii_vn: known duplicate message IDs (curated github-photo versions exist)
+        _EXCURSII_VN_SKIP_IDS = {17, 52, 72, 77, 82, 87}
+        # Build title prefix set for tour dedup
+        _existing_tour_title_prefixes = set()
+        if category == 'tours':
+            for _t in existing:
+                _raw = (_t.get('title') or (_t.get('text') or _t.get('description') or ''))[:100]
+                _key = re.sub(r'[^\w]', '', _raw.lower())[:40]
+                if _key:
+                    _existing_tour_title_prefixes.add(_key)
         for msg_id in sorted(scraped.keys(), reverse=True):
             # Пропускаем уже известные по channel+msg_id
             ch_key = f'{channel}_{msg_id}'
             if ch_key in existing_channel_msg:
+                continue
+            # Пропускаем заблокированные дубли @excursii_vn
+            if channel == 'excursii_vn' and int(msg_id) in _EXCURSII_VN_SKIP_IDS:
                 continue
             post = scraped[msg_id]
             # Пропускаем системные Telegram-сообщения (Channel created, Channel name changed…)
@@ -5616,6 +5634,12 @@ def _scrape_channel_latest(channel, category, target_file, country):
             if _raw_txt in _SYSTEM_MSG_SKIP or _raw_txt.startswith(_SYSTEM_MSG_PREFIXES) or not _raw_txt:
                 logger.debug('[periodic_scraper] @%s пропуск системного поста msg_id=%s', channel, msg_id)
                 continue
+            # Дедуп по префиксу заголовка для туров
+            if category == 'tours' and _existing_tour_title_prefixes:
+                _first_line = (post.get('text') or '').split('\n')[0].strip()[:120]
+                _title_key = re.sub(r'[^\w]', '', _first_line.lower())[:40]
+                if _title_key and _title_key in _existing_tour_title_prefixes:
+                    continue
             new_item = make_listing(channel, msg_id, post, category, country, logo_fps=logo_fps)
             # Пропускаем дубли по итоговому ID листинга (src_ch_srcid)
             if new_item['id'] in existing_ids:
@@ -5688,6 +5712,17 @@ def _backfill_channels(days=2):
             page_ids = sorted(scraped.keys(), reverse=True)
             oldest_on_page = None
 
+            # excursii_vn: curated github-photo listings already exist for these msg IDs
+            _EXCURSII_VN_SKIP_IDS = {17, 52, 72, 77, 82, 87}
+            # Tour title prefix dedup
+            _tour_title_prefixes = set()
+            if category == 'tours':
+                for _t in existing:
+                    _rw = (_t.get('title') or (_t.get('text') or _t.get('description') or ''))[:100]
+                    _k = re.sub(r'[^\w]', '', _rw.lower())[:40]
+                    if _k:
+                        _tour_title_prefixes.add(_k)
+
             for msg_id in page_ids:
                 post = scraped[msg_id]
                 # Парсим дату поста
@@ -5703,10 +5738,21 @@ def _backfill_channels(days=2):
                 if oldest_on_page is None or msg_id < oldest_on_page:
                     oldest_on_page = msg_id
 
+                # Пропускаем заблокированные дубли @excursii_vn
+                if channel == 'excursii_vn' and int(msg_id) in _EXCURSII_VN_SKIP_IDS:
+                    continue
+
                 # Дедуп по channel+msg_id
                 ch_key = f'{channel}_{msg_id}'
                 if ch_key in existing_channel_msg:
                     continue
+
+                # Дедуп туров по префиксу заголовка
+                if category == 'tours' and _tour_title_prefixes:
+                    _fl = (post.get('text') or '').split('\n')[0].strip()[:120]
+                    _tk = re.sub(r'[^\w]', '', _fl.lower())[:40]
+                    if _tk and _tk in _tour_title_prefixes:
+                        continue
 
                 new_item = make_listing(channel, msg_id, post, category, country, logo_fps=logo_fps)
 
@@ -6158,17 +6204,25 @@ def _sync_excursii_vn_telethon():
                     if t.get('source_channel') == 'excursii_vn' and t.get('message_id')
                 }
                 existing_titles = set()
+                existing_title_prefixes = set()
                 for t in vn.get('tours', []):
                     raw = t.get('title') or (t.get('text') or t.get('description') or '')[:100]
                     key = re.sub(r'[^\w]', '', raw.lower())[:60]
                     if key:
                         existing_titles.add(key)
+                        existing_title_prefixes.add(key[:40])
+
+                # Message IDs known to be duplicates of curated github-photo listings
+                _EXCURSII_SKIP_MSG_IDS = {17, 52, 72, 77, 82, 87}
 
                 added = 0
                 async for msg in client.iter_messages(entity, limit=300):
                     # Только посты с фото
                     has_photo = isinstance(msg.media, (MessageMediaPhoto, MessageMediaDocument))
                     if not has_photo:
+                        continue
+                    # Пропускаем заблокированные message_id (известные дубли)
+                    if msg.id in _EXCURSII_SKIP_MSG_IDS:
                         continue
                     # Пропускаем уже известные
                     if msg.id in existing_msg_ids:
@@ -6179,10 +6233,10 @@ def _sync_excursii_vn_telethon():
                     text = (msg.text or msg.message or '').strip()
                     if not text:
                         continue
-                    # Дедуп по нормализованному заголовку
+                    # Дедуп по нормализованному заголовку (точное совпадение + префикс)
                     _title_tmp = text.split('\n')[0].strip()[:120]
                     _title_key = re.sub(r'[^\w]', '', _title_tmp.lower())[:60]
-                    if _title_key and _title_key in existing_titles:
+                    if _title_key and (_title_key in existing_titles or _title_key[:40] in existing_title_prefixes):
                         continue
                     # CDN URL фото из t.me embed — без скачивания
                     cdn_url = _get_tg_cdn_url('excursii_vn', msg.id)
