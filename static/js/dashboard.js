@@ -1539,6 +1539,7 @@
                 _scheduleBannerTick('resume');
             }
         }
+        window.toggleBannerPause = toggleBannerPause;
 
         function _advanceBanner() {
             if (_bannerPaused) return;
