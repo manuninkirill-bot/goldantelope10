@@ -647,7 +647,7 @@
             border-color: #d4af37;
         }
         /* SC Новинки panel */
-        #sc-newtrack-panel {
+        #sc-newtrack-panel, #crypto-bots-panel {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto 10px auto;
@@ -2278,13 +2278,24 @@
                     <button class="sc-nt-tab active" id="sc-nt-tab-24h" onclick="loadMusicTracks(null,'24h')">24ч</button>
                     <button class="sc-nt-tab" id="sc-nt-tab-7d" onclick="loadMusicTracks(null,'7d')">7 дней</button>
                 </div>
-                <button class="sc-nt-toggle" id="sc-nt-toggle">▼</button>
+                <button class="sc-nt-toggle collapsed" id="sc-nt-toggle">▼</button>
             </div>
-            <div id="sc-nt-list" class="sc-nt-list">
+            <div id="sc-nt-list" class="sc-nt-list hidden">
                 <div class="sc-nt-loading">Загрузка...</div>
             </div>
             <div class="sc-nt-updated" id="sc-nt-updated"></div>
         </div>
+
+        <!-- Crypto Bots -->
+        <div id="crypto-bots-panel">
+            <div class="sc-nt-header" style="cursor:default; border-bottom:none;">
+                <span class="sc-nt-title">🤖 Crypto bots</span>
+                <div class="sc-nt-sources">
+                    <a class="sc-nt-src active" href="https://t.me/goldantelope_gate_bot" target="_blank" rel="noopener" style="text-decoration:none;">Gate.io</a>
+                </div>
+            </div>
+        </div>
+
         <!-- Spotify 30s preview player -->
         <audio id="sp-preview-audio" preload="none"></audio>
 
@@ -3458,12 +3469,12 @@
                     </div>
 
                     <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">📷 Фото (до 4 шт)</label>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">📷 Фото/Видео (до 4 шт)</label>
                         <div class="photo-upload-grid">
-                            <div class="photo-upload-wrapper"><input type="file" id="entertainment-photo-0" accept="image/*"><span class="file-placeholder" data-i18n-file>Chưa chọn tệp</span></div>
-                            <div class="photo-upload-wrapper"><input type="file" id="entertainment-photo-1" accept="image/*"><span class="file-placeholder" data-i18n-file>Chưa chọn tệp</span></div>
-                            <div class="photo-upload-wrapper"><input type="file" id="entertainment-photo-2" accept="image/*"><span class="file-placeholder" data-i18n-file>Chưa chọn tệp</span></div>
-                            <div class="photo-upload-wrapper"><input type="file" id="entertainment-photo-3" accept="image/*"><span class="file-placeholder" data-i18n-file>Chưa chọn tệp</span></div>
+                            <div class="photo-upload-wrapper"><input type="file" id="entertainment-photo-0" accept="image/*,video/*"><span class="file-placeholder" data-i18n-file>Chưa chọn tệp</span></div>
+                            <div class="photo-upload-wrapper"><input type="file" id="entertainment-photo-1" accept="image/*,video/*"><span class="file-placeholder" data-i18n-file>Chưa chọn tệp</span></div>
+                            <div class="photo-upload-wrapper"><input type="file" id="entertainment-photo-2" accept="image/*,video/*"><span class="file-placeholder" data-i18n-file>Chưa chọn tệp</span></div>
+                            <div class="photo-upload-wrapper"><input type="file" id="entertainment-photo-3" accept="image/*,video/*"><span class="file-placeholder" data-i18n-file>Chưa chọn tệp</span></div>
                         </div>
                     </div>
 
@@ -4351,13 +4362,13 @@
                 </div>
 
                 <div style="margin-bottom: 15px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">📷 Фото (до 4 шт)</label>
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">📷 Фото/Видео (до 4 шт)</label>
                     <div id="entertainment-edit-photos-preview" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 10px;"></div>
                     <div class="photo-upload-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                        <div class="photo-upload-wrapper" style="position: relative;"><input type="file" id="entertainment-edit-photo-0" accept="image/*" onchange="previewEntertainmentEditPhoto(0)"><span class="file-placeholder">Фото 1</span></div>
-                        <div class="photo-upload-wrapper" style="position: relative;"><input type="file" id="entertainment-edit-photo-1" accept="image/*" onchange="previewEntertainmentEditPhoto(1)"><span class="file-placeholder">Фото 2</span></div>
-                        <div class="photo-upload-wrapper" style="position: relative;"><input type="file" id="entertainment-edit-photo-2" accept="image/*" onchange="previewEntertainmentEditPhoto(2)"><span class="file-placeholder">Фото 3</span></div>
-                        <div class="photo-upload-wrapper" style="position: relative;"><input type="file" id="entertainment-edit-photo-3" accept="image/*" onchange="previewEntertainmentEditPhoto(3)"><span class="file-placeholder">Фото 4</span></div>
+                        <div class="photo-upload-wrapper" style="position: relative;"><input type="file" id="entertainment-edit-photo-0" accept="image/*,video/*" onchange="previewEntertainmentEditPhoto(0)"><span class="file-placeholder">Фото/Видео 1</span></div>
+                        <div class="photo-upload-wrapper" style="position: relative;"><input type="file" id="entertainment-edit-photo-1" accept="image/*,video/*" onchange="previewEntertainmentEditPhoto(1)"><span class="file-placeholder">Фото/Видео 2</span></div>
+                        <div class="photo-upload-wrapper" style="position: relative;"><input type="file" id="entertainment-edit-photo-2" accept="image/*,video/*" onchange="previewEntertainmentEditPhoto(2)"><span class="file-placeholder">Фото/Видео 3</span></div>
+                        <div class="photo-upload-wrapper" style="position: relative;"><input type="file" id="entertainment-edit-photo-3" accept="image/*,video/*" onchange="previewEntertainmentEditPhoto(3)"><span class="file-placeholder">Фото/Видео 4</span></div>
                     </div>
                 </div>
                 
@@ -5414,6 +5425,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=2b4e0f26" defer></script>
+<script src="/static/js/dashboard.js?v=f18d21c0" defer></script>
 </body>
 </html>

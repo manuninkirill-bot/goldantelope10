@@ -11449,16 +11449,21 @@ def _fetch_sc_new_tracks(period='24h'):
                 unique_tracks.append(t)
         tracks = unique_tracks
 
-        if tracks:
-            cache_file = _SC_TRACKS_CACHE_FILES.get(period, 'sc_tracks.json')
-            with _SC_TRACKS_LOCK:
-                with open(cache_file, 'w', encoding='utf-8') as f:
-                    json.dump({
-                        'updated': now_utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
-                        'tracks': tracks,
-                    }, f, ensure_ascii=False)
-            logger.info(f'[SC] Cached {len(tracks)} tracks for period={period}')
-        return tracks
+        cache_file = _SC_TRACKS_CACHE_FILES.get(period, 'sc_tracks.json')
+        existing_tracks = tracks
+        if not tracks:
+            cached = _load_sc_tracks_cache(period)
+            if cached and cached.get('tracks'):
+                existing_tracks = cached['tracks']
+                logger.info(f'[SC] No new tracks — keeping {len(existing_tracks)} cached tracks, updating timestamp')
+        with _SC_TRACKS_LOCK:
+            with open(cache_file, 'w', encoding='utf-8') as f:
+                json.dump({
+                    'updated': now_utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                    'tracks': existing_tracks,
+                }, f, ensure_ascii=False)
+        logger.info(f'[SC] Cached {len(existing_tracks)} tracks for period={period}')
+        return existing_tracks
     except Exception as e:
         logger.warning(f'[SC] fetch error ({period}): {e}')
         return []
