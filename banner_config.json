@@ -1,14 +1,16 @@
 {
   "vietnam": {
     "web": [
-      "/gv/v4/12",
-      "/gv/v4/13",
-      "/gv/v4/14"
+      "/api/banner-video/13",
+      "/api/banner-video/14",
+      "/api/banner-video/15",
+      "/api/banner-video/16"
     ],
     "mobile": [
-      "/gv/v4/12",
-      "/gv/v4/13",
-      "/gv/v4/14"
+      "/api/banner-video/13",
+      "/api/banner-video/14",
+      "/api/banner-video/15",
+      "/api/banner-video/16"
     ]
   },
   "thailand": {
@@ -29,6 +31,11 @@
   },
   "india": {
     "web": [
+      "https://api.anbocas.com/storage/event/banner/TNID4xziG8Sl3ZUmle7AbTMayvT3vsx7D4NYCQdB.jpg",
+      "https://api.anbocas.com/storage/event/banner/1FubKsSDZYD1kF9NJmtpMlQh0SXVs3ybrF4iSqkP.jpg",
+      "https://api.anbocas.com/storage/event/banner/D95uPOJ36M4qX2UqmtMTEh9AEClk1pQ2zdiIO1Dn.png",
+      "https://api.anbocas.com/storage/event/banner/9L1SqA95j0YJT2y7xgphnCu07tS3DDZEwEbYCwq2.png",
+      "https://api.anbocas.com/storage/event/banner/RWti40ng7bZnZP8srEHMH4oP0tXMjxJ11H4Z0UV2.jpg",
       "https://api.anbocas.com/storage/event/banner/uwzgB2EI2ZgaT1tPy0OFtAqvJw4CdqzKESwuSpLD.jpg",
       "https://api.anbocas.com/storage/event/banner/WVWaohhjurXhZHVkhq0CN5BgeBj9N29TEFotLuHX.jpg",
       "https://api.anbocas.com/storage/event/banner/i1w0VfYxe215gJmfObe0j91IR1QVvoXfWlbBkQi2.png",
@@ -46,13 +53,14 @@
       "https://api.anbocas.com/storage/event/banner/D3qkFbvGzyILuW1H9f6AV1mGk9oixATJsQXccspd.jpg",
       "https://api.anbocas.com/storage/event/banner/txAPiKrR4ztCl2r3AsYgg5kzSgnux0AYlDUujqbM.jpg",
       "https://api.anbocas.com/storage/event/banner/k3SMf6pQimDiLI3c7SDWLHCEZyDuaD0Fe7busU78.jpg",
-      "https://api.anbocas.com/storage/event/banner/xqSLmcyMc8iqpyXTbW0Fi2VHK8vyHHDsUJ43FbL4.jpg",
-      "https://api.anbocas.com/storage/event/banner/ildDU0xkJ6DG6MC9raEwM9qrkggv3g8faqvQrOC2.jpg",
-      "https://api.anbocas.com/storage/event/banner/6F2ZQ7GAkT41oUGPVl8fjxEBasVish9zKzZOXu8R.jpg",
-      "https://api.anbocas.com/storage/event/banner/RLSodr3zlNMD5MVjkIGhQydTDFl2P5kUoXF7UE8u.jpg",
-      "https://api.anbocas.com/storage/event/banner/VutjKZUPyXy6zySnBmpYUE1pf0S94QvvBJL7ROzp.jpg"
+      "https://api.anbocas.com/storage/event/banner/xqSLmcyMc8iqpyXTbW0Fi2VHK8vyHHDsUJ43FbL4.jpg"
     ],
     "mobile": [
+      "https://api.anbocas.com/storage/event/banner/TNID4xziG8Sl3ZUmle7AbTMayvT3vsx7D4NYCQdB.jpg",
+      "https://api.anbocas.com/storage/event/banner/1FubKsSDZYD1kF9NJmtpMlQh0SXVs3ybrF4iSqkP.jpg",
+      "https://api.anbocas.com/storage/event/banner/D95uPOJ36M4qX2UqmtMTEh9AEClk1pQ2zdiIO1Dn.png",
+      "https://api.anbocas.com/storage/event/banner/9L1SqA95j0YJT2y7xgphnCu07tS3DDZEwEbYCwq2.png",
+      "https://api.anbocas.com/storage/event/banner/RWti40ng7bZnZP8srEHMH4oP0tXMjxJ11H4Z0UV2.jpg",
       "https://api.anbocas.com/storage/event/banner/uwzgB2EI2ZgaT1tPy0OFtAqvJw4CdqzKESwuSpLD.jpg",
       "https://api.anbocas.com/storage/event/banner/WVWaohhjurXhZHVkhq0CN5BgeBj9N29TEFotLuHX.jpg",
       "https://api.anbocas.com/storage/event/banner/i1w0VfYxe215gJmfObe0j91IR1QVvoXfWlbBkQi2.png",
@@ -70,11 +78,7 @@
       "https://api.anbocas.com/storage/event/banner/D3qkFbvGzyILuW1H9f6AV1mGk9oixATJsQXccspd.jpg",
       "https://api.anbocas.com/storage/event/banner/txAPiKrR4ztCl2r3AsYgg5kzSgnux0AYlDUujqbM.jpg",
       "https://api.anbocas.com/storage/event/banner/k3SMf6pQimDiLI3c7SDWLHCEZyDuaD0Fe7busU78.jpg",
-      "https://api.anbocas.com/storage/event/banner/xqSLmcyMc8iqpyXTbW0Fi2VHK8vyHHDsUJ43FbL4.jpg",
-      "https://api.anbocas.com/storage/event/banner/ildDU0xkJ6DG6MC9raEwM9qrkggv3g8faqvQrOC2.jpg",
-      "https://api.anbocas.com/storage/event/banner/6F2ZQ7GAkT41oUGPVl8fjxEBasVish9zKzZOXu8R.jpg",
-      "https://api.anbocas.com/storage/event/banner/RLSodr3zlNMD5MVjkIGhQydTDFl2P5kUoXF7UE8u.jpg",
-      "https://api.anbocas.com/storage/event/banner/VutjKZUPyXy6zySnBmpYUE1pf0S94QvvBJL7ROzp.jpg"
+      "https://api.anbocas.com/storage/event/banner/xqSLmcyMc8iqpyXTbW0Fi2VHK8vyHHDsUJ43FbL4.jpg"
     ]
   },
   "indonesia": {
