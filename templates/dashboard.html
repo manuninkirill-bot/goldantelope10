@@ -813,6 +813,36 @@
         
         .banner-nav.prev { left: 10px; }
         .banner-nav.next { right: 10px; }
+
+        .banner-pause-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 34px;
+            height: 34px;
+            background: rgba(0, 0, 0, 0.45);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            letter-spacing: -1px;
+            transition: background 0.2s, transform 0.15s;
+            z-index: 101;
+            pointer-events: auto;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .banner-pause-btn:hover {
+            background: rgba(212, 175, 55, 0.85);
+            transform: scale(1.1);
+        }
+        .banner-pause-btn.paused {
+            background: rgba(212, 175, 55, 0.75);
+        }
         
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -2287,6 +2317,7 @@
             <video id="banner-video" autoplay muted playsinline style="display:none;width:100%;height:100%;object-fit:cover;border-radius:inherit;"></video>
             <button class="banner-nav prev" onclick="event.stopPropagation(); changeBanner(-1)">‹</button>
             <button class="banner-nav next" onclick="event.stopPropagation(); changeBanner(1)">›</button>
+            <button id="banner-pause-btn" class="banner-pause-btn" onclick="event.stopPropagation(); toggleBannerPause()" title="Пауза">&#9646;&#9646;</button>
             <div id="banner-dots" class="banner-dots"></div>
         </div>
 

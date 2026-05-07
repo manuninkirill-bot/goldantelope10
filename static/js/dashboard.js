@@ -836,8 +836,9 @@
             currentIdx = (currentIdx + direction + banners.length) % banners.length;
             countryConfig[currentCountry].currentBanner = currentIdx;
             if (typeof updateBanner === 'function') updateBanner();
-            // Сбрасываем таймер — отсчёт 15 сек начинается заново после ручного переключения
-            if (typeof _scheduleBannerTick === 'function') _scheduleBannerTick('manual');
+            // Если не на паузе — сбрасываем таймер (отсчёт начинается заново после ручного переключения)
+            // Если на паузе — просто показываем слайд без запуска таймера
+            if (!_bannerPaused && typeof _scheduleBannerTick === 'function') _scheduleBannerTick('manual');
         }
         
         var currentCategory = 'entertainment';
@@ -1520,8 +1521,27 @@
         let _bannerTimer = null;
         let _bannerLastTick = Date.now();
         let _bannerTickCount = 0;
+        let _bannerPaused = false;
+
+        function toggleBannerPause() {
+            _bannerPaused = !_bannerPaused;
+            const btn = document.getElementById('banner-pause-btn');
+            const bv = document.getElementById('banner-video');
+            if (_bannerPaused) {
+                // Ставим на паузу
+                if (_bannerTimer) { clearTimeout(_bannerTimer); _bannerTimer = null; }
+                if (bv && !bv.paused) bv.pause();
+                if (btn) { btn.innerHTML = '&#9654;'; btn.classList.add('paused'); btn.title = 'Возобновить'; }
+            } else {
+                // Снимаем с паузы
+                if (bv && bv.paused) bv.play().catch(function() {});
+                if (btn) { btn.innerHTML = '&#9646;&#9646;'; btn.classList.remove('paused'); btn.title = 'Пауза'; }
+                _scheduleBannerTick('resume');
+            }
+        }
 
         function _advanceBanner() {
+            if (_bannerPaused) return;
             _bannerVideoPlayCount = 0;
             const banners = getCurrentBanners();
             if (banners.length > 1) {
@@ -1533,11 +1553,13 @@
         }
 
         function _scheduleBannerTick(caller) {
+            if (_bannerPaused) return;
             if (_bannerTimer) clearTimeout(_bannerTimer);
             const delay = _BANNER_INTERVAL[currentCountry] || _BANNER_DEFAULT_INTERVAL;
             _bannerLastTick = Date.now();
             console.log('[BannerTimer] scheduled delay=' + delay + 'ms, caller=' + (caller || 'unknown') + ', country=' + currentCountry);
             _bannerTimer = setTimeout(function _tick() {
+                if (_bannerPaused) return;
                 _bannerTickCount++;
                 const elapsed = Date.now() - _bannerLastTick;
                 console.log('[BannerTimer] TICK #' + _bannerTickCount + ' elapsed=' + elapsed + 'ms, country=' + currentCountry);
@@ -1551,6 +1573,7 @@
             const _bv = document.getElementById('banner-video');
             if (_bv) {
                 _bv.addEventListener('ended', function() {
+                    if (_bannerPaused) return;
                     _bannerVideoPlayCount++;
                     console.log('[Banner] video ended, play#' + _bannerVideoPlayCount + ', country=' + currentCountry);
                     if (_bannerVideoPlayCount >= _BANNER_VIDEO_PLAYS) {
