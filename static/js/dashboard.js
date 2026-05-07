@@ -4870,12 +4870,31 @@
         loadVisasCounts();
         setInterval(updateRates, 60000);
         
-        const visitorId = localStorage.getItem('ga_uid') || ('user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now());
-        localStorage.setItem('ga_uid', visitorId);
+        // Определяем идентификатор посетителя:
+        // 1. Telegram user_id (самый точный — не зависит от браузера/устройства)
+        // 2. Сохранённый ga_uid в localStorage (fallback для не-TG пользователей)
+        // 3. Новый случайный ID (первый визит без TG)
+        let visitorId = null;
+        let tgUserId = null;
+        try {
+            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+                const tgUser = window.Telegram.WebApp.initDataUnsafe.user;
+                if (tgUser && tgUser.id) {
+                    tgUserId = String(tgUser.id);
+                    visitorId = 'tg_' + tgUserId;
+                    localStorage.setItem('ga_uid', visitorId);
+                }
+            }
+        } catch(e) {}
+        if (!visitorId) {
+            visitorId = localStorage.getItem('ga_uid') || ('user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now());
+            localStorage.setItem('ga_uid', visitorId);
+        }
         function pingOnline() {
             const params = new URLSearchParams({uid: visitorId});
             if (typeof currentCountry !== 'undefined' && currentCountry) params.set('country', currentCountry);
             if (typeof currentCategory !== 'undefined' && currentCategory) params.set('category', currentCategory);
+            if (tgUserId) params.set('tg_id', tgUserId);
             fetch(`/api/ping?${params}`)
                 .then(r => r.json())
                 .then(data => {
