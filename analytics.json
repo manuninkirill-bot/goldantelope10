@@ -342,17 +342,17 @@
         "user_y1yukxp2g_1778180659618",
         "user_kas3lqvh5_1778180692972"
       ],
-      "page_views": 1535,
+      "page_views": 1544,
       "countries": {
-        "vietnam": 1527,
+        "vietnam": 1536,
         "india": 1,
         "indonesia": 1,
         "thailand": 6
       },
       "categories": {
         "real_estate": 1246,
-        "entertainment": 150,
-        "realestate": 32,
+        "entertainment": 157,
+        "realestate": 34,
         "restaurants": 33,
         "transport": 12,
         "tours": 48,
@@ -372,12 +372,12 @@
         "15": 232,
         "16": 289,
         "17": 178,
-        "19": 4
+        "19": 13
       },
       "referrers": {},
       "devices": {
         "mobile": 261,
-        "desktop": 1274
+        "desktop": 1283
       }
     }
   },
@@ -629,12 +629,12 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 3,
+      "visits": 11,
       "last_seen": "2026-05-07"
     },
     "user_kas3lqvh5_1778180692972": {
       "first_seen": "2026-05-07",
-      "visits": 1,
+      "visits": 2,
       "last_seen": "2026-05-07"
     }
   }
