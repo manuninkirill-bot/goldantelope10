@@ -818,8 +818,8 @@
                 switchCountry(urlCountry);
             }
 
-            // Load real estate groups for the default country on page load
-            loadRealEstateGroups();
+            // Open entertainment tab by default
+            switchTab('entertainment');
         });
         
         const countryConfig = {
@@ -840,7 +840,7 @@
             if (typeof _scheduleBannerTick === 'function') _scheduleBannerTick('manual');
         }
         
-        var currentCategory = 'real_estate';
+        var currentCategory = 'entertainment';
         var nonTrackableTabs = ['admin', 'submit-restaurant', 'submit-tour', 'submit-transport', 'submit-exchange', 'submit-visas', 'submit-realestate', 'submit-entertainment'];
         function switchTab(tabName) {
             if (!nonTrackableTabs.includes(tabName)) currentCategory = tabName;
@@ -1285,15 +1285,21 @@
 
         function _preloadBannerVideo(url) {
             if (!url || _bannerPreloadPool[url]) return;
+            // Для /api/banner-video/ НЕ резолвим CDN URL заранее:
+            // токены telesco.pe истекают за минуты — браузер сам запросит свежий URL при воспроизведении
+            if (url.startsWith('/api/banner-video/')) {
+                _bannerPreloadPool[url] = { cdnUrl: url, video: null, ready: false };
+                console.log('[BannerPreload] proxy mode (no CDN preload): ' + url);
+                return;
+            }
             _bannerPreloadPool[url] = { cdnUrl: null, video: null, ready: false };
-            // Шаг 1: получаем финальный CDN URL через HEAD (следуем редиректу)
+            // /gv/ URL: резолвим CDN URL через HEAD
             fetch(url, { method: 'HEAD', redirect: 'follow' })
                 .then(function(r) {
                     const cdnUrl = r.url;
                     if (!cdnUrl || cdnUrl === url) return;
                     _bannerPreloadPool[url].cdnUrl = cdnUrl;
                     console.log('[BannerPreload] CDN resolved for ' + url + ' → ' + cdnUrl.slice(0, 60));
-                    // Шаг 2: создаём скрытый video-элемент и начинаем буферизацию
                     const v = document.createElement('video');
                     v.muted = true;
                     v.playsInline = true;
@@ -1318,7 +1324,7 @@
             // Предзагружаем следующий и послеследующий
             for (let i = 1; i <= 2; i++) {
                 const nextUrl = banners[(currentIdx + i) % banners.length];
-                if (nextUrl && nextUrl.startsWith('/gv/')) _preloadBannerVideo(nextUrl);
+                if (nextUrl && (nextUrl.startsWith('/gv/') || nextUrl.startsWith('/api/banner-video/'))) _preloadBannerVideo(nextUrl);
             }
         }
         // ─────────────────────────────────────────────────────────────────────
@@ -1342,7 +1348,7 @@
                         const webBanners = bannerConfig[country].web || [];
                         const mobileBanners = bannerConfig[country].mobile || [];
                         [...webBanners, ...mobileBanners].forEach(src => {
-                            const isVid = src && (src.startsWith('/gv/') || /\.(mp4|mov|webm|avi)(\?|$)/i.test(src));
+                            const isVid = src && (src.startsWith('/gv/') || src.startsWith('/api/banner-video/') || /\.(mp4|mov|webm|avi)(\?|$)/i.test(src));
                             if (!isVid) {
                                 const img = new Image();
                                 img.src = src;
@@ -1411,24 +1417,68 @@
                 const bannerVideo = document.getElementById('banner-video');
                 const isVideo = mediaUrl && (
                     mediaUrl.startsWith('/gv/') ||
+                    mediaUrl.startsWith('/api/banner-video/') ||
                     /\.(mp4|mov|webm|avi)(\?|$)/i.test(mediaUrl)
                 );
                 if (isVideo) {
-                    if (bannerImg) bannerImg.style.display = 'none';
                     if (bannerVideo) {
-                        bannerVideo.style.display = 'block';
-                        // Используем предзагруженный CDN URL если есть — пропускаем редирект
-                        const _pool = typeof _bannerPreloadPool !== 'undefined' ? _bannerPreloadPool[mediaUrl] : null;
-                        const _targetSrc = (_pool && _pool.cdnUrl) ? _pool.cdnUrl : mediaUrl;
-                        const _alreadySet = bannerVideo.src === _targetSrc ||
+                        const _isProxyUrl = mediaUrl.startsWith('/api/banner-video/');
+                        const _pool = (!_isProxyUrl && typeof _bannerPreloadPool !== 'undefined') ? _bannerPreloadPool[mediaUrl] : null;
+                        const _targetSrc = _isProxyUrl ? mediaUrl : ((_pool && _pool.cdnUrl) ? _pool.cdnUrl : mediaUrl);
+                        const _alreadySet = bannerVideo.getAttribute('data-proxy-src') === _targetSrc ||
+                            (!_isProxyUrl && (bannerVideo.src === _targetSrc ||
                             bannerVideo.src.endsWith(mediaUrl) ||
-                            (_pool && _pool.cdnUrl && bannerVideo.src === _pool.cdnUrl);
+                            (_pool && _pool.cdnUrl && bannerVideo.src === _pool.cdnUrl)));
+
+                        console.log('[Banner] updateBanner isVideo=true idx=' + currentIdx + ' src=' + _targetSrc + ' alreadySet=' + _alreadySet);
+
+                        // Показываем постер (изображение) пока видео грузится
+                        if (bannerImg && _isProxyUrl) {
+                            const _midMatch = mediaUrl.match(/\/api\/banner-video\/(\d+)/);
+                            if (_midMatch) {
+                                bannerImg.src = '/api/banner-img/' + _midMatch[1];
+                                bannerImg.style.display = '';
+                            }
+                        }
+
                         if (!_alreadySet) {
                             _bannerVideoPlayCount = 0;
+                            bannerVideo.setAttribute('data-proxy-src', _targetSrc);
+                            bannerVideo.style.display = 'none';
                             bannerVideo.src = _targetSrc;
+                            console.log('[Banner] calling load() for', _targetSrc);
                             bannerVideo.load();
+                            // Показываем видео и скрываем постер только когда готово к воспроизведению
+                            bannerVideo.oncanplay = function() {
+                                bannerVideo.play().then(function() {
+                                    if (bannerImg) bannerImg.style.display = 'none';
+                                    bannerVideo.style.display = 'block';
+                                    bannerVideo.oncanplay = null;
+                                }).catch(function(err) {
+                                    console.log('[Banner] autoplay blocked:', err.name, '— click to play');
+                                    // Показываем видео поверх постера, ждём клика
+                                    bannerVideo.style.display = 'block';
+                                    bannerVideo.oncanplay = null;
+                                    const _bc = document.getElementById('banner');
+                                    if (_bc && !_bc._playHandler) {
+                                        _bc._playHandler = function() {
+                                            bannerVideo.play().then(function() {
+                                                if (bannerImg) bannerImg.style.display = 'none';
+                                            }).catch(function() {});
+                                            _bc.removeEventListener('click', _bc._playHandler);
+                                            _bc._playHandler = null;
+                                        };
+                                        _bc.addEventListener('click', _bc._playHandler);
+                                    }
+                                });
+                            };
+                        } else {
+                            // Источник тот же — просто воспроизводим
+                            bannerVideo.play().then(function() {
+                                if (bannerImg) bannerImg.style.display = 'none';
+                                bannerVideo.style.display = 'block';
+                            }).catch(function() {});
                         }
-                        bannerVideo.play().catch(() => {});
                     }
                     // Запускаем предзагрузку следующего баннера в фоне
                     if (typeof _preloadNextBanner === 'function') _preloadNextBanner();
@@ -1505,10 +1555,29 @@
                     console.log('[Banner] video ended, play#' + _bannerVideoPlayCount + ', country=' + currentCountry);
                     if (_bannerVideoPlayCount >= _BANNER_VIDEO_PLAYS) {
                         _advanceBanner();
-                        _scheduleBannerTick('video_ended'); // сбрасываем резервный таймер
+                        _scheduleBannerTick('video_ended');
                     } else {
                         _bv.play().catch(function() {});
                     }
+                });
+                _bv.addEventListener('error', function(e) {
+                    var err = _bv.error;
+                    console.log('[Banner] video ERROR code=' + (err ? err.code : '?') + ' msg=' + (err ? err.message : '?') + ' src=' + _bv.currentSrc);
+                });
+                _bv.addEventListener('stalled', function() {
+                    console.log('[Banner] video STALLED src=' + _bv.currentSrc);
+                });
+                _bv.addEventListener('waiting', function() {
+                    console.log('[Banner] video WAITING src=' + _bv.currentSrc);
+                });
+                _bv.addEventListener('canplay', function() {
+                    console.log('[Banner] canplay fired src=' + _bv.currentSrc);
+                });
+                _bv.addEventListener('loadstart', function() {
+                    console.log('[Banner] loadstart src=' + _bv.currentSrc);
+                });
+                _bv.addEventListener('loadedmetadata', function() {
+                    console.log('[Banner] loadedmetadata dur=' + _bv.duration + ' src=' + _bv.currentSrc);
                 });
             }
         })();
@@ -4762,6 +4831,11 @@
                 if (updateEl) updateEl.innerText = new Date(s.last_update).toLocaleTimeString('ru-RU');
             }
         }
+        // Объявляем adminAuthenticated ДО вызова _loadInitData (иначе TDZ)
+        let adminAuthenticated = false;
+        let adminPassword_val = '';
+        let adminCountry = null;
+
         // Инициализируем баннер, статистику и курсы при открытии
         _loadInitData(currentCountry);
         updateAllCityCounts();
@@ -4812,17 +4886,11 @@
         pingOnline();
         setInterval(pingOnline, 30000);
 
-        // Duplicate updateBanner removed - using the one defined above
-
-        let adminAuthenticated = false;
-        let adminPassword_val = '';
-        let adminCountry = null;
         const adminPassword = document.getElementById('admin-password');
         const adminStatus = document.getElementById('admin-status');
         const adminTools = document.getElementById('admin-tools');
         
-        // Загрузка недвижимости по умолчанию
-        loadListings('real_estate');
+        // Дефолтная вкладка загружается через switchTab в DOMContentLoaded
 
         async function toggleVisibility(listingId, category) {
             console.log('Toggling visibility for:', listingId, 'from:', category);
@@ -5459,41 +5527,47 @@
         function previewEditPhotoGeneric(inputPrefix, containerId, index) {
             const input = document.getElementById(inputPrefix + index);
             const file = input?.files[0];
-            if (!file) {
-                console.log('No file selected for index', index);
-                return;
-            }
-            console.log('Preview photo: index=' + index + ', file=' + file.name + ', container=' + containerId);
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const container = document.getElementById(containerId);
-                if (!container) {
-                    console.log('Container not found:', containerId);
-                    return;
+            if (!file) return;
+            const isVideo = file.type.startsWith('video/');
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const indexStr = String(index);
+            const commonStyle = 'width: 100%; height: 60px; object-fit: cover; border-radius: 6px; border: 2px solid #4CAF50;';
+
+            if (isVideo) {
+                // Удаляем старый элемент по data-index (img или video)
+                let old = container.querySelector('[data-index="' + indexStr + '"]');
+                if (!old) {
+                    const allEls = container.querySelectorAll('img, video');
+                    old = allEls[index] || null;
                 }
-                // Ищем изображение по data-index
-                const indexStr = String(index);
-                let img = container.querySelector('img[data-index="' + indexStr + '"]');
-                console.log('Found img with data-index=' + indexStr + ':', img ? 'yes' : 'no');
-                if (!img) {
-                    // Если не нашли по data-index, пробуем найти по индексу в списке
-                    const allImgs = container.querySelectorAll('img');
-                    if (allImgs[index]) {
-                        img = allImgs[index];
-                        img.setAttribute('data-index', indexStr);
-                        console.log('Using img at position', index);
-                    } else {
+                const vid = document.createElement('video');
+                vid.setAttribute('data-index', indexStr);
+                vid.src = URL.createObjectURL(file);
+                vid.style.cssText = commonStyle;
+                vid.muted = true;
+                vid.preload = 'metadata';
+                if (old) { container.replaceChild(vid, old); } else { container.appendChild(vid); }
+            } else {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    let img = container.querySelector('img[data-index="' + indexStr + '"]');
+                    if (!img) {
+                        // Заменяем video на img если было видео
+                        let old = container.querySelector('[data-index="' + indexStr + '"]');
+                        if (!old) {
+                            const allEls = container.querySelectorAll('img, video');
+                            old = allEls[index] || null;
+                        }
                         img = document.createElement('img');
                         img.setAttribute('data-index', indexStr);
-                        container.appendChild(img);
-                        console.log('Created new img');
+                        if (old) { container.replaceChild(img, old); } else { container.appendChild(img); }
                     }
-                }
-                img.src = e.target.result;
-                img.style.cssText = 'width: 100%; height: 60px; object-fit: cover; border-radius: 6px; border: 2px solid #4CAF50;';
-                console.log('Photo preview updated for index', index);
-            };
-            reader.readAsDataURL(file);
+                    img.src = e.target.result;
+                    img.style.cssText = commonStyle;
+                };
+                reader.readAsDataURL(file);
+            }
         }
         // Update existing preview functions to use 4 photos
         function previewKidsEditPhoto(index) { previewEditPhotoGeneric('kids-edit-photo-', 'kids-edit-photos-preview', index); }
@@ -6707,8 +6781,10 @@
             for (let i = 0; i < 4; i++) {
                 const file = document.getElementById(`entertainment-photo-${i}`).files[0];
                 if (file) {
-                    if (file.size > 20 * 1024 * 1024) {
-                        status.textContent = `❌ Фото ${i+1} превышает 20 МБ`;
+                    const maxSize = file.type.startsWith('video/') ? 50 * 1024 * 1024 : 20 * 1024 * 1024;
+                    const label = file.type.startsWith('video/') ? 'Видео' : 'Фото';
+                    if (file.size > maxSize) {
+                        status.textContent = `❌ ${label} ${i+1} превышает ${file.type.startsWith('video/') ? '50' : '20'} МБ`;
                         status.style.color = '#ff6b6b';
                         return;
                     }
@@ -8353,6 +8429,9 @@
             _scCmd('setVolume', scMuted ? 0 : scVolume);
         }
 
+        // ── (mute icon removed — next-track button used instead) ───────────
+        function _setSpeaker(playing) { /* no-op */ }
+
         // ── Авто-переход к следующему треку ─────────────────────────────────
         function _cancelAutoNext() {
             if (_scAutoNextTimer) { clearTimeout(_scAutoNextTimer); _scAutoNextTimer = null; }
@@ -8380,6 +8459,7 @@
                 if (method === 'ready') {
                     scPlaying = true;
                     document.getElementById('sc-play-btn').textContent = '⏸';
+                    _setSpeaker(true);
                     _applyVol();
                     _scCmd('getCurrentSound');
                     _scCmd('getDuration');
@@ -8406,17 +8486,20 @@
                     scPlaying = true;
                     _cancelAutoNext();
                     document.getElementById('sc-play-btn').textContent = '⏸';
+                    _setSpeaker(true);
                     _applyVol();
                     if (scDuration === 0) _scCmd('getDuration');
 
                 } else if (method === 'pause') {
                     scPlaying = false;
                     document.getElementById('sc-play-btn').textContent = '▶';
+                    _setSpeaker(false);
 
                 } else if (method === 'finish') {
                     _cancelAutoNext();
                     scPlaying = false;
                     document.getElementById('sc-play-btn').textContent = '▶';
+                    _setSpeaker(false);
                     try { window._scPlayNext(); } catch(e) {}
 
                 } else if (method === 'play_progress') {
@@ -8474,6 +8557,7 @@
                     _scActiveUrl = _initUrl;
                     scPlaying = true;
                     document.getElementById('sc-play-btn').textContent = '⏸';
+                    _setSpeaker(true);
                 }
             } catch(e) {}
 
@@ -8499,6 +8583,31 @@
             if (scPlaying) { _scCmd('pause'); } else { _scCmd('play'); }
         });
 
+        // Next track
+        var nextBtn = document.getElementById('sc-next-btn');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                try { window._scPlayNext(); } catch(e) {}
+            });
+        }
+
+        // Volume — слушаем и 'input' (desktop/Chrome) и 'change' (mobile WebView/iOS)
+        var volEl = document.getElementById('sc-volume');
+        if (volEl) {
+            function _onVolChange() {
+                scVolume = parseInt(volEl.value, 10);
+                if (scMuted && scVolume > 0) { scMuted = false; }
+                _applyVol();
+                _setSpeaker(scPlaying);
+            }
+            volEl.addEventListener('input',  _onVolChange);
+            volEl.addEventListener('change', _onVolChange);
+            // touch-fallback: принудительный вызов при touchend
+            volEl.addEventListener('touchend', function() {
+                setTimeout(_onVolChange, 50);
+            }, {passive: true});
+        }
+
         // Seek
         var seekEl = document.getElementById('sc-seek');
         seekEl.addEventListener('mousedown', function() { seeking = true; });
@@ -8511,22 +8620,6 @@
             seeking = false;
         });
 
-        // Volume / Mute
-        document.getElementById('sc-vol-up').addEventListener('click', function() {
-            scVolume = Math.min(100, scVolume + 10);
-            document.getElementById('sc-vol-label').textContent = scVolume + '%';
-            _applyVol();
-        });
-        document.getElementById('sc-vol-down').addEventListener('click', function() {
-            scVolume = Math.max(0, scVolume - 10);
-            document.getElementById('sc-vol-label').textContent = scVolume + '%';
-            _applyVol();
-        });
-        document.getElementById('sc-mute-btn').addEventListener('click', function() {
-            scMuted = !scMuted;
-            document.getElementById('sc-mute-btn').textContent = scMuted ? '🔇' : '🔊';
-            _applyVol();
-        });
 
         // ── Загрузка нового трека: меняем iframe.src ─────────────────────────
         // SC player's raw postMessage 'load' expects a full player URL string —
@@ -8540,6 +8633,7 @@
             document.getElementById('sc-current').textContent = '0:00';
             document.getElementById('sc-total').textContent = '0:00';
             document.getElementById('sc-play-btn').textContent = '⏸';
+            _setSpeaker(true);
 
             var iframe = document.getElementById('sc-iframe');
             if (!iframe) return;
@@ -8553,7 +8647,7 @@
     (function() {
         var _muSource = 'sc';   // 'sc' | 'sp'
         var _muPeriod = '24h';  // '24h' | '7d'
-        var _muOpen   = true;
+        var _muOpen   = false;
         var _muCurrentUrl = null;  // SC: permalink_url; DZ: deezer link
         var _spPlayingId  = null;  // ID трека Deezer для подсветки
 
