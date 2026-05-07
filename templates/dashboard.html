@@ -611,40 +611,32 @@
             accent-color: #d4af37;
             cursor: pointer;
         }
-        .sc-vol-wrap {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            flex-shrink: 0;
-        }
-        #sc-mute-btn {
+        #sc-next-btn {
             background: none;
             border: none;
             color: #d4af37;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
-            padding: 2px;
+            flex-shrink: 0;
+            padding: 0 2px;
             line-height: 1;
             opacity: 0.85;
+            transition: opacity 0.15s;
         }
-        #sc-mute-btn:hover { opacity: 1; }
-        .sc-vol-btn {
-            background: rgba(212,175,55,0.12);
-            border: 1px solid rgba(212,175,55,0.3);
-            color: #d4af37;
-            width: 22px;
-            height: 22px;
-            border-radius: 5px;
+        #sc-next-btn:hover { opacity: 1; }
+        #sc-volume {
+            width: 70px;
+            height: 3px;
+            accent-color: #d4af37;
             cursor: pointer;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.15s;
+            flex-shrink: 0;
+            touch-action: manipulation;
         }
-        .sc-vol-btn:hover {
-            background: rgba(212,175,55,0.25);
-            border-color: #d4af37;
+        @media (max-width: 600px) {
+            #sc-volume {
+                width: 90px;
+                height: 18px;
+            }
         }
         /* SC Новинки panel */
         #sc-newtrack-panel, #crypto-bots-panel {
@@ -768,12 +760,7 @@
         .sc-nt-play-icon { font-size: 10px; color: #d4af37; flex-shrink: 0; margin-right: 2px; }
         .sc-nt-loading { text-align: center; color: #555; font-size: 12px; padding: 22px; }
         .sc-nt-updated { font-size: 10px; color: #444; padding: 4px 14px; text-align: right; }
-        #sc-vol-label {
-            font-size: 10px;
-            color: rgba(212,175,55,0.8);
-            min-width: 26px;
-            text-align: center;
-        }
+
         #sc-iframe { opacity: 0; pointer-events: none; position: absolute; width: 2px; height: 2px; top: 0; left: 0; border: none; }
 
         .banner img, #banner-video {
@@ -2249,6 +2236,7 @@
         <iframe id="sc-iframe" allow="autoplay; encrypted-media"
             src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bassmaticrecords/deflee-bassmaticbox-showcase-x-fantomas-rooftop-live-210921&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&buying=false&sharing=false&download=false"></iframe>
         <div id="sc-player-wrap">
+            <button id="sc-next-btn" title="Следующий трек">⏭</button>
             <button id="sc-play-btn" title="Play/Pause">▶</button>
             <div class="sc-track-info">
                 <div id="sc-track-name">DEFLEE BassmaticBOX</div>
@@ -2258,12 +2246,7 @@
                     <span class="sc-time" id="sc-total">0:00</span>
                 </div>
             </div>
-            <div class="sc-vol-wrap">
-                <button id="sc-mute-btn" title="Mute/Unmute">🔊</button>
-                <button class="sc-vol-btn" id="sc-vol-down" title="Volume -">−</button>
-                <span id="sc-vol-label">70%</span>
-                <button class="sc-vol-btn" id="sc-vol-up" title="Volume +">+</button>
-            </div>
+            <input type="range" id="sc-volume" min="0" max="100" value="70" step="1" title="Volume">
         </div>
 
         <!-- Музыкальные Новинки (SoundCloud + Deezer) -->
@@ -2308,9 +2291,9 @@
         </div>
 
         <div class="tabs">
-            <button class="tab" data-tab="entertainment" onclick="switchTab('entertainment')"><img src="/static/icons/entertainment_dark.png" data-light-src="/static/icons/entertainment.jpg" data-dark-src="/static/icons/entertainment_dark.png" alt=""><span>Развлечения</span><span class="tab-badge" id="cnt-entertainment" style="display:none"></span></button>
+            <button class="tab active" data-tab="entertainment" onclick="switchTab('entertainment')"><img src="/static/icons/entertainment_dark.png" data-light-src="/static/icons/entertainment.jpg" data-dark-src="/static/icons/entertainment_dark.png" alt=""><span>Развлечения</span><span class="tab-badge" id="cnt-entertainment" style="display:none"></span></button>
             <button class="tab" data-tab="restaurants" onclick="switchTab('restaurants')"><img src="/static/images/icons/restaurants_dark.png" data-light-src="/static/images/icons/restaurants.jpg" data-dark-src="/static/images/icons/restaurants_dark.png" alt=""><span>Рестораны</span><span class="tab-badge" id="cnt-restaurants" style="display:none"></span></button>
-            <button class="tab active" data-tab="realestate" onclick="switchTab('realestate')"><img src="/static/icons/realestate_dark.png" data-light-src="/static/icons/realestate.png" data-dark-src="/static/icons/realestate_dark.png" alt=""><span>Недвижимость</span><span class="tab-badge" id="cnt-realestate" style="display:none"></span></button>
+            <button class="tab" data-tab="realestate" onclick="switchTab('realestate')"><img src="/static/icons/realestate_dark.png" data-light-src="/static/icons/realestate.png" data-dark-src="/static/icons/realestate_dark.png" alt=""><span>Недвижимость</span><span class="tab-badge" id="cnt-realestate" style="display:none"></span></button>
             <button class="tab" data-tab="transport" onclick="switchTab('transport')"><img src="/static/icons/transport_dark.png" data-light-src="/static/icons/transport.png" data-dark-src="/static/icons/transport_dark.png" alt=""><span>Транспорт</span><span class="tab-badge" id="cnt-transport" style="display:none"></span></button>
             <button class="tab" data-tab="exchange" onclick="switchTab('exchange')"><img src="/static/icons/exchange_new.png" data-light-src="/static/icons/exchange.png" data-dark-src="/static/icons/exchange_new.png" alt=""><span>Финансы</span><span class="tab-badge" id="cnt-exchange" style="display:none"></span></button>
             <button class="tab" data-tab="tours" onclick="switchTab('tours')"><img src="/static/images/icons/tours_dark.jpg" data-light-src="/static/images/icons/tours.jpg" data-dark-src="/static/images/icons/tours_dark.jpg" alt=""><span>Экскурсии</span><span class="tab-badge" id="cnt-tours" style="display:none"></span></button>
@@ -2706,7 +2689,7 @@
         </div>
 
         <!-- Недвижимость -->
-        <div id="realestate" class="content active">
+        <div id="realestate" class="content">
             <div id="vietnam-realestate-buttons" style="padding: 10px 12px 0;">
                 <div style="position:relative;">
                     <div class="tours-city-switcher" id="revn-switcher" onclick="toggleCityDrop('revn')">
@@ -3361,7 +3344,7 @@
         </div>
 
         <!-- Развлечения -->
-        <div id="entertainment" class="content">
+        <div id="entertainment" class="content active">
             <!-- Вьетнам: city switcher -->
             <div id="vietnam-entertainment-buttons" style="padding: 10px 12px 0;">
                 <div style="position:relative;">
@@ -5425,6 +5408,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=f18d21c0" defer></script>
+<script src="/static/js/dashboard.js?v=20260507f" defer></script>
 </body>
 </html>
