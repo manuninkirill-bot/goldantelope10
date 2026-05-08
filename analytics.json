@@ -402,12 +402,12 @@
       "tg_visitors": [
         "6597838241"
       ],
-      "page_views": 895,
+      "page_views": 930,
       "countries": {
-        "vietnam": 895
+        "vietnam": 930
       },
       "categories": {
-        "entertainment": 864,
+        "entertainment": 899,
         "realestate": 27,
         "transport": 4
       },
@@ -420,12 +420,12 @@
         "06": 120,
         "07": 138,
         "08": 115,
-        "09": 3
+        "09": 38
       },
       "referrers": {},
       "devices": {
-        "mobile": 21,
-        "desktop": 874
+        "mobile": 22,
+        "desktop": 908
       }
     }
   },
@@ -677,7 +677,7 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 1462,
+      "visits": 1496,
       "last_seen": "2026-05-08"
     },
     "user_kas3lqvh5_1778180692972": {
@@ -707,7 +707,7 @@
     },
     "tg_6597838241": {
       "first_seen": "2026-05-07",
-      "visits": 33,
+      "visits": 34,
       "last_seen": "2026-05-08",
       "tg_id": "6597838241"
     },
