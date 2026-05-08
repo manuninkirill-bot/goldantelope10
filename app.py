@@ -2795,9 +2795,9 @@ def banner_video_proxy(msg_id):
     #    Используем video_cdn_ts для видео и cdn_ts как fallback (для обратной совместимости)
     _bdata = _load_banner_data()
     _entry = _bdata.get(str(msg_id), {})
-    _vcdn = _entry.get('video_cdn_url', '')
+    _vcdn = _entry.get('video_cdn_url', '') or _entry.get('cdn_url', '')
     _vcdn_ts = _entry.get('video_cdn_ts') or _entry.get('cdn_ts', 0)
-    if _vcdn and (time.time() - _vcdn_ts) < 82800:
+    if _vcdn and (time.time() - _vcdn_ts) < 3600:
         logger.debug(f'[banner-video] CDN redirect для {msg_id}: {_vcdn[:60]}')
         return redirect(_vcdn, code=302)
 
@@ -2916,6 +2916,8 @@ def banner_image_proxy(msg_id):
             if cdn_url_v:
                 _banner_og_cache[msg_id] = (cdn_url_v, time.time())
                 banner_data_cache[str(msg_id)] = banner_data_cache.get(str(msg_id), {})
+                banner_data_cache[str(msg_id)]['video_cdn_url'] = cdn_url_v
+                banner_data_cache[str(msg_id)]['video_cdn_ts'] = int(time.time())
                 banner_data_cache[str(msg_id)]['cdn_url'] = cdn_url_v
                 banner_data_cache[str(msg_id)]['cdn_ts'] = int(time.time())
                 _save_banner_data(banner_data_cache)
