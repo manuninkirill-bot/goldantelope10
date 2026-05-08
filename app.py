@@ -49,6 +49,22 @@ _REPLIT_BASE = f'https://{_replit_dev}' if _replit_dev else ''
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.secret_key = os.environ.get("SESSION_SECRET")
+
+# Обрабатываем заголовки реверс-прокси (Replit/Cloudflare → Werkzeug)
+from werkzeug.middleware.proxy_fix import ProxyFix
+
+class _StripForwardedHeader:
+    """Убирает заголовок Forwarded чтобы не конфликтовал с X-Forwarded-Proto.
+    Werkzeug 2.1+ бросает Bad Request когда оба заголовка есть с разными схемами."""
+    def __init__(self, wsgi_app):
+        self._app = wsgi_app
+    def __call__(self, environ, start_response):
+        environ.pop('HTTP_FORWARDED', None)
+        return self._app(environ, start_response)
+
+app.wsgi_app = _StripForwardedHeader(
+    ProxyFix(app.wsgi_app, x_proto=1, x_host=1, x_for=1)
+)
 # Долгий кэш для версионированных статических файлов (JS/CSS с ?v=hash)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000  # 1 год
 app.config['COMPRESS_MIMETYPES'] = [
