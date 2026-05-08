@@ -344,24 +344,25 @@
         "user_sr6clnl45_1778181027364",
         "user_3oejc7ohw_1778181108698",
         "user_jr010vrzu_1778181285613",
-        "user_qo5lro3vx_1778183943224"
+        "user_qo5lro3vx_1778183943224",
+        "tg_6597838241"
       ],
-      "page_views": 1789,
+      "page_views": 2338,
       "countries": {
-        "vietnam": 1780,
+        "vietnam": 2329,
         "india": 1,
         "indonesia": 1,
         "thailand": 7
       },
       "categories": {
         "real_estate": 1246,
-        "entertainment": 366,
-        "realestate": 68,
+        "entertainment": 913,
+        "realestate": 69,
         "restaurants": 33,
         "transport": 13,
         "tours": 48,
         "exchange": 13,
-        "visas": 2
+        "visas": 3
       },
       "hours": {
         "01": 56,
@@ -377,14 +378,52 @@
         "16": 289,
         "17": 178,
         "19": 218,
-        "20": 40
+        "20": 218,
+        "21": 131,
+        "22": 120,
+        "23": 120
       },
       "referrers": {},
       "devices": {
-        "mobile": 327,
-        "desktop": 1462
+        "mobile": 350,
+        "desktop": 1988
       },
-      "tg_visitors": []
+      "tg_visitors": [
+        "6597838241"
+      ]
+    },
+    "2026-05-08": {
+      "unique_visitors": [
+        "user_y1yukxp2g_1778180659618",
+        "tg_6597838241"
+      ],
+      "tg_visitors": [
+        "6597838241"
+      ],
+      "page_views": 841,
+      "countries": {
+        "vietnam": 841
+      },
+      "categories": {
+        "entertainment": 821,
+        "realestate": 16,
+        "transport": 4
+      },
+      "hours": {
+        "00": 120,
+        "01": 120,
+        "02": 39,
+        "04": 120,
+        "05": 120,
+        "06": 120,
+        "07": 138,
+        "08": 64
+      },
+      "referrers": {},
+      "devices": {
+        "mobile": 21,
+        "desktop": 820
+      }
     }
   },
   "visitors": {
@@ -635,8 +674,8 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 126,
-      "last_seen": "2026-05-07"
+      "visits": 1410,
+      "last_seen": "2026-05-08"
     },
     "user_kas3lqvh5_1778180692972": {
       "first_seen": "2026-05-07",
@@ -645,12 +684,12 @@
     },
     "user_sr6clnl45_1778181027364": {
       "first_seen": "2026-05-07",
-      "visits": 61,
+      "visits": 123,
       "last_seen": "2026-05-07"
     },
     "user_3oejc7ohw_1778181108698": {
       "first_seen": "2026-05-07",
-      "visits": 7,
+      "visits": 18,
       "last_seen": "2026-05-07"
     },
     "user_jr010vrzu_1778181285613": {
@@ -662,6 +701,12 @@
       "first_seen": "2026-05-07",
       "visits": 3,
       "last_seen": "2026-05-07"
+    },
+    "tg_6597838241": {
+      "first_seen": "2026-05-07",
+      "visits": 33,
+      "last_seen": "2026-05-08",
+      "tg_id": "6597838241"
     }
   }
 }
