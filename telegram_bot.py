@@ -60,8 +60,8 @@ def set_menu_button():
     return requests.post(url, data=data).json()
 
 def handle_start(chat_id, user_name):
-    webapp_url = get_webapp_url()
     name = user_name or "друг"
+    site_url = "https://goldantelopeasia.com"
 
     text = f'''🎭 <b>Развлекательный портал Юго-Восточной Азии</b>
 
@@ -71,20 +71,18 @@ def handle_start(chat_id, user_name):
 
 🇻🇳 Вьетнам  🇹🇭 Таиланд  🇮🇳 Индия  🇮🇩 Индонезия
 
-Тысячи актуальных объявлений из проверенных Telegram-каналов — в одном месте, с фото и контактами.
-
-👇 Выберите страну:'''
+Тысячи актуальных объявлений из проверенных Telegram-каналов — в одном месте, с фото и контактами.'''
 
     keyboard = {
         "inline_keyboard": [
-            [{"text": "🌏 Открыть каталог / Open catalog", "web_app": {"url": webapp_url}}],
+            [{"text": "🌐 Открыть приложение", "url": site_url}],
             [
-                {"text": "🇻🇳 Вьетнам", "web_app": {"url": f"{webapp_url}/?country=vietnam&lang=ru"}},
-                {"text": "🇹🇭 Таиланд", "web_app": {"url": f"{webapp_url}/?country=thailand&lang=ru"}}
+                {"text": "🇻🇳 Вьетнам", "url": f"{site_url}/?country=vietnam"},
+                {"text": "🇹🇭 Таиланд", "url": f"{site_url}/?country=thailand"}
             ],
             [
-                {"text": "🇮🇳 Индия", "web_app": {"url": f"{webapp_url}/?country=india&lang=ru"}},
-                {"text": "🇮🇩 Индонезия", "web_app": {"url": f"{webapp_url}/?country=indonesia&lang=ru"}}
+                {"text": "🇮🇳 Индия", "url": f"{site_url}/?country=india"},
+                {"text": "🇮🇩 Индонезия", "url": f"{site_url}/?country=indonesia"}
             ]
         ]
     }
@@ -102,13 +100,13 @@ def handle_start(chat_id, user_name):
     return result
 
 def handle_app(chat_id):
-    webapp_url = get_webapp_url()
+    site_url = "https://goldantelopeasia.com"
     
-    text = "🚀 Нажмите кнопку, чтобы открыть мини-приложение:"
+    text = "🚀 Нажмите кнопку, чтобы открыть приложение:"
     
     keyboard = {
         "inline_keyboard": [
-            [{"text": "📱 Открыть Goldantelope ASIA", "web_app": {"url": webapp_url}}]
+            [{"text": "🌐 Открыть Goldantelope ASIA", "url": site_url}]
         ]
     }
     

@@ -597,14 +597,14 @@ def telegram_webhook():
         
         if chat_id and text:
             if text == '/start':
-                webapp_url = f"https://{os.environ.get('REPLIT_DEV_DOMAIN', '')}"
+                site_url = "https://goldantelopeasia.com"
                 keyboard = {
                     "inline_keyboard": [
-                        [{"text": "🚀 Открыть мини приложение", "web_app": {"url": webapp_url}}],
-                        [{"text": "🇹🇭 Тайланд", "callback_data": "country_thailand"}, 
-                         {"text": "🇻🇳 Вьетнам", "callback_data": "country_vietnam"}],
-                        [{"text": "🇮🇳 Индия", "callback_data": "country_india"}, 
-                         {"text": "🇮🇩 Индонезия", "callback_data": "country_indonesia"}]
+                        [{"text": "🌐 Открыть приложение", "url": site_url}],
+                        [{"text": "🇹🇭 Таиланд", "url": f"{site_url}/?country=thailand"},
+                         {"text": "🇻🇳 Вьетнам", "url": f"{site_url}/?country=vietnam"}],
+                        [{"text": "🇮🇳 Индия", "url": f"{site_url}/?country=india"},
+                         {"text": "🇮🇩 Индонезия", "url": f"{site_url}/?country=indonesia"}]
                     ]
                 }
                 send_telegram_message(chat_id, WELCOME_MESSAGE, keyboard)
