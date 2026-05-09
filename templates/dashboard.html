@@ -763,6 +763,93 @@
 
         #sc-iframe { opacity: 0; pointer-events: none; position: absolute; width: 2px; height: 2px; top: 0; left: 0; border: none; }
 
+        /* ── Светлая тема: плеер и крипто ── */
+        html:not(.dark) #sc-player-wrap {
+            background: #ffffff;
+            border-color: #d4af37;
+            box-shadow: 0 2px 10px rgba(212,175,55,0.15);
+        }
+        html:not(.dark) #sc-track-name {
+            color: #8a6e1a;
+        }
+        html:not(.dark) .sc-time {
+            color: rgba(100,80,20,0.7);
+        }
+        html:not(.dark) #sc-next-btn {
+            color: #8a6e1a;
+        }
+        html:not(.dark) #sc-newtrack-panel,
+        html:not(.dark) #crypto-bots-panel {
+            background: #ffffff;
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 2px 10px rgba(212,175,55,0.1);
+        }
+        html:not(.dark) .sc-nt-header {
+            border-bottom-color: rgba(212,175,55,0.25);
+        }
+        html:not(.dark) .sc-nt-title {
+            color: #8a6e1a;
+        }
+        html:not(.dark) .sc-nt-src {
+            color: #666;
+            border-color: rgba(180,140,30,0.4);
+        }
+        html:not(.dark) .sc-nt-src.active {
+            background: rgba(212,175,55,0.18);
+            color: #7a6010;
+            border-color: #d4af37;
+        }
+        html:not(.dark) .sc-nt-src:hover:not(.active) {
+            border-color: rgba(180,140,30,0.7);
+            color: #555;
+        }
+        html:not(.dark) .sc-nt-tab {
+            color: #777;
+            border-color: rgba(180,140,30,0.4);
+        }
+        html:not(.dark) .sc-nt-tab.active {
+            background: #d4af37;
+            color: #fff;
+            border-color: #d4af37;
+        }
+        html:not(.dark) .sc-nt-tab:hover:not(.active) {
+            border-color: #d4af37;
+            color: #8a6e1a;
+        }
+        html:not(.dark) .sc-nt-toggle {
+            color: #8a6e1a;
+        }
+        html:not(.dark) .sc-nt-item {
+            border-bottom-color: rgba(0,0,0,0.06);
+        }
+        html:not(.dark) .sc-nt-item:hover {
+            background: rgba(212,175,55,0.08);
+        }
+        html:not(.dark) .sc-nt-item.playing {
+            background: rgba(212,175,55,0.14);
+        }
+        html:not(.dark) .sc-nt-art {
+            background: #f0e8cc;
+        }
+        html:not(.dark) .sc-nt-name {
+            color: #222;
+        }
+        html:not(.dark) .sc-nt-artist {
+            color: #666;
+        }
+        html:not(.dark) .sc-nt-dur {
+            color: #888;
+        }
+        html:not(.dark) .sc-nt-loading {
+            color: #888;
+        }
+        html:not(.dark) .sc-nt-updated {
+            color: #aaa;
+        }
+        html:not(.dark) .sc-nt-list::-webkit-scrollbar-thumb {
+            background: rgba(212,175,55,0.4);
+        }
+
         .banner img, #banner-video {
             width: 100%;
             height: auto;

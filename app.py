@@ -11478,35 +11478,95 @@ def _fetch_sc_new_tracks(period='24h'):
             return result
 
         if period == '24h':
-            # Реальные новинки — треки загруженные за последние 24 часа
-            from_ts = (now_utc - _dt.timedelta(hours=24)).strftime('%Y-%m-%dT%H:%M:%SZ')
-            try:
-                r = requests.get(
-                    'https://api-v2.soundcloud.com/search/tracks',
-                    headers=hdrs,
-                    params={
-                        'q': '',
-                        'sort': 'created_at',
-                        'created_at[from]': from_ts,
-                        'limit': 50,
-                        'client_id': cid,
-                    },
-                    timeout=15,
-                )
-                if r.status_code == 200:
-                    raw = _extract_search_tracks(r.json().get('collection', []))
-                    # Фильтр: только стримируемые треки с обложкой, убираем совсем короткие (<60s)
-                    raw = [t for t in raw if t['artwork'] and t['duration'] >= 60000]
-                    tracks = raw[:25]
-                    logger.info(f'[SC] search/24h: {len(tracks)} tracks (from {len(raw)} raw)')
-                else:
-                    logger.warning(f'[SC] search/24h error: {r.status_code}')
-            except Exception as e:
-                logger.warning(f'[SC] search/24h exception: {e}')
+            # Поиск реально новых треков загруженных за последние 3 дня
+            # Используем конкретные жанровые запросы чтобы получить свежий контент
+            _search_queries = ['electronic', 'indie', 'pop', 'dance', 'hip hop']
+            from_ts = (now_utc - _dt.timedelta(days=3)).strftime('%Y-%m-%dT%H:%M:%SZ')
+            seen_ids = set()
+            for _q in _search_queries:
+                if len(tracks) >= 25:
+                    break
+                try:
+                    r = requests.get(
+                        'https://api-v2.soundcloud.com/search/tracks',
+                        headers=hdrs,
+                        params={
+                            'q': _q,
+                            'sort': 'created_at',
+                            'created_at[from]': from_ts,
+                            'limit': 10,
+                            'client_id': cid,
+                            'filter.duration': 'medium',
+                        },
+                        timeout=12,
+                    )
+                    if r.status_code == 200:
+                        fresh = [t for t in _extract_search_tracks(r.json().get('collection', []))
+                                 if t['artwork'] and t['duration'] >= 60000 and t['id'] not in seen_ids]
+                        for t in fresh:
+                            seen_ids.add(t['id'])
+                            tracks.append(t)
+                        logger.info(f'[SC] search q={_q}: +{len(fresh)}, total={len(tracks)}')
+                    else:
+                        logger.warning(f'[SC] search q={_q} error: {r.status_code}')
+                except Exception as e:
+                    logger.warning(f'[SC] search q={_q} exception: {e}')
+            tracks = tracks[:25]
 
-            # Fallback: если поиск не дал результатов — trending top-25
+            # Fallback: new_hot по жанрам если поиск не дал результатов
             if not tracks:
-                logger.info('[SC] 24h search empty — fallback to trending')
+                for _g in ['soundcloud:genres:electronic', 'soundcloud:genres:pop',
+                           'soundcloud:genres:indie', 'soundcloud:genres:danceedm']:
+                    if len(tracks) >= 25:
+                        break
+                    try:
+                        r = requests.get(
+                            'https://api-v2.soundcloud.com/charts',
+                            headers=hdrs,
+                            params={'kind': 'new_hot', 'genre': _g,
+                                    'limit': 10, 'client_id': cid},
+                            timeout=12,
+                        )
+                        if r.status_code == 200:
+                            for t in _extract_chart_tracks(r.json().get('collection', [])):
+                                if t['id'] not in seen_ids:
+                                    seen_ids.add(t['id'])
+                                    tracks.append(t)
+                    except Exception:
+                        pass
+                tracks = tracks[:25]
+        else:
+            # 7d: new_hot по нескольким жанрам — треки реально набирающие обороты
+            _genres_7d = [
+                'soundcloud:genres:electronic',
+                'soundcloud:genres:pop',
+                'soundcloud:genres:indie',
+                'soundcloud:genres:alternativerock',
+                'soundcloud:genres:danceedm',
+            ]
+            seen_ids = set()
+            for _g in _genres_7d:
+                if len(tracks) >= 25:
+                    break
+                try:
+                    r = requests.get(
+                        'https://api-v2.soundcloud.com/charts',
+                        headers=hdrs,
+                        params={'kind': 'new_hot', 'genre': _g,
+                                'limit': 8, 'client_id': cid},
+                        timeout=12,
+                    )
+                    if r.status_code == 200:
+                        for t in _extract_chart_tracks(r.json().get('collection', [])):
+                            if t['id'] not in seen_ids:
+                                seen_ids.add(t['id'])
+                                tracks.append(t)
+                    elif r.status_code not in (400, 404):
+                        logger.warning(f'[SC] new_hot/7d genre={_g} error: {r.status_code}')
+                except Exception as e:
+                    logger.warning(f'[SC] 7d genre={_g} exception: {e}')
+            # Fallback на trending если new_hot пустой
+            if not tracks:
                 try:
                     r = requests.get(
                         'https://api-v2.soundcloud.com/charts',
@@ -11517,24 +11577,9 @@ def _fetch_sc_new_tracks(period='24h'):
                     )
                     if r.status_code == 200:
                         tracks = _extract_chart_tracks(r.json().get('collection', []))
-                except Exception as e:
-                    logger.warning(f'[SC] trending fallback exception: {e}')
-        else:
-            # 7d: топ трендов (страница 1 — позиции 1–25)
-            try:
-                r = requests.get(
-                    'https://api-v2.soundcloud.com/charts',
-                    headers=hdrs,
-                    params={'kind': 'trending', 'genre': 'soundcloud:genres:all-music',
-                            'limit': 25, 'client_id': cid},
-                    timeout=15,
-                )
-                if r.status_code == 200:
-                    tracks = _extract_chart_tracks(r.json().get('collection', []))
-                else:
-                    logger.warning(f'[SC] trending/7d error: {r.status_code}')
-            except Exception as e:
-                logger.warning(f'[SC] 7d exception: {e}')
+                except Exception:
+                    pass
+            tracks = tracks[:25]
 
         # Дедупликация по permalink_url
         seen_urls = set()
@@ -11597,17 +11642,27 @@ def _sc_daily_refresh_loop():
 threading.Thread(target=_sc_daily_refresh_loop, daemon=True, name='SCDailyRefresh').start()
 
 
+_SC_CACHE_TTL = 6 * 3600  # 6 часов
+
 @app.route('/api/sc-new-tracks')
 def api_sc_new_tracks():
+    import datetime as _dt
     period = request.args.get('period', '24h')
     if period not in ('24h', '7d'):
         period = '24h'
     cached = _load_sc_tracks_cache(period)
     if cached and cached.get('tracks'):
-        return jsonify(cached)
-    # Нет кэша — пробуем получить сейчас (может занять несколько секунд)
+        # Проверяем свежесть кэша
+        try:
+            updated = _dt.datetime.strptime(cached['updated'], '%Y-%m-%dT%H:%M:%SZ')
+            age = (_dt.datetime.utcnow() - updated).total_seconds()
+            if age < _SC_CACHE_TTL:
+                return jsonify(cached)
+            logger.info(f'[SC] Cache stale ({age/3600:.1f}h) — refreshing period={period}')
+        except Exception:
+            return jsonify(cached)
+    # Нет кэша или устарел — получаем сейчас
     tracks = _fetch_sc_new_tracks(period)
-    import datetime as _dt
     return jsonify({
         'tracks': tracks,
         'updated': _dt.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
@@ -11733,16 +11788,25 @@ def _dz_daily_refresh_loop():
 threading.Thread(target=_dz_daily_refresh_loop, daemon=True, name='DzDailyRefresh').start()
 
 
+_DZ_CACHE_TTL = 6 * 3600  # 6 часов
+
 @app.route('/api/sp-new-tracks')
 def api_sp_new_tracks():
+    import datetime as _dt
     period = request.args.get('period', '24h')
     if period not in ('24h', '7d'):
         period = '24h'
     cached = _load_sp_tracks_cache(period)
     if cached and cached.get('tracks'):
-        return jsonify(cached)
+        try:
+            updated = _dt.datetime.strptime(cached['updated'], '%Y-%m-%dT%H:%M:%SZ')
+            age = (_dt.datetime.utcnow() - updated).total_seconds()
+            if age < _DZ_CACHE_TTL:
+                return jsonify(cached)
+            logger.info(f'[Deezer] Cache stale ({age/3600:.1f}h) — refreshing period={period}')
+        except Exception:
+            return jsonify(cached)
     tracks = _fetch_deezer_tracks(period)
-    import datetime as _dt
     return jsonify({
         'tracks': tracks,
         'updated': _dt.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),

@@ -435,20 +435,20 @@
         "user_pzwi9syg9_1778311860660"
       ],
       "tg_visitors": [],
-      "page_views": 8,
+      "page_views": 34,
       "countries": {
-        "vietnam": 8
+        "vietnam": 34
       },
       "categories": {
-        "entertainment": 8
+        "entertainment": 34
       },
       "hours": {
-        "07": 8
+        "07": 34
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 8
+        "desktop": 34
       }
     }
   },
@@ -700,7 +700,7 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 1541,
+      "visits": 1566,
       "last_seen": "2026-05-09"
     },
     "user_kas3lqvh5_1778180692972": {
@@ -751,7 +751,7 @@
     },
     "user_pzwi9syg9_1778311860660": {
       "first_seen": "2026-05-09",
-      "visits": 1,
+      "visits": 2,
       "last_seen": "2026-05-09"
     }
   }
