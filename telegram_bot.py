@@ -87,17 +87,7 @@ def handle_start(chat_id, user_name):
         ]
     }
 
-    result = send_message(chat_id, text, keyboard)
-    # Pin the welcome message so it stays at the top
-    msg_id = result.get('result', {}).get('message_id') if result.get('ok') else None
-    if msg_id:
-        requests.post(
-            f'https://api.telegram.org/bot{_get_token()}/pinChatMessage',
-            json={'chat_id': chat_id, 'message_id': msg_id, 'disable_notification': True},
-            timeout=10
-        )
-    
-    return result
+    return send_message(chat_id, text, keyboard)
 
 def handle_app(chat_id):
     site_url = "https://goldantelopeasia.com"
