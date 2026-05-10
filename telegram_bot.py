@@ -63,15 +63,25 @@ def handle_start(chat_id, user_name):
     name = user_name or "друг"
     site_url = "https://goldantelopeasia.com"
 
-    text = f'''🎭 <b>Развлекательный портал Юго-Восточной Азии</b>
+    # Снять все закреплённые сообщения (убрать старые)
+    try:
+        requests.post(
+            f'https://api.telegram.org/bot{_get_token()}/unpinAllChatMessages',
+            json={'chat_id': chat_id},
+            timeout=5
+        )
+    except Exception:
+        pass
 
-Привет, {name}!
-
-Афиша · События · Рестораны · Туры · Жильё · Транспорт
-
-🇻🇳 Вьетнам  🇹🇭 Таиланд  🇮🇳 Индия  🇮🇩 Индонезия
-
-Тысячи актуальных объявлений из проверенных Telegram-каналов — в одном месте, с фото и контактами.'''
+    text = (
+        f'🎭 <b>Развлекательный портал Юго-Восточной Азии</b>\n\n'
+        f'Привет, {name}!\n\n'
+        f'Афиша · События · Рестораны · Туры · Жильё · Транспорт\n\n'
+        f'🇻🇳 Вьетнам  🇹🇭 Таиланд  🇮🇳 Индия  🇮🇩 Индонезия\n\n'
+        f'Тысячи актуальных объявлений из проверенных Telegram-каналов — '
+        f'в одном месте, с фото и контактами.\n\n'
+        f'🌐 <a href="{site_url}">{site_url}</a>'
+    )
 
     keyboard = {
         "inline_keyboard": [
