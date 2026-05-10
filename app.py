@@ -4572,12 +4572,6 @@ def bot_webhook():
             '• Аналитика рынка\n\n'
             'Всё в одном месте — в приложении Goldantelope.',
             keyboard)
-    elif text == '/support':
-        send_message(chat_id,
-            '🙋 <b>Помощь и поддержка</b>\n\n'
-            'Свяжитесь с нашим менеджером:\n\n'
-            '✈️ Telegram: @radimiralubvi\n\n'
-            'Мы отвечаем быстро и помогаем с любым вопросом.')
     elif text == '/help':
         site_url = "https://goldantelopeasia.com"
         keyboard = {"inline_keyboard": [[{"text": "🌐 Открыть приложение", "url": site_url}]]}

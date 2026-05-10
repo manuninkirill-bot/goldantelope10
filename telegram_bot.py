@@ -65,7 +65,6 @@ def set_bot_commands():
         {"command": "exchange", "description": "Обмен денег: наличные и USDT (VND)"},
         {"command": "tours",    "description": "Развлечения: экскурсии, дайвинг, билеты"},
         {"command": "crypto",   "description": "Трейдинг: сигналы и личный кабинет"},
-        {"command": "support",  "description": "Помощь: связаться с менеджером"},
     ]
     data = {'commands': json.dumps(commands)}
     return requests.post(url, data=data).json()
