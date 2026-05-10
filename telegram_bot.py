@@ -36,14 +36,36 @@ def send_message(chat_id, text, reply_markup=None):
         data['reply_markup'] = json.dumps(reply_markup)
     return requests.post(url, data=data).json()
 
+def set_bot_description():
+    token = _get_token()
+    desc = (
+        "Визаран Вьетнам — быстрые поездки на границу из Нячанга, Дананга и Хошимина.\n"
+        "Также в приложении:\n"
+        "• Аренда жилья во Вьетнаме\n"
+        "• Обмен денег (USDT/VND)\n"
+        "• Развлечения и экскурсии"
+    )
+    requests.post(
+        f'https://api.telegram.org/bot{token}/setMyDescription',
+        json={'description': desc},
+        timeout=10
+    )
+    requests.post(
+        f'https://api.telegram.org/bot{token}/setMyShortDescription',
+        json={'short_description': 'Визаран, аренда жилья, обмен денег и развлечения во Вьетнаме'},
+        timeout=10
+    )
+
 def set_bot_commands():
     url = f'https://api.telegram.org/bot{_get_token()}/setMyCommands'
     commands = [
-        {"command": "start", "description": "Запустить бота"},
-        {"command": "app", "description": "Открыть мини-приложение"},
-        {"command": "thailand", "description": "Каналы Тайланда"},
-        {"command": "vietnam", "description": "Каналы Вьетнама"},
-        {"command": "help", "description": "Помощь"}
+        {"command": "start",    "description": "Запустить бота: меню и услуги во Вьетнаме"},
+        {"command": "visarun",  "description": "Визаран Вьетнам: запись и актуальные цены"},
+        {"command": "rent",     "description": "Аренда жилья: Нячанг, Дананг, Хошимин"},
+        {"command": "exchange", "description": "Обмен денег: наличные и USDT (VND)"},
+        {"command": "tours",    "description": "Развлечения: экскурсии, дайвинг, билеты"},
+        {"command": "crypto",   "description": "Трейдинг: сигналы и личный кабинет"},
+        {"command": "support",  "description": "Помощь: связаться с менеджером"},
     ]
     data = {'commands': json.dumps(commands)}
     return requests.post(url, data=data).json()
@@ -114,13 +136,16 @@ def handle_app(chat_id):
 
 def setup_bot():
     print("Setting up bot...")
-    
+
+    set_bot_description()
+    print("Description: set")
+
     result1 = set_bot_commands()
     print(f"Commands: {result1}")
-    
+
     result2 = set_menu_button()
     print(f"Menu button: {result2}")
-    
+
     print(f"Web App URL: {get_webapp_url()}")
     print("Bot setup complete!")
 
