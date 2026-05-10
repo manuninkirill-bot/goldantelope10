@@ -460,20 +460,21 @@
         "user_y1yukxp2g_1778180659618"
       ],
       "tg_visitors": [],
-      "page_views": 13,
+      "page_views": 19,
       "countries": {
-        "vietnam": 13
+        "vietnam": 19
       },
       "categories": {
-        "entertainment": 13
+        "entertainment": 19
       },
       "hours": {
-        "06": 13
+        "06": 14,
+        "07": 5
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 13
+        "desktop": 19
       }
     }
   },
@@ -725,7 +726,7 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 1647,
+      "visits": 1653,
       "last_seen": "2026-05-10"
     },
     "user_kas3lqvh5_1778180692972": {
