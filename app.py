@@ -4523,17 +4523,81 @@ def bot_webhook():
         handle_start(chat_id, user_name)
     elif text == '/app':
         handle_app(chat_id)
+    elif text == '/visarun':
+        site_url = "https://goldantelopeasia.com"
+        keyboard = {"inline_keyboard": [[{"text": "🛂 Смотреть визаран", "url": f"{site_url}/?country=vietnam&tab=visas"}]]}
+        send_message(chat_id,
+            '🛂 <b>Визаран Вьетнам</b>\n\n'
+            'Быстрые поездки на границу из:\n'
+            '• Нячанга\n• Дананга\n• Хошимина\n\n'
+            'Актуальные цены, расписание и запись — в приложении.',
+            keyboard)
+    elif text == '/rent':
+        site_url = "https://goldantelopeasia.com"
+        keyboard = {"inline_keyboard": [[{"text": "🏠 Смотреть аренду", "url": f"{site_url}/?country=vietnam&tab=realestate"}]]}
+        send_message(chat_id,
+            '🏠 <b>Аренда жилья во Вьетнаме</b>\n\n'
+            'Квартиры и виллы в:\n'
+            '• Нячанге\n• Дананге\n• Хошимине\n• Ханое\n• Фукуоке\n\n'
+            'Тысячи актуальных предложений с фото и контактами.',
+            keyboard)
+    elif text == '/exchange':
+        site_url = "https://goldantelopeasia.com"
+        keyboard = {"inline_keyboard": [[{"text": "💱 Смотреть обмен", "url": f"{site_url}/?country=vietnam&tab=exchange"}]]}
+        send_message(chat_id,
+            '💱 <b>Обмен денег во Вьетнаме</b>\n\n'
+            'Наличные и USDT → VND\n\n'
+            '• Лучшие курсы от проверенных обменников\n'
+            '• Работаем в Нячанге, Дананге, Хошимине\n'
+            '• Без скрытых комиссий',
+            keyboard)
+    elif text == '/tours':
+        site_url = "https://goldantelopeasia.com"
+        keyboard = {"inline_keyboard": [[{"text": "🎭 Смотреть развлечения", "url": f"{site_url}/?country=vietnam&tab=entertainment"}]]}
+        send_message(chat_id,
+            '🎭 <b>Развлечения и экскурсии во Вьетнаме</b>\n\n'
+            '• Экскурсии и туры\n'
+            '• Дайвинг и снорклинг\n'
+            '• Билеты на шоу и события\n'
+            '• Аренда байков и автомобилей\n\n'
+            'Актуальные предложения с фото и ценами.',
+            keyboard)
+    elif text == '/crypto':
+        site_url = "https://goldantelopeasia.com"
+        keyboard = {"inline_keyboard": [[{"text": "📈 Открыть трейдинг", "url": f"{site_url}/?tab=crypto"}]]}
+        send_message(chat_id,
+            '📈 <b>Крипто-трейдинг</b>\n\n'
+            '• Торговые сигналы\n'
+            '• Личный кабинет\n'
+            '• Аналитика рынка\n\n'
+            'Всё в одном месте — в приложении Goldantelope.',
+            keyboard)
+    elif text == '/support':
+        send_message(chat_id,
+            '🙋 <b>Помощь и поддержка</b>\n\n'
+            'Свяжитесь с нашим менеджером:\n\n'
+            '✈️ Telegram: @radimiralubvi\n\n'
+            'Мы отвечаем быстро и помогаем с любым вопросом.')
     elif text == '/help':
-        send_message(chat_id, '🦌 <b>Goldantelope ASIA</b>\n\n/start — Главное меню\n/app — Открыть приложение\n/thailand — Тайланд\n/vietnam — Вьетнам\n/help — Помощь')
+        site_url = "https://goldantelopeasia.com"
+        keyboard = {"inline_keyboard": [[{"text": "🌐 Открыть приложение", "url": site_url}]]}
+        send_message(chat_id,
+            '🦌 <b>Goldantelope ASIA — команды бота</b>\n\n'
+            '/start — Главное меню\n'
+            '/visarun — Визаран Вьетнам\n'
+            '/rent — Аренда жилья\n'
+            '/exchange — Обмен денег\n'
+            '/tours — Развлечения и экскурсии\n'
+            '/crypto — Трейдинг\n'
+            '/support — Связаться с менеджером',
+            keyboard)
     elif text == '/thailand':
-        from telegram_bot import get_webapp_url
-        webapp_url = get_webapp_url()
-        keyboard = {"inline_keyboard": [[{"text": "🇹🇭 Открыть Тайланд", "url": f"{webapp_url}/?country=thailand"}]]}
+        site_url = "https://goldantelopeasia.com"
+        keyboard = {"inline_keyboard": [[{"text": "🇹🇭 Открыть Тайланд", "url": f"{site_url}/?country=thailand"}]]}
         send_message(chat_id, '🇹🇭 <b>Тайланд</b>\n\n70+ каналов:\n• Пхукет\n• Паттайя\n• Бангкок\n• Самуи\n\nВыберите жильё, транспорт, рестораны и многое другое!', keyboard)
     elif text == '/vietnam':
-        from telegram_bot import get_webapp_url
-        webapp_url = get_webapp_url()
-        keyboard = {"inline_keyboard": [[{"text": "🇻🇳 Открыть Вьетнам", "url": f"{webapp_url}/?country=vietnam"}]]}
+        site_url = "https://goldantelopeasia.com"
+        keyboard = {"inline_keyboard": [[{"text": "🇻🇳 Открыть Вьетнам", "url": f"{site_url}/?country=vietnam"}]]}
         send_message(chat_id, '🇻🇳 <b>Вьетнам</b>\n\n5,800+ объявлений:\n• Нячанг\n• Дананг\n• Хошимин\n• Ханой\n• Фукуок\n\nАренда, рестораны, туры и многое другое!', keyboard)
     elif text == '/auth':
         send_message(chat_id, '🔐 <b>Авторизация Telethon</b>\n\nОтправьте 5-значный код подтверждения из приложения Telegram.')
