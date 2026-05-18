@@ -485,21 +485,21 @@
         "user_g8ozby83k_1779109510789"
       ],
       "tg_visitors": [],
-      "page_views": 13,
+      "page_views": 18,
       "countries": {
-        "vietnam": 13
+        "vietnam": 18
       },
       "categories": {
-        "entertainment": 4,
-        "realestate": 9
+        "entertainment": 6,
+        "realestate": 12
       },
       "hours": {
-        "13": 13
+        "13": 18
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 13
+        "desktop": 18
       }
     }
   },
@@ -751,7 +751,7 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 1876,
+      "visits": 1880,
       "last_seen": "2026-05-18"
     },
     "user_kas3lqvh5_1778180692972": {
@@ -807,7 +807,7 @@
     },
     "user_g8ozby83k_1779109510789": {
       "first_seen": "2026-05-18",
-      "visits": 1,
+      "visits": 2,
       "last_seen": "2026-05-18"
     }
   }
