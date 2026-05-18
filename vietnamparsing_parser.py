@@ -1421,16 +1421,7 @@ def atomic_add_listing(category: str, item: dict, listings_file: str = None) -> 
                         ids.add(it['id'])
         if _item_id in ids:
             return False
-        new_text = _get_item_text(item)
-        new_price = _get_item_price(item)
-        if new_text and category in data and isinstance(data[category], list):
-            for existing in data[category][:200]:
-                ex_price = _get_item_price(existing)
-                if new_price != ex_price and (new_price or ex_price):
-                    continue
-                if _is_text_duplicate(new_text, _get_item_text(existing)):
-                    logger.info(f"[dedup] Дубликат отклонён: {item.get('id','')} ~= {existing.get('id','')}")
-                    return False
+        # Текстовая дедупликация отключена — добавляем 100% объявлений
         if category not in data:
             data[category] = []
         data[category].insert(0, item)
@@ -1490,13 +1481,9 @@ def poll_bot_for_updates(last_update_id: int = 0) -> tuple[list, int]:
         }
         resp = requests.get(url, params=params, timeout=30)
         if resp.status_code == 409:
-            logger.info("getUpdates 409 — удаляю webhook для перехода на polling...")
-            requests.post(
-                f"https://api.telegram.org/bot{BOT_TOKEN}/deleteWebhook",
-                json={'drop_pending_updates': False}, timeout=10
-            )
-            time.sleep(2)
-            resp = requests.get(url, params=params, timeout=30)
+            logger.info("getUpdates 409 — webhook активен, polling пропущен.")
+            time.sleep(10)
+            return [], last_update_id
         resp.raise_for_status()
         result = resp.json()
         updates = result.get('result', [])
