@@ -1451,30 +1451,14 @@
                             bannerVideo.load();
                             // Показываем видео и скрываем постер только когда готово к воспроизведению
                             bannerVideo.oncanplay = function() {
-                                bannerVideo.muted = false;
+                                bannerVideo.muted = true;
                                 bannerVideo.play().then(function() {
                                     if (bannerImg) bannerImg.style.display = 'none';
                                     bannerVideo.style.display = 'block';
                                     bannerVideo.oncanplay = null;
-                                }).catch(function(err) {
-                                    console.log('[Banner] unmuted blocked:', err.name, '— trying muted first');
-                                    bannerVideo.muted = true;
-                                    bannerVideo.play().then(function() {
-                                        if (bannerImg) bannerImg.style.display = 'none';
-                                        bannerVideo.style.display = 'block';
-                                        bannerVideo.oncanplay = null;
-                                        // Unmute on first user touch
-                                        const _unmuteOnce = function() {
-                                            bannerVideo.muted = false;
-                                            document.removeEventListener('touchstart', _unmuteOnce);
-                                            document.removeEventListener('click', _unmuteOnce);
-                                        };
-                                        document.addEventListener('touchstart', _unmuteOnce, {once: true, passive: true});
-                                        document.addEventListener('click', _unmuteOnce, {once: true});
-                                    }).catch(function() {
-                                        bannerVideo.style.display = 'block';
-                                        bannerVideo.oncanplay = null;
-                                    });
+                                }).catch(function() {
+                                    bannerVideo.style.display = 'block';
+                                    bannerVideo.oncanplay = null;
                                 });
                             };
                         } else {
@@ -1541,6 +1525,23 @@
                 _scheduleBannerTick('resume');
             }
         }
+        let _bannerSoundOn = false;
+        window.toggleBannerSound = function() {
+            const bv = document.getElementById('banner-video');
+            const btn = document.getElementById('banner-sound-btn');
+            if (!bv) return;
+            if (_bannerSoundOn) {
+                bv.muted = true;
+                _bannerSoundOn = false;
+                if (btn) { btn.textContent = '🔇'; btn.classList.remove('sound-on'); }
+            } else {
+                bv.muted = false;
+                if (bv.paused) bv.play().catch(function() {});
+                _bannerSoundOn = true;
+                if (btn) { btn.textContent = '🔊'; btn.classList.add('sound-on'); }
+            }
+        };
+
         // Привязываем обработчик напрямую — надёжнее чем onclick в HTML
         (function() {
             var pauseBtn = document.getElementById('banner-pause-btn');
@@ -8511,8 +8512,9 @@
                 var value  = msg.value;
 
                 if (method === 'ready') {
+                    scPlaying = false;
+                    document.getElementById('sc-play-btn').textContent = '▶';
                     _applyVol();
-                    _scCmd('play');
                     _scCmd('getCurrentSound');
                     _scCmd('getDuration');
 
@@ -8629,19 +8631,6 @@
                 _applyVol();
             }, 3000);
 
-            // Резерв: при первом касании экрана запустить SC если ещё на паузе
-            var _scUnlocked = false;
-            function _scUnlockOnTouch() {
-                if (_scUnlocked) return;
-                _scUnlocked = true;
-                if (!scPlaying) {
-                    _scCmd('play');
-                }
-                document.removeEventListener('touchstart', _scUnlockOnTouch);
-                document.removeEventListener('click', _scUnlockOnTouch);
-            }
-            document.addEventListener('touchstart', _scUnlockOnTouch, {once: true, passive: true});
-            document.addEventListener('click', _scUnlockOnTouch, {once: true});
         }
 
         // Play/Pause
@@ -8797,15 +8786,6 @@
             window._scTrackList = tracks.map(function(t) {
                 return { url: t.permalink_url || '', title: t.title || '' };
             }).filter(function(t) { return !!t.url; });
-
-            // Автостарт первого трека при первой загрузке (если ничего не играет)
-            if (!_muCurrentUrl && window._scTrackList.length > 0) {
-                var _first = window._scTrackList[0];
-                _muCurrentUrl = _first.url;
-                if (typeof window._scWidgetLoad === 'function') {
-                    window._scWidgetLoad(_first.url, _first.title);
-                }
-            }
 
             list.innerHTML = tracks.map(function(t) {
                 var url = t.permalink_url || '';
