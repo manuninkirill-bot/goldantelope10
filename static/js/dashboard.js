@@ -1446,19 +1446,40 @@
                             _bannerVideoPlayCount = 0;
                             bannerVideo.setAttribute('data-proxy-src', _targetSrc);
                             bannerVideo.style.display = 'none';
+                            // Снимаем muted ДО load() — браузер видит намерение играть со звуком
+                            // в рамках жеста пользователя (открытие Telegram WebApp)
+                            bannerVideo.muted = false;
                             bannerVideo.src = _targetSrc;
                             console.log('[Banner] calling load() for', _targetSrc);
                             bannerVideo.load();
                             // Показываем видео и скрываем постер только когда готово к воспроизведению
                             bannerVideo.oncanplay = function() {
-                                bannerVideo.muted = true;
+                                bannerVideo.oncanplay = null;
                                 bannerVideo.play().then(function() {
                                     if (bannerImg) bannerImg.style.display = 'none';
                                     bannerVideo.style.display = 'block';
-                                    bannerVideo.oncanplay = null;
-                                }).catch(function() {
-                                    bannerVideo.style.display = 'block';
-                                    bannerVideo.oncanplay = null;
+                                    // Проверяем — действительно ли звук разрешён
+                                    var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
+                                    console.log('[Banner] play OK, muted=' + bannerVideo.muted + ', volume=' + bannerVideo.volume + ', soundOn=' + _soundOn);
+                                    _setBannerSound(_soundOn);
+                                    if (!_soundOn) {
+                                        // Мобильный заблокировал — показываем пульс
+                                        var _sb = document.getElementById('banner-sound-btn');
+                                        if (_sb) _sb.style.animation = 'bsPulse 1.5s ease-in-out 3';
+                                    }
+                                }).catch(function(err) {
+                                    // Полная блокировка — играем muted
+                                    console.log('[Banner] play unmuted blocked:', err && err.name);
+                                    bannerVideo.muted = true;
+                                    bannerVideo.play().then(function() {
+                                        if (bannerImg) bannerImg.style.display = 'none';
+                                        bannerVideo.style.display = 'block';
+                                        _setBannerSound(false);
+                                        var _sb = document.getElementById('banner-sound-btn');
+                                        if (_sb) _sb.style.animation = 'bsPulse 1.5s ease-in-out 3';
+                                    }).catch(function() {
+                                        bannerVideo.style.display = 'block';
+                                    });
                                 });
                             };
                         } else {
@@ -1526,29 +1547,34 @@
             }
         }
         let _bannerSoundOn = false;
-        window.toggleBannerSound = function() {
+        function _setBannerSound(on) {
             const bv = document.getElementById('banner-video');
             const btn = document.getElementById('banner-sound-btn');
-            if (!bv) return;
-            if (_bannerSoundOn) {
-                bv.muted = true;
-                _bannerSoundOn = false;
-                if (btn) { btn.textContent = '🔇'; btn.classList.remove('sound-on'); }
-            } else {
-                bv.muted = false;
-                if (bv.paused) bv.play().catch(function() {});
-                _bannerSoundOn = true;
-                if (btn) { btn.textContent = '🔊'; btn.classList.add('sound-on'); }
+            _bannerSoundOn = on;
+            if (bv) bv.muted = !on;
+            if (btn) {
+                btn.textContent = on ? '🔊' : '🔇';
+                if (on) { btn.classList.add('sound-on'); btn.style.animation = ''; }
+                else { btn.classList.remove('sound-on'); }
             }
-        };
+        }
 
-        // Привязываем обработчик напрямую — надёжнее чем onclick в HTML
+        // Привязываем обработчики напрямую — надёжнее чем onclick в HTML
         (function() {
             var pauseBtn = document.getElementById('banner-pause-btn');
             if (pauseBtn) {
                 pauseBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     toggleBannerPause();
+                });
+            }
+            var soundBtn = document.getElementById('banner-sound-btn');
+            if (soundBtn) {
+                soundBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var bv = document.getElementById('banner-video');
+                    _setBannerSound(!_bannerSoundOn);
+                    if (bv && bv.paused) bv.play().catch(function() {});
                 });
             }
         })();

@@ -978,6 +978,10 @@
         }
         #banner-sound-btn:hover { background: rgba(212,175,55,0.85); transform: scale(1.1); }
         #banner-sound-btn.sound-on { background: rgba(212,175,55,0.75); }
+        @keyframes bsPulse {
+            0%,100% { transform: scale(1); background: rgba(0,0,0,0.45); }
+            50% { transform: scale(1.2); background: rgba(212,175,55,0.85); }
+        }
         
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -2449,10 +2453,10 @@
 
         <div id="banner" class="banner">
             <img id="banner-img" src="" alt="Banner">
-            <video id="banner-video" autoplay muted playsinline style="display:none;width:100%;height:100%;object-fit:cover;border-radius:inherit;"></video>
+            <video id="banner-video" autoplay playsinline style="display:none;width:100%;height:100%;object-fit:cover;border-radius:inherit;"></video>
             <button class="banner-nav prev" onclick="event.stopPropagation(); changeBanner(-1)">‹</button>
             <button class="banner-nav next" onclick="event.stopPropagation(); changeBanner(1)">›</button>
-            <button id="banner-sound-btn" title="Звук" onclick="event.stopPropagation(); toggleBannerSound()">🔇</button>
+            <button id="banner-sound-btn" title="Звук">🔇</button>
             <button id="banner-pause-btn" class="banner-pause-btn" title="Пауза">&#9646;&#9646;</button>
             <div id="banner-dots" class="banner-dots"></div>
         </div>
@@ -5575,6 +5579,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=20260507h" defer></script>
+<script src="/static/js/dashboard.js?v=20260518a" defer></script>
 </body>
 </html>
