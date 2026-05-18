@@ -8511,10 +8511,8 @@
                 var value  = msg.value;
 
                 if (method === 'ready') {
-                    scPlaying = true;
-                    document.getElementById('sc-play-btn').textContent = '⏸';
-                    _setSpeaker(true);
                     _applyVol();
+                    _scCmd('play');
                     _scCmd('getCurrentSound');
                     _scCmd('getDuration');
 
@@ -8630,6 +8628,20 @@
                 _scSubscribe();
                 _applyVol();
             }, 3000);
+
+            // Резерв: при первом касании экрана запустить SC если ещё на паузе
+            var _scUnlocked = false;
+            function _scUnlockOnTouch() {
+                if (_scUnlocked) return;
+                _scUnlocked = true;
+                if (!scPlaying) {
+                    _scCmd('play');
+                }
+                document.removeEventListener('touchstart', _scUnlockOnTouch);
+                document.removeEventListener('click', _scUnlockOnTouch);
+            }
+            document.addEventListener('touchstart', _scUnlockOnTouch, {once: true, passive: true});
+            document.addEventListener('click', _scUnlockOnTouch, {once: true});
         }
 
         // Play/Pause
