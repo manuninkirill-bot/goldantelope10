@@ -1,10 +1,11 @@
 {
-  "16": {
-    "cdn_url": "https://cdn4.telesco.pe/file/KYGtLkm7M8r9zS_DZnb2ApreVnJZmdxTgpefVKQ34gzNBtP_AdCIovusdPib9owiTl-I9iHXmSTQf2gFTkW9zYE8BlQMp2120xaA-i2UHJVKyQ2DbKt9OBNlMpPLJbn3YpvnFmsv7RWMtQQH_Ue-LEcJXYHGjRVbnK6dO6-loX9UQ_pX8bQCp8Xhyfnu6Tvvv6leayWNSsW_3TS1wEFI7YtR7IyaAgp9oginNKYccViKezRceUpBxl_QFUrPmalGXPrEOQIcfb_omxZ3FhFdpwDBve4UGCJZX_GC-YrQ1KYYk64-MxFzhBYxySzbiWF-YaAJkSQyUnorZwlSBhuPAQ.jpg",
-    "cdn_ts": 1779109673
-  },
-  "18": {
-    "cdn_url": "https://cdn4.telesco.pe/file/KYGtLkm7M8r9zS_DZnb2ApreVnJZmdxTgpefVKQ34gzNBtP_AdCIovusdPib9owiTl-I9iHXmSTQf2gFTkW9zYE8BlQMp2120xaA-i2UHJVKyQ2DbKt9OBNlMpPLJbn3YpvnFmsv7RWMtQQH_Ue-LEcJXYHGjRVbnK6dO6-loX9UQ_pX8bQCp8Xhyfnu6Tvvv6leayWNSsW_3TS1wEFI7YtR7IyaAgp9oginNKYccViKezRceUpBxl_QFUrPmalGXPrEOQIcfb_omxZ3FhFdpwDBve4UGCJZX_GC-YrQ1KYYk64-MxFzhBYxySzbiWF-YaAJkSQyUnorZwlSBhuPAQ.jpg",
-    "cdn_ts": 1779109703
+  "19": {
+    "file_id": "",
+    "cdn_url": "https://cdn4.telesco.pe/file/c231b60251.mp4?token=kslqKUbvTlVBIc93msgGDYoLa-4pZ_uNGHK3itqN2pQSCpVxyNd2ehxu7NBB7RFA8W2hIb7xcjuhiTtL1UZCB545Y7YG-D4c-aXwsd9xQdlH1f-MQ5Nzyg9ZOmQwoRUXhdKJ9WEGDGVwszIwKNwcvkRJJGFuqWdp5tCwyxW0mILvVaIJMgSLUr7Ookwr0kfsgJz07Xvk-S60-aBggOC2Fd1dj2xdkJt12cmVZzCieQYhSlMBRsaGiluT493VspNeOBU4CsHVTf2P6Cn_bAlQdEn8tGJsgu1hmohn9e4PEz2pkzOCo_ZvITC26T8NgfSde8zHEKnR9oWTnX4qjJpPgA",
+    "cdn_ts": 1779112091,
+    "ts": 19,
+    "is_video": true,
+    "video_cdn_url": "https://cdn4.telesco.pe/file/c231b60251.mp4?token=kslqKUbvTlVBIc93msgGDYoLa-4pZ_uNGHK3itqN2pQSCpVxyNd2ehxu7NBB7RFA8W2hIb7xcjuhiTtL1UZCB545Y7YG-D4c-aXwsd9xQdlH1f-MQ5Nzyg9ZOmQwoRUXhdKJ9WEGDGVwszIwKNwcvkRJJGFuqWdp5tCwyxW0mILvVaIJMgSLUr7Ookwr0kfsgJz07Xvk-S60-aBggOC2Fd1dj2xdkJt12cmVZzCieQYhSlMBRsaGiluT493VspNeOBU4CsHVTf2P6Cn_bAlQdEn8tGJsgu1hmohn9e4PEz2pkzOCo_ZvITC26T8NgfSde8zHEKnR9oWTnX4qjJpPgA",
+    "video_cdn_ts": 1779112091
   }
 }

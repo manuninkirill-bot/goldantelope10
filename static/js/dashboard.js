@@ -1451,26 +1451,30 @@
                             bannerVideo.load();
                             // Показываем видео и скрываем постер только когда готово к воспроизведению
                             bannerVideo.oncanplay = function() {
+                                bannerVideo.muted = false;
                                 bannerVideo.play().then(function() {
                                     if (bannerImg) bannerImg.style.display = 'none';
                                     bannerVideo.style.display = 'block';
                                     bannerVideo.oncanplay = null;
                                 }).catch(function(err) {
-                                    console.log('[Banner] autoplay blocked:', err.name, '— click to play');
-                                    // Показываем видео поверх постера, ждём клика
-                                    bannerVideo.style.display = 'block';
-                                    bannerVideo.oncanplay = null;
-                                    const _bc = document.getElementById('banner');
-                                    if (_bc && !_bc._playHandler) {
-                                        _bc._playHandler = function() {
-                                            bannerVideo.play().then(function() {
-                                                if (bannerImg) bannerImg.style.display = 'none';
-                                            }).catch(function() {});
-                                            _bc.removeEventListener('click', _bc._playHandler);
-                                            _bc._playHandler = null;
+                                    console.log('[Banner] unmuted blocked:', err.name, '— trying muted first');
+                                    bannerVideo.muted = true;
+                                    bannerVideo.play().then(function() {
+                                        if (bannerImg) bannerImg.style.display = 'none';
+                                        bannerVideo.style.display = 'block';
+                                        bannerVideo.oncanplay = null;
+                                        // Unmute on first user touch
+                                        const _unmuteOnce = function() {
+                                            bannerVideo.muted = false;
+                                            document.removeEventListener('touchstart', _unmuteOnce);
+                                            document.removeEventListener('click', _unmuteOnce);
                                         };
-                                        _bc.addEventListener('click', _bc._playHandler);
-                                    }
+                                        document.addEventListener('touchstart', _unmuteOnce, {once: true, passive: true});
+                                        document.addEventListener('click', _unmuteOnce, {once: true});
+                                    }).catch(function() {
+                                        bannerVideo.style.display = 'block';
+                                        bannerVideo.oncanplay = null;
+                                    });
                                 });
                             };
                         } else {
@@ -8781,6 +8785,15 @@
             window._scTrackList = tracks.map(function(t) {
                 return { url: t.permalink_url || '', title: t.title || '' };
             }).filter(function(t) { return !!t.url; });
+
+            // Автостарт первого трека при первой загрузке (если ничего не играет)
+            if (!_muCurrentUrl && window._scTrackList.length > 0) {
+                var _first = window._scTrackList[0];
+                _muCurrentUrl = _first.url;
+                if (typeof window._scWidgetLoad === 'function') {
+                    window._scWidgetLoad(_first.url, _first.title);
+                }
+            }
 
             list.innerHTML = tracks.map(function(t) {
                 var url = t.permalink_url || '';

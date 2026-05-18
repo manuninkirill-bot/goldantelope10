@@ -1,7 +1,11 @@
 {
   "vietnam": {
-    "web": [],
-    "mobile": []
+    "web": [
+      "/api/banner-video/19"
+    ],
+    "mobile": [
+      "/api/banner-video/19"
+    ]
   },
   "thailand": {
     "web": [
@@ -24,6 +28,7 @@
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Ffb7801b6-3753-4007-9420-6aebed16c6ed%2Ffull_fb7801b6-3753-4007-9420-6aebed16c6ed?alt=media&token=17ae1f9a-94c6-4a70-b474-f163b45fd240",
       "https://api.anbocas.com/storage/event/banner/DZ4ZnmhYH96bxKbayDXGi2OtqHiq3HVcrUXPcuK6.jpg",
       "https://api.anbocas.com/storage/event/banner/ZCPpYLhYaxgn2YovMJodPDa1Dr7SdrIlR465sa2J.jpg",
+      "https://api.anbocas.com/storage/event/banner/O3Nhw0mnlf0bYMk352hGjr3V5REn97ULNCp9SHIp.jpg",
       "https://api.anbocas.com/storage/event/banner/NA7WQFCjTwzWAqhZV7CiWGUkbKGD50TcrQeYKvG5.png",
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F01113bca-1830-41bd-8d2c-b440294ad4c9%2Ffull_01113bca-1830-41bd-8d2c-b440294ad4c9?alt=media&token=0bf29309-3f3b-4c8c-9ca9-bb35ae5b5885",
       "https://api.anbocas.com/storage/event/banner/yMSPtOvF55UaK1H3Ly4nYiEZh1QGTEKj1PTCWqit.jpg",
@@ -60,6 +65,7 @@
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Ffb7801b6-3753-4007-9420-6aebed16c6ed%2Ffull_fb7801b6-3753-4007-9420-6aebed16c6ed?alt=media&token=17ae1f9a-94c6-4a70-b474-f163b45fd240",
       "https://api.anbocas.com/storage/event/banner/DZ4ZnmhYH96bxKbayDXGi2OtqHiq3HVcrUXPcuK6.jpg",
       "https://api.anbocas.com/storage/event/banner/ZCPpYLhYaxgn2YovMJodPDa1Dr7SdrIlR465sa2J.jpg",
+      "https://api.anbocas.com/storage/event/banner/O3Nhw0mnlf0bYMk352hGjr3V5REn97ULNCp9SHIp.jpg",
       "https://api.anbocas.com/storage/event/banner/NA7WQFCjTwzWAqhZV7CiWGUkbKGD50TcrQeYKvG5.png",
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F01113bca-1830-41bd-8d2c-b440294ad4c9%2Ffull_01113bca-1830-41bd-8d2c-b440294ad4c9?alt=media&token=0bf29309-3f3b-4c8c-9ca9-bb35ae5b5885",
       "https://api.anbocas.com/storage/event/banner/yMSPtOvF55UaK1H3Ly4nYiEZh1QGTEKj1PTCWqit.jpg",
