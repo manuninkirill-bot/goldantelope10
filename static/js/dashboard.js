@@ -8652,9 +8652,10 @@
                 var _initUrl = _srcP.get('url');
                 if (_initUrl) {
                     _scActiveUrl = _initUrl;
-                    scPlaying = true;
-                    document.getElementById('sc-play-btn').textContent = '⏸';
-                    _setSpeaker(true);
+                    // Стартуем на паузе — auto_play=false в iframe src
+                    scPlaying = false;
+                    document.getElementById('sc-play-btn').textContent = '▶';
+                    _setSpeaker(false);
                 }
             } catch(e) {}
 
