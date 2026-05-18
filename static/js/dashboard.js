@@ -1559,25 +1559,42 @@
             }
         }
 
-        // Привязываем обработчики напрямую — надёжнее чем onclick в HTML
-        (function() {
-            var pauseBtn = document.getElementById('banner-pause-btn');
-            if (pauseBtn) {
-                pauseBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    toggleBannerPause();
-                });
+        // Делегирование — самый надёжный способ, не зависит от времени загрузки DOM
+        document.addEventListener('click', function(e) {
+            var target = e.target;
+            // Кнопка звука
+            if (target && (target.id === 'banner-sound-btn' || target.closest && target.closest('#banner-sound-btn'))) {
+                e.stopPropagation();
+                e.preventDefault();
+                var bv = document.getElementById('banner-video');
+                console.log('[Sound] btn clicked via delegation, bv=', !!bv, 'paused=', bv && bv.paused, 'muted=', bv && bv.muted, 'soundOn=', _bannerSoundOn);
+                if (!bv) return;
+                if (!_bannerSoundOn) {
+                    // iOS/Android: pause → unmute → play — единственный надёжный способ
+                    var _wasPaused = bv.paused;
+                    bv.pause();
+                    bv.muted = false;
+                    bv.play().then(function() {
+                        _setBannerSound(true);
+                        console.log('[Sound] unmuted play OK');
+                    }).catch(function(err) {
+                        console.log('[Sound] play failed:', err && err.name);
+                        bv.muted = false;
+                        _setBannerSound(true);
+                        if (_wasPaused) bv.play().catch(function(){});
+                    });
+                } else {
+                    bv.muted = true;
+                    _setBannerSound(false);
+                }
+                return;
             }
-            var soundBtn = document.getElementById('banner-sound-btn');
-            if (soundBtn) {
-                soundBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    var bv = document.getElementById('banner-video');
-                    _setBannerSound(!_bannerSoundOn);
-                    if (bv && bv.paused) bv.play().catch(function() {});
-                });
+            // Кнопка паузы
+            if (target && (target.id === 'banner-pause-btn' || target.closest && target.closest('#banner-pause-btn'))) {
+                e.stopPropagation();
+                toggleBannerPause();
             }
-        })();
+        }, true); // capture=true — перехватываем до любых других обработчиков
 
         function _advanceBanner() {
             if (_bannerPaused) return;
