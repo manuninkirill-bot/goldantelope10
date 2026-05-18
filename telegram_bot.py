@@ -2,6 +2,7 @@ import os
 import asyncio
 import requests
 import json
+import threading
 
 def _get_token():
     return os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
@@ -34,7 +35,10 @@ def send_message(chat_id, text, reply_markup=None):
     }
     if reply_markup:
         data['reply_markup'] = json.dumps(reply_markup)
-    return requests.post(url, data=data).json()
+    try:
+        return requests.post(url, data=data, timeout=10).json()
+    except Exception:
+        return {}
 
 def set_bot_description():
     token = _get_token()
@@ -84,16 +88,6 @@ def handle_start(chat_id, user_name):
     name = user_name or "друг"
     site_url = "https://goldantelopeasia.com"
 
-    # Снять все закреплённые сообщения (убрать старые)
-    try:
-        requests.post(
-            f'https://api.telegram.org/bot{_get_token()}/unpinAllChatMessages',
-            json={'chat_id': chat_id},
-            timeout=5
-        )
-    except Exception:
-        pass
-
     text = (
         f'🎭 <b>Развлекательный портал Юго-Восточной Азии</b>\n\n'
         f'Привет, {name}!\n\n'
@@ -118,7 +112,22 @@ def handle_start(chat_id, user_name):
         ]
     }
 
-    return send_message(chat_id, text, keyboard)
+    # Отправляем сообщение СРАЗУ — не блокируемся
+    result = send_message(chat_id, text, keyboard)
+
+    # Открепляем старые сообщения в фоне — не задерживает ответ
+    def _unpin():
+        try:
+            requests.post(
+                f'https://api.telegram.org/bot{_get_token()}/unpinAllChatMessages',
+                json={'chat_id': chat_id},
+                timeout=5
+            )
+        except Exception:
+            pass
+    threading.Thread(target=_unpin, daemon=True).start()
+
+    return result
 
 def handle_app(chat_id):
     site_url = "https://goldantelopeasia.com"
