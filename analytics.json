@@ -488,22 +488,67 @@
         "user_m8k9fsc4s_1779114006541"
       ],
       "tg_visitors": [],
-      "page_views": 182,
+      "page_views": 1088,
       "countries": {
-        "vietnam": 182
+        "vietnam": 1088
       },
       "categories": {
-        "entertainment": 125,
-        "realestate": 57
+        "entertainment": 640,
+        "realestate": 448
       },
       "hours": {
         "13": 103,
-        "14": 79
+        "14": 123,
+        "15": 120,
+        "16": 120,
+        "17": 120,
+        "18": 116,
+        "20": 45,
+        "21": 101,
+        "22": 120,
+        "23": 120
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 182
+        "desktop": 1088
+      }
+    },
+    "2026-05-19": {
+      "unique_visitors": [
+        "user_y1yukxp2g_1778180659618",
+        "user_4br99ne26_1779192772606"
+      ],
+      "tg_visitors": [],
+      "page_views": 1463,
+      "countries": {
+        "vietnam": 1447,
+        "thailand": 14,
+        "india": 2
+      },
+      "categories": {
+        "realestate": 46,
+        "entertainment": 1417
+      },
+      "hours": {
+        "00": 118,
+        "01": 120,
+        "02": 120,
+        "03": 118,
+        "04": 120,
+        "05": 120,
+        "06": 120,
+        "07": 117,
+        "08": 120,
+        "09": 120,
+        "10": 120,
+        "11": 120,
+        "12": 30
+      },
+      "referrers": {},
+      "devices": {
+        "mobile": 0,
+        "desktop": 1463
       }
     }
   },
@@ -755,8 +800,8 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 2037,
-      "last_seen": "2026-05-18"
+      "visits": 4404,
+      "last_seen": "2026-05-19"
     },
     "user_kas3lqvh5_1778180692972": {
       "first_seen": "2026-05-07",
@@ -828,6 +873,11 @@
       "first_seen": "2026-05-18",
       "visits": 3,
       "last_seen": "2026-05-18"
+    },
+    "user_4br99ne26_1779192772606": {
+      "first_seen": "2026-05-19",
+      "visits": 2,
+      "last_seen": "2026-05-19"
     }
   }
 }

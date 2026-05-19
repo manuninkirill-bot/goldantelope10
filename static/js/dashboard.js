@@ -2780,6 +2780,25 @@
                 '<div class="tcs-sw-arrow" id="' + key + '-sw-arrow">▾</div></div>' +
                 '<div class="tcs-drop" id="' + key + '-drop">' + dropItems + '</div>';
             // Не вызываем onSelectFn здесь — loadListings будет вызван из switchCountry после
+
+            // Заполняем счётчики городов для real_estate dropdown (не-Вьетнам)
+            if (isRealestate && cities.length > 0) {
+                fetch('/api/city-counts/real_estate?country=' + currentCountry)
+                    .then(function(r) { return r.json(); })
+                    .then(function(counts) {
+                        var drop = document.getElementById(key + '-drop');
+                        if (!drop) return;
+                        drop.querySelectorAll('.tcs-drop-item').forEach(function(item) {
+                            var cityVal = item.dataset.cityValue;
+                            if (!cityVal) return;
+                            var countEl = item.querySelector('.drop-city-count');
+                            if (!countEl) return;
+                            // API возвращает count по cityVal (lowercase)
+                            var n = counts[cityVal] || counts[cityVal.toLowerCase()] || 0;
+                            if (n > 0) countEl.textContent = n >= 1000 ? (Math.floor(n/100)/10)+'k' : n;
+                        });
+                    }).catch(function() {});
+            }
         }
 
         function renderDynamicCityButtons() {
@@ -3959,6 +3978,7 @@
             const allImgs = Array.from(slider.querySelectorAll('img'));
             const imgs = allImgs.filter(img => !img.dataset.broken);
             const dots = slider.querySelectorAll('.slider-dot');
+            const counter = slider.querySelector('.slider-photo-counter');
             if (imgs.length <= 1) return;
             
             let activeIdx = imgs.findIndex(img => img.classList.contains('active'));
@@ -3971,9 +3991,15 @@
             
             imgs[activeIdx].classList.add('active');
             if (dots[activeIdx]) dots[activeIdx].classList.add('active');
+            if (counter) counter.textContent = (activeIdx + 1) + ' / ' + imgs.length;
+
+            // Принудительная загрузка если src не загружен
             const target = imgs[activeIdx];
-            if (target && target.dataset.src && (!target.src || target.src.includes('data:image/gif'))) {
-                target.src = target.dataset.src;
+            if (target) {
+                const wantSrc = target.dataset.src || target.getAttribute('src');
+                if (wantSrc && (!target.src || target.src.includes('data:') || !target.complete || target.naturalWidth === 0)) {
+                    target.src = wantSrc;
+                }
             }
         }
 
@@ -4480,9 +4506,10 @@
                                     if (img.includes('github.com') && !img.includes('raw.githubusercontent.com')) {
                                         finalImg = img.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
                                     }
-                                    return `<img src="${finalImg}" data-src="${finalImg}" class="${idx === 0 ? 'active' : ''}" data-idx="${idx}" onerror="this.onerror=null;this.style.display='none';this.classList.remove('active');this.dataset.broken='1';(function(el){var p=el.closest('.card-slider');if(!p)return;if(el.classList.contains('was-first')||el.dataset.idx==='0'){var nxt=Array.from(p.querySelectorAll('img')).find(function(i){return !i.dataset.broken&&i!==el});if(nxt){nxt.classList.add('active');}}})(this);" loading="${idx === 0 ? 'eager' : 'lazy'}">`;
+                                    return `<img src="${finalImg}" data-src="${finalImg}" class="${idx === 0 ? 'active' : ''}" data-idx="${idx}" onerror="this.onerror=null;this.style.display='none';this.classList.remove('active');this.dataset.broken='1';(function(el){var p=el.closest('.card-slider');if(!p)return;if(el.classList.contains('was-first')||el.dataset.idx==='0'){var nxt=Array.from(p.querySelectorAll('img')).find(function(i){return !i.dataset.broken&&i!==el});if(nxt){nxt.classList.add('active');var ctr=p.querySelector('.slider-photo-counter');if(ctr)ctr.textContent=(Array.from(p.querySelectorAll('img')).indexOf(nxt)+1)+'/'+p.querySelectorAll('img').length;}}})(this);" loading="eager">`;
                                 }).join('')}
                                 ${images.length > 1 ? `
+                                    <span class="slider-photo-counter">1 / ${images.length}</span>
                                     <button class="slider-nav prev" onclick="changeListingImage('${item.id}', -1, event)">‹</button>
                                     <button class="slider-nav next" onclick="changeListingImage('${item.id}', 1, event)">›</button>
                                     <div class="slider-dots">
