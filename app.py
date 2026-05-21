@@ -2655,7 +2655,7 @@ def _prewarm_banner_video_cache():
     """При старте прогревает кэш CDN-ссылок для всех видео-баннеров.
     Нужно для HF Space: после пересборки кэш пустой, первый запрос иначе зависает."""
     import time as _tw
-    _tw.sleep(15)  # ждём инициализации
+    _tw.sleep(2)  # минимальная задержка — ждём init
     try:
         bd = _load_banner_data()
         video_ids = [int(mid) for mid, e in bd.items() if isinstance(e, dict) and e.get('is_video')]
@@ -2674,23 +2674,22 @@ def _prewarm_banner_video_cache():
         video_ids = list(set(video_ids))
         logger.info('[banner_prewarm] Прогрев кэша для %d видео-баннеров: %s', len(video_ids), video_ids)
         for mid in video_ids:
-            # Сначала пробуем cdn_url из banner_data.json
             entry = bd.get(str(mid), {})
-            cdn_url = entry.get('cdn_url', '')
-            cdn_ts = entry.get('cdn_ts', 0)
-            if cdn_url and (_tw.time() - cdn_ts) < 82800:
-                _banner_og_cache[mid] = (cdn_url, _tw.time())
-                logger.info('[banner_prewarm] mid=%d: из banner_data (%s)', mid, cdn_url[:50])
+            # Для видео-баннеров используем video_cdn_url (не cdn_url который может быть картинкой)
+            vcdn = entry.get('video_cdn_url', '')
+            vcdn_ts = entry.get('video_cdn_ts', 0)
+            if vcdn and (_tw.time() - vcdn_ts) < 3600:
+                logger.info('[banner_prewarm] mid=%d: video_cdn_url актуален (%s)', mid, vcdn[:50])
                 continue
-            # Иначе скрейпим t.me/s/
+            # Скрейпим свежий CDN URL для видео
             cdn_v = _scrape_cdn_video_for_post(_BANNER_TG_GROUP, mid)
             if cdn_v:
-                _banner_og_cache[mid] = (cdn_v, _tw.time())
                 bd[str(mid)] = bd.get(str(mid), {})
-                bd[str(mid)]['cdn_url'] = cdn_v
-                bd[str(mid)]['cdn_ts'] = int(_tw.time())
+                bd[str(mid)]['video_cdn_url'] = cdn_v
+                bd[str(mid)]['video_cdn_ts'] = int(_tw.time())
+                bd[str(mid)]['is_video'] = True
                 _save_banner_data(bd)
-                logger.info('[banner_prewarm] mid=%d: scraped OK (%s)', mid, cdn_v[:50])
+                logger.info('[banner_prewarm] mid=%d: video scraped OK (%s)', mid, cdn_v[:50])
             else:
                 logger.warning('[banner_prewarm] mid=%d: не удалось получить CDN URL', mid)
     except Exception as _pe:

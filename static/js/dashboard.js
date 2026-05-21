@@ -1446,30 +1446,28 @@
                             _bannerVideoPlayCount = 0;
                             bannerVideo.setAttribute('data-proxy-src', _targetSrc);
                             bannerVideo.style.display = 'none';
-                            // Снимаем muted ДО load() — браузер видит намерение играть со звуком
-                            // в рамках жеста пользователя (открытие Telegram WebApp)
-                            bannerVideo.muted = false;
+                            // Всегда стартуем muted — обязательно для autoplay на мобильном
+                            bannerVideo.muted = true;
                             bannerVideo.src = _targetSrc;
                             console.log('[Banner] calling load() for', _targetSrc);
                             bannerVideo.load();
-                            // Показываем видео и скрываем постер только когда готово к воспроизведению
                             bannerVideo.oncanplay = function() {
                                 bannerVideo.oncanplay = null;
                                 bannerVideo.play().then(function() {
                                     if (bannerImg) bannerImg.style.display = 'none';
                                     bannerVideo.style.display = 'block';
-                                    // Проверяем — действительно ли звук разрешён
+                                    // Пробуем включить звук после успешного старта
+                                    bannerVideo.muted = false;
                                     var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
                                     console.log('[Banner] play OK, muted=' + bannerVideo.muted + ', volume=' + bannerVideo.volume + ', soundOn=' + _soundOn);
                                     _setBannerSound(_soundOn);
                                     if (!_soundOn) {
-                                        // Мобильный заблокировал — показываем пульс
                                         var _sb = document.getElementById('banner-sound-btn');
                                         if (_sb) _sb.style.animation = 'bsPulse 1.5s ease-in-out 3';
                                     }
                                 }).catch(function(err) {
-                                    // Полная блокировка — играем muted
-                                    console.log('[Banner] play unmuted blocked:', err && err.name);
+                                    // play() заблокирован — показываем видео без звука
+                                    console.log('[Banner] play blocked:', err && err.name);
                                     bannerVideo.muted = true;
                                     bannerVideo.play().then(function() {
                                         if (bannerImg) bannerImg.style.display = 'none';

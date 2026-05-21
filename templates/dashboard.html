@@ -558,7 +558,7 @@
             width: 100%;
             max-width: 1200px;
             height: auto;
-            max-height: 360px;
+            max-height: 480px;
             margin: 0 auto 20px auto;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -905,12 +905,12 @@
 
         .banner img, #banner-video {
             width: 100%;
-            height: auto;
-            max-height: 360px;
+            height: 100%;
+            max-height: 480px;
             display: block;
-            object-fit: contain;
+            object-fit: cover;
             object-position: center;
-            background: #1a1a2e;
+            background: #000;
         }
 
         /* Responsive banner sizes */
@@ -1212,7 +1212,7 @@
             }
             
             .banner {
-                height: 312px;
+                height: 380px;
                 margin-bottom: 15px;
             }
             
@@ -2481,7 +2481,7 @@
 
         <div id="banner" class="banner">
             <img id="banner-img" src="" alt="Banner">
-            <video id="banner-video" autoplay playsinline style="display:none;width:100%;height:100%;object-fit:cover;border-radius:inherit;"></video>
+            <video id="banner-video" autoplay muted playsinline style="display:none;width:100%;height:100%;object-fit:cover;border-radius:inherit;"></video>
             <button class="banner-nav prev" onclick="event.stopPropagation(); changeBanner(-1)">‹</button>
             <button class="banner-nav next" onclick="event.stopPropagation(); changeBanner(1)">›</button>
             <button id="banner-sound-btn" title="Звук">🔇</button>
@@ -5607,6 +5607,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=20260519a" defer></script>
+<script src="/static/js/dashboard.js?v=20260521b" defer></script>
 </body>
 </html>
