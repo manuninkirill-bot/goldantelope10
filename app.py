@@ -2640,16 +2640,16 @@ def _sync_media_vn_banners():
     _do_sync_media_vn_banners()
 
 def _banner_refresh_scheduler():
-    """Обновляет CDN URLs баннеров каждые 6 часов."""
+    """Обновляет CDN URLs баннеров каждые 5 минут."""
     import time as _t
     while True:
-        _t.sleep(6 * 3600)
+        _t.sleep(5 * 60)
         logger.info('[banner_refresh] Периодическое обновление CDN URLs баннеров...')
         _do_sync_media_vn_banners()
 
 threading.Thread(target=_sync_media_vn_banners, daemon=True, name='BannerMediaVnSync').start()
 threading.Thread(target=_banner_refresh_scheduler, daemon=True, name='BannerRefreshScheduler').start()
-logger.info('[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)')
+logger.info('[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 5 мин)')
 
 
 def _prewarm_banner_video_cache():
