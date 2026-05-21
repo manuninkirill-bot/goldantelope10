@@ -905,12 +905,26 @@
 
         .banner img, #banner-video {
             width: 100%;
-            height: auto;
-            max-height: 360px;
+            height: 100%;
             display: block;
-            object-fit: contain;
+            object-fit: cover;
             object-position: center;
             background: #1a1a2e;
+        }
+        /* Постер поверх видео — скрывается когда видео реально играет */
+        #banner-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+            object-fit: cover;
+            border-radius: inherit;
+            background: #1a1a2e;
+        }
+        #banner-video {
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 1;
         }
 
         /* Responsive banner sizes */
@@ -2481,7 +2495,7 @@
 
         <div id="banner" class="banner">
             <img id="banner-img" src="" alt="Banner">
-            <video id="banner-video" autoplay playsinline style="display:none;width:100%;height:100%;object-fit:cover;border-radius:inherit;"></video>
+            <video id="banner-video" autoplay muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:inherit;background:#000;"></video>
             <button class="banner-nav prev" onclick="event.stopPropagation(); changeBanner(-1)">‹</button>
             <button class="banner-nav next" onclick="event.stopPropagation(); changeBanner(1)">›</button>
             <button id="banner-sound-btn" title="Звук">🔇</button>
@@ -5607,6 +5621,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=20260521f" defer></script>
+<script src="/static/js/dashboard.js?v=20260521g" defer></script>
 </body>
 </html>

@@ -663,22 +663,24 @@ def set_telegram_webhook():
 
 @app.route('/api/counts')
 def api_counts():
-    """Счётчик объявлений по категориям для страны."""
+    """Счётчик объявлений по категориям для страны (без скрытых)."""
     country = request.args.get('country', 'vietnam')
     try:
         data = load_data(country)
+        def _cnt(cat):
+            return sum(1 for x in data.get(cat, []) if not x.get('hidden', False))
         counts = {
-            'real_estate': len(data.get('real_estate', [])),
-            'transport':   len(data.get('transport', [])),
-            'restaurants': len(data.get('restaurants', [])),
-            'tours':       len(data.get('tours', [])),
-            'entertainment': len(data.get('entertainment', [])),
-            'money_exchange': len(data.get('money_exchange', [])),
-            'visas':       len(data.get('visas', [])),
-            'marketplace': len(data.get('marketplace', [])),
+            'real_estate':   _cnt('real_estate'),
+            'transport':     _cnt('transport'),
+            'restaurants':   _cnt('restaurants'),
+            'tours':         _cnt('tours'),
+            'entertainment': _cnt('entertainment'),
+            'money_exchange':_cnt('money_exchange'),
+            'visas':         _cnt('visas'),
+            'marketplace':   _cnt('marketplace'),
         }
         resp = fast_json(counts)
-        resp.headers['Cache-Control'] = 'public, max-age=120'
+        resp.headers['Cache-Control'] = 'public, max-age=60'
         return resp
     except Exception as e:
         return fast_json({})
@@ -696,16 +698,18 @@ def api_init():
         return Response(cached['data'], mimetype='application/json',
                         headers={'Cache-Control': 'no-cache'})
     data = load_data(country)
-    total_listings = sum(len(v) for k, v in data.items() if k != 'chat')
+    def _cnt(cat):
+        return sum(1 for x in data.get(cat, []) if not x.get('hidden', False))
+    total_listings = sum(_cnt(k) for k in data if k != 'chat')
     counts = {
-        'real_estate':   len(data.get('real_estate', [])),
-        'transport':     len(data.get('transport', [])),
-        'restaurants':   len(data.get('restaurants', [])),
-        'tours':         len(data.get('tours', [])),
-        'entertainment': len(data.get('entertainment', [])),
-        'money_exchange':len(data.get('money_exchange', [])),
-        'visas':         len(data.get('visas', [])),
-        'marketplace':   len(data.get('marketplace', [])),
+        'real_estate':   _cnt('real_estate'),
+        'transport':     _cnt('transport'),
+        'restaurants':   _cnt('restaurants'),
+        'tours':         _cnt('tours'),
+        'entertainment': _cnt('entertainment'),
+        'money_exchange':_cnt('money_exchange'),
+        'visas':         _cnt('visas'),
+        'marketplace':   _cnt('marketplace'),
     }
     online_counts = {'vietnam': 342, 'thailand': 287, 'india': 156, 'indonesia': 419}
     try:

@@ -1433,30 +1433,31 @@
 
                         console.log('[Banner] updateBanner isVideo=true idx=' + currentIdx + ' src=' + _targetSrc + ' alreadySet=' + _alreadySet);
 
-                        // Показываем постер (изображение) пока видео грузится
-                        if (bannerImg && _isProxyUrl) {
-                            const _midMatch = mediaUrl.match(/\/api\/banner-video\/(\d+)/);
-                            if (_midMatch) {
-                                bannerImg.src = '/api/banner-img/' + _midMatch[1];
-                                bannerImg.style.display = '';
-                            }
+                        // Для видео: восстанавливаем видимость video (могло быть hidden при фото-баннере)
+                        // bannerImg прячем — /api/banner-img/ возвращает MP4, а не картинку
+                        if (bannerVideo) {
+                            bannerVideo.style.visibility = 'visible';
+                            bannerVideo.style.zIndex = '1';
+                        }
+                        if (bannerImg) {
+                            bannerImg.style.display = 'none';
+                            bannerImg.src = '';
                         }
 
                         if (!_alreadySet) {
                             _bannerVideoPlayCount = 0;
                             bannerVideo.setAttribute('data-proxy-src', _targetSrc);
-                            // Видео скрыто, постер (img) показан — пользователь сразу видит картинку
-                            bannerVideo.style.display = 'none';
-                            bannerVideo.muted = true;
+                            // video всегда display:block (z-index:1), bannerImg overlay (z-index:2)
+                            // iOS требует: видео видимо ДО load() чтобы canplay сработал
+                            bannerVideo.muted = true; // + muted атрибут в HTML
                             bannerVideo.src = _targetSrc;
                             console.log('[Banner] calling load() for', _targetSrc);
                             bannerVideo.load();
 
-                            // Скрыть постер и показать видео только когда оно РЕАЛЬНО играет
+                            // Постер скрывается только когда видео РЕАЛЬНО играет
                             bannerVideo.onplaying = function() {
                                 bannerVideo.onplaying = null;
                                 if (bannerImg) bannerImg.style.display = 'none';
-                                bannerVideo.style.display = 'block';
                                 if (!isMobileDevice()) bannerVideo.muted = false;
                                 var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
                                 console.log('[Banner] playing, muted=' + bannerVideo.muted + ', soundOn=' + _soundOn);
@@ -1467,7 +1468,6 @@
                                 }
                             };
 
-                            // Когда готово к воспроизведению — запускаем play()
                             bannerVideo.oncanplay = function() {
                                 bannerVideo.oncanplay = null;
                                 if (!isMobileDevice()) bannerVideo.muted = false;
@@ -1478,46 +1478,47 @@
                                         var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
                                         console.log('[Banner] play OK, muted=' + bannerVideo.muted + ', soundOn=' + _soundOn);
                                     }).catch(function(err) {
-                                        // play() заблокирован — оставляем постер видимым
-                                        console.log('[Banner] play blocked:', err && err.name, '— показываем постер');
+                                        console.log('[Banner] play blocked:', err && err.name);
                                         bannerVideo.onplaying = null;
+                                        // постер (bannerImg) остаётся видимым
                                     });
                                 } else {
-                                    // iOS < 10: play() → undefined — покажем видео сразу
+                                    // iOS < 10: play() → undefined, onplaying может не сработать
                                     if (bannerImg) bannerImg.style.display = 'none';
-                                    bannerVideo.style.display = 'block';
-                                    console.log('[Banner] play() no-promise fallback');
+                                    console.log('[Banner] play() no-promise');
                                 }
                             };
 
-                            // Ошибка видео — оставляем постер
                             bannerVideo.onerror = function() {
                                 bannerVideo.onplaying = null;
                                 bannerVideo.oncanplay = null;
-                                console.log('[Banner] video error — оставляем постер');
-                                // bannerImg уже показан — ничего делать не нужно
+                                console.log('[Banner] video error — постер остаётся');
                             };
                         } else {
-                            // Источник тот же — просто воспроизводим
+                            // Источник тот же — воспроизводим
                             var _pp2;
                             try { _pp2 = bannerVideo.play(); } catch(e) { _pp2 = null; }
                             if (_pp2 && typeof _pp2.then === 'function') {
                                 _pp2.then(function() {
                                     if (bannerImg) bannerImg.style.display = 'none';
-                                    bannerVideo.style.display = 'block';
                                 }).catch(function() {});
                             } else if (_pp2 === undefined) {
                                 if (bannerImg) bannerImg.style.display = 'none';
-                                bannerVideo.style.display = 'block';
                             }
                         }
                     }
                     // Запускаем предзагрузку следующего баннера в фоне
                     if (typeof _preloadNextBanner === 'function') _preloadNextBanner();
                 } else {
-                    if (bannerVideo) { bannerVideo.pause(); bannerVideo.style.display = 'none'; }
+                    // Фото-баннер: скрываем видео (оно абсолютное поверх), показываем img
+                    if (bannerVideo) {
+                        bannerVideo.pause();
+                        bannerVideo.style.zIndex = '0';
+                        bannerVideo.style.visibility = 'hidden';
+                    }
                     if (bannerImg) {
                         bannerImg.style.display = '';
+                        bannerImg.style.zIndex = '2';
                         bannerImg.src = mediaUrl;
                     }
                 }
