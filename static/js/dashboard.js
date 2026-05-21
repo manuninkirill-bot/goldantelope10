@@ -1446,9 +1446,9 @@
                             _bannerVideoPlayCount = 0;
                             bannerVideo.setAttribute('data-proxy-src', _targetSrc);
                             bannerVideo.style.display = 'none';
-                            // Снимаем muted ДО load() — браузер видит намерение играть со звуком
-                            // в рамках жеста пользователя (открытие Telegram WebApp)
-                            bannerVideo.muted = false;
+                            // Стартуем muted=true — единственный надёжный способ autoplay
+                            // на iOS/Android (Telegram WebApp). Кнопка звука позволяет включить.
+                            bannerVideo.muted = true;
                             bannerVideo.src = _targetSrc;
                             console.log('[Banner] calling load() for', _targetSrc);
                             bannerVideo.load();
@@ -1458,28 +1458,20 @@
                                 bannerVideo.play().then(function() {
                                     if (bannerImg) bannerImg.style.display = 'none';
                                     bannerVideo.style.display = 'block';
-                                    // Проверяем — действительно ли звук разрешён
+                                    // На десктопе пробуем сразу включить звук
+                                    if (!isMobileDevice()) {
+                                        bannerVideo.muted = false;
+                                    }
                                     var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
                                     console.log('[Banner] play OK, muted=' + bannerVideo.muted + ', volume=' + bannerVideo.volume + ', soundOn=' + _soundOn);
                                     _setBannerSound(_soundOn);
                                     if (!_soundOn) {
-                                        // Мобильный заблокировал — показываем пульс
                                         var _sb = document.getElementById('banner-sound-btn');
                                         if (_sb) _sb.style.animation = 'bsPulse 1.5s ease-in-out 3';
                                     }
                                 }).catch(function(err) {
-                                    // Полная блокировка — играем muted
-                                    console.log('[Banner] play unmuted blocked:', err && err.name);
-                                    bannerVideo.muted = true;
-                                    bannerVideo.play().then(function() {
-                                        if (bannerImg) bannerImg.style.display = 'none';
-                                        bannerVideo.style.display = 'block';
-                                        _setBannerSound(false);
-                                        var _sb = document.getElementById('banner-sound-btn');
-                                        if (_sb) _sb.style.animation = 'bsPulse 1.5s ease-in-out 3';
-                                    }).catch(function() {
-                                        bannerVideo.style.display = 'block';
-                                    });
+                                    console.log('[Banner] play blocked even muted:', err && err.name);
+                                    bannerVideo.style.display = 'block';
                                 });
                             };
                         } else {
@@ -8591,8 +8583,11 @@
                     scPlaying = false;
                     document.getElementById('sc-play-btn').textContent = '▶';
                     _applyVol();
-                    // Гарантируем паузу при открытии приложения
+                    // Гарантируем паузу при открытии — повторяем на случай задержки на мобильном
                     _scCmd('pause');
+                    setTimeout(function() { _scCmd('pause'); }, 300);
+                    setTimeout(function() { _scCmd('pause'); }, 800);
+                    setTimeout(function() { _scCmd('pause'); }, 1500);
                     _scCmd('getCurrentSound');
                     _scCmd('getDuration');
 
