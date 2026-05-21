@@ -4046,7 +4046,11 @@
                 this._mem.set(k, v);
                 try { localStorage.setItem(_LS_PREFIX + k, JSON.stringify(v)); } catch(e) {}
             },
-            has(k) { return !!this.get(k); }
+            has(k) { return !!this.get(k); },
+            delete(k) {
+                this._mem.delete(k);
+                try { localStorage.removeItem(_LS_PREFIX + k); } catch(e) {}
+            }
         };
         const _listingOffset = {}; // category → current offset
         const PAGE_SIZE = 20;
