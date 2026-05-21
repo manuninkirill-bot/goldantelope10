@@ -1445,41 +1445,71 @@
                         if (!_alreadySet) {
                             _bannerVideoPlayCount = 0;
                             bannerVideo.setAttribute('data-proxy-src', _targetSrc);
+                            // Видео скрыто, постер (img) показан — пользователь сразу видит картинку
                             bannerVideo.style.display = 'none';
-                            // Стартуем muted=true — единственный надёжный способ autoplay
-                            // на iOS/Android (Telegram WebApp). Кнопка звука позволяет включить.
                             bannerVideo.muted = true;
                             bannerVideo.src = _targetSrc;
                             console.log('[Banner] calling load() for', _targetSrc);
                             bannerVideo.load();
-                            // Показываем видео и скрываем постер только когда готово к воспроизведению
+
+                            // Скрыть постер и показать видео только когда оно РЕАЛЬНО играет
+                            bannerVideo.onplaying = function() {
+                                bannerVideo.onplaying = null;
+                                if (bannerImg) bannerImg.style.display = 'none';
+                                bannerVideo.style.display = 'block';
+                                if (!isMobileDevice()) bannerVideo.muted = false;
+                                var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
+                                console.log('[Banner] playing, muted=' + bannerVideo.muted + ', soundOn=' + _soundOn);
+                                _setBannerSound(_soundOn);
+                                if (!_soundOn) {
+                                    var _sb = document.getElementById('banner-sound-btn');
+                                    if (_sb) _sb.style.animation = 'bsPulse 1.5s ease-in-out 3';
+                                }
+                            };
+
+                            // Когда готово к воспроизведению — запускаем play()
                             bannerVideo.oncanplay = function() {
                                 bannerVideo.oncanplay = null;
-                                bannerVideo.play().then(function() {
+                                if (!isMobileDevice()) bannerVideo.muted = false;
+                                var _pp;
+                                try { _pp = bannerVideo.play(); } catch(e) { _pp = null; }
+                                if (_pp && typeof _pp.then === 'function') {
+                                    _pp.then(function() {
+                                        var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
+                                        console.log('[Banner] play OK, muted=' + bannerVideo.muted + ', soundOn=' + _soundOn);
+                                    }).catch(function(err) {
+                                        // play() заблокирован — оставляем постер видимым
+                                        console.log('[Banner] play blocked:', err && err.name, '— показываем постер');
+                                        bannerVideo.onplaying = null;
+                                    });
+                                } else {
+                                    // iOS < 10: play() → undefined — покажем видео сразу
                                     if (bannerImg) bannerImg.style.display = 'none';
                                     bannerVideo.style.display = 'block';
-                                    // На десктопе пробуем сразу включить звук
-                                    if (!isMobileDevice()) {
-                                        bannerVideo.muted = false;
-                                    }
-                                    var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
-                                    console.log('[Banner] play OK, muted=' + bannerVideo.muted + ', volume=' + bannerVideo.volume + ', soundOn=' + _soundOn);
-                                    _setBannerSound(_soundOn);
-                                    if (!_soundOn) {
-                                        var _sb = document.getElementById('banner-sound-btn');
-                                        if (_sb) _sb.style.animation = 'bsPulse 1.5s ease-in-out 3';
-                                    }
-                                }).catch(function(err) {
-                                    console.log('[Banner] play blocked even muted:', err && err.name);
-                                    bannerVideo.style.display = 'block';
-                                });
+                                    console.log('[Banner] play() no-promise fallback');
+                                }
+                            };
+
+                            // Ошибка видео — оставляем постер
+                            bannerVideo.onerror = function() {
+                                bannerVideo.onplaying = null;
+                                bannerVideo.oncanplay = null;
+                                console.log('[Banner] video error — оставляем постер');
+                                // bannerImg уже показан — ничего делать не нужно
                             };
                         } else {
                             // Источник тот же — просто воспроизводим
-                            bannerVideo.play().then(function() {
+                            var _pp2;
+                            try { _pp2 = bannerVideo.play(); } catch(e) { _pp2 = null; }
+                            if (_pp2 && typeof _pp2.then === 'function') {
+                                _pp2.then(function() {
+                                    if (bannerImg) bannerImg.style.display = 'none';
+                                    bannerVideo.style.display = 'block';
+                                }).catch(function() {});
+                            } else if (_pp2 === undefined) {
                                 if (bannerImg) bannerImg.style.display = 'none';
                                 bannerVideo.style.display = 'block';
-                            }).catch(function() {});
+                            }
                         }
                     }
                     // Запускаем предзагрузку следующего баннера в фоне
