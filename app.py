@@ -2627,8 +2627,7 @@ def _do_sync_media_vn_banners():
                             updated_urls += 1
                 except Exception:
                     pass
-        if added > 0 or updated_urls > 0:
-            _save_banner_data(data)
+        _save_banner_data(data)
         _update_banner_config_from_data(data)
         logger.info(f'[banner_sync] Синк @{channel}: +{added} новых, {updated_urls} URL обновлено, всего {len(data)}')
     except Exception as e:
@@ -2811,8 +2810,8 @@ def banner_video_proxy(msg_id):
     #    Используем video_cdn_ts для видео и cdn_ts как fallback (для обратной совместимости)
     _bdata = _load_banner_data()
     _entry = _bdata.get(str(msg_id), {})
-    _vcdn = _entry.get('video_cdn_url', '') or _entry.get('cdn_url', '')
-    _vcdn_ts = _entry.get('video_cdn_ts') or _entry.get('cdn_ts', 0)
+    _vcdn = _entry.get('video_cdn_url', '')
+    _vcdn_ts = _entry.get('video_cdn_ts', 0)
     if _vcdn and (time.time() - _vcdn_ts) < 3600:
         logger.debug(f'[banner-video] CDN redirect для {msg_id}: {_vcdn[:60]}')
         return redirect(_vcdn, code=302)
