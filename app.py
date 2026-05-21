@@ -694,7 +694,7 @@ def api_init():
     cached = _init_cache.get(country)
     if cached and (now - cached['ts']) < _INIT_CACHE_TTL:
         return Response(cached['data'], mimetype='application/json',
-                        headers={'Cache-Control': 'public, max-age=120'})
+                        headers={'Cache-Control': 'no-cache'})
     data = load_data(country)
     total_listings = sum(len(v) for k, v in data.items() if k != 'chat')
     counts = {
@@ -729,7 +729,7 @@ def api_init():
         raw = json.dumps(result, ensure_ascii=False).encode()
     _init_cache[country] = {'data': raw, 'ts': now}
     return Response(raw, mimetype='application/json',
-                    headers={'Cache-Control': 'public, max-age=120'})
+                    headers={'Cache-Control': 'no-cache'})
 
 @app.route('/api/groups-stats')
 def groups_stats():

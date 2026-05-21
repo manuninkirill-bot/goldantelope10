@@ -1642,6 +1642,12 @@
                 _bv.addEventListener('error', function(e) {
                     var err = _bv.error;
                     console.log('[Banner] video ERROR code=' + (err ? err.code : '?') + ' msg=' + (err ? err.message : '?') + ' src=' + _bv.currentSrc);
+                    // Авто-обновление конфига баннера при ошибке видео
+                    if (!_bv._bannerRefetchDone) {
+                        _bv._bannerRefetchDone = true;
+                        _apiCache.delete('init:' + currentCountry);
+                        _loadInitData(currentCountry);
+                    }
                 });
                 _bv.addEventListener('stalled', function() {
                     console.log('[Banner] video STALLED src=' + _bv.currentSrc);
@@ -8585,6 +8591,8 @@
                     scPlaying = false;
                     document.getElementById('sc-play-btn').textContent = '▶';
                     _applyVol();
+                    // Гарантируем паузу при открытии приложения
+                    _scCmd('pause');
                     _scCmd('getCurrentSound');
                     _scCmd('getDuration');
 
