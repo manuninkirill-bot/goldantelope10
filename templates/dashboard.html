@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
     <meta property="og:image" content="https://goldantelopeasia.com/static/images/logo.png">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
-    <meta property="og:locale" content="ru_RU">
+    <meta property="og:locale" content="vi_VN">
     <meta property="og:site_name" content="Goldantelope ASIA">
 
     <!-- Twitter Card -->
@@ -692,7 +692,7 @@
             }
         }
         /* SC Новинки panel */
-        #sc-newtrack-panel, #crypto-bots-panel {
+        #sc-newtrack-panel {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto 10px auto;
@@ -831,8 +831,7 @@
         html:not(.dark) #sc-next-btn {
             color: #8a6e1a;
         }
-        html:not(.dark) #sc-newtrack-panel,
-        html:not(.dark) #crypto-bots-panel {
+        html:not(.dark) #sc-newtrack-panel {
             background: #ffffff;
             border-color: rgba(212,175,55,0.5);
             box-shadow: 0 2px 10px rgba(212,175,55,0.1);
@@ -2406,9 +2405,9 @@
                         <span style="color: #ccc; margin: 0 2px;">|</span>
                         <span style="font-size: 14px;">👥</span><span id="online-count" style="font-size: 13px; font-weight: 600; color: #d4af37;">--</span>
                         <span style="color: #ccc; margin: 0 2px;">|</span>
-                        <button onclick="switchLang('ru')" id="lang-ru" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: #d4af37; color: white; cursor: pointer; font-size: 11px; font-weight: 600;">RU</button>
+                        <button onclick="switchLang('ru')" id="lang-ru" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: transparent; color: #666; cursor: pointer; font-size: 11px; font-weight: 600;">RU</button>
                         <button onclick="switchLang('en')" id="lang-en" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: transparent; color: #666; cursor: pointer; font-size: 11px; font-weight: 600;">EN</button>
-                        <button onclick="switchLang('vi')" id="lang-vi" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: transparent; color: #666; cursor: pointer; font-size: 11px; font-weight: 600;">VI</button>
+                        <button onclick="switchLang('vi')" id="lang-vi" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: #d4af37; color: white; cursor: pointer; font-size: 11px; font-weight: 600;">VI</button>
                         <button onclick="switchLang('th')" id="lang-th" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: transparent; color: #666; cursor: pointer; font-size: 11px; font-weight: 600;">TH</button>
                         <button onclick="toggleTheme()" id="theme-toggle-btn" class="theme-toggle-btn" title="Переключить тему">🌙</button>
                     </div>
@@ -2466,15 +2465,6 @@
             <div class="sc-nt-updated" id="sc-nt-updated"></div>
         </div>
 
-        <!-- Crypto Bots -->
-        <div id="crypto-bots-panel">
-            <div class="sc-nt-header" style="cursor:default; border-bottom:none;">
-                <span class="sc-nt-title">🤖 Crypto bots</span>
-                <div class="sc-nt-sources">
-                    <a class="sc-nt-src active" href="https://t.me/goldantelope_gate_bot" target="_blank" rel="noopener" style="text-decoration:none;">Gate.io</a>
-                </div>
-            </div>
-        </div>
 
         <!-- Spotify 30s preview player -->
         <audio id="sp-preview-audio" preload="none"></audio>
@@ -2884,6 +2874,13 @@
 
                     <button type="submit" style="width: 100%; padding: 15px; background: #FF9800; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px;">📤 Отправить на модерацию</button>
                 </form>
+            </div>
+        </div>
+
+        <!-- RE Cheap Banners (Vietnam only) -->
+        <div id="re-cheap-banners-wrap" style="display:none; max-width:1200px; margin:0 auto 6px auto; padding:0 12px;">
+            <div style="font-size:12px; color:#b8860b; font-weight:700; margin-bottom:6px; letter-spacing:0.3px;">🏷️ TOP 20 giá rẻ nhất / ТОП-20 дешевле всего</div>
+            <div id="re-cheap-banners-inner" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; -webkit-overflow-scrolling:touch; scrollbar-width:none;">
             </div>
         </div>
 
@@ -5607,6 +5604,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=20260521b" defer></script>
+<script src="/static/js/dashboard.js?v=20260521c" defer></script>
 </body>
 </html>

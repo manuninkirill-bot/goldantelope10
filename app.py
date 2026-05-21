@@ -129,13 +129,13 @@ def send_telegram_message(chat_id, message, reply_markup=None):
         print(f"Telegram message error: {e}")
         return False
 
-WELCOME_MESSAGE = """🎭 <b>Развлекательный портал Юго-Восточной Азии</b>
+WELCOME_MESSAGE = """🎭 <b>Cổng thông tin giải trí Đông Nam Á</b>
 
-Афиша · События · Рестораны · Туры · Жильё
+Sự kiện · Nhà hàng · Tour · Bất động sản · Giao thông
 
-🇻🇳 Вьетнам  🇹🇭 Таиланд  🇮🇳 Индия  🇮🇩 Индонезия
+🇻🇳 Việt Nam  🇹🇭 Thái Lan  🇮🇳 Ấn Độ  🇮🇩 Indonesia
 
-Тысячи актуальных объявлений из проверенных Telegram-каналов — в одном месте, с фото и контактами.
+Hàng nghìn tin đăng từ các kênh Telegram uy tín — tất cả trong một nơi, có ảnh và liên hệ.
 """
 
 # Данные хранятся в JSON файле по странам
@@ -2979,6 +2979,61 @@ def banner_image_proxy(msg_id):
 def get_banners():
     config = load_banner_config()
     return jsonify(config)
+
+@app.route('/api/re-cheap-banners')
+def api_re_cheap_banners():
+    """ТОП-20 самых дешёвых объявлений недвижимости за последние 24ч (или 7д fallback)."""
+    from datetime import datetime
+    country = request.args.get('country', 'vietnam')
+    data = load_data(country)
+    listings = data.get('real_estate', [])
+    now = time.time()
+    cutoff_24h = now - 86400
+    cutoff_7d = now - 86400 * 7
+
+    def parse_ts(item):
+        d = item.get('date', '')
+        try:
+            return datetime.fromisoformat(d).timestamp()
+        except Exception:
+            return 0
+
+    def get_price_num(item):
+        p = item.get('price', 0) or 0
+        try:
+            v = float(p)
+            return v if v > 0 else None
+        except Exception:
+            return None
+
+    priced = [(item, parse_ts(item), get_price_num(item))
+              for item in listings if get_price_num(item)]
+
+    recent = [(item, ts, p) for item, ts, p in priced if ts >= cutoff_24h]
+    if len(recent) < 5:
+        recent = [(item, ts, p) for item, ts, p in priced if ts >= cutoff_7d]
+
+    recent.sort(key=lambda x: x[2])
+    top20 = recent[:20]
+
+    result = []
+    for item, ts, price_num in top20:
+        photo = item.get('image_url', '') or ''
+        if not photo:
+            ais = item.get('all_images') or []
+            photo = ais[0] if ais else ''
+        pd = item.get('price_display', '') or f"{int(price_num):,} VND"
+        result.append({
+            'id': item.get('id', ''),
+            'photo': photo,
+            'price': pd,
+            'title': (item.get('title', '') or '')[:80],
+            'telegram_link': item.get('telegram_link', '') or item.get('tg_link', ''),
+            'city': item.get('city_ru', '') or item.get('city', ''),
+            'message_id': item.get('message_id', ''),
+            'contact': item.get('contact', '') or item.get('source_channel', ''),
+        })
+    return jsonify(result)
 
 @app.route('/api/admin/sync-banners', methods=['POST'])
 def admin_sync_banners():

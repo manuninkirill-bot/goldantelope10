@@ -1,6 +1,6 @@
 // Основные функции навигации - определены первыми для быстрой доступности
         let currentCountry = 'vietnam';
-        let currentLang = 'ru';
+        let currentLang = 'vi';
         let bannerConfig = {};
         let currentBannerTab = 'web';
         
@@ -811,6 +811,8 @@
                 const savedLang = localStorage.getItem('goldantelope_lang');
                 if (savedLang && ['ru', 'en', 'vi', 'th'].includes(savedLang)) {
                     switchLang(savedLang);
+                } else {
+                    switchLang('vi');
                 }
             }
 
@@ -898,7 +900,12 @@
                 }
                 if(typeof loadListings==='function') loadListings('tours', currentToursCity || '');
             }
-            else if (tabName === 'realestate') { if(typeof loadRealEstateCounts==='function') loadRealEstateCounts(); if(typeof loadListings==='function') loadListings('real_estate'); }
+            else if (tabName === 'realestate') {
+                if(typeof loadRealEstateCounts==='function') loadRealEstateCounts();
+                if(typeof loadListings==='function') loadListings('real_estate');
+                if (currentCountry === 'vietnam') loadRECheapBanners();
+                else { var rw=document.getElementById('re-cheap-banners-wrap'); if(rw) rw.style.display='none'; }
+            }
             else if (tabName === 'transport') {
                 var isVNtr = currentCountry === 'vietnam';
                 var vnTr = document.getElementById('vietnam-transport-buttons');
@@ -924,6 +931,39 @@
                 if(typeof loadListings==='function') loadListings('entertainment', currentEntertainmentCity);
             }
             else { let category = tabName === 'realestate' ? 'real_estate' : tabName; if(typeof loadListings==='function') loadListings(category); }
+            // Скрываем RE cheap banners если не realestate
+            if (tabName !== 'realestate') {
+                var _rw = document.getElementById('re-cheap-banners-wrap');
+                if (_rw) _rw.style.display = 'none';
+            }
+        }
+
+        async function loadRECheapBanners() {
+            var wrap = document.getElementById('re-cheap-banners-wrap');
+            var inner = document.getElementById('re-cheap-banners-inner');
+            if (!wrap || !inner) return;
+            inner.innerHTML = '<div style="color:#aaa;font-size:12px;padding:10px;">Đang tải...</div>';
+            wrap.style.display = 'block';
+            try {
+                var r = await fetch('/api/re-cheap-banners?country=vietnam');
+                var items = await r.json();
+                if (!items || items.length === 0) { wrap.style.display = 'none'; return; }
+                inner.innerHTML = '';
+                items.forEach(function(item) {
+                    var a = document.createElement('a');
+                    a.href = item.telegram_link || '#';
+                    if (item.telegram_link) { a.target = '_blank'; a.rel = 'noopener'; }
+                    a.style.cssText = 'display:inline-block;position:relative;min-width:130px;max-width:160px;height:100px;border-radius:10px;overflow:hidden;flex-shrink:0;text-decoration:none;border:2px solid rgba(212,175,55,0.5);background:#1a1a2e;';
+                    var img = '';
+                    if (item.photo) {
+                        img = '<img src="' + item.photo + '" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display=\'none\'">';
+                    }
+                    var city = item.city ? '<div style="position:absolute;top:4px;left:4px;background:rgba(212,175,55,0.9);color:#000;font-size:10px;font-weight:700;padding:2px 5px;border-radius:4px;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + item.city + '</div>' : '';
+                    var price = item.price ? '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.72);color:#fff;font-size:12px;font-weight:800;padding:4px 6px;text-align:center;letter-spacing:0.2px;">' + item.price + '</div>' : '';
+                    a.innerHTML = img + city + price;
+                    inner.appendChild(a);
+                });
+            } catch(e) { wrap.style.display = 'none'; }
         }
 
         const _INTERNAL_PARSERS = new Set(['chatparsing_vn','tusaparsing_vn','chatiparsing','parsing_vn','parsing_th']);
@@ -1687,6 +1727,9 @@
             }
             
             currentCountry = country;
+            // Скрываем RE cheap banners при смене страны
+            var _rcw = document.getElementById('re-cheap-banners-wrap');
+            if (_rcw) _rcw.style.display = 'none';
             document.querySelectorAll('.country-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('onclick').includes(country));
             });
