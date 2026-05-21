@@ -520,15 +520,15 @@
         "user_4br99ne26_1779192772606"
       ],
       "tg_visitors": [],
-      "page_views": 1589,
+      "page_views": 1463,
       "countries": {
-        "vietnam": 1573,
+        "vietnam": 1447,
         "thailand": 14,
         "india": 2
       },
       "categories": {
         "realestate": 46,
-        "entertainment": 1543
+        "entertainment": 1417
       },
       "hours": {
         "00": 118,
@@ -543,41 +543,12 @@
         "09": 120,
         "10": 120,
         "11": 120,
-        "12": 123,
-        "13": 33
+        "12": 30
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 1589
-      }
-    },
-    "2026-05-21": {
-      "unique_visitors": [
-        "user_y1yukxp2g_1778180659618",
-        "user_4a2fdu96f_1779363535531",
-        "user_x04f5sf1u_1779364449892",
-        "user_zpju2l5uu_1779365850208"
-      ],
-      "tg_visitors": [],
-      "page_views": 124,
-      "countries": {
-        "vietnam": 124
-      },
-      "categories": {
-        "entertainment": 70,
-        "realestate": 51,
-        "restaurants": 2,
-        "transport": 1
-      },
-      "hours": {
-        "11": 58,
-        "12": 66
-      },
-      "referrers": {},
-      "devices": {
-        "mobile": 0,
-        "desktop": 124
+        "desktop": 1463
       }
     }
   },
@@ -829,8 +800,8 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 4646,
-      "last_seen": "2026-05-21"
+      "visits": 4404,
+      "last_seen": "2026-05-19"
     },
     "user_kas3lqvh5_1778180692972": {
       "first_seen": "2026-05-07",
@@ -907,21 +878,6 @@
       "first_seen": "2026-05-19",
       "visits": 2,
       "last_seen": "2026-05-19"
-    },
-    "user_4a2fdu96f_1779363535531": {
-      "first_seen": "2026-05-21",
-      "visits": 1,
-      "last_seen": "2026-05-21"
-    },
-    "user_x04f5sf1u_1779364449892": {
-      "first_seen": "2026-05-21",
-      "visits": 3,
-      "last_seen": "2026-05-21"
-    },
-    "user_zpju2l5uu_1779365850208": {
-      "first_seen": "2026-05-21",
-      "visits": 4,
-      "last_seen": "2026-05-21"
     }
   }
 }

@@ -663,24 +663,22 @@ def set_telegram_webhook():
 
 @app.route('/api/counts')
 def api_counts():
-    """Счётчик объявлений по категориям для страны (без скрытых)."""
+    """Счётчик объявлений по категориям для страны."""
     country = request.args.get('country', 'vietnam')
     try:
         data = load_data(country)
-        def _cnt(cat):
-            return sum(1 for x in data.get(cat, []) if not x.get('hidden', False))
         counts = {
-            'real_estate':   _cnt('real_estate'),
-            'transport':     _cnt('transport'),
-            'restaurants':   _cnt('restaurants'),
-            'tours':         _cnt('tours'),
-            'entertainment': _cnt('entertainment'),
-            'money_exchange':_cnt('money_exchange'),
-            'visas':         _cnt('visas'),
-            'marketplace':   _cnt('marketplace'),
+            'real_estate': len(data.get('real_estate', [])),
+            'transport':   len(data.get('transport', [])),
+            'restaurants': len(data.get('restaurants', [])),
+            'tours':       len(data.get('tours', [])),
+            'entertainment': len(data.get('entertainment', [])),
+            'money_exchange': len(data.get('money_exchange', [])),
+            'visas':       len(data.get('visas', [])),
+            'marketplace': len(data.get('marketplace', [])),
         }
         resp = fast_json(counts)
-        resp.headers['Cache-Control'] = 'public, max-age=60'
+        resp.headers['Cache-Control'] = 'public, max-age=120'
         return resp
     except Exception as e:
         return fast_json({})
@@ -696,20 +694,18 @@ def api_init():
     cached = _init_cache.get(country)
     if cached and (now - cached['ts']) < _INIT_CACHE_TTL:
         return Response(cached['data'], mimetype='application/json',
-                        headers={'Cache-Control': 'no-cache'})
+                        headers={'Cache-Control': 'public, max-age=120'})
     data = load_data(country)
-    def _cnt(cat):
-        return sum(1 for x in data.get(cat, []) if not x.get('hidden', False))
-    total_listings = sum(_cnt(k) for k in data if k != 'chat')
+    total_listings = sum(len(v) for k, v in data.items() if k != 'chat')
     counts = {
-        'real_estate':   _cnt('real_estate'),
-        'transport':     _cnt('transport'),
-        'restaurants':   _cnt('restaurants'),
-        'tours':         _cnt('tours'),
-        'entertainment': _cnt('entertainment'),
-        'money_exchange':_cnt('money_exchange'),
-        'visas':         _cnt('visas'),
-        'marketplace':   _cnt('marketplace'),
+        'real_estate':   len(data.get('real_estate', [])),
+        'transport':     len(data.get('transport', [])),
+        'restaurants':   len(data.get('restaurants', [])),
+        'tours':         len(data.get('tours', [])),
+        'entertainment': len(data.get('entertainment', [])),
+        'money_exchange':len(data.get('money_exchange', [])),
+        'visas':         len(data.get('visas', [])),
+        'marketplace':   len(data.get('marketplace', [])),
     }
     online_counts = {'vietnam': 342, 'thailand': 287, 'india': 156, 'indonesia': 419}
     try:
@@ -733,7 +729,7 @@ def api_init():
         raw = json.dumps(result, ensure_ascii=False).encode()
     _init_cache[country] = {'data': raw, 'ts': now}
     return Response(raw, mimetype='application/json',
-                    headers={'Cache-Control': 'no-cache'})
+                    headers={'Cache-Control': 'public, max-age=120'})
 
 @app.route('/api/groups-stats')
 def groups_stats():
@@ -2429,27 +2425,12 @@ def _save_banner_data(data):
 
 def handle_banner_channel_photo(msg_id, file_id):
     data = _load_banner_data()
-    data[str(msg_id)] = {'file_id': file_id, 'is_video': False, 'ts': int(datetime.now().timestamp())}
+    data[str(msg_id)] = {'file_id': file_id, 'ts': int(datetime.now().timestamp())}
     _save_banner_data(data)
     with _msg_to_file_id_lock:
         _msg_to_file_id[(_BANNER_TG_GROUP, msg_id)] = file_id
     _update_banner_config_from_data(data)
     logger.info(f'[banner_sync] Фото баннер добавлен: msg_id={msg_id}')
-
-
-def handle_banner_channel_video(msg_id, file_id):
-    """Обрабатывает видео из @banner_vn: сохраняет file_id, отдаётся через Bot API."""
-    data = _load_banner_data()
-    data[str(msg_id)] = {
-        'file_id': file_id,
-        'is_video': True,
-        'ts': int(datetime.now().timestamp())
-    }
-    _save_banner_data(data)
-    with _msg_to_file_id_lock:
-        _msg_to_file_id[(_BANNER_TG_GROUP, msg_id)] = file_id
-    _update_banner_config_from_data(data)
-    logger.info(f'[banner_sync] Видео баннер добавлен: msg_id={msg_id}, file_id={file_id[:20]}...')
 
 def handle_banner_channel_delete(msg_id):
     data = _load_banner_data()
@@ -2671,51 +2652,16 @@ threading.Thread(target=_banner_refresh_scheduler, daemon=True, name='BannerRefr
 logger.info('[banner_sync] Синхронизация баннеров из @banner_vn запущена (обновление каждые 6ч)')
 
 
-def _download_banner_video_local(mid, cdn_url):
-    """Скачивает видео-баннер локально и применяет faststart (moov в начале файла)."""
-    local_path = f'static/videos/banner_vn_{mid}.mp4'
-    tmp_path = f'static/videos/banner_vn_{mid}_tmp.mp4'
-    os.makedirs('static/videos', exist_ok=True)
-    try:
-        r = requests.get(cdn_url, timeout=30, stream=True)
-        if r.status_code != 200:
-            logger.warning('[banner_prewarm] mid=%d: CDN вернул %d', mid, r.status_code)
-            return False
-        with open(tmp_path, 'wb') as f:
-            for chunk in r.iter_content(8192):
-                f.write(chunk)
-        # Применяем faststart — перемещаем moov в начало для мобильных браузеров
-        import subprocess as _sp
-        result = _sp.run(
-            ['ffmpeg', '-i', tmp_path, '-c', 'copy', '-movflags', 'faststart', local_path, '-y'],
-            capture_output=True, timeout=60
-        )
-        os.remove(tmp_path)
-        if result.returncode == 0 and os.path.exists(local_path):
-            sz = os.path.getsize(local_path)
-            logger.info('[banner_prewarm] mid=%d: faststart OK, %d bytes → %s', mid, sz, local_path)
-            return True
-        else:
-            logger.warning('[banner_prewarm] mid=%d: ffmpeg faststart failed: %s', mid, result.stderr[-200:])
-    except Exception as e:
-        logger.warning('[banner_prewarm] mid=%d: ошибка скачивания: %s', mid, e)
-        for p in (tmp_path, local_path):
-            try:
-                if os.path.exists(p): os.remove(p)
-            except Exception:
-                pass
-    return False
-
-
 def _prewarm_banner_video_cache():
     """При старте прогревает кэш CDN-ссылок для всех видео-баннеров.
-    Если локального файла нет — скачивает его для надёжной отдачи на мобильных."""
+    Нужно для HF Space: после пересборки кэш пустой, первый запрос иначе зависает."""
     import time as _tw
     _tw.sleep(15)  # ждём инициализации
     try:
         bd = _load_banner_data()
         video_ids = [int(mid) for mid, e in bd.items() if isinstance(e, dict) and e.get('is_video')]
         if not video_ids:
+            # Пробуем из banner_config
             cfg = load_banner_config()
             for country_data in cfg.values():
                 if isinstance(country_data, dict):
@@ -2729,29 +2675,23 @@ def _prewarm_banner_video_cache():
         video_ids = list(set(video_ids))
         logger.info('[banner_prewarm] Прогрев кэша для %d видео-баннеров: %s', len(video_ids), video_ids)
         for mid in video_ids:
-            local_path = f'static/videos/banner_vn_{mid}.mp4'
-            # Если локальный файл уже есть — ничего не делаем
-            if os.path.exists(local_path) and os.path.getsize(local_path) > 10000:
-                logger.info('[banner_prewarm] mid=%d: локальный файл уже есть (%d bytes)', mid, os.path.getsize(local_path))
-                continue
-            # Получаем CDN URL из banner_data
+            # Сначала пробуем cdn_url из banner_data.json
             entry = bd.get(str(mid), {})
-            cdn_url = entry.get('video_cdn_url', '') or entry.get('cdn_url', '')
-            cdn_ts = entry.get('video_cdn_ts') or entry.get('cdn_ts', 0)
-            # Если CDN URL устарел — обновляем
-            if not cdn_url or (_tw.time() - cdn_ts) > 82800:
-                cdn_url = _scrape_cdn_video_for_post(_BANNER_TG_GROUP, mid)
-                if cdn_url:
-                    bd[str(mid)] = bd.get(str(mid), {})
-                    bd[str(mid)]['video_cdn_url'] = cdn_url
-                    bd[str(mid)]['video_cdn_ts'] = int(_tw.time())
-                    bd[str(mid)]['cdn_url'] = cdn_url
-                    bd[str(mid)]['cdn_ts'] = int(_tw.time())
-                    _save_banner_data(bd)
-            if cdn_url:
+            cdn_url = entry.get('cdn_url', '')
+            cdn_ts = entry.get('cdn_ts', 0)
+            if cdn_url and (_tw.time() - cdn_ts) < 82800:
                 _banner_og_cache[mid] = (cdn_url, _tw.time())
-                # Скачиваем локально для надёжной отдачи на мобильных
-                _download_banner_video_local(mid, cdn_url)
+                logger.info('[banner_prewarm] mid=%d: из banner_data (%s)', mid, cdn_url[:50])
+                continue
+            # Иначе скрейпим t.me/s/
+            cdn_v = _scrape_cdn_video_for_post(_BANNER_TG_GROUP, mid)
+            if cdn_v:
+                _banner_og_cache[mid] = (cdn_v, _tw.time())
+                bd[str(mid)] = bd.get(str(mid), {})
+                bd[str(mid)]['cdn_url'] = cdn_v
+                bd[str(mid)]['cdn_ts'] = int(_tw.time())
+                _save_banner_data(bd)
+                logger.info('[banner_prewarm] mid=%d: scraped OK (%s)', mid, cdn_v[:50])
             else:
                 logger.warning('[banner_prewarm] mid=%d: не удалось получить CDN URL', mid)
     except Exception as _pe:
@@ -2855,14 +2795,41 @@ def _get_banner_file_id(msg_id):
 
 @app.route('/api/banner-video/<int:msg_id>')
 def banner_video_proxy(msg_id):
-    """Прокси для видео-баннеров. Порядок: Bot API → локальный файл → CDN фолбек."""
+    """Прокси/редирект для видео-баннеров. CDN URL — 302 редирект; Bot API — стриминг."""
     from flask import Response, stream_with_context
     tg_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+    file_id = _get_banner_file_id(msg_id)
+
+    # 0) Локальный файл — используем встроенный Flask static handler (поддерживает Range/206)
+    local_static = f'videos/banner_vn_{msg_id}.mp4'
+    local_path = f'static/{local_static}'
+    if os.path.exists(local_path):
+        from flask import current_app as _ca
+        return _ca.send_static_file(local_static)
+
+    # 1) CDN URL из banner_data.json — редирект напрямую (browser сам стримит без прокси)
+    #    Используем video_cdn_ts для видео и cdn_ts как fallback (для обратной совместимости)
     _bdata = _load_banner_data()
     _entry = _bdata.get(str(msg_id), {})
-    file_id = _entry.get('file_id', '')
+    _vcdn = _entry.get('video_cdn_url', '') or _entry.get('cdn_url', '')
+    _vcdn_ts = _entry.get('video_cdn_ts') or _entry.get('cdn_ts', 0)
+    if _vcdn and (time.time() - _vcdn_ts) < 3600:
+        logger.debug(f'[banner-video] CDN redirect для {msg_id}: {_vcdn[:60]}')
+        return redirect(_vcdn, code=302)
 
-    # 1) Bot API — getFile по file_id (не светим token в URL, стримим через прокси)
+    # 2) Scrape свежий CDN URL → обновляем кеш и редиректим
+    try:
+        cdn_fresh = _scrape_cdn_video_for_post(_BANNER_TG_GROUP, msg_id)
+        if cdn_fresh:
+            _bdata[str(msg_id)]['video_cdn_url'] = cdn_fresh
+            _bdata[str(msg_id)]['video_cdn_ts'] = int(time.time())
+            _save_banner_data(_bdata)
+            logger.debug(f'[banner-video] CDN scrape+redirect для {msg_id}: {cdn_fresh[:60]}')
+            return redirect(cdn_fresh, code=302)
+    except Exception:
+        pass
+
+    # 3) Bot API file_id → стриминг через сервер (token не светим в URL)
     video_url = None
     if file_id and tg_token:
         try:
@@ -2873,40 +2840,11 @@ def banner_video_proxy(msg_id):
             if gf.status_code == 200 and gf.json().get('ok'):
                 fp = gf.json()['result']['file_path']
                 video_url = f'{TG_API_BASE}/file/bot{tg_token}/{fp}'
-                logger.debug(f'[banner-video] Bot API для {msg_id}: {fp}')
+                logger.debug(f'[banner-video] Bot API stream для {msg_id}: {fp}')
         except Exception as e:
             logger.warning(f'[banner-video] getFile error {msg_id}: {e}')
 
-    if video_url:
-        pass  # идём ниже на стриминг
-    else:
-        # 2) Локальный файл (уже скачанный ранее)
-        local_static = f'videos/banner_vn_{msg_id}.mp4'
-        local_path = f'static/{local_static}'
-        if os.path.exists(local_path):
-            from flask import current_app as _ca
-            return _ca.send_static_file(local_static)
-
-        # 3) CDN URL из banner_data (фолбек для старых записей без file_id)
-        _vcdn = _entry.get('video_cdn_url', '') or _entry.get('cdn_url', '')
-        _vcdn_ts = _entry.get('video_cdn_ts') or _entry.get('cdn_ts', 0)
-        if _vcdn and (time.time() - _vcdn_ts) < 3600:
-            logger.debug(f'[banner-video] CDN fallback для {msg_id}: {_vcdn[:60]}')
-            return redirect(_vcdn, code=302)
-
-        # 4) Scrape свежий CDN URL
-        try:
-            cdn_fresh = _scrape_cdn_video_for_post(_BANNER_TG_GROUP, msg_id)
-            if cdn_fresh:
-                _bdata.setdefault(str(msg_id), {})
-                _bdata[str(msg_id)]['video_cdn_url'] = cdn_fresh
-                _bdata[str(msg_id)]['video_cdn_ts'] = int(time.time())
-                _save_banner_data(_bdata)
-                logger.debug(f'[banner-video] CDN scrape fallback для {msg_id}: {cdn_fresh[:60]}')
-                return redirect(cdn_fresh, code=302)
-        except Exception:
-            pass
-
+    if not video_url:
         return '', 404
 
     # Стримим через прокси (Range поддержка)
@@ -5392,20 +5330,10 @@ def _process_routed_channel_post(cp):
 
     # @banner_vn → только баннеры Вьетнам, без Развлечений
     if chat_username == _BANNER_TG_GROUP:
-        msg_id_b = cp.get('message_id', 0)
-        if cp.get('video') and msg_id_b:
-            # Видео — скачиваем через Bot API без CDN
-            vid_b = cp['video']
-            fid_b = vid_b.get('file_id', '')
-            if fid_b:
-                threading.Thread(
-                    target=handle_banner_channel_video,
-                    args=(msg_id_b, fid_b),
-                    daemon=True
-                ).start()
-        elif cp.get('photo') and msg_id_b:
+        if cp.get('photo'):
+            msg_id_b = cp.get('message_id', 0)
             photo_list_b = cp.get('photo', [])
-            if photo_list_b:
+            if photo_list_b and msg_id_b:
                 largest_b = max(photo_list_b, key=lambda p: p.get('file_size', 0))
                 fid_b = largest_b.get('file_id', '')
                 if fid_b:
