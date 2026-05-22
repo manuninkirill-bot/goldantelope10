@@ -1,6 +1,6 @@
 // Основные функции навигации - определены первыми для быстрой доступности
         let currentCountry = 'vietnam';
-        let currentLang = 'vi';
+        let currentLang = 'ru';
         let bannerConfig = {};
         let currentBannerTab = 'web';
         
@@ -812,7 +812,7 @@
                 if (savedLang && ['ru', 'en', 'vi', 'th'].includes(savedLang)) {
                     switchLang(savedLang);
                 } else {
-                    switchLang('vi');
+                    switchLang('ru');
                 }
             }
 
@@ -899,12 +899,16 @@
                     renderOtherCountryCitySwitcher('to-oth', 'tours', filterToursByCity, false);
                 }
                 if(typeof loadListings==='function') loadListings('tours', currentToursCity || '');
+                if (currentCountry === 'vietnam')
+                    loadTopBanners('top-tours-wrap','top-tours-inner',{category:'tours',sort_by:'date_desc',days:90});
             }
             else if (tabName === 'realestate') {
                 if(typeof loadRealEstateCounts==='function') loadRealEstateCounts();
                 if(typeof loadListings==='function') loadListings('real_estate');
-                if (currentCountry === 'vietnam') loadRECheapBanners();
-                else { var rw=document.getElementById('re-cheap-banners-wrap'); if(rw) rw.style.display='none'; }
+                if (currentCountry === 'vietnam') {
+                    loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:30});
+                    loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:30});
+                }
             }
             else if (tabName === 'transport') {
                 var isVNtr = currentCountry === 'vietnam';
@@ -917,6 +921,8 @@
                 }
                 if(typeof updateTransportCounts==='function') updateTransportCounts();
                 if(typeof loadListings==='function') loadListings('transport', currentTransportType);
+                if (currentCountry === 'vietnam')
+                    loadTopBanners('top-transport-wrap','top-transport-inner',{category:'transport',sort_by:'date_desc',days:7});
             }
             else if (tabName === 'entertainment') {
                 var isVN = currentCountry === 'vietnam';
@@ -929,36 +935,42 @@
                 }
                 if(typeof buildEntDateBar==='function') buildEntDateBar();
                 if(typeof loadListings==='function') loadListings('entertainment', currentEntertainmentCity);
+                if (currentCountry === 'vietnam')
+                    loadTopBanners('top-ent-wrap','top-ent-inner',{category:'entertainment',sort_by:'date_desc',days:30});
+            }
+            else if (tabName === 'restaurants') {
+                if(typeof loadListings==='function') loadListings('restaurants');
+                if (currentCountry === 'vietnam')
+                    loadTopBanners('top-rest-wrap','top-rest-inner',{category:'restaurants',sort_by:'date_desc',days:30});
             }
             else { let category = tabName === 'realestate' ? 'real_estate' : tabName; if(typeof loadListings==='function') loadListings(category); }
         }
 
-        async function loadRECheapBanners() {
-            console.log('[RECheap] loadRECheapBanners called, country=' + currentCountry);
-            var wrap = document.getElementById('re-cheap-banners-wrap');
-            var inner = document.getElementById('re-cheap-banners-inner');
-            if (!wrap || !inner) { console.log('[RECheap] elements not found'); return; }
-            inner.innerHTML = '<div style="color:#aaa;font-size:12px;padding:6px 0;">Đang tải...</div>';
+        async function loadTopBanners(wrapId, innerId, params) {
+            const wrap = document.getElementById(wrapId);
+            const inner = document.getElementById(innerId);
+            if (!wrap || !inner) return;
+            inner.innerHTML = '<div style="color:#aaa;font-size:11px;padding:4px 0;">...</div>';
             wrap.style.display = 'block';
             try {
-                console.log('[RECheap] fetching /api/re-cheap-banners...');
-                var r = await fetch('/api/re-cheap-banners?country=vietnam');
-                var items = await r.json();
-                console.log('[RECheap] got ' + (items ? items.length : 0) + ' items');
+                const p = Object.assign({country: currentCountry}, params);
+                const qs = new URLSearchParams(p).toString();
+                const r = await fetch('/api/top-banners?' + qs);
+                const items = await r.json();
                 if (!items || items.length === 0) { wrap.style.display = 'none'; return; }
                 inner.innerHTML = '';
                 items.forEach(function(item) {
-                    var a = document.createElement('a');
+                    const a = document.createElement('a');
                     a.href = item.telegram_link || '#';
                     if (item.telegram_link) { a.target = '_blank'; a.rel = 'noopener'; }
-                    a.style.cssText = 'display:inline-block;position:relative;min-width:130px;max-width:155px;height:105px;border-radius:10px;overflow:hidden;flex-shrink:0;text-decoration:none;border:2px solid rgba(212,175,55,0.5);background:#1a1a2e;scroll-snap-align:start;';
-                    var img = item.photo ? '<img src="' + item.photo + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.style.display=\'none\'">' : '';
-                    var city = item.city ? '<div style="position:absolute;top:4px;left:4px;background:rgba(212,175,55,0.92);color:#000;font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + item.city + '</div>' : '';
-                    var price = item.price ? '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.72);color:#fff;font-size:11px;font-weight:800;padding:3px 5px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + item.price + '</div>' : '';
-                    a.innerHTML = img + city + price;
+                    a.style.cssText = 'display:inline-block;position:relative;min-width:130px;max-width:155px;height:105px;border-radius:10px;overflow:hidden;flex-shrink:0;text-decoration:none;border:2px solid rgba(212,175,55,0.45);background:#1a1a2e;scroll-snap-align:start;';
+                    const img = item.photo ? '<img src="' + item.photo + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.style.display=\'none\'">' : '';
+                    const badge = '<div style="position:absolute;top:4px;left:4px;background:rgba(212,175,55,0.95);color:#000;font-size:9px;font-weight:800;padding:2px 5px;border-radius:3px;letter-spacing:0.2px;">ТОП</div>';
+                    const bottom = (item.price || item.title) ? '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.72);color:#fff;font-size:10px;font-weight:700;padding:3px 5px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + (item.price || item.title) + '</div>' : '';
+                    a.innerHTML = img + badge + bottom;
                     inner.appendChild(a);
                 });
-            } catch(e) { console.log('[RECheap] error: ' + e); wrap.style.display = 'none'; }
+            } catch(e) { wrap.style.display = 'none'; }
         }
 
         const _INTERNAL_PARSERS = new Set(['chatparsing_vn','tusaparsing_vn','chatiparsing','parsing_vn','parsing_th']);

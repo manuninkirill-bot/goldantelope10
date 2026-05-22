@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
     <meta property="og:image" content="https://goldantelopeasia.com/static/images/logo.png">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
-    <meta property="og:locale" content="vi_VN">
+    <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="Goldantelope ASIA">
 
     <!-- Twitter Card -->
@@ -2405,9 +2405,9 @@
                         <span style="color: #ccc; margin: 0 2px;">|</span>
                         <span style="font-size: 14px;">👥</span><span id="online-count" style="font-size: 13px; font-weight: 600; color: #d4af37;">--</span>
                         <span style="color: #ccc; margin: 0 2px;">|</span>
-                        <button onclick="switchLang('ru')" id="lang-ru" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: transparent; color: #666; cursor: pointer; font-size: 11px; font-weight: 600;">RU</button>
+                        <button onclick="switchLang('ru')" id="lang-ru" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: #d4af37; color: white; cursor: pointer; font-size: 11px; font-weight: 600;">RU</button>
                         <button onclick="switchLang('en')" id="lang-en" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: transparent; color: #666; cursor: pointer; font-size: 11px; font-weight: 600;">EN</button>
-                        <button onclick="switchLang('vi')" id="lang-vi" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: #d4af37; color: white; cursor: pointer; font-size: 11px; font-weight: 600;">VI</button>
+                        <button onclick="switchLang('vi')" id="lang-vi" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: transparent; color: #666; cursor: pointer; font-size: 11px; font-weight: 600;">VI</button>
                         <button onclick="switchLang('th')" id="lang-th" class="lang-btn" style="padding: 3px 8px; border: none; border-radius: 12px; background: transparent; color: #666; cursor: pointer; font-size: 11px; font-weight: 600;">TH</button>
                         <button onclick="toggleTheme()" id="theme-toggle-btn" class="theme-toggle-btn" title="Переключить тему">🌙</button>
                     </div>
@@ -2493,6 +2493,11 @@
 
         <!-- Рестораны -->
         <div id="restaurants" class="content">
+            <!-- Restaurants Top Banners -->
+            <div id="top-rest-wrap" style="display:none; padding:10px 12px 0;">
+                <div style="font-size:12px; color:#b8860b; font-weight:700; margin-bottom:6px; letter-spacing:0.3px;">🏆 ТОП-20 · Рестораны</div>
+                <div id="top-rest-inner" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch; scrollbar-width:none; scroll-snap-type:x mandatory;"></div>
+            </div>
             <!-- Вьетнам - статические кнопки городов -->
             <div id="vietnam-restaurants-buttons" style="display: none; padding: 10px 12px 0;">
                 <div style="position:relative;">
@@ -2540,6 +2545,11 @@
 
         <!-- Экскурсии -->
         <div id="tours" class="content">
+            <!-- Tours Top Banners -->
+            <div id="top-tours-wrap" style="display:none; padding:10px 12px 0;">
+                <div style="font-size:12px; color:#b8860b; font-weight:700; margin-bottom:6px; letter-spacing:0.3px;">🏆 ТОП-20 · Экскурсии</div>
+                <div id="top-tours-inner" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch; scrollbar-width:none; scroll-snap-type:x mandatory;"></div>
+            </div>
             <!-- Вьетнам - кнопка-переключатель города -->
             <div id="vietnam-tours-buttons" style="padding: 10px 12px 0;">
                 <div style="position:relative; display:block;">
@@ -2720,6 +2730,11 @@
 
         <!-- Транспорт -->
         <div id="transport" class="content">
+            <!-- Transport Top Banners -->
+            <div id="top-transport-wrap" style="display:none; padding:10px 12px 0;">
+                <div style="font-size:12px; color:#b8860b; font-weight:700; margin-bottom:6px; letter-spacing:0.3px;">🏆 ТОП-20 · Транспорт</div>
+                <div id="top-transport-inner" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch; scrollbar-width:none; scroll-snap-type:x mandatory;"></div>
+            </div>
             <!-- Вьетнам: city dropdown -->
             <div id="vietnam-transport-buttons" style="padding: 10px 12px 0;">
                 <div style="position:relative;">
@@ -2880,11 +2895,14 @@
         <!-- Недвижимость -->
         <div id="realestate" class="content">
 
-            <!-- RE Cheap Banners (Vietnam only) — inside realestate tab -->
-            <div id="re-cheap-banners-wrap" style="display:none; padding:10px 12px 0;">
-                <div style="font-size:12px; color:#b8860b; font-weight:700; margin-bottom:6px; letter-spacing:0.3px;">🏷️ TOP 20 giá rẻ nhất / ТОП-20 дешевле всего</div>
-                <div id="re-cheap-banners-inner" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; -webkit-overflow-scrolling:touch; scrollbar-width:none; scroll-snap-type:x mandatory;">
-                </div>
+            <!-- RE Top Banners — inside realestate tab -->
+            <div id="top-re-nt-wrap" style="display:none; padding:10px 12px 0;">
+                <div style="font-size:12px; color:#b8860b; font-weight:700; margin-bottom:6px; letter-spacing:0.3px;">🏆 ТОП-20 · Нячанг</div>
+                <div id="top-re-nt-inner" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch; scrollbar-width:none; scroll-snap-type:x mandatory;"></div>
+            </div>
+            <div id="top-re-dn-wrap" style="display:none; padding:6px 12px 0;">
+                <div style="font-size:12px; color:#b8860b; font-weight:700; margin-bottom:6px; letter-spacing:0.3px;">🏆 ТОП-20 · Дананг</div>
+                <div id="top-re-dn-inner" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch; scrollbar-width:none; scroll-snap-type:x mandatory;"></div>
             </div>
 
             <div id="vietnam-realestate-buttons" style="padding: 10px 12px 0;">
@@ -3542,6 +3560,11 @@
 
         <!-- Развлечения -->
         <div id="entertainment" class="content active">
+            <!-- Entertainment Top Banners -->
+            <div id="top-ent-wrap" style="display:none; padding:10px 12px 0;">
+                <div style="font-size:12px; color:#b8860b; font-weight:700; margin-bottom:6px; letter-spacing:0.3px;">🏆 ТОП-20 · Развлечения</div>
+                <div id="top-ent-inner" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch; scrollbar-width:none; scroll-snap-type:x mandatory;"></div>
+            </div>
             <!-- Вьетнам: city switcher -->
             <div id="vietnam-entertainment-buttons" style="padding: 10px 12px 0;">
                 <div style="position:relative;">
@@ -5605,6 +5628,6 @@
     
 
     
-<script src="/static/js/dashboard.js?v=20260521f" defer></script>
+<script src="/static/js/dashboard.js?v=20260522a" defer></script>
 </body>
 </html>

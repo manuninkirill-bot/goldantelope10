@@ -2980,58 +2980,73 @@ def get_banners():
     config = load_banner_config()
     return jsonify(config)
 
-@app.route('/api/re-cheap-banners')
-def api_re_cheap_banners():
-    """ТОП-20 самых дешёвых объявлений недвижимости за последние 24ч (или 7д fallback)."""
-    from datetime import datetime
-    country = request.args.get('country', 'vietnam')
+@app.route('/api/top-banners')
+def api_top_banners():
+    """Универсальный ТОП-20 баннеров для любой категории."""
+    from datetime import datetime as _dt
+    category  = request.args.get('category', 'real_estate')
+    country   = request.args.get('country', 'vietnam')
+    min_price = float(request.args.get('min_price', 0) or 0)
+    sort_by   = request.args.get('sort_by', 'date_desc')   # price_asc | date_desc
+    city_q    = (request.args.get('city', '') or '').lower()
+    limit     = min(int(request.args.get('limit', 20) or 20), 50)
+    days      = int(request.args.get('days', 7) or 7)
+
+    cat_map = {'real_estate': 'real_estate', 'transport': 'transport',
+               'entertainment': 'entertainment', 'tours': 'tours', 'restaurants': 'restaurants'}
+    key = cat_map.get(category, category)
     data = load_data(country)
-    listings = data.get('real_estate', [])
+    listings = data.get(key, [])
+
     now = time.time()
-    cutoff_24h = now - 86400
-    cutoff_7d = now - 86400 * 7
+    cutoff = now - 86400 * days
 
-    def parse_ts(item):
+    def _ts(item):
         d = item.get('date', '')
-        try:
-            return datetime.fromisoformat(d).timestamp()
-        except Exception:
-            return 0
+        try: return _dt.fromisoformat(d).timestamp()
+        except: return 0
 
-    def get_price_num(item):
-        p = item.get('price', 0) or 0
+    def _price(item):
         try:
-            v = float(p)
+            v = float(item.get('price', 0) or 0)
             return v if v > 0 else None
-        except Exception:
-            return None
+        except: return None
 
-    priced = [(item, parse_ts(item), get_price_num(item))
-              for item in listings if get_price_num(item)]
+    def _apply_filters(pool):
+        r = [x for x in pool if city_q in (x.get('city_ru') or x.get('city') or '').lower()] if city_q else list(pool)
+        if min_price > 0:
+            r = [x for x in r if (_price(x) or 0) >= min_price]
+        return r
 
-    recent = [(item, ts, p) for item, ts, p in priced if ts >= cutoff_24h]
+    # date filter → apply city+price → fallback to all-time if < 5 results
+    recent = _apply_filters([x for x in listings if _ts(x) >= cutoff])
     if len(recent) < 5:
-        recent = [(item, ts, p) for item, ts, p in priced if ts >= cutoff_7d]
+        recent = _apply_filters(listings)
 
-    recent.sort(key=lambda x: x[2])
-    top20 = recent[:20]
+    # sort
+    if sort_by == 'price_asc':
+        recent.sort(key=lambda x: _price(x) or 999_999_999)
+    else:  # date_desc
+        recent.sort(key=_ts, reverse=True)
 
     result = []
-    for item, ts, price_num in top20:
+    for item in recent[:limit]:
         photo = item.get('image_url', '') or ''
         if not photo:
             ais = item.get('all_images') or []
             photo = ais[0] if ais else ''
-        pd = item.get('price_display', '') or f"{int(price_num):,} VND"
+        p = _price(item)
+        pd = item.get('price_display', '') or (f"{int(p):,} VND" if p else '')
+        title = (item.get('title', '') or item.get('name', '') or '')[:60]
         result.append({
             'id': item.get('id', ''),
             'photo': photo,
             'price': pd,
-            'title': (item.get('title', '') or '')[:80],
+            'title': title,
             'telegram_link': item.get('telegram_link', '') or item.get('tg_link', ''),
             'city': item.get('city_ru', '') or item.get('city', ''),
-            'message_id': item.get('message_id', ''),
             'contact': item.get('contact', '') or item.get('source_channel', ''),
+            'date': item.get('date', ''),
         })
     return jsonify(result)
 
