@@ -2787,6 +2787,23 @@
       "price_display": "from ₹500.00"
     },
     {
+      "id": "partyhunt_a1d6b8c6-0793-4e32-b53a-51b55fb6ac21",
+      "title": "Savage Sao Joao",
+      "description": "📅 21 Jun 2026, 16:30\n📍 JW Marriott Goa\n🗺 Bardez, Vagator Beach Rd, Coutinho Vaddo, Vagator, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/savage-sao-joao-21-jun-2026-jw-marriott-goa-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/CNjPiB019iIzqcVQHpgHcpJa4rJkcWyiUVjKQzAz.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-21 16:30:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/savage-sao-joao-21-jun-2026-jw-marriott-goa-buy-tickets",
+      "price": "1000.00",
+      "price_display": "from ₹1000.00"
+    },
+    {
       "id": "partyhunt_a1d504ae-9e6e-48ff-a5ed-68ba8fd66928",
       "title": "Bhizya Mare 5.0",
       "description": "📅 21 Jun 2026, 15:00\n📍 Joy n Celebrations\n🗺 Gancim, near Turf on Top futsal ground, Maina, Goa 403108, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/bhizya-mare-50-21-jun-2026-joy-n-celebrations-buy-tickets",
@@ -2919,23 +2936,6 @@
       "realestate_city": "goa",
       "country": "india",
       "telegram_link": "https://tickets.partyhunt.com/events/tues-tech-320-26-may-2026-house-of-chapora-by-the-bay-buy-tickets",
-      "price": "1000.00",
-      "price_display": "from ₹1000.00"
-    },
-    {
-      "id": "partyhunt_a1d6b8c6-0793-4e32-b53a-51b55fb6ac21",
-      "title": "Savage Sao Joao",
-      "description": "📅 21 Jun 2026, 16:30\n📍 JW Marriott Goa\n🗺 Bardez, Vagator Beach Rd, Coutinho Vaddo, Vagator, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/savage-sao-joao-21-jun-2026-jw-marriott-goa-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/CNjPiB019iIzqcVQHpgHcpJa4rJkcWyiUVjKQzAz.jpg"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-06-21 16:30:00",
-      "city": "Goa",
-      "realestate_city": "goa",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/savage-sao-joao-21-jun-2026-jw-marriott-goa-buy-tickets",
       "price": "1000.00",
       "price_display": "from ₹1000.00"
     },

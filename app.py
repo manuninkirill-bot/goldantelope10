@@ -3061,12 +3061,13 @@ def api_top_banners():
         lines = [l.strip() for l in raw_title.splitlines() if l.strip() and not l.strip().startswith('Источник:') and not l.strip().startswith('Ссылка:')]
         short_title = lines[0][:50] if lines else ''
         result.append({
-            'id': item.get('id', ''),
+            'id': str(item.get('id', '')),
             'photo': photo,
             'price': pd,
             'title': short_title,
             'telegram_link': item.get('telegram_link', '') or item.get('tg_link', ''),
             'city': item.get('city_ru', '') or item.get('city', ''),
+            'category': category,
         })
     return jsonify(result)
 

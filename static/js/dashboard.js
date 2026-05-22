@@ -954,6 +954,22 @@
             else { let category = tabName === 'realestate' ? 'real_estate' : tabName; if(typeof loadListings==='function') loadListings(category); }
         }
 
+        // Internal navigation from TOP card to listing in mini-app
+        function openTopCard(id, category) {
+            const catTab = category === 'real_estate' ? 'realestate' : category;
+            if (typeof switchTab === 'function') switchTab(catTab);
+            setTimeout(function() {
+                const card = document.getElementById('lc-' + id);
+                if (card) {
+                    card.scrollIntoView({behavior:'smooth', block:'start'});
+                    const prev = card.style.outline;
+                    card.style.outline = '3px solid #d4af37';
+                    card.style.borderRadius = '14px';
+                    setTimeout(function(){ card.style.outline = prev; }, 2500);
+                }
+            }, 700);
+        }
+
         async function loadTopBanners(wrapId, innerId, params) {
             const wrap = document.getElementById(wrapId);
             const inner = document.getElementById(innerId);
@@ -966,13 +982,25 @@
                 const r = await fetch('/api/top-banners?' + qs);
                 const items = await r.json();
                 if (!items || items.length === 0) { wrap.style.display = 'none'; return; }
+                // Preload first 5 photos for faster display
+                const _internalCats = new Set(['entertainment','tours','restaurants']);
+                items.slice(0,5).forEach(function(it){ if(it.photo){ const im=new Image(); im.src=it.photo; } });
                 inner.innerHTML = '';
-                items.forEach(function(item) {
+                items.forEach(function(item, idx) {
                     const a = document.createElement('a');
-                    a.href = item.telegram_link || '#';
-                    if (item.telegram_link) { a.target = '_blank'; a.rel = 'noopener'; }
+                    const cat = item.category || params.category || '';
+                    if (_internalCats.has(cat) && item.id) {
+                        // internal navigation
+                        a.href = '#';
+                        a.onclick = function(e){ e.preventDefault(); openTopCard(item.id, cat); };
+                    } else {
+                        a.href = item.telegram_link || '#';
+                        if (item.telegram_link) { a.target = '_blank'; a.rel = 'noopener'; }
+                    }
                     a.style.cssText = 'display:inline-block;position:relative;min-width:160px;max-width:190px;height:135px;border-radius:12px;overflow:hidden;flex-shrink:0;text-decoration:none;border:2px solid rgba(212,175,55,0.45);background:#1a1a2e;scroll-snap-align:start;';
-                    const img = item.photo ? '<img src="' + item.photo + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.style.display=\'none\'">' : '';
+                    const loadMode = idx < 5 ? 'eager' : 'lazy';
+                    const priority = idx === 0 ? ' fetchpriority="high"' : '';
+                    const img = item.photo ? '<img src="' + item.photo + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="' + loadMode + '"' + priority + ' onerror="this.style.display=\'none\'">' : '';
                     const bottomText = item.price || item.title || '';
                     const bottom = bottomText ? '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.72);color:#fff;font-size:10px;font-weight:700;padding:3px 6px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + bottomText + '</div>' : '';
                     a.innerHTML = img + bottom;
