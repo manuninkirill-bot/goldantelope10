@@ -3033,22 +3033,27 @@ def api_top_banners():
     _tme_re = _re.compile(r'^https://t\.me/([^/]+)/(\d+)$')
 
     def _bot_photo(item):
-        """Resolve photo via /tg_img/ Bot-API proxy (never CDN)."""
-        # 1. Try telegram_link → /tg_img/channel/msg_id
+        """Resolve best available photo URL."""
+        # 1. Try telegram_link / tg_link → /tg_img/ proxy
         for fld in ('telegram_link', 'tg_link'):
             tl = item.get(fld, '') or ''
             m = _tme_re.match(tl)
             if m:
                 return f'/tg_img/{m.group(1)}/{m.group(2)}'
-        # 2. Try source_channel + message_id
+        # 2. Try source_channel + message_id → /tg_img/ proxy
         ch = (item.get('source_channel') or item.get('channel') or '').lstrip('@')
         mid = item.get('message_id') or item.get('msg_id')
         if ch and mid:
             return f'/tg_img/{ch}/{mid}'
-        # 3. Fallback: photo_url (bot API file URL) or image_url as-is
+        # 3. photos[] array (PartyHunt / external CDN) — use first direct https URL
+        for ph in (item.get('photos') or []):
+            if ph and isinstance(ph, str) and ph.startswith('https://'):
+                return ph
+        # 4. photo_url (bot API file URL)
         pu = item.get('photo_url', '') or ''
-        if pu and pu.startswith('https://api.telegram.org'):
+        if pu and pu.startswith('https://'):
             return pu
+        # 5. image_url as-is
         return item.get('image_url', '') or ''
 
     result = []

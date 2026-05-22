@@ -2702,6 +2702,227 @@
   "kids": [],
   "entertainment": [
     {
+      "id": "partyhunt_4e3d1183-684c-4bad-aa31-848a78adf8fc",
+      "title": "PARTY HUNT - Tix!",
+      "description": "📅 01 Apr 2027, 20:00\n📍 Arambol\n🗺 Arambol, Goa 403519, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/party-hunt-tix-4qjgxz",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F427508bd-a841-4bd9-9549-81eefa8eb724%2Ffull_f1bdc200-b244-11ef-93b6-fd708638e0cf?alt=media&token=d734452c-14c3-4702-8958-1c43425ca211"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2027-04-01 20:00:00",
+      "city": "Arambol",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/party-hunt-tix-4qjgxz",
+      "price": "1.00",
+      "price_display": "from ₹1.00"
+    },
+    {
+      "id": "partyhunt_a17e838b-a84a-4f1d-8700-a911aa0fc509",
+      "title": "Vanaghotra",
+      "description": "📅 31 Dec 2026, 19:00\n📍 Dpedro Inn\n🗺 Chonsai Mandrem Rd, Sotchem Bahtlem, Mandrem, Goa 403512, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/vanaghotra-31-dec-2026-dpedro-inn-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fd66656f1-2ec9-4590-9b81-eafc57d76a84%2Ffull_d66656f1-2ec9-4590-9b81-eafc57d76a84?alt=media&token=6bb90719-18b3-4165-a2ed-086a94d54b43"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-12-31 19:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/vanaghotra-31-dec-2026-dpedro-inn-buy-tickets",
+      "price": "3500.00",
+      "price_display": "from ₹3500.00"
+    },
+    {
+      "id": "partyhunt_a03a4069-1d6d-4e67-a9e7-5741637ccabd",
+      "title": "Way To Heaven Festival 1",
+      "description": "📅 07 Nov 2026, 15:00\n📍 Kerala\n🗺 Kerala, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/way-to-heaven-festival-1-08-nov-2026-kerala-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fd4b5e76c-79f1-4188-a9f4-3655d771eefd%2Ffull_d4b5e76c-79f1-4188-a9f4-3655d771eefd?alt=media&token=5ffdd414-d313-46aa-960b-2ce0483e8d0c"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-11-07 15:00:00",
+      "city": "Kerala",
+      "realestate_city": "kerala",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/way-to-heaven-festival-1-08-nov-2026-kerala-buy-tickets",
+      "price": "899.00",
+      "price_display": "from ₹899.00"
+    },
+    {
+      "id": "partyhunt_a032a7f8-5e00-4d81-92a3-490cf6ccde16",
+      "title": "Way To Heaven Festival-1",
+      "description": "📅 07 Nov 2026, 15:00\n📍 Kerala\n🗺 Kerala, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/way-to-heaven-festival-1-07-nov-2026-kerala-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fafab9bc9-40aa-45b2-8de3-474e78978c06%2Ffull_afab9bc9-40aa-45b2-8de3-474e78978c06?alt=media&token=ff25455a-41ee-4f63-93d3-94cc30e903d5"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-11-07 15:00:00",
+      "city": "Kerala",
+      "realestate_city": "kerala",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/way-to-heaven-festival-1-07-nov-2026-kerala-buy-tickets",
+      "price": "899.00",
+      "price_display": "from ₹899.00"
+    },
+    {
+      "id": "partyhunt_a17acba8-c142-4af0-a305-f8880227c82c",
+      "title": "Sonic Swaraj",
+      "description": "📅 14 Aug 2026, 20:00\n📍 Twice In Nature\n🗺 Arambol, Goa 403524, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/sonic-swaraj-14-aug-2026-twice-in-nature-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/S9zL7hElXkmZhf6CbfiOTLvFg0SsKhTpbrDOq9xG.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-08-14 20:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/sonic-swaraj-14-aug-2026-twice-in-nature-buy-tickets",
+      "price": "500.00",
+      "price_display": "from ₹500.00"
+    },
+    {
+      "id": "partyhunt_a1d6b8c6-0793-4e32-b53a-51b55fb6ac21",
+      "title": "Savage Sao Joao",
+      "description": "📅 21 Jun 2026, 16:30\n📍 JW Marriott Goa\n🗺 Bardez, Vagator Beach Rd, Coutinho Vaddo, Vagator, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/savage-sao-joao-21-jun-2026-jw-marriott-goa-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/CNjPiB019iIzqcVQHpgHcpJa4rJkcWyiUVjKQzAz.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-21 16:30:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/savage-sao-joao-21-jun-2026-jw-marriott-goa-buy-tickets",
+      "price": "1000.00",
+      "price_display": "from ₹1000.00"
+    },
+    {
+      "id": "partyhunt_a1d504ae-9e6e-48ff-a5ed-68ba8fd66928",
+      "title": "Bhizya Mare 5.0",
+      "description": "📅 21 Jun 2026, 15:00\n📍 Joy n Celebrations\n🗺 Gancim, near Turf on Top futsal ground, Maina, Goa 403108, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/bhizya-mare-50-21-jun-2026-joy-n-celebrations-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/UjgF9ZawCEdayKvH2PZ0j7I5E9xsj7g5PvggEpei.png"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-21 15:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/bhizya-mare-50-21-jun-2026-joy-n-celebrations-buy-tickets",
+      "price": "299.00",
+      "price_display": "from ₹299.00"
+    },
+    {
+      "id": "partyhunt_a198cd13-edc5-489c-926b-bcd94d958ded",
+      "title": "Pre Sao Joao Bash",
+      "description": "📅 20 Jun 2026, 16:00\n📍 The RiverBanks\n🗺 Rai, Siolim, Goa 403517, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/pre-san-joao-bash-20-jun-2026-the-riverbanks-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fcacbdb89-ca29-4770-be38-ec4699533983%2Ffull_cacbdb89-ca29-4770-be38-ec4699533983?alt=media&token=9f775f2d-234a-415f-9042-117170148f0d"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-20 16:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/pre-san-joao-bash-20-jun-2026-the-riverbanks-buy-tickets",
+      "price": "700.00",
+      "price_display": "from ₹700.00"
+    },
+    {
+      "id": "partyhunt_a145b6d1-b5ef-4864-b621-2f023c46e5b4",
+      "title": "Magical Festival",
+      "description": "📅 20 Jun 2026, 10:00\n📍 Oh Magic View ( Food Corner )\n🗺 Parvati River Bridge Towards on chhalal trail Kasol, Kasol, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/magical-festival-20-jun-2026-oh-magic-view-food-corner-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/hWUwzDPhps6r9xsoBAG55wOjzG56XcHcVxBZGpDn.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-20 10:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/magical-festival-20-jun-2026-oh-magic-view-food-corner-buy-tickets",
+      "price": "1500.00",
+      "price_display": "from ₹1500.00"
+    },
+    {
+      "id": "partyhunt_a14e2a8d-ab28-40f1-815f-df1ab08854b6",
+      "title": "Mountain Calling",
+      "description": "📅 19 Jun 2026, 12:00\n📍 Reboot -On the Rocks\n🗺 top parking, Koshla, Vashist, Himachal Pradesh 175103, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/mountain-calling-19-mar-2026-reboot-on-the-rocks-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/sW8rX3rz2F5R7NuGG05ZFzBqVUzNcDiXeAlY8P8v.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-19 12:00:00",
+      "city": "Vashist",
+      "realestate_city": "manali",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/mountain-calling-19-mar-2026-reboot-on-the-rocks-buy-tickets",
+      "price": "1500.00",
+      "price_display": "from ₹1500.00"
+    },
+    {
+      "id": "partyhunt_a1ae6e94-b4eb-4338-968e-2713d915bb4c",
+      "title": "Mysterious Underworld Festival",
+      "description": "📅 13 Jun 2026, 10:00\n📍 Kasol\n🗺 Kasol, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/mysterious-underworld-festival-13-may-2026-kasol-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F0903b908-1686-4a14-8b36-1e37c2b428b3%2Ffull_0903b908-1686-4a14-8b36-1e37c2b428b3?alt=media&token=53492489-97eb-4054-a921-0733ddabb42f"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-13 10:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/mysterious-underworld-festival-13-may-2026-kasol-buy-tickets",
+      "price": "3333.00",
+      "price_display": "from ₹3333.00"
+    },
+    {
+      "id": "partyhunt_a1d09f3d-3182-45c4-9594-1147da6de156",
+      "title": "Laughing Buddha Live In GOA",
+      "description": "📅 12 Jun 2026, 20:00\n📍 Orion Beach Restaurant\n🗺 New Wada, Morjim, Goa 403519, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/never-ending-seasons-ep1-12-jun-2026-orion-beach-restaurant-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Ffbde1352-a427-4c18-abc0-5b63f74d8190%2Ffull_fbde1352-a427-4c18-abc0-5b63f74d8190?alt=media&token=7efa2245-655d-4ca2-8903-0b587f818995"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-12 20:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/never-ending-seasons-ep1-12-jun-2026-orion-beach-restaurant-buy-tickets",
+      "price": "1200.00",
+      "price_display": "from ₹1200.00"
+    },
+    {
+      "id": "partyhunt_a1662fad-9a37-4df1-b5eb-a8f22b7a4f8f",
+      "title": "Post Modern Music",
+      "description": "📅 06 Jun 2026, 18:00\n📍 Parvati Valley\n🗺 drishyavali, hurludhar, po, parvati valley, Kasol, Himachal Pradesh 175134, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/post-modern-music-06-jun-2026-parvati-valley-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F7ad75b6a-3b7a-4747-8fd4-d0f8c34183e8%2Ffull_7ad75b6a-3b7a-4747-8fd4-d0f8c34183e8?alt=media&token=08da8a4b-12b5-46d8-bf82-5fcd50fc1906"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-06 18:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/post-modern-music-06-jun-2026-parvati-valley-buy-tickets",
+      "price": "3500.00",
+      "price_display": "from ₹3500.00"
+    },
+    {
       "id": "partyhunt_a1d6d00d-f897-41cf-9b48-696ff3b2d643",
       "title": "Tues-Tech 32.0",
       "description": "📅 26 May 2026, 20:00\n📍 House of Chapora by the bay\n🗺 Chapora Jetty , H.No 340/2 Village Anjuna-Caisua, Chapora, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/tues-tech-320-26-may-2026-house-of-chapora-by-the-bay-buy-tickets",
