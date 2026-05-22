@@ -907,8 +907,15 @@
                 if (currentCountry === 'vietnam') {
                     var _reo = document.getElementById('top-re-other-wrap');
                     if (_reo) _reo.style.display = 'none';
-                    loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:30});
-                    loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:30});
+                    if (currentRealEstateCity === 'danang') {
+                        var _rnt = document.getElementById('top-re-nt-wrap');
+                        if (_rnt) _rnt.style.display = 'none';
+                        loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:30});
+                    } else {
+                        var _rdn = document.getElementById('top-re-dn-wrap');
+                        if (_rdn) _rdn.style.display = 'none';
+                        loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:30});
+                    }
                 } else {
                     ['top-re-nt-wrap','top-re-dn-wrap'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});
                     loadTopBanners('top-re-other-wrap','top-re-other-inner',{category:'real_estate',sort_by:'date_desc',days:30});
@@ -966,9 +973,8 @@
                     if (item.telegram_link) { a.target = '_blank'; a.rel = 'noopener'; }
                     a.style.cssText = 'display:inline-block;position:relative;min-width:130px;max-width:155px;height:105px;border-radius:10px;overflow:hidden;flex-shrink:0;text-decoration:none;border:2px solid rgba(212,175,55,0.45);background:#1a1a2e;scroll-snap-align:start;';
                     const img = item.photo ? '<img src="' + item.photo + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.style.display=\'none\'">' : '';
-                    const badge = '<div style="position:absolute;top:4px;left:4px;background:rgba(212,175,55,0.95);color:#000;font-size:9px;font-weight:800;padding:2px 5px;border-radius:3px;letter-spacing:0.2px;">ТОП</div>';
-                    const bottom = (item.price || item.title) ? '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.72);color:#fff;font-size:10px;font-weight:700;padding:3px 5px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + (item.price || item.title) + '</div>' : '';
-                    a.innerHTML = img + badge + bottom;
+                    const bottom = item.price ? '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.72);color:#fff;font-size:10px;font-weight:700;padding:3px 5px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + item.price + '</div>' : '';
+                    a.innerHTML = img + bottom;
                     inner.appendChild(a);
                 });
             } catch(e) { wrap.style.display = 'none'; }
@@ -3638,6 +3644,18 @@
             });
             loadListings('real_estate');
             updateTabCounts();
+            // Update TOP strips based on selected city
+            if (currentCountry === 'vietnam') {
+                if (city === 'danang') {
+                    var _rnt = document.getElementById('top-re-nt-wrap');
+                    if (_rnt) _rnt.style.display = 'none';
+                    loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:30});
+                } else {
+                    var _rdn = document.getElementById('top-re-dn-wrap');
+                    if (_rdn) _rdn.style.display = 'none';
+                    loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:30});
+                }
+            }
             setTimeout(() => {
                 const grid = document.getElementById('real_estate-grid');
                 if (grid && window.innerWidth <= 768) {

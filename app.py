@@ -3029,24 +3029,39 @@ def api_top_banners():
     else:  # date_desc
         recent.sort(key=_ts, reverse=True)
 
+    import re as _re
+    _tme_re = _re.compile(r'^https://t\.me/([^/]+)/(\d+)$')
+
+    def _bot_photo(item):
+        """Resolve photo via /tg_img/ Bot-API proxy (never CDN)."""
+        # 1. Try telegram_link → /tg_img/channel/msg_id
+        for fld in ('telegram_link', 'tg_link'):
+            tl = item.get(fld, '') or ''
+            m = _tme_re.match(tl)
+            if m:
+                return f'/tg_img/{m.group(1)}/{m.group(2)}'
+        # 2. Try source_channel + message_id
+        ch = (item.get('source_channel') or item.get('channel') or '').lstrip('@')
+        mid = item.get('message_id') or item.get('msg_id')
+        if ch and mid:
+            return f'/tg_img/{ch}/{mid}'
+        # 3. Fallback: photo_url (bot API file URL) or image_url as-is
+        pu = item.get('photo_url', '') or ''
+        if pu and pu.startswith('https://api.telegram.org'):
+            return pu
+        return item.get('image_url', '') or ''
+
     result = []
     for item in recent[:limit]:
-        photo = item.get('image_url', '') or ''
-        if not photo:
-            ais = item.get('all_images') or []
-            photo = ais[0] if ais else ''
+        photo = _bot_photo(item)
         p = _price(item)
         pd = item.get('price_display', '') or (f"{int(p):,} VND" if p else '')
-        title = (item.get('title', '') or item.get('name', '') or '')[:60]
         result.append({
             'id': item.get('id', ''),
             'photo': photo,
             'price': pd,
-            'title': title,
             'telegram_link': item.get('telegram_link', '') or item.get('tg_link', ''),
             'city': item.get('city_ru', '') or item.get('city', ''),
-            'contact': item.get('contact', '') or item.get('source_channel', ''),
-            'date': item.get('date', ''),
         })
     return jsonify(result)
 
