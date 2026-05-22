@@ -971,7 +971,7 @@
                     const a = document.createElement('a');
                     a.href = item.telegram_link || '#';
                     if (item.telegram_link) { a.target = '_blank'; a.rel = 'noopener'; }
-                    a.style.cssText = 'display:inline-block;position:relative;min-width:130px;max-width:155px;height:105px;border-radius:10px;overflow:hidden;flex-shrink:0;text-decoration:none;border:2px solid rgba(212,175,55,0.45);background:#1a1a2e;scroll-snap-align:start;';
+                    a.style.cssText = 'display:inline-block;position:relative;min-width:160px;max-width:190px;height:135px;border-radius:12px;overflow:hidden;flex-shrink:0;text-decoration:none;border:2px solid rgba(212,175,55,0.45);background:#1a1a2e;scroll-snap-align:start;';
                     const img = item.photo ? '<img src="' + item.photo + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.style.display=\'none\'">' : '';
                     const bottom = item.price ? '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.72);color:#fff;font-size:10px;font-weight:700;padding:3px 5px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + item.price + '</div>' : '';
                     a.innerHTML = img + bottom;
