@@ -899,15 +899,19 @@
                     renderOtherCountryCitySwitcher('to-oth', 'tours', filterToursByCity, false);
                 }
                 if(typeof loadListings==='function') loadListings('tours', currentToursCity || '');
-                if (currentCountry === 'vietnam')
-                    loadTopBanners('top-tours-wrap','top-tours-inner',{category:'tours',sort_by:'date_desc',days:90});
+                loadTopBanners('top-tours-wrap','top-tours-inner',{category:'tours',sort_by:'date_desc',days:90});
             }
             else if (tabName === 'realestate') {
                 if(typeof loadRealEstateCounts==='function') loadRealEstateCounts();
                 if(typeof loadListings==='function') loadListings('real_estate');
                 if (currentCountry === 'vietnam') {
+                    var _reo = document.getElementById('top-re-other-wrap');
+                    if (_reo) _reo.style.display = 'none';
                     loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:30});
                     loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:30});
+                } else {
+                    ['top-re-nt-wrap','top-re-dn-wrap'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});
+                    loadTopBanners('top-re-other-wrap','top-re-other-inner',{category:'real_estate',sort_by:'date_desc',days:30});
                 }
             }
             else if (tabName === 'transport') {
@@ -921,8 +925,7 @@
                 }
                 if(typeof updateTransportCounts==='function') updateTransportCounts();
                 if(typeof loadListings==='function') loadListings('transport', currentTransportType);
-                if (currentCountry === 'vietnam')
-                    loadTopBanners('top-transport-wrap','top-transport-inner',{category:'transport',sort_by:'date_desc',days:7});
+                loadTopBanners('top-transport-wrap','top-transport-inner',{category:'transport',sort_by:'date_desc',days:7});
             }
             else if (tabName === 'entertainment') {
                 var isVN = currentCountry === 'vietnam';
@@ -935,13 +938,11 @@
                 }
                 if(typeof buildEntDateBar==='function') buildEntDateBar();
                 if(typeof loadListings==='function') loadListings('entertainment', currentEntertainmentCity);
-                if (currentCountry === 'vietnam')
-                    loadTopBanners('top-ent-wrap','top-ent-inner',{category:'entertainment',sort_by:'date_desc',days:30});
+                loadTopBanners('top-ent-wrap','top-ent-inner',{category:'entertainment',sort_by:'date_desc',days:30});
             }
             else if (tabName === 'restaurants') {
                 if(typeof loadListings==='function') loadListings('restaurants');
-                if (currentCountry === 'vietnam')
-                    loadTopBanners('top-rest-wrap','top-rest-inner',{category:'restaurants',sort_by:'date_desc',days:30});
+                loadTopBanners('top-rest-wrap','top-rest-inner',{category:'restaurants',sort_by:'date_desc',days:30});
             }
             else { let category = tabName === 'realestate' ? 'real_estate' : tabName; if(typeof loadListings==='function') loadListings(category); }
         }
