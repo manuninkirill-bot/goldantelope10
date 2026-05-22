@@ -3056,10 +3056,15 @@ def api_top_banners():
         photo = _bot_photo(item)
         p = _price(item)
         pd = item.get('price_display', '') or (f"{int(p):,} VND" if p else '')
+        raw_title = (item.get('title') or item.get('name') or item.get('text') or '')
+        # strip Telegram source lines, take first meaningful line
+        lines = [l.strip() for l in raw_title.splitlines() if l.strip() and not l.strip().startswith('Источник:') and not l.strip().startswith('Ссылка:')]
+        short_title = lines[0][:50] if lines else ''
         result.append({
             'id': item.get('id', ''),
             'photo': photo,
             'price': pd,
+            'title': short_title,
             'telegram_link': item.get('telegram_link', '') or item.get('tg_link', ''),
             'city': item.get('city_ru', '') or item.get('city', ''),
         })

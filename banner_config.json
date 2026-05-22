@@ -1,10 +1,10 @@
 {
   "vietnam": {
     "web": [
-      "/api/banner-video/25"
+      "/api/banner-video/26"
     ],
     "mobile": [
-      "/api/banner-video/25"
+      "/api/banner-video/26"
     ]
   },
   "thailand": {
@@ -41,6 +41,8 @@
       "https://api.anbocas.com/storage/event/banner/znKf8BDIFzOw6Fv5FoDCkLt1isaqGUv9khVTHAJa.jpg",
       "https://api.anbocas.com/storage/event/banner/NzNdAjNcKIEClwtmj07KJxoEvKI9V3ftrFS5kDQU.jpg",
       "https://api.anbocas.com/storage/event/banner/yoIXN4EN4LIR1r4n9XpMIi07IGaolIDc6NV2ezrB.jpg",
+      "https://api.anbocas.com/storage/event/banner/U8J9nJ2ULmlGsPIPCmuW9KXcnYeNkVoZ1o6tGlOG.png",
+      "https://api.anbocas.com/storage/event/banner/fnFWQQA95MTUygDefvbPkWldMHVtBsBuezHKcYhC.png",
       "https://api.anbocas.com/storage/event/banner/Y4DBDmNZMEvSA07SydvMSXHudPyvQuFe7OA3jyGb.png",
       "https://api.anbocas.com/storage/event/banner/ktExuHZgLQim7NGDW0u34sAxmfRhjdnskHkTzR9D.jpg",
       "https://api.anbocas.com/storage/event/banner/7VKUt3MfVC99T2MyauUOnRlBRWGmo8v2ZWZbqkeX.jpg",
@@ -59,6 +61,7 @@
       "https://api.anbocas.com/storage/event/banner/hWUwzDPhps6r9xsoBAG55wOjzG56XcHcVxBZGpDn.jpg",
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fcacbdb89-ca29-4770-be38-ec4699533983%2Ffull_cacbdb89-ca29-4770-be38-ec4699533983?alt=media&token=9f775f2d-234a-415f-9042-117170148f0d",
       "https://api.anbocas.com/storage/event/banner/UjgF9ZawCEdayKvH2PZ0j7I5E9xsj7g5PvggEpei.png",
+      "https://api.anbocas.com/storage/event/banner/CNjPiB019iIzqcVQHpgHcpJa4rJkcWyiUVjKQzAz.jpg",
       "https://api.anbocas.com/storage/event/banner/S9zL7hElXkmZhf6CbfiOTLvFg0SsKhTpbrDOq9xG.jpg",
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fafab9bc9-40aa-45b2-8de3-474e78978c06%2Ffull_afab9bc9-40aa-45b2-8de3-474e78978c06?alt=media&token=ff25455a-41ee-4f63-93d3-94cc30e903d5",
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fd4b5e76c-79f1-4188-a9f4-3655d771eefd%2Ffull_d4b5e76c-79f1-4188-a9f4-3655d771eefd?alt=media&token=5ffdd414-d313-46aa-960b-2ce0483e8d0c",
@@ -82,6 +85,8 @@
       "https://api.anbocas.com/storage/event/banner/znKf8BDIFzOw6Fv5FoDCkLt1isaqGUv9khVTHAJa.jpg",
       "https://api.anbocas.com/storage/event/banner/NzNdAjNcKIEClwtmj07KJxoEvKI9V3ftrFS5kDQU.jpg",
       "https://api.anbocas.com/storage/event/banner/yoIXN4EN4LIR1r4n9XpMIi07IGaolIDc6NV2ezrB.jpg",
+      "https://api.anbocas.com/storage/event/banner/U8J9nJ2ULmlGsPIPCmuW9KXcnYeNkVoZ1o6tGlOG.png",
+      "https://api.anbocas.com/storage/event/banner/fnFWQQA95MTUygDefvbPkWldMHVtBsBuezHKcYhC.png",
       "https://api.anbocas.com/storage/event/banner/Y4DBDmNZMEvSA07SydvMSXHudPyvQuFe7OA3jyGb.png",
       "https://api.anbocas.com/storage/event/banner/ktExuHZgLQim7NGDW0u34sAxmfRhjdnskHkTzR9D.jpg",
       "https://api.anbocas.com/storage/event/banner/7VKUt3MfVC99T2MyauUOnRlBRWGmo8v2ZWZbqkeX.jpg",
@@ -100,6 +105,7 @@
       "https://api.anbocas.com/storage/event/banner/hWUwzDPhps6r9xsoBAG55wOjzG56XcHcVxBZGpDn.jpg",
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fcacbdb89-ca29-4770-be38-ec4699533983%2Ffull_cacbdb89-ca29-4770-be38-ec4699533983?alt=media&token=9f775f2d-234a-415f-9042-117170148f0d",
       "https://api.anbocas.com/storage/event/banner/UjgF9ZawCEdayKvH2PZ0j7I5E9xsj7g5PvggEpei.png",
+      "https://api.anbocas.com/storage/event/banner/CNjPiB019iIzqcVQHpgHcpJa4rJkcWyiUVjKQzAz.jpg",
       "https://api.anbocas.com/storage/event/banner/S9zL7hElXkmZhf6CbfiOTLvFg0SsKhTpbrDOq9xG.jpg",
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fafab9bc9-40aa-45b2-8de3-474e78978c06%2Ffull_afab9bc9-40aa-45b2-8de3-474e78978c06?alt=media&token=ff25455a-41ee-4f63-93d3-94cc30e903d5",
       "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fd4b5e76c-79f1-4188-a9f4-3655d771eefd%2Ffull_d4b5e76c-79f1-4188-a9f4-3655d771eefd?alt=media&token=5ffdd414-d313-46aa-960b-2ce0483e8d0c",
