@@ -910,11 +910,11 @@
                     if (currentRealEstateCity === 'danang') {
                         var _rnt = document.getElementById('top-re-nt-wrap');
                         if (_rnt) _rnt.style.display = 'none';
-                        loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:30});
+                        loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:7});
                     } else {
                         var _rdn = document.getElementById('top-re-dn-wrap');
                         if (_rdn) _rdn.style.display = 'none';
-                        loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:30});
+                        loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:7});
                     }
                 } else {
                     ['top-re-nt-wrap','top-re-dn-wrap'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});
@@ -3678,11 +3678,11 @@
                 if (city === 'danang') {
                     var _rnt = document.getElementById('top-re-nt-wrap');
                     if (_rnt) _rnt.style.display = 'none';
-                    loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:30});
+                    loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:7});
                 } else {
                     var _rdn = document.getElementById('top-re-dn-wrap');
                     if (_rdn) _rdn.style.display = 'none';
-                    loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:30});
+                    loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:7});
                 }
             }
             setTimeout(() => {

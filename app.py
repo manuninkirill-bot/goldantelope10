@@ -3029,6 +3029,18 @@ def api_top_banners():
     else:  # date_desc
         recent.sort(key=_ts, reverse=True)
 
+    # Daily rotation: only for date_desc sort — take pool of up to 60 most-recent items,
+    # shuffle with today's date as seed so the set changes every day.
+    # price_asc keeps strict cheapest-first order (no shuffle).
+    import random as _rnd, datetime as _datetime
+    if sort_by != 'price_asc' and len(recent) > limit:
+        pool_size = min(len(recent), max(limit * 3, 60))
+        pool = recent[:pool_size]
+        day_seed = _datetime.date.today().toordinal()
+        rng = _rnd.Random(day_seed)
+        rng.shuffle(pool)
+        recent = pool
+
     import re as _re
     _tme_re = _re.compile(r'^https://t\.me/([^/]+)/(\d+)$')
 
