@@ -8013,6 +8013,11 @@
                         switchCountry(adminCountry);
                     }
                     
+                    // Показываем плеер и плейлист только в admin-режиме
+                    ['sc-player-wrap','sc-newtrack-panel','sc-iframe'].forEach(function(id){
+                        var el = document.getElementById(id);
+                        if (el) el.style.setProperty('display', id === 'sc-player-wrap' ? 'flex' : 'block', 'important');
+                    });
                     renderAdminBanners();
                     switchBannerTab('web');
                     renderDynamicCityButtons();
