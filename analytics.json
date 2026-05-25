@@ -631,23 +631,23 @@
         "user_fajha5933_1779724024017"
       ],
       "tg_visitors": [],
-      "page_views": 52,
+      "page_views": 80,
       "countries": {
-        "vietnam": 51,
+        "vietnam": 79,
         "thailand": 1
       },
       "categories": {
-        "entertainment": 48,
-        "realestate": 4
+        "entertainment": 68,
+        "realestate": 12
       },
       "hours": {
         "15": 41,
-        "16": 11
+        "16": 39
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 52
+        "desktop": 80
       }
     }
   },
@@ -899,7 +899,7 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 7053,
+      "visits": 7081,
       "last_seen": "2026-05-25"
     },
     "user_kas3lqvh5_1778180692972": {
