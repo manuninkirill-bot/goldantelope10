@@ -632,23 +632,105 @@
         "user_pantgcqwf_1779726578381"
       ],
       "tg_visitors": [],
-      "page_views": 169,
+      "page_views": 1168,
       "countries": {
-        "vietnam": 168,
+        "vietnam": 1167,
         "thailand": 1
       },
       "categories": {
-        "entertainment": 157,
+        "entertainment": 1156,
         "realestate": 12
       },
       "hours": {
         "15": 41,
-        "16": 128
+        "16": 217,
+        "17": 180,
+        "18": 130,
+        "19": 119,
+        "20": 121,
+        "21": 120,
+        "22": 120,
+        "23": 120
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 169
+        "desktop": 1168
+      }
+    },
+    "2026-05-26": {
+      "unique_visitors": [
+        "user_y1yukxp2g_1778180659618"
+      ],
+      "tg_visitors": [],
+      "page_views": 2785,
+      "countries": {
+        "vietnam": 2785
+      },
+      "categories": {
+        "entertainment": 2785
+      },
+      "hours": {
+        "00": 54,
+        "01": 90,
+        "02": 120,
+        "03": 120,
+        "04": 120,
+        "05": 120,
+        "06": 120,
+        "07": 120,
+        "08": 120,
+        "09": 120,
+        "10": 120,
+        "11": 120,
+        "12": 120,
+        "13": 121,
+        "14": 120,
+        "15": 120,
+        "16": 120,
+        "17": 120,
+        "18": 120,
+        "19": 120,
+        "20": 120,
+        "21": 120,
+        "22": 120,
+        "23": 120
+      },
+      "referrers": {},
+      "devices": {
+        "mobile": 0,
+        "desktop": 2785
+      }
+    },
+    "2026-05-27": {
+      "unique_visitors": [
+        "user_y1yukxp2g_1778180659618"
+      ],
+      "tg_visitors": [],
+      "page_views": 1229,
+      "countries": {
+        "vietnam": 1229
+      },
+      "categories": {
+        "entertainment": 1229
+      },
+      "hours": {
+        "00": 121,
+        "01": 119,
+        "02": 121,
+        "03": 120,
+        "04": 120,
+        "05": 120,
+        "06": 120,
+        "07": 120,
+        "08": 66,
+        "09": 120,
+        "10": 82
+      },
+      "referrers": {},
+      "devices": {
+        "mobile": 0,
+        "desktop": 1229
       }
     }
   },
@@ -900,8 +982,8 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 7167,
-      "last_seen": "2026-05-25"
+      "visits": 12180,
+      "last_seen": "2026-05-27"
     },
     "user_kas3lqvh5_1778180692972": {
       "first_seen": "2026-05-07",
