@@ -1547,13 +1547,20 @@
                                     if (bannerImg) bannerImg.style.display = 'none';
                                     bannerVideo.style.display = 'block';
                                     // Пробуем включить звук после успешного старта
-                                    bannerVideo.muted = false;
-                                    var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
-                                    console.log('[Banner] play OK, muted=' + bannerVideo.muted + ', volume=' + bannerVideo.volume + ', soundOn=' + _soundOn);
-                                    _setBannerSound(_soundOn);
-                                    if (!_soundOn) {
-                                        var _sb = document.getElementById('banner-sound-btn');
-                                        if (_sb) _sb.style.animation = 'bsPulse 1.5s ease-in-out 3';
+                                    if (_userSetSound) {
+                                        // Пользователь уже выбрал состояние — уважаем его выбор
+                                        bannerVideo.muted = !_bannerSoundOn;
+                                        _setBannerSound(_bannerSoundOn);
+                                    } else {
+                                        // Первый запуск — пробуем включить звук
+                                        bannerVideo.muted = false;
+                                        var _soundOn = !bannerVideo.muted && bannerVideo.volume > 0;
+                                        console.log('[Banner] play OK, muted=' + bannerVideo.muted + ', volume=' + bannerVideo.volume + ', soundOn=' + _soundOn);
+                                        _setBannerSound(_soundOn);
+                                        if (!_soundOn) {
+                                            var _sb = document.getElementById('banner-sound-btn');
+                                            if (_sb) _sb.style.animation = 'bsPulse 1.5s ease-in-out 3';
+                                        }
                                     }
                                 }).catch(function(err) {
                                     // play() заблокирован — показываем видео без звука
@@ -1635,6 +1642,7 @@
             }
         }
         let _bannerSoundOn = false;
+        let _userSetSound = false; // true после первого нажатия кнопки звука
         function _setBannerSound(on) {
             const bv = document.getElementById('banner-video');
             const btn = document.getElementById('banner-sound-btn');
@@ -1657,6 +1665,7 @@
                 var bv = document.getElementById('banner-video');
                 console.log('[Sound] btn clicked via delegation, bv=', !!bv, 'paused=', bv && bv.paused, 'muted=', bv && bv.muted, 'soundOn=', _bannerSoundOn);
                 if (!bv) return;
+                _userSetSound = true;
                 if (!_bannerSoundOn) {
                     // iOS/Android: pause → unmute → play — единственный надёжный способ
                     var _wasPaused = bv.paused;
