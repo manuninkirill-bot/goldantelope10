@@ -822,23 +822,23 @@
         "user_sgphtquth_1780237504620"
       ],
       "tg_visitors": [],
-      "page_views": 113,
+      "page_views": 143,
       "countries": {
-        "vietnam": 113
+        "vietnam": 143
       },
       "categories": {
         "entertainment": 82,
         "restaurants": 2,
-        "realestate": 29
+        "realestate": 59
       },
       "hours": {
         "14": 78,
-        "15": 35
+        "15": 65
       },
       "referrers": {},
       "devices": {
         "mobile": 0,
-        "desktop": 113
+        "desktop": 143
       }
     }
   },
@@ -1090,7 +1090,7 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 15730,
+      "visits": 15760,
       "last_seen": "2026-05-31"
     },
     "user_kas3lqvh5_1778180692972": {
