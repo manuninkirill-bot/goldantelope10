@@ -956,18 +956,25 @@
 
         // Internal navigation from TOP card to listing in mini-app
         function openTopCard(id, category) {
-            const catTab = category === 'real_estate' ? 'realestate' : category;
+            const _tabMap = { 'real_estate': 'realestate' };
+            const catTab = _tabMap[category] || category;
             if (typeof switchTab === 'function') switchTab(catTab);
-            setTimeout(function() {
-                const card = document.getElementById('lc-' + id);
+            // Retry до 12 раз (4.8с) — карточка грузится асинхронно
+            var _attempts = 0;
+            function _tryScrollToCard() {
+                var card = document.getElementById('lc-' + id);
                 if (card) {
-                    card.scrollIntoView({behavior:'smooth', block:'start'});
-                    const prev = card.style.outline;
+                    card.scrollIntoView({behavior:'smooth', block:'center'});
+                    var prev = card.style.outline;
                     card.style.outline = '3px solid #d4af37';
                     card.style.borderRadius = '14px';
                     setTimeout(function(){ card.style.outline = prev; }, 2500);
+                } else if (_attempts < 12) {
+                    _attempts++;
+                    setTimeout(_tryScrollToCard, 400);
                 }
-            }, 700);
+            }
+            setTimeout(_tryScrollToCard, 400);
         }
 
         async function loadTopBanners(wrapId, innerId, params) {
@@ -983,7 +990,7 @@
                 const items = await r.json();
                 if (!items || items.length === 0) { wrap.style.display = 'none'; return; }
                 // Preload first 5 photos for faster display
-                const _internalCats = new Set(['entertainment','tours','restaurants']);
+                const _internalCats = new Set(['entertainment','tours','restaurants','real_estate','transport','medicine','visas','kids','exchange']);
                 items.slice(0,5).forEach(function(it){ if(it.photo){ const im=new Image(); im.src=it.photo; } });
                 inner.innerHTML = '';
                 items.forEach(function(item, idx) {
