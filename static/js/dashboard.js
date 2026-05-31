@@ -954,27 +954,68 @@
             else { let category = tabName === 'realestate' ? 'real_estate' : tabName; if(typeof loadListings==='function') loadListings(category); }
         }
 
-        // Internal navigation from TOP card to listing in mini-app
+        // Internal navigation from TOP-20 card to listing — with direct fetch fallback
         function openTopCard(id, category) {
+            if (!id) return;
             const _tabMap = { 'real_estate': 'realestate' };
             const catTab = _tabMap[category] || category;
             if (typeof switchTab === 'function') switchTab(catTab);
-            // Retry до 12 раз (4.8с) — карточка грузится асинхронно
+
+            var _gridId = category === 'transport'   ? 'transport-grid'
+                        : category === 'real_estate'  ? 'real_estate-grid'
+                        : category + '-grid';
             var _attempts = 0;
-            function _tryScrollToCard() {
+            var _fetched = false;
+
+            function _highlight(card) {
+                card.scrollIntoView({behavior:'smooth', block:'center'});
+                var prev = card.style.outline;
+                card.style.outline = '3px solid #d4af37';
+                card.style.borderRadius = '14px';
+                setTimeout(function(){ card.style.outline = prev; }, 2500);
+            }
+
+            function _injectFetched(item) {
+                // Удаляем старую инжектированную карточку если есть
+                var old = document.getElementById('lc-' + id);
+                if (old) { _highlight(old); return; }
+                var html = '';
+                try { html = renderListingCard(item, item._category || category); } catch(e) {}
+                if (!html) return;
+                var grid = document.getElementById(_gridId);
+                if (!grid) return;
+                var tmp = document.createElement('div');
+                tmp.innerHTML = html;
+                var node = tmp.firstElementChild;
+                if (!node) return;
+                node.style.border = '3px solid #d4af37';
+                node.style.boxShadow = '0 0 0 4px rgba(212,175,55,0.25)';
+                // Вставляем в начало грида
+                grid.insertBefore(node, grid.firstChild);
+                setTimeout(function(){
+                    node.scrollIntoView({behavior:'smooth', block:'center'});
+                    setTimeout(function(){ node.style.border = ''; node.style.boxShadow = ''; }, 2500);
+                }, 150);
+            }
+
+            function _tryFind() {
                 var card = document.getElementById('lc-' + id);
-                if (card) {
-                    card.scrollIntoView({behavior:'smooth', block:'center'});
-                    var prev = card.style.outline;
-                    card.style.outline = '3px solid #d4af37';
-                    card.style.borderRadius = '14px';
-                    setTimeout(function(){ card.style.outline = prev; }, 2500);
-                } else if (_attempts < 12) {
-                    _attempts++;
-                    setTimeout(_tryScrollToCard, 400);
+                if (card) { _highlight(card); return; }
+                _attempts++;
+                if (_attempts <= 5) {
+                    setTimeout(_tryFind, 400);
+                } else if (!_fetched) {
+                    // Карточки нет в первой странице — грузим напрямую
+                    _fetched = true;
+                    fetch('/api/listing?id=' + encodeURIComponent(id) + '&country=' + currentCountry + '&category=' + encodeURIComponent(category))
+                        .then(function(r){ return r.json(); })
+                        .then(function(item){
+                            if (!item.error) _injectFetched(item);
+                        })
+                        .catch(function(){});
                 }
             }
-            setTimeout(_tryScrollToCard, 400);
+            setTimeout(_tryFind, 400);
         }
 
         async function loadTopBanners(wrapId, innerId, params) {

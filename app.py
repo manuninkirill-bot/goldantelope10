@@ -3088,6 +3088,26 @@ def api_top_banners():
         })
     return jsonify(result)
 
+@app.route('/api/listing')
+def api_get_single_listing():
+    """Публичный поиск объявления по id — для быстрой навигации из ТОП-20."""
+    listing_id = request.args.get('id', '').strip()
+    country    = request.args.get('country', 'vietnam')
+    category   = request.args.get('category', '')
+    if not listing_id:
+        return jsonify({'error': 'id required'}), 400
+    data = load_data(country)
+    search_cats = [category] if category and category in data else \
+        ['real_estate', 'transport', 'restaurants', 'entertainment',
+         'tours', 'medicine', 'visas', 'money_exchange', 'marketplace', 'kids', 'news']
+    for cat in search_cats:
+        for item in data.get(cat, []):
+            if str(item.get('id', '')) == listing_id:
+                result = dict(item)
+                result['_category'] = cat
+                return jsonify(result)
+    return jsonify({'error': 'not found'}), 404
+
 @app.route('/api/admin/sync-banners', methods=['POST'])
 def admin_sync_banners():
     """Ручной запуск синка баннеров из @banner_vn."""
