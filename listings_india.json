@@ -1,6 +1,146 @@
 {
   "real_estate": [
     {
+      "id": "goa_arendaa_192717",
+      "title": "Источник: @goa_arendaa Ссылка: https://t.me/goa_arendaa/192717",
+      "description": "",
+      "text": "Источник: @goa_arendaa\nСсылка: https://t.me/goa_arendaa/192717",
+      "price": 0,
+      "price_display": "",
+      "city": "Таиланд",
+      "city_ru": "Таиланд",
+      "date": "2026-05-31T04:42:16+00:00",
+      "contact": "@goa_arendaa",
+      "contact_name": "goa_arendaa",
+      "source_group": "goa_arendaa",
+      "source_channel": "parsing_in",
+      "telegram": "https://t.me/goa_arendaa",
+      "telegram_link": "https://t.me/goa_arendaa/192717",
+      "image_url": "https://cdn4.telesco.pe/file/YRaQPyP5JHPNjPYRqRZlhe73y9FAvBRy0wt8BLhWd73ES3DbQYQEYQjzaQ5MYX4g7HQt8kksZ5rx8HMSfuYBxb93fXQbVthTFK0y7kS1SyFbU_83KXguWkLUQMao6ffQsAFXzk44TolFpYeyvHj3YhKMd-euPHzlDdmhZmC0-WzxYMVqcwjyhUlARJaogkRd3S4TTEnp1-QG-JBKVWbSTxYY6YTUIEUrT_zqI11Gsp0PzaVLY1dPylWziyqBx5Ne5ycSPaNsKi68emwBR4TfbWtuHyXONQ8Z4R7mFyf4PpzAsdETxmQn-8-_S7THqghxo7ONC66KDiqKF92hHdnC9A.jpg",
+      "all_images": [
+        "https://cdn4.telesco.pe/file/YRaQPyP5JHPNjPYRqRZlhe73y9FAvBRy0wt8BLhWd73ES3DbQYQEYQjzaQ5MYX4g7HQt8kksZ5rx8HMSfuYBxb93fXQbVthTFK0y7kS1SyFbU_83KXguWkLUQMao6ffQsAFXzk44TolFpYeyvHj3YhKMd-euPHzlDdmhZmC0-WzxYMVqcwjyhUlARJaogkRd3S4TTEnp1-QG-JBKVWbSTxYY6YTUIEUrT_zqI11Gsp0PzaVLY1dPylWziyqBx5Ne5ycSPaNsKi68emwBR4TfbWtuHyXONQ8Z4R7mFyf4PpzAsdETxmQn-8-_S7THqghxo7ONC66KDiqKF92hHdnC9A.jpg",
+        "https://cdn4.telesco.pe/file/GfW5lLhgs-O4K9XNpsgZq0mJy3p4ErsftxRb7d18ujnMjYOg24htZrVmyJZMQh_auPGKbepWImWNw_kw2hDxQYg-t3I-glIFefJaIZfjPB04GKN5aiQ-Z73LEw0F824PvN7dIgwEVaokf-RNCSxTJga5BLvPWlcQvMNYfxEm3PPeAsWI8_Fgy7yWZ9aFdMkT9ZeHDIc81u_YgOeza4yJ5U5HB_zLuMSF5-n6yRQkyHzgGjhp1xuJ2sdLXRx5DirvD0QchYcww4KwsaSOspPqtOWb1SUUCnkEkuMpXTlBGBRbMi2wEsM27WZZkYKBTjPHpDb5KHSzRhKbsHUTDgNLYg.jpg"
+      ],
+      "photos": [
+        "https://cdn4.telesco.pe/file/YRaQPyP5JHPNjPYRqRZlhe73y9FAvBRy0wt8BLhWd73ES3DbQYQEYQjzaQ5MYX4g7HQt8kksZ5rx8HMSfuYBxb93fXQbVthTFK0y7kS1SyFbU_83KXguWkLUQMao6ffQsAFXzk44TolFpYeyvHj3YhKMd-euPHzlDdmhZmC0-WzxYMVqcwjyhUlARJaogkRd3S4TTEnp1-QG-JBKVWbSTxYY6YTUIEUrT_zqI11Gsp0PzaVLY1dPylWziyqBx5Ne5ycSPaNsKi68emwBR4TfbWtuHyXONQ8Z4R7mFyf4PpzAsdETxmQn-8-_S7THqghxo7ONC66KDiqKF92hHdnC9A.jpg",
+        "https://cdn4.telesco.pe/file/GfW5lLhgs-O4K9XNpsgZq0mJy3p4ErsftxRb7d18ujnMjYOg24htZrVmyJZMQh_auPGKbepWImWNw_kw2hDxQYg-t3I-glIFefJaIZfjPB04GKN5aiQ-Z73LEw0F824PvN7dIgwEVaokf-RNCSxTJga5BLvPWlcQvMNYfxEm3PPeAsWI8_Fgy7yWZ9aFdMkT9ZeHDIc81u_YgOeza4yJ5U5HB_zLuMSF5-n6yRQkyHzgGjhp1xuJ2sdLXRx5DirvD0QchYcww4KwsaSOspPqtOWb1SUUCnkEkuMpXTlBGBRbMi2wEsM27WZZkYKBTjPHpDb5KHSzRhKbsHUTDgNLYg.jpg"
+      ],
+      "status": "active",
+      "country": "india",
+      "message_id": 357,
+      "has_media": true,
+      "category": "real_estate"
+    },
+    {
+      "id": "goa_arendaa_192700",
+      "title": "Источник: @goa_arendaa Ссылка: https://t.me/goa_arendaa/192700",
+      "description": "",
+      "text": "Источник: @goa_arendaa\nСсылка: https://t.me/goa_arendaa/192700",
+      "price": 0,
+      "price_display": "",
+      "city": "Таиланд",
+      "city_ru": "Таиланд",
+      "date": "2026-05-31T04:42:16+00:00",
+      "contact": "@goa_arendaa",
+      "contact_name": "goa_arendaa",
+      "source_group": "goa_arendaa",
+      "source_channel": "parsing_in",
+      "telegram": "https://t.me/goa_arendaa",
+      "telegram_link": "https://t.me/goa_arendaa/192700",
+      "image_url": "https://cdn4.telesco.pe/file/SP2-gD2CPG_H2DRNrtXwv2udT-IaJ0cSE2X7p_AarhB4Hfx64NSFLkeRq9PZmqHNmI6NVDn55WfFOdU6yOfV_kq84zV19D8ox7V_ndn-cEFBgT2wmP3xiBwOwzwE3VodpqtBdcE4UTZxVTAp3QMDB8eP02WaHqzt8CTrz7hPktroLxDztI9_KBlH0jQKAM8WdwQp3Kmyof0nHRvv547X8zkjLiqleXARmct3_oY9fWcmX7v-yVe8kvyEDuFeptxpCPvuY-2cZFVQStDZItzQRYzFU3SftvsrqpEZPrhvDHEqKi-EnsiuZqNoIRW2gnFu4aSdi36Rc9pz_E1WWQmwwQ.jpg",
+      "all_images": [
+        "https://cdn4.telesco.pe/file/SP2-gD2CPG_H2DRNrtXwv2udT-IaJ0cSE2X7p_AarhB4Hfx64NSFLkeRq9PZmqHNmI6NVDn55WfFOdU6yOfV_kq84zV19D8ox7V_ndn-cEFBgT2wmP3xiBwOwzwE3VodpqtBdcE4UTZxVTAp3QMDB8eP02WaHqzt8CTrz7hPktroLxDztI9_KBlH0jQKAM8WdwQp3Kmyof0nHRvv547X8zkjLiqleXARmct3_oY9fWcmX7v-yVe8kvyEDuFeptxpCPvuY-2cZFVQStDZItzQRYzFU3SftvsrqpEZPrhvDHEqKi-EnsiuZqNoIRW2gnFu4aSdi36Rc9pz_E1WWQmwwQ.jpg",
+        "https://cdn4.telesco.pe/file/ZVCDz62EjrWlE52s5Wjar0yIj0PuIfz8c770DNDYCkyEeU97P3NskEzP-yk4vLpECZGiKk81K5_5djLoNjlklfegYOMHHDpBCfR65UZf5VyGr-FDvjXRKWxv5uDjoZd_1VsS84CXo8mo6hvFPgZwPsFKyeN-7nOJ8Mxf1NYSNDkuP1WIJed1MKtDO3EiGDXorWfKnvh5Q-1P_-D7KyDQfia7hoX28yeUfUl-b8DluEQC6QhJNUxSR23xYYz134nXPUgCQIeL0y7SrobhWYBk30iVaqiSW_2lIy7hktCeaKbBfOumLEMUoOjxNK-i6Ke5Z0KQUJIJTRkkLzdqIrUV7w.jpg",
+        "https://cdn4.telesco.pe/file/J5sDAs3ZPMDHOBUHVe8xcdxahRtvY2ecCay01peLGvBf_9BvlfCO-61pyiYtJRZItstwlA8lADpckaWZzyR60wWE-SoHumuwsT-SCrpnymM_uyA9XsBKJtRbbfFXiQYfdZvLIAkh4rXcBj0g85uiNSTZY1R6Jvc-B2-oNmC-_XD2B1pD7W2CGKDpy5xqmHNVzN2jOo14Rl6j9qAGO-fAjX8viXqroXOGXuErg2d_c2BjKwM6VynOK6-kT1aYMKcSF-BWE3dbd0w34BMcvJf7VFcDP3yDqMUDGGtMAWnuzEyBrdP9LOErkirbMEnO39hPbEa9IVuYrVWbtintW84_yA.jpg",
+        "https://cdn4.telesco.pe/file/RhOQT84gQbRunimIqx5Y8MEcEOmbej0986zRzPsxf-aJxUHjvw2KuZ6kS-7n8l2HBMC3ZVeOxhAs1kqOjVS4H08ra7OKLXy-RSo9k-DSZub-9Qk9MpncJJAsSAaN8uvRvCoB8WFHdheMk55sSIYiFTp_pPI2NVXLHTb18hvM2UuGbgT8-51EvAzhBvGMYE3jLGavDRs4-mbylYSGKEGSUZAWgAMrhVZeiSYsbyl7NJNra1kJrFfZfQJGMyRpgUG1qE4B-_6xftyHSn44Bh9xKLlwdL0Rr0VJVGFkUtVupMGDvrlBSC6mM5pDVJsS7j_RuSb9RQEr99pF6VlQDN72GA.jpg",
+        "https://cdn4.telesco.pe/file/CwB0KLWw5BkfZnlirBFo6NrLJYb3zMxfx_sanf1e7jKtIqAhrJvgfIQZgp5NeWDXR7AdiGt9MO3wuBvKOwXi8X6zhdv7WijkcaQEJbpQsuQH6GsKAVEIHPOC_COkrbnOsDm59uoMoILfY6HcqUMcsjwq0N5IyJDcxG_VeRUMGs7hgBuNler-8l4FfRWb-IJMKoN7hW_ZJm7CyMDxCHubdPG1c5OtRWy4N7LY5He3jQBZYS32A3uVq5tSH-HKFOU86QzG_bJ4lAlYlT8MCZ4Ek3Dg5SYzLRCUCz-ZIH3KxvIwLSu5anHVU0y3g3TpMrTNVUDLHTgjZnTNki266EBYcg.jpg"
+      ],
+      "photos": [
+        "https://cdn4.telesco.pe/file/SP2-gD2CPG_H2DRNrtXwv2udT-IaJ0cSE2X7p_AarhB4Hfx64NSFLkeRq9PZmqHNmI6NVDn55WfFOdU6yOfV_kq84zV19D8ox7V_ndn-cEFBgT2wmP3xiBwOwzwE3VodpqtBdcE4UTZxVTAp3QMDB8eP02WaHqzt8CTrz7hPktroLxDztI9_KBlH0jQKAM8WdwQp3Kmyof0nHRvv547X8zkjLiqleXARmct3_oY9fWcmX7v-yVe8kvyEDuFeptxpCPvuY-2cZFVQStDZItzQRYzFU3SftvsrqpEZPrhvDHEqKi-EnsiuZqNoIRW2gnFu4aSdi36Rc9pz_E1WWQmwwQ.jpg",
+        "https://cdn4.telesco.pe/file/ZVCDz62EjrWlE52s5Wjar0yIj0PuIfz8c770DNDYCkyEeU97P3NskEzP-yk4vLpECZGiKk81K5_5djLoNjlklfegYOMHHDpBCfR65UZf5VyGr-FDvjXRKWxv5uDjoZd_1VsS84CXo8mo6hvFPgZwPsFKyeN-7nOJ8Mxf1NYSNDkuP1WIJed1MKtDO3EiGDXorWfKnvh5Q-1P_-D7KyDQfia7hoX28yeUfUl-b8DluEQC6QhJNUxSR23xYYz134nXPUgCQIeL0y7SrobhWYBk30iVaqiSW_2lIy7hktCeaKbBfOumLEMUoOjxNK-i6Ke5Z0KQUJIJTRkkLzdqIrUV7w.jpg",
+        "https://cdn4.telesco.pe/file/J5sDAs3ZPMDHOBUHVe8xcdxahRtvY2ecCay01peLGvBf_9BvlfCO-61pyiYtJRZItstwlA8lADpckaWZzyR60wWE-SoHumuwsT-SCrpnymM_uyA9XsBKJtRbbfFXiQYfdZvLIAkh4rXcBj0g85uiNSTZY1R6Jvc-B2-oNmC-_XD2B1pD7W2CGKDpy5xqmHNVzN2jOo14Rl6j9qAGO-fAjX8viXqroXOGXuErg2d_c2BjKwM6VynOK6-kT1aYMKcSF-BWE3dbd0w34BMcvJf7VFcDP3yDqMUDGGtMAWnuzEyBrdP9LOErkirbMEnO39hPbEa9IVuYrVWbtintW84_yA.jpg",
+        "https://cdn4.telesco.pe/file/RhOQT84gQbRunimIqx5Y8MEcEOmbej0986zRzPsxf-aJxUHjvw2KuZ6kS-7n8l2HBMC3ZVeOxhAs1kqOjVS4H08ra7OKLXy-RSo9k-DSZub-9Qk9MpncJJAsSAaN8uvRvCoB8WFHdheMk55sSIYiFTp_pPI2NVXLHTb18hvM2UuGbgT8-51EvAzhBvGMYE3jLGavDRs4-mbylYSGKEGSUZAWgAMrhVZeiSYsbyl7NJNra1kJrFfZfQJGMyRpgUG1qE4B-_6xftyHSn44Bh9xKLlwdL0Rr0VJVGFkUtVupMGDvrlBSC6mM5pDVJsS7j_RuSb9RQEr99pF6VlQDN72GA.jpg",
+        "https://cdn4.telesco.pe/file/CwB0KLWw5BkfZnlirBFo6NrLJYb3zMxfx_sanf1e7jKtIqAhrJvgfIQZgp5NeWDXR7AdiGt9MO3wuBvKOwXi8X6zhdv7WijkcaQEJbpQsuQH6GsKAVEIHPOC_COkrbnOsDm59uoMoILfY6HcqUMcsjwq0N5IyJDcxG_VeRUMGs7hgBuNler-8l4FfRWb-IJMKoN7hW_ZJm7CyMDxCHubdPG1c5OtRWy4N7LY5He3jQBZYS32A3uVq5tSH-HKFOU86QzG_bJ4lAlYlT8MCZ4Ek3Dg5SYzLRCUCz-ZIH3KxvIwLSu5anHVU0y3g3TpMrTNVUDLHTgjZnTNki266EBYcg.jpg"
+      ],
+      "status": "active",
+      "country": "india",
+      "message_id": 359,
+      "has_media": true,
+      "category": "real_estate"
+    },
+    {
+      "id": "goa_arendaa_192708",
+      "title": "Источник: @goa_arendaa Ссылка: https://t.me/goa_arendaa/192708  Коргао Тихое место Большой отдельный дом, с очень большо",
+      "description": "",
+      "text": "Источник: @goa_arendaa\nСсылка: https://t.me/goa_arendaa/192708\n\nКоргао\nТихое место\nБольшой отдельный дом, с очень большой прилегающей приватной территорией\n2bhk целый дом\n2 Душалета с горячей водой\nвай-фай\nсвой большой участок\nхолодильник\n2 кондиционера\n2 террасы\nстиральная машина автомат\nобеденная зона\nпросторный холл\nпросторная кухня с гарнитуром и всем необходимым\nОунеры живу далеко\nсвой закрытый паркинг\n38 т.р. + вайфай и электричество\nНа долгий срок цена значительно дешевле\nКомиссия 4500 т.р.",
+      "price": 0,
+      "price_display": "",
+      "city": "Таиланд",
+      "city_ru": "Таиланд",
+      "date": "2026-05-31T04:42:18+00:00",
+      "contact": "@goa_arendaa",
+      "contact_name": "goa_arendaa",
+      "source_group": "goa_arendaa",
+      "source_channel": "parsing_in",
+      "telegram": "https://t.me/goa_arendaa",
+      "telegram_link": "https://t.me/goa_arendaa/192708",
+      "image_url": "https://cdn4.telesco.pe/file/KWm8xOH67Z2WpKR1569xkh-HPpOguF7XEsiBTl_S0JfpKV-U9KQqkz4ziQPYiG3nlFgUIrYsgJ0RkM0KB5YFVcwGbJr4NiS6FDVPe4vk0YCHG1jTlWPc1_EEZZx-vJfXy9OCgxJee4OfrTQAql1zcwQwKamHc7DSXbvFp57tkE3GTDnZ0_MqzRF1qNX60iyADZh0i3grXAikFKPiOL6Vsd_0qVkCLj_Do5s9T88T35W34YgADSelpkfl6LSPTHo85NRHpe2HOWdar_KUiwe5ZbDCakcGu9NCowaeqgYQYTXRw07y-2HxrG74W6TdYs41BsMMlY2mqFb4-und__b5mQ.jpg",
+      "all_images": [
+        "https://cdn4.telesco.pe/file/KWm8xOH67Z2WpKR1569xkh-HPpOguF7XEsiBTl_S0JfpKV-U9KQqkz4ziQPYiG3nlFgUIrYsgJ0RkM0KB5YFVcwGbJr4NiS6FDVPe4vk0YCHG1jTlWPc1_EEZZx-vJfXy9OCgxJee4OfrTQAql1zcwQwKamHc7DSXbvFp57tkE3GTDnZ0_MqzRF1qNX60iyADZh0i3grXAikFKPiOL6Vsd_0qVkCLj_Do5s9T88T35W34YgADSelpkfl6LSPTHo85NRHpe2HOWdar_KUiwe5ZbDCakcGu9NCowaeqgYQYTXRw07y-2HxrG74W6TdYs41BsMMlY2mqFb4-und__b5mQ.jpg",
+        "https://cdn4.telesco.pe/file/gWg5qsTk0yiCnuFWu1CZfawpid8i97A4KqYVRdzPdDdyr2Bcq_IAaXxeZ51WyDbnXxLkDmuf88KTx2FkKlZHy3fTudGe8Ku0MnnseKrBORRVA8namFqRxI6kFuU1h7dDCNctaEdBQ94rCeL7Ie_vzXpDj_lRD7bHMN8VVIo5hMhdRuD0lpf2BKeNJeqLR7qtSfVYfGWjDmt-M5eY2BJpKgzlCnub4J5-rGoJEQHB76oKYIZxS88iSr58Zt5hCvDEPAOxOVAtgwE5UN7TXwJL0kYta9BjLDRL9JkH0Sucy_sWOpGPtJjxVjyphrzWH4qVsSpiXvcF2YRBgP9K9HZylw.jpg",
+        "https://cdn4.telesco.pe/file/Yw5x7b0NMH6BJDp_eLU08zIZByOsBYvq9kmRCu38qVxMTqNKy0KWF0lPqmvH8VSXTSnCmiMVajnoVIXP-1JsOzv4-U53a_6ADlKmHuQ_H-w0EMkX-KpEOXB1ukssuet6r4DEmwCI9OTX2jwQQ9adE1jlEycVbVoMZGYMs6-Nm5A39iRVtPvo_W5cQinjCsrlJK5kln09xq3i4ukLukugA5mFeytq0MBlSze1uWRJA9OTbmjN8QP4e-XoTajvekDN_T4ppAHHmKj_S9ka0dyC-lxzhDZKBYJx00P9WdSqqv_JmDzdeeNDthM8i1cioZ8E-Zyw1Ama4wo62jEQVlMpCQ.jpg",
+        "https://cdn4.telesco.pe/file/C2nedAJQ6fa2x5MT59m3HIFTlExElpem0LsbzUKyTuPquNqN_rWgcEKW_QZtdxKX_IMD-by3aRtqQc1-kfok2hMQ1MHYuWRJKkuJJt8camc9QdPM36Lz2Ejleuu-ls2fMhcVwxbWEY1b2y8y4vILBAbDEU6Y79llpXxGvg1M5DbbztYG5UX32gjr0GAkV--b2XXKIajf9pCAKSEJm8AoAFE3lby3MoLWGi8fm-0VuH9oWjlYpjDmRjJBxGu9NRPW8GTIUZua2vCbIuOo-FdzgJHZMin_g8oXB910kkascTtAp0lk2l0vdAxG3T57Hq5hs3RzOHRJd6ejUrrL2NGebA.jpg",
+        "https://cdn4.telesco.pe/file/uHUrs8vxUF3qNmJePEwohTA1pi38Rqmx2FbnEIMfbmM09_IfIiUGRQlfyaRTZdNZrYbItcgC15F_WZxXB_Ef17LqEHguj5s_LSGsECmNCh8GfHXGzmHR7DKkw50u7ZvFaVv5e-fsjuEhR0YvcwqX1zkoNUOrFiW8BrUxiKap3KPLn8WqLtAmhSoEj78QBzA5nYVhDg_lAdx8bovnZtcdDjxnTEHbj-Btn8Qp66cKtjJ_yZDFW-4qI0MYsBer-45llbuf6K3YLXOBHJw5uKZQyhcd5cHzhepAnkTZKRBauJabBVSHPr_wrk9Z7lkGt-TSFONVjPZd_Pl0pqNJ1xnpwg.jpg",
+        "https://cdn4.telesco.pe/file/CdapY6AshMEj-6VlNzMksGT_aVoTePM5MvkKaOI6xA6-OxLkwzP50lX04NVuYPvfehwDiAeXwJEJbxR03Z853eJot6wOlDYmvFxMEGEUIl6ryp3s7XtizIxS7CjBRDslCa89EmjYASs1QgR4XjdyaoyzJ69d1Fx-iRXVHGn9QZA2J1isMtykgkyjJ-R7fsQucNag2V3iJFqy5t0n-GCVgzEGNay9VJygBGOAQ2gsGAsO05aoHZmgMrhMNLaKfydd3JAwePn6KptCS0uh4kAb8wZGxmZkp5I1okvjnesatzNCe-QOBFcef6xV4DDXCpK5TseVi3CcoIsAC_Jx60coNw.jpg",
+        "https://cdn4.telesco.pe/file/aeLOrHzv-gbpu_1fTc-VHyYcYnsu30X-nEIPrXxFDJ22oACkQzO6nZK6JQ7YGaOweAGh2zEteutUhjGi1mor_m2W-yNMptQYgio0jWQv9xDao3AWuSoP2_BtkjOxzJIqQ4HsOvMNk2-wqEMyHhjTcmTwnChn-hSBFA4nUSnf2F5wOH4Nd7tmT2pemg8bkmMd12xMFveDdAB-s-5biLx0ig119a4kZB5IhgGvUeIiVzDSjkS7bn7zoMJ7CDuG61aG3TC5BNqNw3r8Ydg3Vsc-nWUWc6PsN5BgtLG0L7c8Uyxn2ByTkwJrUmr-xoEjul36g-dH9lP5nfMeAEa6TPhSmw.jpg",
+        "https://cdn4.telesco.pe/file/mIeMjqTsDc9qRD2tCycOORHsaSSvOOdrQgv_ijDUboJm-_A0pFQoUq_cSCD67M8hLShfd2wWBODezufcnKVPA8_qt_vChRKbFqmxqQxyG4644ignVbcsBcbge9C2SeVTH9y7a9cHIzadtBUJs5ONdDeiL2TNcfi2oGKwDtw9-7hnMXA_dbuBqDsY7jB-GQNtdA6o6z3EYaOGXlBqnEjM_rPhaJOD554jwjKBnemPsnKpko1O8VYDc8-lxqKML8__7rBD5E1Np9DbFlZdveNIXnTDNycynQr2Fru0z2eatcbFK6xWBxS5M4kUMQvr8ieo3ofEEs9dIb5--8Kt8QL2Fw.jpg"
+      ],
+      "photos": [
+        "https://cdn4.telesco.pe/file/KWm8xOH67Z2WpKR1569xkh-HPpOguF7XEsiBTl_S0JfpKV-U9KQqkz4ziQPYiG3nlFgUIrYsgJ0RkM0KB5YFVcwGbJr4NiS6FDVPe4vk0YCHG1jTlWPc1_EEZZx-vJfXy9OCgxJee4OfrTQAql1zcwQwKamHc7DSXbvFp57tkE3GTDnZ0_MqzRF1qNX60iyADZh0i3grXAikFKPiOL6Vsd_0qVkCLj_Do5s9T88T35W34YgADSelpkfl6LSPTHo85NRHpe2HOWdar_KUiwe5ZbDCakcGu9NCowaeqgYQYTXRw07y-2HxrG74W6TdYs41BsMMlY2mqFb4-und__b5mQ.jpg",
+        "https://cdn4.telesco.pe/file/gWg5qsTk0yiCnuFWu1CZfawpid8i97A4KqYVRdzPdDdyr2Bcq_IAaXxeZ51WyDbnXxLkDmuf88KTx2FkKlZHy3fTudGe8Ku0MnnseKrBORRVA8namFqRxI6kFuU1h7dDCNctaEdBQ94rCeL7Ie_vzXpDj_lRD7bHMN8VVIo5hMhdRuD0lpf2BKeNJeqLR7qtSfVYfGWjDmt-M5eY2BJpKgzlCnub4J5-rGoJEQHB76oKYIZxS88iSr58Zt5hCvDEPAOxOVAtgwE5UN7TXwJL0kYta9BjLDRL9JkH0Sucy_sWOpGPtJjxVjyphrzWH4qVsSpiXvcF2YRBgP9K9HZylw.jpg",
+        "https://cdn4.telesco.pe/file/Yw5x7b0NMH6BJDp_eLU08zIZByOsBYvq9kmRCu38qVxMTqNKy0KWF0lPqmvH8VSXTSnCmiMVajnoVIXP-1JsOzv4-U53a_6ADlKmHuQ_H-w0EMkX-KpEOXB1ukssuet6r4DEmwCI9OTX2jwQQ9adE1jlEycVbVoMZGYMs6-Nm5A39iRVtPvo_W5cQinjCsrlJK5kln09xq3i4ukLukugA5mFeytq0MBlSze1uWRJA9OTbmjN8QP4e-XoTajvekDN_T4ppAHHmKj_S9ka0dyC-lxzhDZKBYJx00P9WdSqqv_JmDzdeeNDthM8i1cioZ8E-Zyw1Ama4wo62jEQVlMpCQ.jpg",
+        "https://cdn4.telesco.pe/file/C2nedAJQ6fa2x5MT59m3HIFTlExElpem0LsbzUKyTuPquNqN_rWgcEKW_QZtdxKX_IMD-by3aRtqQc1-kfok2hMQ1MHYuWRJKkuJJt8camc9QdPM36Lz2Ejleuu-ls2fMhcVwxbWEY1b2y8y4vILBAbDEU6Y79llpXxGvg1M5DbbztYG5UX32gjr0GAkV--b2XXKIajf9pCAKSEJm8AoAFE3lby3MoLWGi8fm-0VuH9oWjlYpjDmRjJBxGu9NRPW8GTIUZua2vCbIuOo-FdzgJHZMin_g8oXB910kkascTtAp0lk2l0vdAxG3T57Hq5hs3RzOHRJd6ejUrrL2NGebA.jpg",
+        "https://cdn4.telesco.pe/file/uHUrs8vxUF3qNmJePEwohTA1pi38Rqmx2FbnEIMfbmM09_IfIiUGRQlfyaRTZdNZrYbItcgC15F_WZxXB_Ef17LqEHguj5s_LSGsECmNCh8GfHXGzmHR7DKkw50u7ZvFaVv5e-fsjuEhR0YvcwqX1zkoNUOrFiW8BrUxiKap3KPLn8WqLtAmhSoEj78QBzA5nYVhDg_lAdx8bovnZtcdDjxnTEHbj-Btn8Qp66cKtjJ_yZDFW-4qI0MYsBer-45llbuf6K3YLXOBHJw5uKZQyhcd5cHzhepAnkTZKRBauJabBVSHPr_wrk9Z7lkGt-TSFONVjPZd_Pl0pqNJ1xnpwg.jpg",
+        "https://cdn4.telesco.pe/file/CdapY6AshMEj-6VlNzMksGT_aVoTePM5MvkKaOI6xA6-OxLkwzP50lX04NVuYPvfehwDiAeXwJEJbxR03Z853eJot6wOlDYmvFxMEGEUIl6ryp3s7XtizIxS7CjBRDslCa89EmjYASs1QgR4XjdyaoyzJ69d1Fx-iRXVHGn9QZA2J1isMtykgkyjJ-R7fsQucNag2V3iJFqy5t0n-GCVgzEGNay9VJygBGOAQ2gsGAsO05aoHZmgMrhMNLaKfydd3JAwePn6KptCS0uh4kAb8wZGxmZkp5I1okvjnesatzNCe-QOBFcef6xV4DDXCpK5TseVi3CcoIsAC_Jx60coNw.jpg",
+        "https://cdn4.telesco.pe/file/aeLOrHzv-gbpu_1fTc-VHyYcYnsu30X-nEIPrXxFDJ22oACkQzO6nZK6JQ7YGaOweAGh2zEteutUhjGi1mor_m2W-yNMptQYgio0jWQv9xDao3AWuSoP2_BtkjOxzJIqQ4HsOvMNk2-wqEMyHhjTcmTwnChn-hSBFA4nUSnf2F5wOH4Nd7tmT2pemg8bkmMd12xMFveDdAB-s-5biLx0ig119a4kZB5IhgGvUeIiVzDSjkS7bn7zoMJ7CDuG61aG3TC5BNqNw3r8Ydg3Vsc-nWUWc6PsN5BgtLG0L7c8Uyxn2ByTkwJrUmr-xoEjul36g-dH9lP5nfMeAEa6TPhSmw.jpg",
+        "https://cdn4.telesco.pe/file/mIeMjqTsDc9qRD2tCycOORHsaSSvOOdrQgv_ijDUboJm-_A0pFQoUq_cSCD67M8hLShfd2wWBODezufcnKVPA8_qt_vChRKbFqmxqQxyG4644ignVbcsBcbge9C2SeVTH9y7a9cHIzadtBUJs5ONdDeiL2TNcfi2oGKwDtw9-7hnMXA_dbuBqDsY7jB-GQNtdA6o6z3EYaOGXlBqnEjM_rPhaJOD554jwjKBnemPsnKpko1O8VYDc8-lxqKML8__7rBD5E1Np9DbFlZdveNIXnTDNycynQr2Fru0z2eatcbFK6xWBxS5M4kUMQvr8ieo3ofEEs9dIb5--8Kt8QL2Fw.jpg"
+      ],
+      "status": "active",
+      "country": "india",
+      "message_id": 364,
+      "has_media": true,
+      "category": "real_estate"
+    },
+    {
+      "id": "myflats_272888",
+      "title": "Источник: @myflats Ссылка: https://t.me/myflats/272888  Наша студия расположена в одном из самых тихих районов Северного",
+      "description": "",
+      "text": "Источник: @myflats\nСсылка: https://t.me/myflats/272888\n\nНаша студия расположена в одном из самых тихих районов Северного Гоа, в 5 минутах езды от пляжа Мандрем. Она идеальна для тех, кто любит находиться подальше от суеты и просыпаться под пение птиц. Студия оборудована небольшой кухней, а также верандой, где можно насладиться приятным видом на джунгли.\nВключенные услуги: вай-фай, газ и водонагреватель.\nСтудия доступна до конца сентября.\nСтоимость 11500 рупий за месяц. Если на весь срок с мая по сентябрь, то по 10500 рупий в месяц.\nБез комиссии.",
+      "price": 0,
+      "price_display": "",
+      "city": "Таиланд",
+      "city_ru": "Таиланд",
+      "date": "2026-05-31T06:14:31+00:00",
+      "contact": "@myflats",
+      "contact_name": "myflats",
+      "source_group": "myflats",
+      "source_channel": "parsing_in",
+      "telegram": "https://t.me/myflats",
+      "telegram_link": "https://t.me/myflats/272888",
+      "image_url": "https://cdn4.telesco.pe/file/StQsM6eJfmKq0zO1rqbAhvhJb9SCuN0qHtXTwK4-BexSF4LaleNLWCwybbKYE7JSvCy6ExAU_1W6uGBib7BDJbG6kvjNgh9OFMvI4ymxatll85azTb1_eIbR6dDG6nz9_PSzgmdWME-P9OQeFsUGl8sJ00p1umDGbyhuFXIXF2uppsyw8rEN5eKod2jqavEeXg49oqnET1Lat9haPtBXoH_b1RMDSNdtV8TMoWj62cz1YVUj-f0I-EIurjkAOkUF4V1sn7MUItakL1rmK4ElMCzwxhhFWvOyp1T9ZkRa7Azf6qOVgt5J4Nsi3KNKR5rfEf9f7mwCC6dRhr2jhF5FFA.jpg",
+      "all_images": [
+        "https://cdn4.telesco.pe/file/StQsM6eJfmKq0zO1rqbAhvhJb9SCuN0qHtXTwK4-BexSF4LaleNLWCwybbKYE7JSvCy6ExAU_1W6uGBib7BDJbG6kvjNgh9OFMvI4ymxatll85azTb1_eIbR6dDG6nz9_PSzgmdWME-P9OQeFsUGl8sJ00p1umDGbyhuFXIXF2uppsyw8rEN5eKod2jqavEeXg49oqnET1Lat9haPtBXoH_b1RMDSNdtV8TMoWj62cz1YVUj-f0I-EIurjkAOkUF4V1sn7MUItakL1rmK4ElMCzwxhhFWvOyp1T9ZkRa7Azf6qOVgt5J4Nsi3KNKR5rfEf9f7mwCC6dRhr2jhF5FFA.jpg"
+      ],
+      "photos": [
+        "https://cdn4.telesco.pe/file/StQsM6eJfmKq0zO1rqbAhvhJb9SCuN0qHtXTwK4-BexSF4LaleNLWCwybbKYE7JSvCy6ExAU_1W6uGBib7BDJbG6kvjNgh9OFMvI4ymxatll85azTb1_eIbR6dDG6nz9_PSzgmdWME-P9OQeFsUGl8sJ00p1umDGbyhuFXIXF2uppsyw8rEN5eKod2jqavEeXg49oqnET1Lat9haPtBXoH_b1RMDSNdtV8TMoWj62cz1YVUj-f0I-EIurjkAOkUF4V1sn7MUItakL1rmK4ElMCzwxhhFWvOyp1T9ZkRa7Azf6qOVgt5J4Nsi3KNKR5rfEf9f7mwCC6dRhr2jhF5FFA.jpg"
+      ],
+      "status": "active",
+      "country": "india",
+      "message_id": 372,
+      "has_media": true,
+      "category": "real_estate"
+    },
+    {
       "id": "goa_arendaa_192680",
       "title": "Источник: @goa_arendaa Ссылка: https://t.me/goa_arendaa/192680  РЕБЯТА ПОДНЯЛ 19-ЛЯМОВ КЛАСС&#33; ИГРАЮ ТУТ: crapshooter",
       "description": "",
@@ -3026,6 +3166,325 @@
   "kids": [],
   "entertainment": [
     {
+      "id": "partyhunt_4e3d1183-684c-4bad-aa31-848a78adf8fc",
+      "title": "PARTY HUNT - Tix!",
+      "description": "📅 01 Apr 2027, 20:00\n📍 Arambol\n🗺 Arambol, Goa 403519, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/party-hunt-tix-4qjgxz",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F427508bd-a841-4bd9-9549-81eefa8eb724%2Ffull_f1bdc200-b244-11ef-93b6-fd708638e0cf?alt=media&token=d734452c-14c3-4702-8958-1c43425ca211"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2027-04-01 20:00:00",
+      "city": "Arambol",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/party-hunt-tix-4qjgxz",
+      "price": "1.00",
+      "price_display": "from ₹1.00"
+    },
+    {
+      "id": "partyhunt_a17e838b-a84a-4f1d-8700-a911aa0fc509",
+      "title": "Vanaghotra",
+      "description": "📅 31 Dec 2026, 19:00\n📍 Dpedro Inn\n🗺 Chonsai Mandrem Rd, Sotchem Bahtlem, Mandrem, Goa 403512, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/vanaghotra-31-dec-2026-dpedro-inn-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fd66656f1-2ec9-4590-9b81-eafc57d76a84%2Ffull_d66656f1-2ec9-4590-9b81-eafc57d76a84?alt=media&token=6bb90719-18b3-4165-a2ed-086a94d54b43"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-12-31 19:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/vanaghotra-31-dec-2026-dpedro-inn-buy-tickets",
+      "price": "3500.00",
+      "price_display": "from ₹3500.00"
+    },
+    {
+      "id": "partyhunt_a03a4069-1d6d-4e67-a9e7-5741637ccabd",
+      "title": "Way To Heaven Festival 1",
+      "description": "📅 07 Nov 2026, 15:00\n📍 Kerala\n🗺 Kerala, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/way-to-heaven-festival-1-08-nov-2026-kerala-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fd4b5e76c-79f1-4188-a9f4-3655d771eefd%2Ffull_d4b5e76c-79f1-4188-a9f4-3655d771eefd?alt=media&token=5ffdd414-d313-46aa-960b-2ce0483e8d0c"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-11-07 15:00:00",
+      "city": "Kerala",
+      "realestate_city": "kerala",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/way-to-heaven-festival-1-08-nov-2026-kerala-buy-tickets",
+      "price": "899.00",
+      "price_display": "from ₹899.00"
+    },
+    {
+      "id": "partyhunt_a032a7f8-5e00-4d81-92a3-490cf6ccde16",
+      "title": "Way To Heaven Festival-1",
+      "description": "📅 07 Nov 2026, 15:00\n📍 Kerala\n🗺 Kerala, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/way-to-heaven-festival-1-07-nov-2026-kerala-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fafab9bc9-40aa-45b2-8de3-474e78978c06%2Ffull_afab9bc9-40aa-45b2-8de3-474e78978c06?alt=media&token=ff25455a-41ee-4f63-93d3-94cc30e903d5"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-11-07 15:00:00",
+      "city": "Kerala",
+      "realestate_city": "kerala",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/way-to-heaven-festival-1-07-nov-2026-kerala-buy-tickets",
+      "price": "899.00",
+      "price_display": "from ₹899.00"
+    },
+    {
+      "id": "partyhunt_a17acba8-c142-4af0-a305-f8880227c82c",
+      "title": "Sonic Swaraj",
+      "description": "📅 14 Aug 2026, 20:00\n📍 Twice In Nature\n🗺 Arambol, Goa 403524, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/sonic-swaraj-14-aug-2026-twice-in-nature-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/S9zL7hElXkmZhf6CbfiOTLvFg0SsKhTpbrDOq9xG.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-08-14 20:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/sonic-swaraj-14-aug-2026-twice-in-nature-buy-tickets",
+      "price": "500.00",
+      "price_display": "from ₹500.00"
+    },
+    {
+      "id": "partyhunt_a1d6b8c6-0793-4e32-b53a-51b55fb6ac21",
+      "title": "Savage Sao Joao",
+      "description": "📅 21 Jun 2026, 16:30\n📍 JW Marriott Goa\n🗺 Bardez, Vagator Beach Rd, Coutinho Vaddo, Vagator, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/savage-sao-joao-21-jun-2026-jw-marriott-goa-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/CNjPiB019iIzqcVQHpgHcpJa4rJkcWyiUVjKQzAz.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-21 16:30:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/savage-sao-joao-21-jun-2026-jw-marriott-goa-buy-tickets",
+      "price": "1000.00",
+      "price_display": "from ₹1000.00"
+    },
+    {
+      "id": "partyhunt_a1d504ae-9e6e-48ff-a5ed-68ba8fd66928",
+      "title": "Bhizya Mare 5.0",
+      "description": "📅 21 Jun 2026, 15:00\n📍 Joy n Celebrations\n🗺 Gancim, near Turf on Top futsal ground, Maina, Goa 403108, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/bhizya-mare-50-21-jun-2026-joy-n-celebrations-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/6UCUdx8QdLBzykYE754ERmCxDivYcLr6mFuGzjFB.png"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-21 15:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/bhizya-mare-50-21-jun-2026-joy-n-celebrations-buy-tickets",
+      "price": "299.00",
+      "price_display": "from ₹299.00"
+    },
+    {
+      "id": "partyhunt_a198cd13-edc5-489c-926b-bcd94d958ded",
+      "title": "Pre Sao Joao Bash",
+      "description": "📅 20 Jun 2026, 16:00\n📍 The RiverBanks\n🗺 Rai, Siolim, Goa 403517, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/pre-san-joao-bash-20-jun-2026-the-riverbanks-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2Fcacbdb89-ca29-4770-be38-ec4699533983%2Ffull_cacbdb89-ca29-4770-be38-ec4699533983?alt=media&token=9f775f2d-234a-415f-9042-117170148f0d"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-20 16:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/pre-san-joao-bash-20-jun-2026-the-riverbanks-buy-tickets",
+      "price": "700.00",
+      "price_display": "from ₹700.00"
+    },
+    {
+      "id": "partyhunt_a145b6d1-b5ef-4864-b621-2f023c46e5b4",
+      "title": "Magical Festival",
+      "description": "📅 20 Jun 2026, 10:00\n📍 Oh Magic View ( Food Corner )\n🗺 Parvati River Bridge Towards on chhalal trail Kasol, Kasol, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/magical-festival-20-jun-2026-oh-magic-view-food-corner-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/hWUwzDPhps6r9xsoBAG55wOjzG56XcHcVxBZGpDn.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-20 10:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/magical-festival-20-jun-2026-oh-magic-view-food-corner-buy-tickets",
+      "price": "1500.00",
+      "price_display": "from ₹1500.00"
+    },
+    {
+      "id": "partyhunt_a14e2a8d-ab28-40f1-815f-df1ab08854b6",
+      "title": "Mountain Calling",
+      "description": "📅 19 Jun 2026, 12:00\n📍 Reboot -On the Rocks\n🗺 top parking, Koshla, Vashist, Himachal Pradesh 175103, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/mountain-calling-19-mar-2026-reboot-on-the-rocks-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/sW8rX3rz2F5R7NuGG05ZFzBqVUzNcDiXeAlY8P8v.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-19 12:00:00",
+      "city": "Vashist",
+      "realestate_city": "manali",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/mountain-calling-19-mar-2026-reboot-on-the-rocks-buy-tickets",
+      "price": "1500.00",
+      "price_display": "from ₹1500.00"
+    },
+    {
+      "id": "partyhunt_a1e91341-4db4-4af6-9970-74a11ad6aac1",
+      "title": "THE AFTER PARTY – TRANCIRCUS",
+      "description": "📅 15 Jun 2026, 18:00\n📍 1985 Cafe & Bar\n🗺 Main Market, behind Hangout Hotel, Kasol, Sosan, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/the-after-party-trancircus-15-jun-2026-1985-cafe-bar-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/7ApBph1rycThIiHzpgL6DuNcE2U9HW1fvWt3mToA.png"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-15 18:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/the-after-party-trancircus-15-jun-2026-1985-cafe-bar-buy-tickets",
+      "price": "999.00",
+      "price_display": "from ₹999.00"
+    },
+    {
+      "id": "partyhunt_a1cc31ba-6af4-421e-8401-9c94c20f36d5",
+      "title": "Terra Night-Jamboree Bamboree",
+      "description": "📅 31 May 2026, 14:00\n📍 Pirates of Parvati\n🗺 Pirates of Parvati, Freedom Cafe, Village Chhalal P.O Kasol, taisil, Bhuntar, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/terra-night-jamboree-bamboree-29-may-2026-pirates-of-parvati-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F0b1e34f5-e6af-488f-a17d-7464aa0e1e0d%2Ffull_0b1e34f5-e6af-488f-a17d-7464aa0e1e0d?alt=media&token=d4eef0fd-198c-48c9-a9c0-bcf6a70d01a2"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-31 14:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/terra-night-jamboree-bamboree-29-may-2026-pirates-of-parvati-buy-tickets",
+      "price": "2000.00",
+      "price_display": "from ₹2000.00"
+    },
+    {
+      "id": "partyhunt_a1749c21-56b0-4c2d-a6ff-8273aa7f6e4e",
+      "title": "Ritual Connection",
+      "description": "📅 29 May 2026, 18:00\n📍 Parvati Valley\n🗺 drishyavali, hurludhar, po, parvati valley, Kasol, Himachal Pradesh 175134, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/ritual-connection-29-may-2026-parvati-valley-buy-tickets",
+      "photos": [
+        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F5010a65a-eda1-4569-8e0f-46f88642897e%2Ffull_5010a65a-eda1-4569-8e0f-46f88642897e?alt=media&token=a3b471cd-8353-436e-af4b-4079979c4cbe"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-29 18:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/ritual-connection-29-may-2026-parvati-valley-buy-tickets",
+      "price": "4500.00",
+      "price_display": "from ₹4500.00"
+    },
+    {
+      "id": "partyhunt_a1730ba7-ec4e-41eb-ab98-7621a38123f7",
+      "title": "Ritual Connection",
+      "description": "📅 29 May 2026, 16:00\n📍 Kasol\n🗺 Kasol, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/ritual-connection-29-may-2026-kasol-buy-tickets-1",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/7VKUt3MfVC99T2MyauUOnRlBRWGmo8v2ZWZbqkeX.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-29 16:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/ritual-connection-29-may-2026-kasol-buy-tickets-1"
+    },
+    {
+      "id": "partyhunt_a172bd78-e3dd-470d-8f4e-807c524908d6",
+      "title": "Ritual Connection",
+      "description": "📅 29 May 2026, 16:00\n📍 Kasol\n🗺 Kasol, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/ritual-connection-29-may-2026-kasol-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/ktExuHZgLQim7NGDW0u34sAxmfRhjdnskHkTzR9D.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-29 16:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/ritual-connection-29-may-2026-kasol-buy-tickets"
+    },
+    {
+      "id": "partyhunt_a1c6c97d-0b5d-4f98-bee2-3c2650b7bb77",
+      "title": "𝗝𝗔𝗠𝗕𝗢𝗥𝗘𝗘 𝗕𝗔𝗠𝗕𝗢𝗥𝗘𝗘",
+      "description": "📅 29 May 2026, 14:00\n📍 Pirates of Parvati\n🗺 Pirates of Parvati, Freedom Cafe, Village Chhalal P.O Kasol, taisil, Bhuntar, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/29-may-2026-pirates-of-parvati-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/Y4DBDmNZMEvSA07SydvMSXHudPyvQuFe7OA3jyGb.png"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-05-29 14:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/29-may-2026-pirates-of-parvati-buy-tickets",
+      "price": "2000.00",
+      "price_display": "from ₹2000.00"
+    },
+    {
+      "id": "partyhunt_a1e8ddee-c865-43a2-9834-a2f4d24c80e7",
+      "title": "UNMADA VARA",
+      "description": "📅 13 Jun 2026, 20:00\n📍 Parvati Valley\n🗺 drishyavali, hurludhar, po, parvati valley, Kasol, Himachal Pradesh 175134, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/unmada-vara-13-jun-2026-parvati-valley-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/CAdXGKKY5StFFAiidkMOUNijs5K7B1RpQe0ODfi8.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-13 20:00:00",
+      "city": "Kasol",
+      "realestate_city": "kasol",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/unmada-vara-13-jun-2026-parvati-valley-buy-tickets",
+      "price": "3999.00",
+      "price_display": "from ₹3999.00"
+    },
+    {
+      "id": "partyhunt_a1e8dfdf-d55c-46bc-a445-a82a42811b86",
+      "title": "Stomp Experience 49.0",
+      "description": "📅 05 Jun 2026, 21:00\n📍 House of Chapora by the bay\n🗺 Chapora Jetty , H.No 340/2 Village Anjuna-Caisua, Chapora, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/stomp-experience-490-05-jun-2026-house-of-chapora-by-the-bay-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/ZEXnqfc4OodKtnC6jHcJ6PRRMKz9bDRaEiVPheZg.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-05 21:00:00",
+      "city": "Goa",
+      "realestate_city": "goa",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/stomp-experience-490-05-jun-2026-house-of-chapora-by-the-bay-buy-tickets",
+      "price": "1000.00",
+      "price_display": "from ₹1000.00"
+    },
+    {
+      "id": "partyhunt_a1e29b67-1179-43bc-b54a-a27d8a0755e9",
+      "title": "Laughing Buddha",
+      "description": "📅 13 Jun 2026, 20:00\n📍 antiSOCIAL Pune\n🗺 Unit No. 102, Mezzanine, Fergusson College Rd, above FC Road Social, Revenue Colony, Shivajinagar, Pune, Maharashtra 411005, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/laughing-buddha-13-jun-2026-antisocial-pune-buy-tickets",
+      "photos": [
+        "https://api.anbocas.com/storage/event/banner/3Obb8SCWAGd5HAaUEMMTqJnoK0JbZ3QcxS95xL1Q.jpg"
+      ],
+      "contact": "@partyhuntgoa",
+      "source_group": "partyhuntgoa",
+      "date": "2026-06-13 20:00:00",
+      "city": "Pune",
+      "realestate_city": "pune",
+      "country": "india",
+      "telegram_link": "https://tickets.partyhunt.com/events/laughing-buddha-13-jun-2026-antisocial-pune-buy-tickets",
+      "price": "599.00",
+      "price_display": "from ₹599.00"
+    },
+    {
       "id": "partyhunt_a1dec362-1f78-478f-a48c-d2120224331f",
       "title": "Trancircus",
       "description": "📅 13 Jun 2026, 10:00\n📍 Tosh Village View Point\n🗺 2F82+6Q4, Tosh, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/trancircus-13-jun-2026-tosh-parvati-valley-buy-tickets",
@@ -3128,57 +3587,6 @@
       "price_display": "from ₹1300.00"
     },
     {
-      "id": "partyhunt_a1e4f413-fe72-41b4-accf-9d433e9a548f",
-      "title": "Viloca Live",
-      "description": "📅 30 May 2026, 22:00\n📍 Masaya\n🗺 213/9, Ozran Beach Rd, bardez, Anjuna, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/viloca-live-30-may-2026-masaya-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/PAE69E8xYS0ogJLEsjJ5hnlOfulLJRAv4djcl0O3.jpg"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-30 22:00:00",
-      "city": "Goa",
-      "realestate_city": "goa",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/viloca-live-30-may-2026-masaya-buy-tickets",
-      "price": "1000.00",
-      "price_display": "from ₹1000.00"
-    },
-    {
-      "id": "partyhunt_a1e0de48-347d-4cc9-9c3d-c2ea56770a5e",
-      "title": "Drum & Bass Night",
-      "description": "📅 30 May 2026, 18:00\n📍 RED STAR COLLECTIVE\n🗺 528, Coutinho Vaddo, Vagator, Anjuna, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/drum-bass-night-30-may-2026-red-star-collective-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/zb12siLW2LmRKXOdirQGmt1ShFUMdkzJDvPszO1S.jpg"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-30 18:00:00",
-      "city": "Goa",
-      "realestate_city": "goa",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/drum-bass-night-30-may-2026-red-star-collective-buy-tickets",
-      "price": "1000.00",
-      "price_display": "from ₹1000.00"
-    },
-    {
-      "id": "partyhunt_a1e0b81d-fb80-4af0-974c-a0cbfaa73522",
-      "title": "House Disco",
-      "description": "📅 30 May 2026, 20:00\n📍 Twice In Nature\n🗺 Arambol, Goa 403524, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/house-disco-30-may-2026-twice-in-nature-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/pqxh4CCqxwDWTNmKY958MOfxopT8nrggz5h3NgeR.jpg"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-30 20:00:00",
-      "city": "Goa",
-      "realestate_city": "goa",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/house-disco-30-may-2026-twice-in-nature-buy-tickets",
-      "price": "300.00",
-      "price_display": "from ₹300.00"
-    },
-    {
       "id": "partyhunt_a1e0b5d1-777a-4826-bb27-ed8196adec7e",
       "title": "Crystal Clear Sounds 4.0",
       "description": "📅 06 Jun 2026, 20:00\n📍 House of Chapora by the bay\n🗺 Chapora Jetty , H.No 340/2 Village Anjuna-Caisua, Chapora, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/crystal-clear-sounds-40-06-jun-2026-house-of-chapora-by-the-bay-buy-tickets",
@@ -3211,21 +3619,6 @@
       "telegram_link": "https://tickets.partyhunt.com/events/tues-tech-330-02-jun-2026-house-of-chapora-by-the-bay-buy-tickets",
       "price": "1000.00",
       "price_display": "from ₹1000.00"
-    },
-    {
-      "id": "partyhunt_a1e0b6ad-1088-4582-9616-1b44bba0e2ad",
-      "title": "Trance Frequency",
-      "description": "📅 30 May 2026, 21:00\n📍 Anexx Goa\n🗺 484/17, Duel wado, Vagator, Anjuna, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/trance-frequency-30-may-2026-anexx-goa-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/Cb1Or6IRK2vnl4HpRLO7xkm5XLNtCjno7om0KiFS.png"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-30 21:00:00",
-      "city": "Goa",
-      "realestate_city": "goa",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/trance-frequency-30-may-2026-anexx-goa-buy-tickets"
     },
     {
       "id": "partyhunt_a1df24a4-b2c6-4003-8136-f604d8eaeeef",
@@ -3345,23 +3738,6 @@
       "price_display": "from ₹1100.00"
     },
     {
-      "id": "partyhunt_a1dc93cc-6e8e-4236-b976-ce7f8a949d5d",
-      "title": "Harmonic Decibles 4.0",
-      "description": "📅 30 May 2026, 20:00\n📍 House of Chapora by the bay\n🗺 Chapora Jetty , H.No 340/2 Village Anjuna-Caisua, Chapora, Goa 403509, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/harmonic-decibles-40-30-may-2026-house-of-chapora-by-the-bay-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/gNETUDJxLYpC25i9vOV7W8MbfRrRoHigjQcvDLPx.jpg"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-30 20:00:00",
-      "city": "Goa",
-      "realestate_city": "goa",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/harmonic-decibles-40-30-may-2026-house-of-chapora-by-the-bay-buy-tickets",
-      "price": "1000.00",
-      "price_display": "from ₹1000.00"
-    },
-    {
       "id": "partyhunt_a0f0f43e-7be2-4f88-b375-087dab801a53",
       "title": "Jungle Spirit",
       "description": "📅 03 Jun 2026, 20:00\n📍 Parvati Valley\n🗺 drishyavali, hurludhar, po, parvati valley, Kasol, Himachal Pradesh 175134, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/jungle-spirit-03-jun-2026-parvati-valley-buy-tickets",
@@ -3379,23 +3755,6 @@
       "price_display": "from ₹6000.00"
     },
     {
-      "id": "partyhunt_a1d0ca37-5e69-46e8-8caf-89a2f92db5ed",
-      "title": "Stomp Revolution",
-      "description": "📅 30 May 2026, 20:00\n📍 FashionTV Talents Pune\n🗺 Swaroopam Complex, SNo 84/5, N Main Rd, Koregaon Park Annexe, Mundhwa, Pune, Maharashtra 411036, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/stomp-revolution-30-may-2026-fashiontv-talents-pune-buy-tickets",
-      "photos": [
-        "https://api.anbocas.com/storage/event/banner/iEwPI64SKhIxftxPATuBiIwQFVsX6xtboUhbPLSp.png"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-30 20:00:00",
-      "city": "Pune",
-      "realestate_city": "pune",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/stomp-revolution-30-may-2026-fashiontv-talents-pune-buy-tickets",
-      "price": "500.00",
-      "price_display": "from ₹500.00"
-    },
-    {
       "id": "partyhunt_a15c0738-ba2e-4595-ba8d-13d6698e3848",
       "title": "Celestial Grooves",
       "description": "📅 01 Jun 2026, 17:00\n📍 Parvati Valley\n🗺 drishyavali, hurludhar, po, parvati valley, Kasol, Himachal Pradesh 175134, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/celestial-grooves-02-jun-2026-parvati-valley-buy-tickets",
@@ -3411,40 +3770,6 @@
       "telegram_link": "https://tickets.partyhunt.com/events/celestial-grooves-02-jun-2026-parvati-valley-buy-tickets",
       "price": "3999.00",
       "price_display": "from ₹3999.00"
-    },
-    {
-      "id": "partyhunt_a1cc31ba-6af4-421e-8401-9c94c20f36d5",
-      "title": "Terra Night-Jamboree Bamboree",
-      "description": "📅 31 May 2026, 14:00\n📍 Pirates of Parvati\n🗺 Pirates of Parvati, Freedom Cafe, Village Chhalal P.O Kasol, taisil, Bhuntar, Himachal Pradesh 175105, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/terra-night-jamboree-bamboree-29-may-2026-pirates-of-parvati-buy-tickets",
-      "photos": [
-        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F0b1e34f5-e6af-488f-a17d-7464aa0e1e0d%2Ffull_0b1e34f5-e6af-488f-a17d-7464aa0e1e0d?alt=media&token=d4eef0fd-198c-48c9-a9c0-bcf6a70d01a2"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-31 14:00:00",
-      "city": "Kasol",
-      "realestate_city": "kasol",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/terra-night-jamboree-bamboree-29-may-2026-pirates-of-parvati-buy-tickets",
-      "price": "2000.00",
-      "price_display": "from ₹2000.00"
-    },
-    {
-      "id": "partyhunt_a1c0abd2-789f-4be1-bd5f-aa3c0ae97481",
-      "title": "Female Psy Takeover",
-      "description": "📅 30 May 2026, 20:00\n📍 Mountain Whisper, Camp at the Most Unique Location of Rishikesh\n🗺 Hindolakhal Rd, Rishikesh, Dangoo, Uttarakhand 249175, India\n🏷 Entertainment\n🎟 https://tickets.partyhunt.com/events/female-psy-takeover-30-may-2026-mountain-whisper-camp-at-the-most-unique-location-of-rishikesh-buy-tickets",
-      "photos": [
-        "https://firebasestorage.googleapis.com/v0/b/partyhunt-production.appspot.com/o/eventsPicture%2F04d62618-5085-4fab-9c14-6b2c8dde3b6a%2Ffull_04d62618-5085-4fab-9c14-6b2c8dde3b6a?alt=media&token=f94b3e6e-b198-4d54-92e7-479e409c2fdc"
-      ],
-      "contact": "@partyhuntgoa",
-      "source_group": "partyhuntgoa",
-      "date": "2026-05-30 20:00:00",
-      "city": "Rishikesh",
-      "realestate_city": "rishikesh",
-      "country": "india",
-      "telegram_link": "https://tickets.partyhunt.com/events/female-psy-takeover-30-may-2026-mountain-whisper-camp-at-the-most-unique-location-of-rishikesh-buy-tickets",
-      "price": "1499.00",
-      "price_display": "from ₹1499.00"
     }
   ],
   "chat": [],

@@ -4947,10 +4947,22 @@ threading.Thread(target=_prewarm_restaurant_file_paths, daemon=True).start()
 
 
 def _prewarm_restaurant_disk_photos():
-    """Фоновый прогрев: скачивает фото всех ресторанов через Bot API на диск один раз.
-    После этого /tg_img/ отдаёт с диска — CDN не используется совсем."""
+    """Фоновый прогрев: скачивает фото ресторанов через Bot API на диск.
+    Пропускается если недавно уже выполнялся (защита от OOM-рестартов)."""
     import time as _t
-    _t.sleep(25)  # подождать пока индекс file_id построится
+    _t.sleep(25)
+    # Не запускать чаще раза в 6 часов
+    _lock = '/tmp/disk_prewarm.lock'
+    try:
+        if os.path.exists(_lock):
+            age = _t.time() - os.path.getmtime(_lock)
+            if age < 21600:
+                logger.info('[disk_prewarm] Пропущен — выполнялся %d мин назад', int(age // 60))
+                return
+        with open(_lock, 'w') as _f:
+            _f.write(str(_t.time()))
+    except Exception:
+        pass
     bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
     if not bot_token:
         logger.warning('[disk_prewarm] Нет TELEGRAM_BOT_TOKEN, прогрев пропущен')
@@ -4959,6 +4971,10 @@ def _prewarm_restaurant_disk_photos():
         vn_data = json.load(open('listings_vietnam.json', 'r', encoding='utf-8'))
         rests = vn_data.get('restaurants', [])
     except Exception:
+        return
+    # Ранний выход если ни у одного ресторана нет file_ids
+    if not any(r.get('photo_msg_ids') and r.get('tg_file_ids') for r in rests):
+        logger.info('[disk_prewarm] Нет photo_msg_ids/tg_file_ids у ресторанов — прогрев пропущен')
         return
     cached_dir = _TG_DISK_CACHE_DIR
     downloaded = 0; skipped = 0; failed = 0
@@ -6162,9 +6178,20 @@ def _warmup_cache():
             logger.warning('[warmup] Ошибка %s: %s', _c, _we)
 
 def _startup_backfill():
-    """При старте: бэкфилл всех 7 основных каналов за последние 3 дня."""
+    """При старте: бэкфилл — не чаще 1 раза в час (защита от OOM-рестартов)."""
     import time as _tb
-    _tb.sleep(15)  # дать приложению запуститься
+    _tb.sleep(15)
+    _lock = '/tmp/startup_backfill.lock'
+    try:
+        if os.path.exists(_lock):
+            age = _tb.time() - os.path.getmtime(_lock)
+            if age < 3600:
+                logger.info('[startup_backfill] Пропущен — выполнялся %d мин назад', int(age // 60))
+                return
+        with open(_lock, 'w') as _f:
+            _f.write(str(_tb.time()))
+    except Exception:
+        pass
     logger.info('[startup_backfill] Запуск бэкфилла 7 каналов за 3 дня...')
     try:
         total = _backfill_channels(days=3)
