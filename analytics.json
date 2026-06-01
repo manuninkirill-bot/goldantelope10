@@ -858,24 +858,24 @@
         "user_o421fepcf_1780278073490"
       ],
       "tg_visitors": [],
-      "page_views": 224,
+      "page_views": 233,
       "countries": {
-        "vietnam": 224
+        "vietnam": 233
       },
       "categories": {
         "entertainment": 192,
-        "realestate": 19,
+        "realestate": 26,
         "transport": 6,
-        "tours": 7
+        "tours": 9
       },
       "hours": {
         "00": 122,
-        "01": 102
+        "01": 111
       },
       "referrers": {},
       "devices": {
         "mobile": 2,
-        "desktop": 222
+        "desktop": 231
       }
     }
   },
@@ -1127,7 +1127,7 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 16996,
+      "visits": 17005,
       "last_seen": "2026-06-01"
     },
     "user_kas3lqvh5_1778180692972": {

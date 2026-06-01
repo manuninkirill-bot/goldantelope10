@@ -910,15 +910,15 @@
                     if (currentRealEstateCity === 'danang') {
                         var _rnt = document.getElementById('top-re-nt-wrap');
                         if (_rnt) _rnt.style.display = 'none';
-                        loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'дананг',days:7});
+                        loadTopBanners('top-re-dn-wrap','top-re-dn-inner',{category:'real_estate',sort_by:'date_desc',city:'дананг',days:1});
                     } else {
                         var _rdn = document.getElementById('top-re-dn-wrap');
                         if (_rdn) _rdn.style.display = 'none';
-                        loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',min_price:5000000,sort_by:'price_asc',city:'нячанг',days:7});
+                        loadTopBanners('top-re-nt-wrap','top-re-nt-inner',{category:'real_estate',sort_by:'date_desc',city:'нячанг',days:1});
                     }
                 } else {
                     ['top-re-nt-wrap','top-re-dn-wrap'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});
-                    loadTopBanners('top-re-other-wrap','top-re-other-inner',{category:'real_estate',sort_by:'date_desc',days:30});
+                    loadTopBanners('top-re-other-wrap','top-re-other-inner',{category:'real_estate',sort_by:'date_desc',days:1});
                 }
             }
             else if (tabName === 'transport') {
