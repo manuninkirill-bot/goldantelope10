@@ -820,26 +820,60 @@
       "unique_visitors": [
         "user_y1yukxp2g_1778180659618",
         "user_sgphtquth_1780237504620",
-        "user_culs3x0h1_1780241898695"
+        "user_culs3x0h1_1780241898695",
+        "user_hycnc8a3n_1780061850991"
       ],
       "tg_visitors": [],
-      "page_views": 165,
+      "page_views": 1165,
       "countries": {
-        "vietnam": 165
+        "vietnam": 1165
       },
       "categories": {
-        "entertainment": 92,
-        "restaurants": 2,
-        "realestate": 71
+        "entertainment": 536,
+        "restaurants": 62,
+        "realestate": 567
       },
       "hours": {
         "14": 78,
-        "15": 87
+        "15": 122,
+        "16": 120,
+        "17": 120,
+        "18": 126,
+        "19": 120,
+        "20": 119,
+        "21": 120,
+        "22": 120,
+        "23": 120
       },
       "referrers": {},
       "devices": {
-        "mobile": 0,
-        "desktop": 165
+        "mobile": 6,
+        "desktop": 1159
+      }
+    },
+    "2026-06-01": {
+      "unique_visitors": [
+        "user_y1yukxp2g_1778180659618",
+        "user_hycnc8a3n_1780061850991",
+        "user_o421fepcf_1780278073490"
+      ],
+      "tg_visitors": [],
+      "page_views": 208,
+      "countries": {
+        "vietnam": 208
+      },
+      "categories": {
+        "entertainment": 191,
+        "realestate": 17
+      },
+      "hours": {
+        "00": 122,
+        "01": 86
+      },
+      "referrers": {},
+      "devices": {
+        "mobile": 2,
+        "desktop": 206
       }
     }
   },
@@ -1091,8 +1125,8 @@
     },
     "user_y1yukxp2g_1778180659618": {
       "first_seen": "2026-05-07",
-      "visits": 15781,
-      "last_seen": "2026-05-31"
+      "visits": 16980,
+      "last_seen": "2026-06-01"
     },
     "user_kas3lqvh5_1778180692972": {
       "first_seen": "2026-05-07",
@@ -1202,8 +1236,8 @@
     },
     "user_hycnc8a3n_1780061850991": {
       "first_seen": "2026-05-29",
-      "visits": 22,
-      "last_seen": "2026-05-30"
+      "visits": 30,
+      "last_seen": "2026-06-01"
     },
     "tg_8751859594": {
       "first_seen": "2026-05-29",
@@ -1220,6 +1254,11 @@
       "first_seen": "2026-05-31",
       "visits": 1,
       "last_seen": "2026-05-31"
+    },
+    "user_o421fepcf_1780278073490": {
+      "first_seen": "2026-06-01",
+      "visits": 1,
+      "last_seen": "2026-06-01"
     }
   }
 }

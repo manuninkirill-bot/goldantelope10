@@ -2253,6 +2253,13 @@ def get_listings(category):
             # Default: date_desc — newest first
             filtered.sort(key=lambda x: x.get('date', x.get('added_at', '1970-01-01')) or '1970-01-01', reverse=True)
         
+        # pin_id — поднять конкретное объявление в начало (для навигации из ТОП-20)
+        pin_id = request.args.get('pin_id', '').strip()
+        if pin_id:
+            pinned = [x for x in filtered if str(x.get('id', '')) == pin_id]
+            rest   = [x for x in filtered if str(x.get('id', '')) != pin_id]
+            filtered = pinned + rest
+
         # Пагинация
         offset = int(request.args.get('offset', 0))
         limit = int(request.args.get('limit', 0))

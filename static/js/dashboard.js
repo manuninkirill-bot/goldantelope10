@@ -954,20 +954,26 @@
             else { let category = tabName === 'realestate' ? 'real_estate' : tabName; if(typeof loadListings==='function') loadListings(category); }
         }
 
-        // Internal navigation from TOP-20 card to listing — with direct fetch fallback
+        // Глобальный pin_id для навигации из ТОП-20
+        var _pinTopCardId = null;
+
+        // Internal navigation from TOP-20 card to listing
         function openTopCard(id, category) {
             if (!id) return;
+            // Устанавливаем pin_id — loadListings подхватит и запинит этот item первым
+            _pinTopCardId = String(id);
+
             const _tabMap = { 'real_estate': 'realestate' };
             const catTab = _tabMap[category] || category;
-            if (typeof switchTab === 'function') switchTab(catTab);
 
-            var _gridId = category === 'transport'   ? 'transport-grid'
-                        : category === 'real_estate'  ? 'real_estate-grid'
-                        : category + '-grid';
-            var _attempts = 0;
-            var _fetched = false;
+            // Если уже на нужной вкладке — напрямую перезагружаем листинг с pin
+            const activeEl = document.querySelector('.tab.active');
+            const activeTab = activeEl ? (activeEl.getAttribute('onclick') || '').replace(/.*'([^']+)'.*/, '$1') : '';
+            const alreadyHere = (activeTab === catTab || activeTab === category);
 
-            function _highlight(card) {
+            function _scrollToCard() {
+                var card = document.getElementById('lc-' + id);
+                if (!card) return;
                 card.scrollIntoView({behavior:'smooth', block:'center'});
                 var prev = card.style.outline;
                 card.style.outline = '3px solid #d4af37';
@@ -975,47 +981,24 @@
                 setTimeout(function(){ card.style.outline = prev; }, 2500);
             }
 
-            function _injectFetched(item) {
-                // Удаляем старую инжектированную карточку если есть
-                var old = document.getElementById('lc-' + id);
-                if (old) { _highlight(old); return; }
-                var html = '';
-                try { html = renderListingCard(item, item._category || category); } catch(e) {}
-                if (!html) return;
-                var grid = document.getElementById(_gridId);
-                if (!grid) return;
-                var tmp = document.createElement('div');
-                tmp.innerHTML = html;
-                var node = tmp.firstElementChild;
-                if (!node) return;
-                node.style.border = '3px solid #d4af37';
-                node.style.boxShadow = '0 0 0 4px rgba(212,175,55,0.25)';
-                // Вставляем в начало грида
-                grid.insertBefore(node, grid.firstChild);
-                setTimeout(function(){
-                    node.scrollIntoView({behavior:'smooth', block:'center'});
-                    setTimeout(function(){ node.style.border = ''; node.style.boxShadow = ''; }, 2500);
-                }, 150);
+            function _waitForCard() {
+                var attempts = 0;
+                function _check() {
+                    var card = document.getElementById('lc-' + id);
+                    if (card) { _scrollToCard(); return; }
+                    if (++attempts < 20) setTimeout(_check, 250);
+                }
+                setTimeout(_check, 200);
             }
 
-            function _tryFind() {
-                var card = document.getElementById('lc-' + id);
-                if (card) { _highlight(card); return; }
-                _attempts++;
-                if (_attempts <= 5) {
-                    setTimeout(_tryFind, 400);
-                } else if (!_fetched) {
-                    // Карточки нет в первой странице — грузим напрямую
-                    _fetched = true;
-                    fetch('/api/listing?id=' + encodeURIComponent(id) + '&country=' + currentCountry + '&category=' + encodeURIComponent(category))
-                        .then(function(r){ return r.json(); })
-                        .then(function(item){
-                            if (!item.error) _injectFetched(item);
-                        })
-                        .catch(function(){});
-                }
+            if (alreadyHere) {
+                // Уже на вкладке — принудительно перезагружаем с pin_id
+                if (typeof loadListings === 'function') loadListings(category);
+                _waitForCard();
+            } else {
+                if (typeof switchTab === 'function') switchTab(catTab);
+                _waitForCard();
             }
-            setTimeout(_tryFind, 400);
         }
 
         async function loadTopBanners(wrapId, innerId, params) {
@@ -4328,17 +4311,25 @@
             params.append('limit', PAGE_SIZE);
             params.append('offset', _offset);
 
+            // pin_id: навигация из ТОП-20 — объявление выводится первым
+            const _pinId = _pinTopCardId || null;
+            if (_pinId) {
+                params.append('pin_id', _pinId);
+                _pinTopCardId = null; // использован — сбрасываем
+            }
+
             const cacheKey = `/api/listings/${category}?` + params.toString();
             const url = cacheKey + '&_t=' + Date.now();
             const now = Date.now();
-            const cached = !adminAuthenticated && _apiCache.get(cacheKey);
+            // Не используем кэш при pin_id (нужен свежий порядок)
+            const cached = !adminAuthenticated && !_pinId && _apiCache.get(cacheKey);
             const useCache = cached && (now - cached.ts) < _API_CACHE_TTL;
             console.log('Fetching:', useCache ? cacheKey + ' [CACHE]' : url);
             
             const dataPromise = useCache
                 ? Promise.resolve(cached.data)
                 : fetch(url).then(r => r.json()).then(data => {
-                    if (!adminAuthenticated) _apiCache.set(cacheKey, {data, ts: Date.now()});
+                    if (!adminAuthenticated && !_pinId) _apiCache.set(cacheKey, {data, ts: Date.now()});
                     return data;
                 });
 
